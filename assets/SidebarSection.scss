@@ -1,0 +1,110 @@
+.sidebar-section {
+  width: 234px;
+  background: #fff;
+  min-height: 900px;
+  height: 100%;
+  box-shadow: 0 0 2px 1px rgb(0 0 0 / 5%);
+  &-menu {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 0 12px 0;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    &-list {
+      display: flex;
+      flex-direction: column;
+      &-item {
+        min-height: 40px;
+        display: flex;
+        grid-gap: 15px;
+        gap: 15px;
+        align-items: center;
+        position: relative;
+        padding: 0 0 0 42px;
+        color: #8C8C8C;
+        &-icon {
+
+        }
+        &-title {
+          font-size: 14px;
+        }
+        &:hover, &-active {
+          background: #F0F0F0;
+          color: #1890FF;
+          border-right: 3px solid #1890FF;
+        }
+      }
+    }
+    &-item {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      color: #000;
+      position: relative;
+      & > div:first-child {
+        padding: 0 25px 0 25px;
+        min-height: 40px;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        position: relative;
+      }
+      &-icon {
+        width: 16px;
+        height: 16px;
+        background: no-repeat center;
+        background-size: contain;
+        &-home {
+          background-image: url('/home.png');
+        }
+        &-email {
+          background-image: url('/email.png');
+        }
+        &-analytics {
+          background-image: url('/analytics.png');
+        }
+      }
+      &:hover > div:first-child, &-active > div:first-child {
+        background: #F0F0F0;
+        color: #1890FF;
+        border-right: 3px solid #1890FF;
+        & > .sidebar-section-menu-item-icon-home {
+          background-image: url('/home-active.png');
+        }
+        & > .sidebar-section-menu-item-icon-email {
+          background-image: url('/email-active.png');
+        }
+        & > .sidebar-section-menu-item-icon-analytics {
+          background-image: url('/analytics-active.png');
+        }
+      }
+      &-title {
+        font-size: 14px;
+      }
+      &-arrow {
+        & > div:first-child {
+          border: none !important;
+          background: #fff !important;
+          &:after {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: url('/right.png') no-repeat center;
+            background-size: contain;
+            right: 15px;
+          }
+        }
+        &-active {
+          & > div:first-child {
+            &:after {
+              transform: rotate(90deg);
+            }
+          }
+        }
+      }
+    }
+  }
+}

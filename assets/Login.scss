@@ -1,0 +1,219 @@
+
+.login {
+  &-error {
+    color: #D8000C !important;
+  }
+  &-main {
+    background: #fff;
+    width: 380px;
+    height: 500px;
+    margin: 50px auto 50px auto;
+  }
+  &-logo {
+    width: 168px;
+    padding: 75px 0 0 0;
+    margin: 0 auto 0 auto;
+  }
+  &-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #8C8C8C;
+    margin: 16px 30px 16px 30px;
+    text-align: center;
+    line-height: 24px;
+    & > span {
+      color: #1890FF;
+    }
+  }
+  &-input, &-input-password {
+    margin: 0 30px 16px 30px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    & > input {
+      height: 44px;
+      border: 1px solid #D9D9D9;
+      padding: 0 12px 0 12px;
+      border-radius: 2px;
+    }
+  }
+  &-input {
+    &-switch {
+      flex-direction: initial;
+      gap: 12px;
+      & > input {
+        flex-grow: 1;
+      }
+      &-btn {
+        width: 55px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        &-line {
+          height: 30px;
+          width: 55px;
+          border-radius: 20px;
+          background: #086dd9 no-repeat;
+        }
+        &-icon {
+          width: 24px;
+          height: 24px;
+          background: #fff;
+          border-radius: 26px;
+          margin: 3px;
+        }
+        &-phone {
+          background-image: url('/phone-fill.png');
+          background-position: 30px 6px;
+        }
+        &-email {
+          background-image: url('/mail-fill.png');
+          background-position: 6px 6px;
+          & > div {
+            float: right;
+          }
+        }
+      }
+    }
+    &-date {
+      margin: 0 30px 16px 30px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      gap: 8px;
+      &-title {
+        font-size: 12px;
+        color: #8C8C8C;
+      }
+      &-list {
+        display: flex;
+        gap: 16px;
+        &-dropdown {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          background: #fff;
+          box-shadow: 0 0 5px 1px rgb(0 0 0 / 10%);
+          width: 100%;
+          top: 0;
+          transform: translate(0, -100%);
+          height: 150px;
+          border-radius: 4px;
+          overflow: hidden;
+          &-item {
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            &:hover {
+              background: #F0F0F0;
+            }
+          }
+          &-hide {
+            display: none;
+          }
+        }
+        &-title {
+          height: 44px;
+          border: 1px solid #D9D9D9;
+          padding: 0 12px 0 12px;
+          border-radius: 2px;
+          display: flex;
+          align-items: center;
+          font-size: 12px;
+          position: relative;
+        }
+        &-arrow {
+          width: 12px;
+          height: 12px;
+          background: url(/right.png) no-repeat center;
+          background-size: contain;
+          position: absolute;
+          right: 10px;
+          transform: rotate(
+              90deg);
+        }
+      }
+      &-item {
+        cursor: pointer;
+        position: relative;
+      }
+      &-day, &-year {
+        min-width: 80px;
+      }
+      &-month {
+        flex-grow: 1;
+      }
+    }
+    &-cells {
+      margin: 0 30px 16px 30px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+    &-cell {
+      & > input {
+        width: 44px;
+        height: 44px;
+        background: gainsboro;
+        text-align: center;
+        border: none;
+        font-size: 16px;
+        border-radius: 2px;
+      }
+    }
+  }
+  &-input-password {
+    & > input {
+      padding-right: 40px;
+    }
+    &-option {
+      width: 22px;
+      height: 20px;
+      position: absolute;
+      right: 12px;
+      background: url('/show-password.png') no-repeat center;
+      background-size: contain;
+      top: 50%;
+      transform: translate(0,-50%);
+      cursor: pointer;
+      opacity: .5;
+    }
+    &-hide {
+      background-image: url('/hide-password.png');
+    }
+  }
+  &-forgot {
+    font-size: 14px;
+    color: #1890FF;
+    margin: 0 30px 0 30px;
+  }
+  &-btn {
+    margin: 30px 30px 0 30px;
+    & > button {
+      height: 44px;
+      width: 100%;
+      background: #1890FF;
+      border: none;
+      color: #fff;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    &-double {
+      display: flex;
+      gap: 16px;
+      & > button:first-child {
+        background: #8C8C8C;
+      }
+    }
+  }
+  &-remembered {
+    color: #1890FF;
+    margin: 16px 30px 0 30px;
+    text-align: center;
+    font-size: 14px;
+  }
+}
+.ps__rail-y {
+  top: 0 !important;
+}
