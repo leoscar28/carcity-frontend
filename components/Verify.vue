@@ -40,6 +40,19 @@ export default {
       code: ['','','',''],
     }
   },
+  watch: {
+    code: function() {
+      if (this.code[0].trim() === '') {
+        return this.$refs.code_1.firstChild.focus();
+      } else if (this.code[1].trim() === '') {
+        return this.$refs.code_2.firstChild.focus();
+      } else if (this.code[2].trim() === '') {
+        return this.$refs.code_3.firstChild.focus();
+      } else if (this.code[3].trim() === '') {
+        return this.$refs.code_4.firstChild.focus();
+      }
+    }
+  },
   methods: {
     async checkCode() {
       if (this.code[0].trim() === '') {
@@ -61,8 +74,15 @@ export default {
         data.email_check  = parseInt(this.code.join(''));
       }
       const res = await this.$store.dispatch('localStorage/codeCheck', data);
-      console.log(res);
-
+      if (!res.hasOwnProperty('message')) {
+        await this.$router.replace({path: '/dashboard'});
+      } else {
+        for (const [key, value] of Object.entries(res)) {
+          this.$toast.error(`${value}`).goAway(2000);
+        }
+        this.code = ['','','',''];
+        this.$refs.code_1.firstChild.focus();
+      }
     }
   }
 }

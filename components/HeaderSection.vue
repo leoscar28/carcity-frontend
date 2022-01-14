@@ -19,10 +19,12 @@
             <div class="header-section-main-right-menu-user-title">{{$store.state.localStorage.user.name}}</div>
             <div class="header-section-main-right-menu-dropdown">
               <div class="header-section-main-right-menu-dropdown-main">
-                <div class="header-section-main-right-menu-dropdown-main-item">
-                  <div class="header-section-main-right-menu-dropdown-main-item-icon header-section-main-right-menu-dropdown-main-item-icon-user"></div>
-                  <div class="header-section-main-right-menu-dropdown-main-item-title">Профиль</div>
-                </div>
+                <NuxtLink to="/profile">
+                  <div class="header-section-main-right-menu-dropdown-main-item">
+                    <div class="header-section-main-right-menu-dropdown-main-item-icon header-section-main-right-menu-dropdown-main-item-icon-user"></div>
+                    <div class="header-section-main-right-menu-dropdown-main-item-title">Профиль</div>
+                  </div>
+                </NuxtLink>
                 <div class="header-section-main-right-menu-dropdown-main-item" @click="logout">
                   <div class="header-section-main-right-menu-dropdown-main-item-icon header-section-main-right-menu-dropdown-main-item-icon-logout"></div>
                   <div class="header-section-main-right-menu-dropdown-main-item-title">Выход</div>

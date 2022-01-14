@@ -18,6 +18,29 @@
     box-shadow: 0 0 2px 1px rgb(0 0 0 / 5%);
     border-radius: 4px;
     overflow: hidden;
+    &-list {
+      min-height: 305px;
+      border-bottom: 1px solid #F0F0F0;
+      padding: 24px;
+      & > div {
+        display: flex;
+        grid-gap: 24px;
+        gap: 19px;
+        flex-wrap: wrap;
+      }
+      &-item {
+        width: 65px;
+        height: 65px;
+        border-radius: 4px;
+        cursor: pointer;
+        background: #F5F5F5 no-repeat center;
+        background-size: contain;
+        position: relative;
+        &-add {
+          background: #F5F5F5 url('/add.png') no-repeat center;
+        }
+      }
+    }
     &-header {
       font-size:18px;
       padding: 16px;

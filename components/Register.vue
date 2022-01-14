@@ -73,7 +73,7 @@
         suppressScrollX: false,
       }">
                 <div style="overflow: hidden">
-                  <div class="login-input-date-list-dropdown-item" v-for="(n,index) in years" :key="index" @click="year = n; yearShow = false">{{n}}</div>
+                  <div class="login-input-date-list-dropdown-item" v-for="(n,index) in years.slice().reverse()" :key="index" @click="year = n; yearShow = false">{{n}}</div>
                 </div>
               </vue-custom-scrollbar>
             </div>
@@ -188,7 +188,7 @@ export default {
           this.$toast.error(`${value}`).goAway(2000);
         }
       } else {
-        await this.$router.replace({path: '/dashboard'});
+        await this.$router.replace({path: '/verify'});
       }
     }
   }

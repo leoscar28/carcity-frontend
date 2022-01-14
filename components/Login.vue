@@ -50,9 +50,15 @@ export default {
       });
       auth.goAway(0);
       if (res) {
-        await this.$router.replace({path: '/dashboard'});
+        if (res.phoneCode && !res.phone_verified_at) {
+          await this.$router.push('verify');
+        } else if (res.emailCode && !res.email_verified_at) {
+          await this.$router.push('verify');
+        } else {
+          await this.$router.push('dashboard');
+        }
       } else {
-        this.$toast.error('Не правильный логин иили пароль').goAway(2000);
+        this.$toast.error('Не правильный логин или пароль').goAway(2000);
       }
     }
   }

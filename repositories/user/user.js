@@ -7,6 +7,13 @@ export default ($axios) => ({
         return false;
       });
   },
+  changePassword(data) {
+    return $axios.post('/api/user/password/'+data.id,data.data).then(response => {
+      return response.data;
+    }).catch(error => {
+      return error.response.data;
+    });
+  },
   next(data) {
     return $axios.post('/api/user/next',data)
       .then(response => {
@@ -25,6 +32,14 @@ export default ($axios) => ({
   },
   codeCheck(data) {
     return $axios.post('/api/user/codeCheck',data)
+      .then(response => {
+        return response.data.data;
+      }).catch(error => {
+        return error.response.data;
+      });
+  },
+  setUser(data) {
+    return $axios.post('/api/user/update/'+data.id,data.data)
       .then(response => {
         return response.data.data;
       }).catch(error => {
