@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-section">
+  <div class="sidebar-section" :class="{'sidebar-section-show':$store.state.localStorage.sidebar}">
     <div class="sidebar-section-menu">
       <NuxtLink to="/dashboard">
         <div class="sidebar-section-menu-item" :class="{'sidebar-section-menu-item-active':($nuxt.$route.name === 'dashboard')}">
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     check() {
-      if (['requests','exrequests'].includes(this.$nuxt.$route.name)) {
+      if (['requests','exrequests','request'].includes(this.$nuxt.$route.name)) {
         this.dropdown = true;
       }
     }

@@ -26,7 +26,7 @@
         <div v-else></div>
       </button>
     </div>
-    <div class="login-remembered">Отменить</div>
+    <div class="login-remembered" @click="cancel">Отменить</div>
   </div>
 </template>
 
@@ -54,6 +54,10 @@ export default {
     }
   },
   methods: {
+    cancel() {
+      this.$store.commit('localStorage/setUser',false);
+      this.$router.replace({path: '/'});
+    },
     async checkCode() {
       if (this.code[0].trim() === '') {
         return this.$refs.code_1.firstChild.focus();

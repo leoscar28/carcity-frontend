@@ -1,4 +1,3 @@
-
 .login {
   &-error {
     color: #D8000C !important;
@@ -212,8 +211,47 @@
     margin: 16px 30px 0 30px;
     text-align: center;
     font-size: 14px;
+    cursor: pointer;
   }
 }
-.ps__rail-y {
-  top: 0 !important;
+@media only screen and (max-width: 1120px) {
+  .login {
+    &-main {
+      width: auto;
+      margin: 50px 15px 50px 15px;
+      height: 350px;
+    }
+    &-logo {
+      padding: 40px 0 0 0;
+      width: 120px;
+    }
+    &-title {
+      margin: 15px;
+      font-size: 12px;
+      line-height: 1;
+    }
+    &-input, &-input-password {
+      margin: 0 15px 15px 15px;
+      & > input {
+        height: 34px;
+      }
+    }
+    &-input {
+
+    }
+    &-forgot {
+      margin: 0 15px 0 15px;
+      font-size: 12px;
+    }
+    &-btn {
+      margin: 15px 15px 0 15px;
+      & > button {
+        height: 34px;
+        font-size: 12px;
+      }
+    }
+    &-remembered {
+      font-size: 12px;
+    }
+  }
 }

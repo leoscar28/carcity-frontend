@@ -1,4 +1,28 @@
 export default ($axios) => ({
+  getUserByDepartmentsId(departmentsId) {
+    return $axios.post('/api/user/getUserByDepartmentsId',departmentsId)
+      .then(response => {
+        return response.data.data;
+      }).catch(error => {
+        return [];
+      });
+  },
+  getUserByDepartmentId(departmentId) {
+    return $axios.get('/api/user/getUserByDepartmentId/'+departmentId)
+      .then(response => {
+        return response.data.data;
+      }).catch(error => {
+        return [];
+      });
+  },
+  getUserByFacilityId(data) {
+    return $axios.get('/api/user/getByFacilityId/'+data)
+      .then(response => {
+        return response.data.data;
+      }).catch(error => {
+        return false;
+      });
+  },
   auth(data) {
     return $axios.post('/api/user/auth',data)
       .then(response => {

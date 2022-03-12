@@ -7,11 +7,12 @@
       <div class="body-section">
         <SidebarSection></SidebarSection>
         <div class="body-section-content">
-          <RequestSection></RequestSection>
+          <RequestSection :type="type" @showChange="showChange" @statusChange="statusChange" @showRequestChange="showRequestChange" @statusRequestChange="statusRequestChange"></RequestSection>
         </div>
       </div>
     </vue-custom-scrollbar>
-    <!--    <Request></Request>-->
+    <Configurator :show="show" :status="status" @showChange="showChange" @statusChange="statusChange"></Configurator>
+    <Request :type="type" :show="showRequest" :status="statusRequest" @showRequestChange="showRequestChange" @statusRequestChange="statusRequestChange"></Request>
   </div>
 </template>
 
@@ -19,9 +20,33 @@
 import vueCustomScrollbar from 'vue-custom-scrollbar'
 import "vue-custom-scrollbar/dist/vueScrollbar.css"
 import Request from "@/components/modal/Request";
+import Configurator from "@/components/modal/Configurator";
 export default {
   name: "index",
-  components: {Request,vueCustomScrollbar},
+  components: {Request,Configurator,vueCustomScrollbar},
+  data() {
+    return {
+      type: 2,
+      show: false,
+      status: true,
+      showRequest: false,
+      statusRequest: true
+    }
+  },
+  methods: {
+    showChange(value) {
+      this.show = value;
+    },
+    statusChange(value) {
+      this.status = value;
+    },
+    showRequestChange(value) {
+      this.showRequest  = value;
+    },
+    statusRequestChange(value) {
+      this.statusRequest  = value;
+    }
+  }
 }
 </script>
 

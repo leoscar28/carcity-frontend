@@ -2,7 +2,7 @@
   <header class="header-section">
     <div class="header-section-main">
       <div class="header-section-main-left">
-        <div class="header-section-main-left-icon">
+        <div class="header-section-main-left-icon" @click="$store.commit('localStorage/toggleSidebar');">
           <div></div>
         </div>
         <div class="header-section-main-left-logo"></div>
@@ -15,8 +15,11 @@
         <div class="header-section-main-right-menu">
           <div class="header-section-main-right-menu-notification"></div>
           <div class="header-section-main-right-menu-user">
-            <div class="header-section-main-right-menu-user-icon"></div>
-            <div class="header-section-main-right-menu-user-title">{{$store.state.localStorage.user.name}}</div>
+            <div class="header-section-main-right-menu-user-icon" v-if="user.image_id" :style="{'background-image':'url('+user.image_id.src+')'}"></div>
+            <div class="header-section-main-right-menu-user-icon" v-else>
+              <div>{{ user.name[0] }}</div>
+            </div>
+            <div class="header-section-main-right-menu-user-title">{{user.name}}</div>
             <div class="header-section-main-right-menu-dropdown">
               <div class="header-section-main-right-menu-dropdown-main">
                 <NuxtLink to="/profile">
@@ -41,6 +44,11 @@
 <script>
 export default {
   name: "HeaderSection",
+  computed: {
+    user() {
+      return this.$store.state.localStorage.user;
+    }
+  },
   methods: {
     logout() {
       this.$store.commit('localStorage/setUser',false);

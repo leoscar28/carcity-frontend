@@ -3,7 +3,10 @@
     <div class="request-section-main">
       <div class="request-section-main-header">
         <div class="request-section-main-header-title">Заявки</div>
-        <button class="request-section-main-header-button">Подать заявку</button>
+        <div class="request-section-main-header-buttons">
+          <button class="request-section-main-header-button-settings" @click="$emit('showChange',true);$emit('statusChange',true)">Настройки</button>
+          <button class="request-section-main-header-button" @click="$emit('showRequestChange',true);$emit('statusRequestChange',true)">Подать заявку</button>
+        </div>
       </div>
       <div class="request-section-main-filter">
         <div class="request-section-main-filter-item-input">
@@ -59,19 +62,39 @@
             <th>Период проведения</th>
             <th>Согласующая сторона</th>
             <th>Статус</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          <template v-for="index in 30">
-            <tr class="request-section-main-table-row" :key="index">
+          <template v-for="(request,key) in requests">
+            <tr class="request-section-main-table-row" :key="key">
               <td>
-                <div class="request-section-main-table-row-number">№{{index}}</div>
+                <NuxtLink :to="'/request?id='+request.id">
+                  <div class="request-section-main-table-row-number">№{{request.id}}</div>
+                </NuxtLink>
               </td>
-              <td>01.11.22</td>
-              <td>2 <div class="request-section-main-table-arrow"></div> 7.11.2020</td>
-              <td class="request-section-main-table-dot-orange">Арендатор</td>
+              <td>{{request.created_at_readable}}</td>
+              <td>{{request.start.replace(/-/g, ".")}} <div class="request-section-main-table-arrow"></div> {{request.end.replace(/-/g, ".")}}</td>
+              <template v-for="(queue,key) in request.requestQueue">
+                <td class="request-section-main-table-dot-orange" v-if="!queue.department && queue.approve === 2" :key="key">Арендатор</td>
+                <td class="request-section-main-table-dot-orange" v-else-if="queue.department && queue.approve === 2" :key="key">{{queue.department.title}}</td>
+              </template>
               <td>
-                <div class="request-section-main-table-row-status-approved">На согласовании</div>
+                <NuxtLink :to="'/request?id='+request.id" v-if="request.ready === 1">
+                  <div class="request-section-main-table-row-status-agreed">На согласовании</div>
+                </NuxtLink>
+                <NuxtLink :to="'/request?id='+request.id" v-else-if="request.ready === 2">
+                  <div class="request-section-main-table-row-status-approved">Согласовано</div>
+                </NuxtLink>
+                <NuxtLink :to="'/request?id='+request.id" v-else-if="request.ready === 3">
+                  <div class="request-section-main-table-row-status-ready">Выполнено</div>
+                </NuxtLink>
+                <NuxtLink :to="'/request?id='+request.id" v-else-if="request.ready === 4">
+                  <div class="request-section-main-table-row-status-rejected">Отклонено</div>
+                </NuxtLink>
+              </td>
+              <td>
+                <div class="request-section-main-table-row-print" :class="{'request-section-main-table-row-print-enable':(request.ready === 3)}"></div>
               </td>
             </tr>
           </template>
@@ -109,7 +132,31 @@
 
 <script>
 export default {
-  name: "RequestSection"
+  name: "RequestSection",
+  props: ['type','show','status'],
+  components: {},
+  computed: {
+    user() {
+      return this.$store.state.localStorage.user;
+    },
+  },
+  data() {
+    return {
+      take: 30,
+      requests: [],
+    }
+  },
+  async created() {
+    this.requests = await this.$store.dispatch('localStorage/getRequests', {
+      userId: this.user.id,
+      type: this.type,
+      paginate: 1,
+      take: this.take
+    });
+  },
+  methods: {
+
+  }
 }
 </script>
 

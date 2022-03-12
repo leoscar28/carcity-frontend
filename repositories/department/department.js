@@ -1,6 +1,6 @@
 export default ($axios) => ({
-  getByCompanyId(payload) {
-    return $axios.get('/api/facility/getByCompanyId/'+payload,)
+  getByCompanyId(companyId) {
+    return $axios.get('/api/department/getByCompanyId/'+companyId)
       .then(response => {
         return response.data.data;
       }).catch(error => {
@@ -8,7 +8,7 @@ export default ($axios) => ({
       });
   },
   list() {
-    return $axios.get('/api/facility/list')
+    return $axios.get('/api/department/list')
       .then(response => {
         return response.data.data;
       }).catch(error => {

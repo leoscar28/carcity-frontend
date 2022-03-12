@@ -37,8 +37,19 @@
         width: 120px;
         height: 120px;
         margin: 0 auto 0 auto;
-        background: #BFBFBF url('/profile.png') no-repeat center;
+        background: #BFBFBF no-repeat center;
+        background-size: contain;
         border-radius: 70px;
+        position: relative;
+        & > div {
+          position: absolute;
+          font-size: 30px;
+          font-weight: bold;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+          color: #1890FF;
+        }
       }
       &-buttons {
         margin: -30px 0 0 0;
@@ -101,28 +112,28 @@
         flex-grow: 1;
         flex-basis: 0;
         &-title {
-          color: #1E1E1E;
+          color: #8C8C8C;
           font-size: 12px;
         }
         & > input {
           width: 100%;
           height: 30px;
-          border: 1px solid #D9D9D9;
+          border: none;
           box-sizing: border-box;
           border-radius: 2px;
           font-size: 12px;
           padding: 0 10px 0 10px;
-          background: #fff;
+          background: #F0F0F0;
         }
         & > select {
           width: 100%;
           height: 30px;
-          border: 1px solid #D9D9D9;
+          border: none;
           box-sizing: border-box;
           border-radius: 2px;
           font-size: 12px;
           padding: 0 10px 0 10px;
-          background: #fff;
+          background: #F0F0F0;
         }
         &-selects {
           display: flex;
@@ -130,12 +141,12 @@
         }
         &-select {
           height: 30px;
-          border: 1px solid #D9D9D9;
+          border: none;
           box-sizing: border-box;
           border-radius: 2px;
           font-size: 12px;
           padding: 0 10px 0 10px;
-          background: #fff;
+          background: #F0F0F0;
           &-day {
             width: 55px;
           }
@@ -187,6 +198,90 @@
         border: none;
         color: #fff;
         cursor: pointer;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 1120px) {
+  .profile-section {
+    margin: 15px;
+    &-main {
+      flex-direction: column;
+      &-left {
+        border: none;
+        width: 100%;
+        padding: 0;
+        min-height: auto;
+        &-icon {
+          width: 40px;
+          height: 40px;
+          margin: 15px 0 0 15px;
+        }
+        &-buttons {
+          margin: -35px 0 0 0;
+          gap: 8px;
+          left: unset;
+          right: 35px;
+          transform: translate(0,0);
+          position: absolute;
+        }
+        &-menu {
+          margin-top: 15px;
+          border: none;
+          display: flex;
+          justify-content: center;
+          border-bottom: 1px solid #F0F0F0;
+          border-top: 1px solid #F0F0F0;
+          padding: 15px;
+          & > a {
+            width: 50%;
+          }
+          &-item {
+            height: 30px;
+            border-radius: 2px;
+            text-align: center;
+            justify-content: center;
+            font-size: 10px;
+            &:hover, &-sel {
+              border: none;
+              background: #1890FF;
+              color: #fff;
+            }
+          }
+        }
+        &-button {
+          border: none;
+        }
+      }
+      &-right {
+        padding-bottom: 15px;
+        &-title {
+          font-size: 14px;
+          margin: 15px;
+        }
+        &-fields {
+          margin: 15px 15px 0 15px;
+          flex-direction: column;
+          gap: 8px;
+        }
+        &-field {
+          gap: 6px;
+          &-title {
+            font-size: 10px;
+            color: #8C8C8C;
+          }
+          &-selects {
+            gap: 8px;
+          }
+        }
+        &-btn {
+          width: 100%;
+          font-size: 12px;
+        }
+        &-checkbox {
+          font-size: 10px;
+          color: #8C8C8C;
+        }
       }
     }
   }
