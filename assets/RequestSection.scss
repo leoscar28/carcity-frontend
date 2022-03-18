@@ -1,5 +1,153 @@
 .request-section {
   margin: 20px;
+  &-table {
+    &-body {
+      background: #FAFAFA;
+      border-top: 1px solid #F0F0F0;
+      &-list {
+        width: 100%;
+        border-top: 1px solid #F0F0F0;
+        font-size: 10px;
+        &-item {
+          & > th, & > td {
+            padding: 16px;
+          }
+          & > td {
+            border-top: 1px solid #F0F0F0;
+          }
+          &-btn {
+            border: 1px solid #FFA39E;
+            background: #FFF1F0;
+            height: 20px;
+            padding: 0 16px 0 16px;
+            font-size: 10px;
+            color: #F5222D;
+            cursor: pointer;
+            border-radius: 2px;
+          }
+          &-download, &-trash {
+            width: 20px;
+            height: 20px;
+            background: url('/cloud-download.png') no-repeat center;
+            cursor: pointer;
+            opacity: .5;
+            &:hover {
+              opacity: 1;
+            }
+          }
+          &-trash {
+            background-image: url('/trash-can.png');
+          }
+          &-buttons {
+            display: flex;
+            gap: 4px;
+          }
+        }
+      }
+      &-header {
+        display: flex;
+        padding: 16px;
+        align-items: center;
+        &-title {
+          font-weight: bold;
+          font-size: 10px;
+        }
+        &-buttons {
+          display: flex;
+          gap: 16px;
+          margin-left: auto;
+        }
+        &-button {
+          height: 28px;
+          background: transparent;
+          padding: 0 8px 0 8px;
+          border: 1px solid #00549F;
+          font-size: 10px;
+          font-family: inherit;
+          color: #00549F;
+          border-radius: 2px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          &-icon {
+            background: url('/document.png') no-repeat center;
+            background-size: contain;
+            width: 16px;
+            height: 16px;
+            animation: none;
+            border:none;
+          }
+          &-reject {
+            border: 1px solid #FF4D5A;
+            color: #FF4D5A;
+            &-icon {
+              background-image: url('/archive-cancel.png');
+            }
+          }
+        }
+      }
+      &-footer {
+        border-top: 1px solid #F0F0F0;
+        padding: 16px;
+        & > button {
+          border: none;
+          background: #00549F;
+          color: #fff;
+        }
+        &-draw {
+          background-image: url('/draw-pen.png');
+        }
+      }
+    }
+    &-header {
+      display: flex;
+      font-weight: normal;
+      font-size: 12px;
+      gap: 16px;
+      color: #000;
+      cursor: pointer;
+      padding: 16px;
+      &-bold {
+        font-weight: bold;
+      }
+      &-icon {
+        width: 12px;
+        & > div {
+          width: 12px;
+          height: 12px;
+          position: relative;
+        }
+        &-plus:before, &-plus:after, &-minus:before {
+          content: '';
+          position: absolute;
+          background: #1890FF;
+          width: 100%;
+          height: 2px;
+          top: 50%;
+          transform: translate(0,-50%);
+        }
+        &-plus:after {
+          transform: translate(0,-50%) rotate(90deg);
+        }
+      }
+      &-id {
+        width: 65px;
+      }
+      &-status {
+        flex-grow: 1;
+      }
+      &-date {
+        width: 80px;
+      }
+      &-count {
+        width: 90px;
+      }
+      &-comment {
+        width: 200px;
+      }
+    }
+  }
   &-main {
     box-shadow: 0 0 2px 1px rgb(0 0 0 / 5%);
     overflow: hidden;
@@ -412,6 +560,9 @@
         flex-grow: 1;
         display: flex;
         gap: 16px;
+        &:last-child {
+          flex-grow: 0;
+        }
         &-input {
           height: 34px;
           display: flex;
@@ -428,22 +579,27 @@
             transform: translate(0,-50%);
             left: 10px;
           }
-          & > input {
+          & > input, & > select {
             height: 100%;
             border-radius: 2px;
-            background: #f0f0f0;
-            border: none;
-            font-size: 14px;
+            background: #fff;
+            border: 1px solid #D9D9D9;
+            font-size: 12px;
             text-indent: 32px;
+            color: #8C8C8C;
           }
+          & > select {
+            text-indent: 5px;
+          }
+
         }
         & > button {
           cursor: pointer;
           border-radius: 2px;
-          font-size: 14px;
+          font-size: 12px;
           background: transparent;
           border: 1px solid #D9D9D9;
-          padding: 0 10px 0 35px;
+          padding: 0 10px 0 34px;
           position: relative;
           flex-grow: 1;
         }
@@ -459,14 +615,15 @@
           }
         }
         &-find {
-          border-color: #1890FF !important;
-          color: #1890FF;
+          border: none !important;
+          background: #1890FF !important;
+          color: #fff;
           &:before {
             content: '';
             position: absolute;
             width: 15px;
             height: 15px;
-            background: url('/search-active.svg') no-repeat center;
+            background: url('/search-white.png') no-repeat center;
             background-size: contain;
             left: 10px;
           }
@@ -502,16 +659,13 @@
         & > tr {
           & > th {
             font-size: 12px;
-            padding: 16px;
+            padding: 0;
             color: #434343;
             border-bottom: 1px solid #F0F0F0;
           }
         }
       }
       &-row {
-        &:nth-child(even) {
-          background: #FAFAFA;
-        }
         &-number {
           color: #1890FF;
         }
@@ -526,8 +680,8 @@
         }
         & > td {
           font-size: 12px;
-          padding: 16px;
           border-bottom: 1px solid #F0F0F0;
+          padding: 0;
           position: relative;
         }
         &-status, &-status-agreed, &-status-approved, &-status-ready, &-status-rejected {
@@ -564,6 +718,7 @@
       display: flex;
       height: 60px;
       align-items: center;
+      background: #FAFAFA;
       &-pagination {
         display: flex;
         margin-left: 16px;
@@ -575,15 +730,16 @@
           border-radius: 2px;
           font-size: 12px;
           cursor: pointer;
+          background: #fff no-repeat center;
         }
         &-item-left {
-          background: url('/left.svg') no-repeat center;
+          background-image: url('/left.svg');
         }
         &-item-right {
-          background: url('/right.svg') no-repeat center;
+          background-image: url('/right.svg');
         }
         &-item-dots {
-          background: url('/dots.svg') no-repeat center;
+          background-image: url('/dots.svg');
         }
         &-item {
           display: flex;

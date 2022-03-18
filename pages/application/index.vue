@@ -23,7 +23,7 @@ export default {
   components: {vueCustomScrollbar},
   data() {
     return {
-      type: 1
+      type: 2
     }
   }
 }

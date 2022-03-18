@@ -23,12 +23,12 @@ export default {
   components: {vueCustomScrollbar},
   data() {
     return {
-      type: 1
+      type: 3
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style scoped>
 
 </style>

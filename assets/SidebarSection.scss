@@ -28,7 +28,7 @@
 
         }
         &-title {
-          font-size: 14px;
+          font-size: 12px;
         }
         &:hover, &-active {
           background: #F0F0F0;
@@ -55,9 +55,17 @@
         width: 16px;
         height: 16px;
         background: no-repeat center;
-        background-size: contain;
         &-home {
           background-image: url('/home.png');
+        }
+        &-folder {
+          background-image: url('/folder.png');
+        }
+        &-briefcase {
+          background-image: url('/briefcase.png');
+        }
+        &-help {
+          background-image: url('/help-circle.png');
         }
         &-email {
           background-image: url('/email.png');
@@ -73,6 +81,15 @@
         & > .sidebar-section-menu-item-icon-home {
           background-image: url('/home-active.png');
         }
+        & > .sidebar-section-menu-item-icon-folder {
+          background-image: url('/folder-active.png');
+        }
+        & > .sidebar-section-menu-item-icon-briefcase {
+          background-image: url('/briefcase-active.png');
+        }
+        & > .sidebar-section-menu-item-icon-help {
+          background-image: url('/help-circle-active.png');
+        }
         & > .sidebar-section-menu-item-icon-email {
           background-image: url('/email-active.png');
         }
@@ -81,7 +98,7 @@
         }
       }
       &-title {
-        font-size: 14px;
+        font-size: 12px;
       }
       &-arrow {
         & > div:first-child {

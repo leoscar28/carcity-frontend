@@ -17,9 +17,6 @@
     <div class="login-btn">
       <button @click="auth">Войти</button>
     </div>
-    <NuxtLink to="/register">
-      <div class="login-remembered">Регистрация</div>
-    </NuxtLink>
   </div>
 </template>
 
@@ -28,8 +25,8 @@ export default {
   name: "Login",
   data() {
     return {
-      login: '',
-      password: 'adminpassword',
+      login: 'admin@carcity.kz',
+      password: 'password',
       show: false
     }
   },
@@ -50,13 +47,7 @@ export default {
       });
       auth.goAway(0);
       if (res) {
-        if (res.phoneCode && !res.phone_verified_at) {
-          await this.$router.push('verify');
-        } else if (res.emailCode && !res.email_verified_at) {
-          await this.$router.push('verify');
-        } else {
-          await this.$router.push('dashboard');
-        }
+        await this.$router.push('dashboard');
       } else {
         this.$toast.error('Не правильный логин или пароль').goAway(2000);
       }

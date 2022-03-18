@@ -7,7 +7,6 @@
       <div class="body-section">
         <SidebarSection></SidebarSection>
         <div class="body-section-content">
-          <RequestSection :type="type"></RequestSection>
         </div>
       </div>
     </vue-custom-scrollbar>
@@ -21,14 +20,9 @@ export default {
   middleware: ['guest'],
   name: "index",
   components: {vueCustomScrollbar},
-  data() {
-    return {
-      type: 1
-    }
-  }
 }
 </script>
 
-<style lang="scss">
+<style scoped>
 
 </style>
