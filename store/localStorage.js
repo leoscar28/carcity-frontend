@@ -1,12 +1,21 @@
 export const state = () => ({
   user: false,
   sidebar: false,
-  uploadStatuses: [],
+  statuses: [],
+  lang: {
+    formatLocale: {
+      months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+      monthsShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+      weekdays: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+      weekdaysShort: ['Вос', 'Пон', 'Вто', 'Сре', 'Чет', 'Пят', 'Суб'],
+      weekdaysMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+    }
+  },
 })
 
 export const mutations = {
-  setUploadStatuses(state,value) {
-    state.uploadStatuses  = value;
+  setStatuses(state,value) {
+    state.statuses  = value;
   },
   toggleSidebar(state) {
     state.sidebar = !state.sidebar;
@@ -17,10 +26,52 @@ export const mutations = {
 }
 
 export const actions = {
-  async getUploadStatuses({commit}) {
-    const res = await this.$repository.uploadStatus.list();
-    commit('setUploadStatuses',res);
+  // async getCompletionPages({commit}) {
+  //   let res =
+  // },
+
+  async getInvoiceStatuses({commit}) {
+    let res = await this.$repository.invoiceStatus.list();
+    commit('setStatuses',res);
   },
+  async invoiceDateUpdate({commit},payload) {
+    return await this.$repository.invoiceDate.update(payload);
+  },
+  async getInvoiceDatePages({commit},payload) {
+    return await this.$repository.invoiceDate.pages(payload);
+  },
+  async getInvoiceDates({commit},payload) {
+    return await this.$repository.invoiceDate.list(payload);
+  },
+
+  async getApplicationStatuses({commit}) {
+    let res = await this.$repository.applicationStatus.list();
+    commit('setStatuses',res);
+  },
+  async applicationDateUpdate({commit},payload) {
+    return await this.$repository.applicationDate.update(payload);
+  },
+  async getApplicationDatePages({commit},payload) {
+    return await this.$repository.applicationDate.pages(payload);
+  },
+  async getApplicationDates({commit},payload) {
+    return await this.$repository.applicationDate.list(payload);
+  },
+
+  async getCompletionStatuses({commit}) {
+    let res = await this.$repository.completionStatus.list();
+    commit('setStatuses',res);
+  },
+  async completionDateUpdate({commit},payload) {
+    return await this.$repository.completionDate.update(payload);
+  },
+  async getCompletionDatePages({commit},payload) {
+    return await this.$repository.completionDate.pages(payload);
+  },
+  async getCompletionDates({commit},payload) {
+    return await this.$repository.completionDate.list(payload);
+  },
+
   async auth({commit},payload) {
     const res = await this.$repository.user.auth(payload);
     commit('setUser',res);

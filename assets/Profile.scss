@@ -37,18 +37,18 @@
         width: 120px;
         height: 120px;
         margin: 0 auto 0 auto;
-        background: #BFBFBF no-repeat center;
+        background: #274985 no-repeat center;
         background-size: contain;
         border-radius: 70px;
         position: relative;
         & > div {
           position: absolute;
-          font-size: 30px;
+          font-size: 50px;
           font-weight: bold;
           top: 50%;
           left: 50%;
           transform: translate(-50%,-50%);
-          color: #1890FF;
+          color: #fff;
         }
       }
       &-buttons {
@@ -216,6 +216,9 @@
           width: 40px;
           height: 40px;
           margin: 15px 0 0 15px;
+          & > div {
+            font-size: 14px;
+          }
         }
         &-buttons {
           margin: -35px 0 0 0;

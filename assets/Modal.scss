@@ -363,7 +363,7 @@
         background: #1890FF;
       }
       &-field {
-        margin: 20px 30px 20px 30px;
+        margin: 16px;
         font-size: 14px;
         &-radios {
           display: flex;
@@ -410,7 +410,8 @@
           }
         }
         &-title {
-          color: #8C8C8C;
+          font-size: 12px;
+          color: #1E1E1E;
         }
         &-description {
           color: #FF4D5A;
@@ -560,7 +561,7 @@
           }
           & > textarea {
             padding: 8px;
-            height: 60px;
+            height: 80px;
             resize: none;
             overflow: hidden;
             font-family: inherit;
@@ -634,7 +635,9 @@
         }
       }
       &-footer {
-        margin: 30px;
+        margin-top: 16px;
+        padding: 16px;
+        border-top: 1px solid #D9D9D9;
         display: flex;
         gap: 16px;
         & > div {
