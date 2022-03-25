@@ -136,7 +136,7 @@
           </template>
         </tbody>
       </table>
-      <table class="request-section-main-table" v-if="user.role_id === 1 && requests.length > 0">
+      <table class="request-section-main-table" v-else-if="user.role_id === 1 && requests.length > 0">
         <thead class="request-section-main-table-head">
           <tr class="request-section-main-table-tr">
             <th>Номер документа</th>
