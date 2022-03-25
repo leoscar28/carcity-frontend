@@ -26,9 +26,26 @@ export const mutations = {
 }
 
 export const actions = {
-  // async getCompletionPages({commit}) {
-  //   let res =
-  // },
+  async getInvoicePages({commit},payload) {
+    return await this.$repository.invoice.pages(payload);
+  },
+  async getInvoices({commit},payload) {
+    return await this.$repository.invoice.all(payload);
+  },
+
+  async getApplicationPages({commit},payload) {
+    return await this.$repository.application.pages(payload);
+  },
+  async getApplications({commit},payload) {
+    return await this.$repository.application.all(payload);
+  },
+
+  async getCompletionPages({commit},payload) {
+    return await this.$repository.completion.pages(payload);
+  },
+  async getCompletions({commit},payload) {
+    return await this.$repository.completion.all(payload);
+  },
 
   async getInvoiceStatuses({commit}) {
     let res = await this.$repository.invoiceStatus.list();

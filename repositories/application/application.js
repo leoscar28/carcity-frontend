@@ -1,6 +1,6 @@
 export default ($axios) => ({
   pages(payload) {
-    return $axios.post('/api/completion/pagination',payload)
+    return $axios.post('/api/application/pagination',payload)
       .then(response => {
         return response.data.data;
       }).catch(error => {
@@ -8,7 +8,7 @@ export default ($axios) => ({
       });
   },
   all(payload) {
-    return $axios.post('/api/completion/all',payload)
+    return $axios.post('/api/application/all',payload)
       .then(response => {
         return response.data.data;
       }).catch(error => {

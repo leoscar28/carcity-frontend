@@ -7,6 +7,10 @@
         <div class="request-section-main-header-title" v-else-if="type === 3">Счет на оплату</div>
       </div>
       <div class="request-section-main-filter">
+        <div class="request-section-main-filter-item-input" v-if="user.role_id === 1 && type !== 2">
+          <div class="request-section-main-filter-item-input-icon matrix"></div>
+          <input type="text" placeholder="Сумма" v-model="sum">
+        </div>
         <div class="request-section-main-filter-item-input">
           <select class="request-section-main-filter-item-input-select" v-model="upload_status_id">
             <option :value="null">Все статусы</option>
@@ -150,35 +154,33 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="request-section-main-table-tr">
-            <td>Номер документа</td>
-            <td>Организация</td>
-            <td>Дата</td>
-            <td>Сумма</td>
-            <td>Название</td>
-            <td>Компания</td>
-            <td>Статус</td>
-            <td></td>
-          </tr>
-          <tr class="request-section-main-table-tr">
-            <td>Номер документа</td>
-            <td>Организация</td>
-            <td>Дата</td>
-            <td>Сумма</td>
-            <td>Название</td>
-            <td>Компания</td>
-            <td>Статус</td>
-            <td></td>
-          </tr>
-          <tr class="request-section-main-table-tr">
-            <td>Номер документа</td>
-            <td>Организация</td>
-            <td>Дата</td>
-            <td>Сумма</td>
-            <td>Название</td>
-            <td>Компания</td>
-            <td>Статус</td>
-            <td></td>
+          <tr class="request-section-main-table-tr" v-for="(request,key) in requests" :key>
+            <td>{{request.number}}</td>
+            <td>{{request.organization}}</td>
+            <td>{{request.created_at}}</td>
+            <td>{{request.sum}}₸</td>
+            <td>{{request.name}}</td>
+            <td>{{request.customer}}</td>
+            <td>
+              <template v-if="type === 1">
+                <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-new" v-if="request.upload_status_id === 1">Новый</button>
+                <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-if="request.upload_status_id === 2">Скачано</button>
+              </template>
+              <template v-else-if="type === 2">
+                <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-subscribe" v-if="request.upload_status_id === 1">Подписать</button>
+                <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-signed" v-if="request.upload_status_id === 2">Скачано</button>
+              </template>
+              <template v-else-if="type === 3">
+                <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-new" v-if="request.upload_status_id === 1">Новый</button>
+                <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-if="request.upload_status_id === 2">Скачано</button>
+              </template>
+            </td>
+            <td>
+              <div class="request-section-table-body-list-item-buttons">
+                <div class="request-section-table-body-list-item-trash"></div>
+                <div class="request-section-table-body-list-item-download"></div>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -245,6 +247,7 @@ export default {
       pages: 0,
       upload_status_id: null,
       date: null,
+      sum: '',
       requests: [],
     }
   },
@@ -255,7 +258,6 @@ export default {
       await this.getStatuses();
       await this.getDataRequests();
     }
-    console.log(this.user);
   },
   methods: {
     async setTake(value) {
@@ -290,6 +292,9 @@ export default {
         pagination: this.paginate,
         take: this.take,
       };
+      if (this.sum.trim() !== '') {
+        data.sum= this.sum;
+      }
       if (this.upload_status_id) {
         data.upload_status_id = this.upload_status_id;
       }
@@ -297,6 +302,9 @@ export default {
         let start = this.date[0];
         let end   = this.date[1];
         data.created_at = start.getFullYear()+'-'+(start.getMonth()+1)+'-'+start.getDate()+'_'+end.getFullYear()+'-'+(end.getMonth()+1)+'-'+end.getDate();
+      }
+      if (this.user.role_id === 1) {
+        data.bin  = this.user.bin;
       }
       if (this.user.role_id !== 1) {
         if (this.type === 1) {
@@ -310,16 +318,16 @@ export default {
           this.requests = await this.$store.dispatch('localStorage/getInvoiceDates', data);
         }
       } else {
-        // if (this.type === 1) {
-        //   this.pages  = await this.$store.dispatch('localStorage/getCompletionPages', data);
-        //   this.requests = await this.$store.dispatch('localStorage/getCompletions', data);
-        // } else if (this.type === 2) {
-        //   this.pages  = await this.$store.dispatch('localStorage/getApplicationPages', data);
-        //   this.requests = await this.$store.dispatch('localStorage/getApplications', data);
-        // } else if (this.type === 3) {
-        //   this.pages  = await this.$store.dispatch('localStorage/getInvoicePages', data);
-        //   this.requests = await this.$store.dispatch('localStorage/getInvoices', data);
-        // }
+        if (this.type === 1) {
+          this.pages  = await this.$store.dispatch('localStorage/getCompletionPages', data);
+          this.requests = await this.$store.dispatch('localStorage/getCompletions', data);
+        } else if (this.type === 2) {
+          this.pages  = await this.$store.dispatch('localStorage/getApplicationPages', data);
+          this.requests = await this.$store.dispatch('localStorage/getApplications', data);
+        } else if (this.type === 3) {
+          this.pages  = await this.$store.dispatch('localStorage/getInvoicePages', data);
+          this.requests = await this.$store.dispatch('localStorage/getInvoices', data);
+        }
       }
       this.load = true;
     },
@@ -332,6 +340,7 @@ export default {
       await this.getDataRequests();
     },
     async reset() {
+      this.sum  = '';
       this.upload_status_id = null;
       this.date = '';
       this.paginate = 1;

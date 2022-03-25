@@ -34,6 +34,16 @@
               border: 1px solid #FFE58F;
               color: #FAAD14;
             }
+            &-subscribe {
+              background: #FFF1F0;
+              border: 1px solid #FFA39E;
+              color: #F5222D;
+            }
+            &-signed {
+              background: #F6FFED;
+              border: 1px solid #B7EB8F;
+              color: #52C41A;
+            }
           }
           &-download, &-trash {
             width: 20px;

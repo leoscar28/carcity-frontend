@@ -32,11 +32,11 @@
           <div class="profile-section-main-right-fields">
             <div class="profile-section-main-right-field">
               <div class="profile-section-main-right-field-title">Наименование TOO/ИП</div>
-              <input type="text" v-model="company">
+              <input type="text" :value="company" readonly>
             </div>
             <div class="profile-section-main-right-field">
               <div class="profile-section-main-right-field-title">БИН/ИИН</div>
-              <input type="text" v-model="bin">
+              <input type="text" :value="bin" readonly>
             </div>
           </div>
         </template>
