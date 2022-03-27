@@ -4,16 +4,26 @@ export default {
   head: {
     title: 'sp-frontend',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ru'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { hid: 'description', name: 'description', content: 'Низкие цены. Гарантия качества. Отличный сервис.  Более 50 миллионов позиций - запчасти, масла, автохимия, электроника, аксессуары' },
+      { name: 'format-detection', content: 'telephone=no' },
+      { property: 'og:description', content: 'Низкие цены. Гарантия качества. Отличный сервис.  Более 50 миллионов позиций - запчасти, масла, автохимия, электроника, аксессуары' },
+      { property: 'og:locale', content: 'ru_RU' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://carcity.kz' },
+      { property: 'og:site_name', content: 'CarCity.kz' },
+      { property: 'og:image:type', content: 'jpg' },
+      { property: 'og:image', content: '/site-preview.jpg' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'image_src', href: '/site-preview.jpg' },
+      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+      { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon-180x180.png' }
     ]
   },
 

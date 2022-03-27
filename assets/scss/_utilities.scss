@@ -1,0 +1,5 @@
+@each $color, $value in $grays {
+  .text-gray-#{$color} {
+    color: $value if($enable-important-utilities, !important, null);
+  }
+}

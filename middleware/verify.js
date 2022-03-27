@@ -7,6 +7,6 @@ export default function ({ store, redirect }) {
       return redirect('/dashboard')
     }
   } else {
-    return redirect('/')
+    return redirect('/partner')
   }
 }

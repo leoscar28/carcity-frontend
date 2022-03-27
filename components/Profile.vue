@@ -41,7 +41,7 @@
           </div>
         </template>
         <div class="profile-section-main-right-fields" v-else>
-          <div class="profile-section-main-right-field">
+          <div class="profile-section-main-right-field" v-if="user.positions">
             <div class="profile-section-main-right-field-title">Должность</div>
             <input type="text" :value="user.positions.title" readonly>
           </div>

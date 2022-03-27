@@ -1,9 +1,237 @@
 <template>
-  <Login></Login>
+  <div>
+    <vue-custom-scrollbar class="scroll-area" :settings="{
+        suppressScrollX: false,
+      }">
+      <TheHeader>
+        <template #actions>
+          <NuxtLink to="/partner" class="btn btn-outline-primary">
+            <span class="d-none d-sm-inline">Арендаторам</span>
+            <svg
+              class="d-sm-none"
+              xmlns="http://www.w3.org/2000/svg"
+              enable-background="new 0 0 24 24"
+              height="24px"
+              viewBox="0 0 24 24"
+              width="24px"
+              fill="currentColor"
+            >
+              <g><rect fill="none" height="24" width="24" /></g>
+              <g><path d="M11,7L9.6,8.4l2.6,2.6H2v2h10.2l-2.6,2.6L11,17l5-5L11,7z M20,19h-8v2h8c1.1,0,2-0.9,2-2V5c0-1.1-0.9-2-2-2h-8v2h8V19z" /></g>
+            </svg>
+          </NuxtLink>
+        </template>
+        <template #navbar>
+          <LinkScrollTo target-id="about" class="header__nav-link">
+            О Car Сity
+          </LinkScrollTo>
+          <LinkScrollTo target-id="infrastructure" class="header__nav-link">
+            Инфраструктура
+          </LinkScrollTo>
+          <!--        <LinkScrollTo target-id="plan" class="header__nav-link">-->
+          <!--          План помещений-->
+          <!--        </LinkScrollTo>-->
+        </template>
+      </TheHeader>
+      <main>
+        <section class="hero">
+          <div class="container">
+            <MainSlider class="mb-4" />
+
+            <div class="row">
+              <div class="col-lg-4 mb-3 mb-lg-0">
+                <div class="panel d-flex h-100">
+                  <div class="flex-shrink-0 pt-1">
+                    <img src="~/assets/img/icons/user-arrow.svg" width="26" height="29" alt="">
+                  </div>
+                  <div class="flex-grow-1 ms-3">
+                    <p class="mb-0 fs-18 fw-medium">
+                      1 000 000+ офлайн-посетителей и 500 000+ онлайн-посетителей в год
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 mb-3 mb-lg-0">
+                <div class="panel d-flex h-100">
+                  <div class="flex-shrink-0 pt-1">
+                    <img src="~/assets/img/icons/store.svg" width="28" height="24" alt="">
+                  </div>
+                  <div class="flex-grow-1 ms-3">
+                    <p class="mb-0 fs-18 fw-medium">
+                      1 200+ специализированных бутиков. Лучшие продавцы с уникальным
+                      ассортиментом.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 mb-3 mb-lg-0">
+                <div class="panel d-flex h-100">
+                  <div class="flex-shrink-0 pt-1">
+                    <img src="~/assets/img/icons/stock.svg" width="28" height="21" alt="">
+                  </div>
+                  <div class="flex-grow-1 ms-3">
+                    <p class="mb-0 fs-18 fw-medium">
+                      2 000 000+ наименований запчастей от ведущих мировых брендов
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" class="about section">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-5 mb-3 mb-lg-0">
+                <h2 class="section-title">
+                  О нас
+                </h2>
+                <p class="section-paragraph">
+                  ТЦ «Car City» - крупнейший оффлайн торговый центр в Средней Азии.
+                </p>
+                <p class="section-paragraph">
+                  У нас вы найдёте большой ассортимент запчастей от ведущих мировых брендов, от
+                  конвейерных поставщиков до качественных аналогов. На европейские, японские, российские, корейские,
+                  китайские и прочие иномарки.
+                </p>
+                <p class="section-paragraph">
+                  Для любого автовладельца ТЦ «Car City» является синонимом низкой цены, гарантии
+                  и качества!
+                </p>
+              </div>
+
+              <div class="col-lg-7">
+                <AboutPanel
+                  v-for="item in aboutItems"
+                  :key="item.id"
+                  :icon="item.iconUrl"
+                  class="mb-3"
+                >
+                  {{ item.title }}
+                </AboutPanel>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="infrastructure" class="infrastructure section">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-5 text-white mb-3 mb-lg-0">
+                <h2 class="section-title">
+                  Инфраструктура
+                </h2>
+                <p class="section-paragraph">
+                  На территории торгового центра расположились сотни магазинов по продаже
+                  автозапчастей и аксессуаров для любых марок, банк, уютные кофейни, банкоматы, терминалы и многое
+                  другое.
+                </p>
+                <p class="section-paragraph">
+                  Вы обязательно найдете все необходимые услуги на одной территории.
+                </p>
+                <p class="section-paragraph">
+                  Все что нужно сразу, в одном месте.
+                </p>
+              </div>
+
+              <div class="col-lg-7">
+                <div class="row">
+                  <div v-for="item in infrastructureItems" :key="item.id" class="col-md-6 mb-3">
+                    <InfrastructurePanel :icon="item.iconUrl" class="h-100">
+                      {{ item.title }}
+                    </InfrastructurePanel>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="services section">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8">
+                <h2 class="section-title">
+                  На прилегающей территории ТЦ имеется ряд СТО с большим спектром услуг по
+                  обслуживанию автотранспорта
+                </h2>
+              </div>
+            </div>
+
+            <div class="row">
+              <div v-for="item in serviceItems" :key="item.id" class="col-lg-3 col-md-6 mb-3">
+                <ServicePanel :img="item.imgUrl" class="h-100">
+                  {{ item.title }}
+                </ServicePanel>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </vue-custom-scrollbar>
+  </div>
 </template>
 
 <script>
+import TheHeader from "/components/site/TheHeader";
+import LinkScrollTo from "/components/site/LinkScrollTo";
+import MainSlider from '/components/site/MainSlider';
+import AboutPanel from '/components/site/AboutPanel';
+import InfrastructurePanel from '/components/site/InfrastructurePanel';
+import ServicePanel from '/components/site/ServicePanel'
+import vueCustomScrollbar from 'vue-custom-scrollbar'
+import "vue-custom-scrollbar/dist/vueScrollbar.css"
 export default {
-  middleware: ['auth']
+  name: 'IndexPage',
+  components: {
+    vueCustomScrollbar,LinkScrollTo,TheHeader,MainSlider,AboutPanel,InfrastructurePanel,ServicePanel
+  },
+  data () {
+    return {
+      aboutItems: [
+        { id: 1, iconUrl: require('~/assets/img/icons/secure-check.svg'), title: 'На рынке с 2005 года' },
+        { id: 2, iconUrl: require('~/assets/img/icons/expand.svg'), title: 'Площадь торгового центра – 31 585 м²' },
+        { id: 3, iconUrl: require('~/assets/img/icons/achievement.svg'), title: 'Ежегодный победитель в номинации «Лучший Автомагазин» с 2017 года' },
+        { id: 4, iconUrl: require('~/assets/img/icons/user-placemark.svg'), title: 'Удобное месторасположение по геолокации' }
+      ],
+      infrastructureItems: [
+        { id: 1, iconUrl: require('~/assets/img/icons/payment-card.svg'), title: 'Банкоматы БЦК, ForteBank, СберБанк, Народный банк, Kaspi банк' },
+        { id: 2, iconUrl: require('~/assets/img/icons/bank.svg'), title: 'Отделение банка НурБанк' },
+        { id: 3, iconUrl: require('~/assets/img/icons/monitor.svg'), title: 'Терминалы 24KZ, QIWI, Interpay, Kaspi Postomat' },
+        { id: 4, iconUrl: require('~/assets/img/icons/cup.svg'), title: 'Кофейни' },
+        { id: 5, iconUrl: require('~/assets/img/icons/user-arrow.svg'), title: 'Услуги курьерской службы - AlemTat, Avis Logistics' },
+        { id: 6, iconUrl: require('~/assets/img/icons/car.svg'), title: 'Парковка на 500 автомашин' }
+      ],
+      serviceItems: [
+        { id: 1, imgUrl: require('~/assets/img/demo/service1.png'), title: 'Пункт замены масла' },
+        { id: 2, imgUrl: require('~/assets/img/demo/service2.png'), title: 'Геометрия ходовой части' },
+        { id: 3, imgUrl: require('~/assets/img/demo/service3.png'), title: 'Токарные работы' },
+        { id: 4, imgUrl: require('~/assets/img/demo/service4.png'), title: 'Компьютерная диагностика' },
+        { id: 5, imgUrl: require('~/assets/img/demo/service5.png'), title: 'Реставрация трещин лобовых стёкол' },
+        { id: 6, imgUrl: require('~/assets/img/demo/service6.png'), title: 'Заправка кондиционеров' },
+        { id: 7, imgUrl: require('~/assets/img/demo/service7.png'), title: 'Ремонт двигателя, ходовой части' },
+        { id: 8, imgUrl: require('~/assets/img/demo/service8.png'), title: 'Шиномонтаж' }
+      ]
+    }
+  },
+  head: {
+    title: 'Огромный выбор автозапчастей по доступным ценам на любые марки машин',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Низкие цены. Гарантия качества. Отличный сервис.  Более 50 миллионов позиций - запчасти, масла, автохимия, электроника, аксессуары'
+      },
+      { property: 'og:title', content: 'Огромный выбор автозапчастей по доступным ценам на любые марки машин' },
+      { property: 'og:description', content: 'Низкие цены. Гарантия качества. Отличный сервис.  Более 50 миллионов позиций - запчасти, масла, автохимия, электроника, аксессуары' },
+      { property: 'og:locale', content: 'ru_RU' }
+    ]
+  }
 }
 </script>
+<style lang="scss">
+  @import '/assets/scss/main.scss';
+</style>

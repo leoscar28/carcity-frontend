@@ -26,6 +26,7 @@ export const mutations = {
 }
 
 export const actions = {
+
   async getInvoicePages({commit},payload) {
     return await this.$repository.invoice.pages(payload);
   },
@@ -47,9 +48,15 @@ export const actions = {
     return await this.$repository.completion.all(payload);
   },
 
+  async invoiceDelete({commit},payload) {
+    return await this.$repository.invoice.delete(payload);
+  },
   async getInvoiceStatuses({commit}) {
     let res = await this.$repository.invoiceStatus.list();
     commit('setStatuses',res);
+  },
+  async invoiceDateDelete({commit},rid) {
+    return await this.$repository.invoiceDate.delete(rid);
   },
   async invoiceDateUpdate({commit},payload) {
     return await this.$repository.invoiceDate.update(payload);
@@ -61,9 +68,15 @@ export const actions = {
     return await this.$repository.invoiceDate.list(payload);
   },
 
+  async applicationDelete({commit},payload) {
+    return await this.$repository.application.delete(payload);
+  },
   async getApplicationStatuses({commit}) {
     let res = await this.$repository.applicationStatus.list();
     commit('setStatuses',res);
+  },
+  async applicationDateDelete({commit},rid) {
+    return await this.$repository.applicationDate.delete(rid);
   },
   async applicationDateUpdate({commit},payload) {
     return await this.$repository.applicationDate.update(payload);
@@ -75,9 +88,16 @@ export const actions = {
     return await this.$repository.applicationDate.list(payload);
   },
 
+
+  async completionDelete({commit},payload) {
+    return await this.$repository.completion.delete(payload);
+  },
   async getCompletionStatuses({commit}) {
     let res = await this.$repository.completionStatus.list();
     commit('setStatuses',res);
+  },
+  async completionDateDelete({commit},rid) {
+    return await this.$repository.completionDate.delete(rid);
   },
   async completionDateUpdate({commit},payload) {
     return await this.$repository.completionDate.update(payload);

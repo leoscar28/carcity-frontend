@@ -14,5 +14,13 @@ export default ($axios) => ({
       }).catch(error => {
         return [];
       });
+  },
+  delete(payload) {
+    return $axios.get('/api/application/delete/'+payload.rid+'/'+payload.id)
+      .then(response => {
+        return response.data.data;
+      }).catch(error => {
+        return error.response;
+      });
   }
 });

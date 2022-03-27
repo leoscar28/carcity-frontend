@@ -48,7 +48,7 @@
           <template v-for="(request,key) in requests">
             <tr class="request-section-main-table-row" :key="key" onselectstart="return false;">
               <td>
-                <div class="request-section-table-header" @click="request.status = !request.status">
+                <div class="request-section-table-header" @click.stop="request.status = !request.status">
                   <div class="request-section-table-header-icon">
                     <div :class="{'request-section-table-header-icon-minus':!request.status,'request-section-table-header-icon-plus':request.status}"></div>
                   </div>
@@ -76,7 +76,7 @@
                         <div class="request-section-table-body-header-button-icon"></div>
                         Отчет в XLS
                       </button>
-                      <button class="request-section-table-body-header-button request-section-table-body-header-button-reject" v-if="user.role_id === 3">
+                      <button class="request-section-table-body-header-button request-section-table-body-header-button-reject" v-if="user.role_id === 3" @click.stop="cancelFlight(request.rid)">
                         <div class="request-section-table-body-header-button-icon request-section-table-body-header-button-reject-icon"></div>
                         Отменить рейс
                       </button>
@@ -121,7 +121,7 @@
                         </td>
                         <td>
                           <div class="request-section-table-body-list-item-buttons">
-                            <div class="request-section-table-body-list-item-trash" v-if="user.role_id === 3"></div>
+                            <div class="request-section-table-body-list-item-trash" v-if="user.role_id === 3" @click="deleteRequest(key,ridKey,rid.id, request.rid)"></div>
                             <div class="request-section-table-body-list-item-download"></div>
                           </div>
                         </td>
@@ -154,7 +154,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="request-section-main-table-tr" v-for="(request,key) in requests" :key>
+          <tr class="request-section-main-table-tr" v-for="(request,key) in requests" :key="key">
             <td>{{request.number}}</td>
             <td>{{request.organization}}</td>
             <td>{{request.created_at}}</td>
@@ -260,6 +260,47 @@ export default {
     }
   },
   methods: {
+    async deleteRequest(key,ridKey,id, rid) {
+      this.requests[key].rids.splice(ridKey,1);
+      if (this.type === 1) {
+        await this.$store.dispatch('localStorage/completionDelete',{
+          id: id,
+          rid: rid
+        });
+        if (this.requests[key].rids.length === 0) {
+          await this.$store.dispatch('localStorage/completionDateDelete',rid);
+          await this.getDataRequests();
+        }
+      } else if (this.type === 2) {
+        await this.$store.dispatch('localStorage/applicationDelete',{
+          id: id,
+          rid: rid
+        });
+        if (this.requests[key].rids.length === 0) {
+          await this.$store.dispatch('localStorage/applicationDateDelete',rid);
+          await this.getDataRequests();
+        }
+      } else if (this.type === 3) {
+        await this.$store.dispatch('localStorage/invoiceDelete',{
+          id: id,
+          rid: rid
+        });
+        if (this.requests[key].rids.length === 0) {
+          await this.$store.dispatch('localStorage/invoiceDateDelete',rid);
+          await this.getDataRequests();
+        }
+      }
+    },
+    async cancelFlight(rid) {
+      if (this.type === 1) {
+        await this.$store.dispatch('localStorage/completionDateDelete',rid);
+      } else if (this.type === 2) {
+        await this.$store.dispatch('localStorage/applicationDateDelete',rid);
+      } else if (this.type === 3) {
+        await this.$store.dispatch('localStorage/invoiceDateDelete',rid);
+      }
+      await this.getDataRequests();
+    },
     async setTake(value) {
       this.take = value;
       this.paginate = 1;

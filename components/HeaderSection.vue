@@ -52,7 +52,7 @@ export default {
   methods: {
     logout() {
       this.$store.commit('localStorage/setUser',false);
-      this.$router.replace({path: '/'});
+      this.$router.replace({path: '/partner'});
     }
   }
 }

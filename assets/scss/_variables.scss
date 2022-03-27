@@ -1,0 +1,89 @@
+//// Color system
+// Gray colors
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #fafafa !default;
+$gray-300: #f0f0f0 !default;
+$gray-400: #d9d9d9 !default;
+$gray-500: #bfbfbf !default;
+$gray-600: #8c8c8c !default;
+$gray-700: #595959 !default;
+$gray-800: #434343 !default;
+$gray-900: #1e1e1e !default;
+$black:    #000 !default;
+
+$grays: (
+  "100": $gray-100,
+  "200": $gray-200,
+  "300": $gray-300,
+  "400": $gray-400,
+  "500": $gray-500,
+  "600": $gray-600,
+  "700": $gray-700,
+  "800": $gray-800,
+  "900": $gray-900
+);
+
+// Theme colors
+$primary: #274985;
+$secondary: #E8B350;
+$success: #52C41A;
+//$info: $cyan;
+//$warning: $yellow;
+$danger: #FF4D5A;
+$light: $gray-100;
+$dark: $gray-900;
+
+
+// Grid
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1280px,
+  //xl: 1200px,
+  //xxl: 1400px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1224px
+  //xl: 1140px,
+  //xxl: 1320px
+);
+
+// Base
+$font-family-base: Lato, sans-serif;
+$font-size-base: 1rem;
+
+$body-color: $gray-900;
+
+$border-radius-xl: 1rem;
+
+// Typo
+$font-weight-medium: 500;
+
+// Buttons
+$btn-border-radius: 50rem;
+
+// Form
+$input-btn-focus-width: 0;
+$input-btn-padding-y: .5rem;
+$input-btn-padding-x: 1rem;
+
+// Breadcrumbs
+$breadcrumb-active-color: $body-color;
+
+// Utilities
+$font-sizes: (
+  12: 0.75rem,
+  14: 0.875rem,
+  16: 1rem,
+  18: 1.125rem,
+  20: 1.25rem,
+  24: 1.5rem,
+  32: 2rem,
+);

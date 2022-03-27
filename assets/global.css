@@ -1,13 +1,13 @@
 body {
-  background: #F0F0F0;
-  padding: 0;
+  background: #F0F0F0 !important;
+  padding: 0 !important;
   margin: 0;
-  font-family: 'Roboto', serif;
+  font-family: 'Roboto', serif !important;
   overflow: hidden;
 }
 * {
   outline: none !important;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 button > div {
   border: 4px solid #086dd9;

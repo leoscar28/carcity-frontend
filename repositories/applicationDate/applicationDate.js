@@ -22,5 +22,13 @@ export default ($axios) => ({
       }).catch(error => {
         return [];
       });
+  },
+  delete(rid) {
+    return $axios.get('/api/applicationDate/delete/'+rid)
+      .then(response => {
+        return response.data.data;
+      }).catch(error => {
+        return [];
+      });
   }
 });
