@@ -5,7 +5,7 @@
       }">
       <TheHeader>
         <template #actions>
-          <NuxtLink to="/partner" class="btn btn-outline-primary">
+          <NuxtLink to="/renters" class="btn btn-outline-primary">
             <span class="d-none d-sm-inline">Арендаторам</span>
             <svg
               class="d-sm-none"
@@ -81,7 +81,6 @@
             </div>
           </div>
         </section>
-
         <section id="about" class="about section">
           <div class="container">
             <div class="row">
@@ -102,7 +101,6 @@
                   и качества!
                 </p>
               </div>
-
               <div class="col-lg-7">
                 <AboutPanel
                   v-for="item in aboutItems"
@@ -116,7 +114,6 @@
             </div>
           </div>
         </section>
-
         <section id="infrastructure" class="infrastructure section">
           <div class="container">
             <div class="row">
@@ -136,7 +133,6 @@
                   Все что нужно сразу, в одном месте.
                 </p>
               </div>
-
               <div class="col-lg-7">
                 <div class="row">
                   <div v-for="item in infrastructureItems" :key="item.id" class="col-md-6 mb-3">
@@ -149,7 +145,6 @@
             </div>
           </div>
         </section>
-
         <section class="services section">
           <div class="container">
             <div class="row">
@@ -160,7 +155,6 @@
                 </h2>
               </div>
             </div>
-
             <div class="row">
               <div v-for="item in serviceItems" :key="item.id" class="col-lg-3 col-md-6 mb-3">
                 <ServicePanel :img="item.imgUrl" class="h-100">
@@ -171,6 +165,7 @@
           </div>
         </section>
       </main>
+      <TheFooter :dark="$route.name !== 'index'" />
     </vue-custom-scrollbar>
   </div>
 </template>
@@ -181,13 +176,14 @@ import LinkScrollTo from "/components/site/LinkScrollTo";
 import MainSlider from '/components/site/MainSlider';
 import AboutPanel from '/components/site/AboutPanel';
 import InfrastructurePanel from '/components/site/InfrastructurePanel';
-import ServicePanel from '/components/site/ServicePanel'
+import ServicePanel from '/components/site/ServicePanel';
+import TheFooter from "/components/site/TheFooter";
 import vueCustomScrollbar from 'vue-custom-scrollbar'
 import "vue-custom-scrollbar/dist/vueScrollbar.css"
 export default {
   name: 'IndexPage',
   components: {
-    vueCustomScrollbar,LinkScrollTo,TheHeader,MainSlider,AboutPanel,InfrastructurePanel,ServicePanel
+    vueCustomScrollbar,LinkScrollTo,TheHeader,MainSlider,AboutPanel,InfrastructurePanel,ServicePanel,TheFooter
   },
   data () {
     return {

@@ -5,7 +5,9 @@
         <div class="header-section-main-left-icon" @click="$store.commit('localStorage/toggleSidebar');">
           <div></div>
         </div>
-        <div class="header-section-main-left-logo"></div>
+        <NuxtLink to="/">
+          <div class="header-section-main-left-logo"></div>
+        </NuxtLink>
       </div>
       <div class="header-section-main-right">
         <div class="header-section-main-right-input">

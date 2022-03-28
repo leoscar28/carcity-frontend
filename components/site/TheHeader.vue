@@ -5,11 +5,10 @@
         <div class="header__main-row">
           <div class="d-flex align-items-center">
             <div class="header__logo me-4">
-              <a href="/">
+              <NuxtLink to="/">
                 <img src="~/assets/img/carcity-logo.png" alt="">
-              </a>
+              </NuxtLink>
             </div>
-
             <!--            <LocaleDropdown />-->
           </div>
 
