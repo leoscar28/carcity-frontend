@@ -67,6 +67,8 @@
                 <div class="request-section-table-body" v-show="!request.status">
                   <div class="request-section-table-body-header">
                     <div class="request-section-table-body-header-title" v-if="type === 1">Успешно выгружено документов {{request.rids.length}}, скачано {{downloadLength(key,2)}}</div>
+                    <div class="request-section-table-body-header-title" v-if="type === 2">Успешно выгружено документов {{request.rids.length}}}}</div>
+                    <div class="request-section-table-body-header-title" v-if="type === 3">Успешно выгружено документов {{request.rids.length}}}}</div>
                     <div class="request-section-table-body-header-buttons">
                       <button class="request-section-table-body-header-button">
                         <div class="request-section-table-body-header-button-icon"></div>
@@ -75,6 +77,10 @@
                       <button class="request-section-table-body-header-button">
                         <div class="request-section-table-body-header-button-icon"></div>
                         Отчет в XLS
+                      </button>
+                      <button class="request-section-table-body-header-button" v-if="user.role_id === 4">
+                        <div class="request-section-table-body-header-button-icon" style="background: url('/cloud-download.png') no-repeat center;border-radius: 0;background-size: auto;width: 20px;"></div>
+                        Скачать все
                       </button>
                       <button class="request-section-table-body-header-button request-section-table-body-header-button-reject" v-if="user.role_id === 3" @click.stop="cancelFlight(request.rid)">
                         <div class="request-section-table-body-header-button-icon request-section-table-body-header-button-reject-icon"></div>
