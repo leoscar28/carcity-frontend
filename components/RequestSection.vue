@@ -78,7 +78,7 @@
                         <div class="request-section-table-body-header-button-icon"></div>
                         Отчет в XLS
                       </button>
-                      <button class="request-section-table-body-header-button" v-if="user.role_id === 4">
+                      <button class="request-section-table-body-header-button">
                         <div class="request-section-table-body-header-button-icon" style="background: url('/cloud-download.png') no-repeat center;border-radius: 0;background-size: auto;width: 20px;"></div>
                         Скачать все
                       </button>
