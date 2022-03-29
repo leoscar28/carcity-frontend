@@ -464,6 +464,7 @@ export default {
       if (res.hasOwnProperty('message')) {
         this.$toast.error(res.message).goAway(2000);
       } else if (res.hasOwnProperty('link')) {
+        console.log(res);
         window.open(res.link,'_blank');
       }
       if (res.status) {
