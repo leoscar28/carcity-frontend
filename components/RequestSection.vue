@@ -58,11 +58,25 @@
                   <div class="request-section-table-header-count">{{request.document_all}}</div>
                   <div class="request-section-table-header-count">{{request.document_available}}</div>
                   <div class="request-section-table-header-count request-section-table-header-count-danger">{{request.document_all - request.document_available}}</div>
-                  <div class="request-section-table-header-comment" @click.stop="$emit('requestCommentShowChange',true);$emit('requestChange',request)">
-                    <div class="request-section-table-header-comment-icon"></div>
-                    <div class="request-section-table-header-comment-text" v-if="request.comment && request.comment.trim() !== ''">{{request.comment}}</div>
-                    <div class="request-section-table-header-comment-text-empty" v-else>Нет комментарий</div>
-                  </div>
+                  <template v-if="user.role_id === 3">
+                    <div class="request-section-table-header-comment" @click.stop="$emit('requestCommentShowChange',true);$emit('requestChange',request)">
+                      <div class="request-section-table-header-comment-icon"></div>
+                      <div class="request-section-table-header-comment-text" v-if="request.comment && request.comment.trim() !== ''">{{request.comment}}</div>
+                      <div class="request-section-table-header-comment-text-empty" v-else>Нет комментарий</div>
+                    </div>
+                  </template>
+                  <template v-else-if="request.comment && request.comment.trim() !== ''">
+                    <div class="request-section-table-header-comment" @click.stop="$emit('requestCommentShowChange',true);$emit('requestChange',request)">
+                      <div class="request-section-table-header-comment-icon"></div>
+                      <div class="request-section-table-header-comment-text">{{request.comment}}</div>
+                    </div>
+                  </template>
+                  <template v-else>
+                    <div class="request-section-table-header-comment">
+                      <div class="request-section-table-header-comment-icon"></div>
+                      <div class="request-section-table-header-comment-text-empty">Нет комментарий</div>
+                    </div>
+                  </template>
                 </div>
                 <div class="request-section-table-body" v-show="!request.status">
                   <div class="request-section-table-body-header">
