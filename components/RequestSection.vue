@@ -461,6 +461,8 @@ export default {
       } else if (this.type === 3) {
         res = await this.$store.dispatch('localStorage/invoiceDownload',data);
       }
+      console.log(res);
+      console.log(typeof res.link);
       if (res.hasOwnProperty('message')) {
         this.$toast.error(res.message).goAway(2000);
       } else if (res.hasOwnProperty('link')) {
