@@ -48,6 +48,12 @@ export const actions = {
     return await this.$repository.completion.all(payload);
   },
 
+  async invoiceDownloadAll({commit},payload) {
+    return await this.$repository.invoice.downloadAll(payload);
+  },
+  async invoiceDownload({commit},payload) {
+    return await this.$repository.invoice.download(payload);
+  },
   async invoiceDelete({commit},payload) {
     return await this.$repository.invoice.delete(payload);
   },
@@ -68,6 +74,12 @@ export const actions = {
     return await this.$repository.invoiceDate.list(payload);
   },
 
+  async applicationDownloadAll({commit},payload) {
+    return await this.$repository.application.downloadAll(payload);
+  },
+  async applicationDownload({commit},payload) {
+    return await this.$repository.application.download(payload);
+  },
   async applicationDelete({commit},payload) {
     return await this.$repository.application.delete(payload);
   },
@@ -88,7 +100,12 @@ export const actions = {
     return await this.$repository.applicationDate.list(payload);
   },
 
-
+  async completionDownloadAll({commit},payload) {
+    return await this.$repository.completion.downloadAll(payload);
+  },
+  async completionDownload({commit},payload) {
+    return await this.$repository.completion.download(payload);
+  },
   async completionDelete({commit},payload) {
     return await this.$repository.completion.delete(payload);
   },

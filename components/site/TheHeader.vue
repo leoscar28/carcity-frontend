@@ -17,7 +17,7 @@
               <img src="~/assets/img/icons/clock.svg" class="header__info-icon" alt="">
               <div>
                 <span class="header__info-title">Работаем ежедневно</span>
-                <span class="header__info-data">09:00 - 19:00</span>
+                <span class="header__info-data">09.00 - 19.00</span>
               </div>
             </div>
 
@@ -34,7 +34,7 @@
               <div>
                 <span class="header__info-title">Как добраться?</span>
                 <address class="header__info-data">
-                  Алматы, мкр. Баянаул 57а
+                  г.Алматы, мкр. Баянаул 57а
                 </address>
               </div>
             </div>

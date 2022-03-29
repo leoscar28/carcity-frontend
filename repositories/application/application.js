@@ -22,5 +22,21 @@ export default ($axios) => ({
       }).catch(error => {
         return error.response;
       });
+  },
+  download(payload) {
+    return $axios.post('/api/application/download/',payload)
+      .then(response => {
+        return response.data;
+      }).catch(error => {
+        return error.response.data;
+      });
+  },
+  downloadAll(rid) {
+    return $axios.get('/api/application/downloadAll/'+rid)
+      .then(response => {
+        return response.data;
+      }).catch(error => {
+        return error.response.data;
+      });
   }
 });

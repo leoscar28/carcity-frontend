@@ -67,8 +67,8 @@
                 <div class="request-section-table-body" v-show="!request.status">
                   <div class="request-section-table-body-header">
                     <div class="request-section-table-body-header-title" v-if="type === 1">Успешно выгружено документов {{request.rids.length}}, скачано {{downloadLength(key,2)}}</div>
-                    <div class="request-section-table-body-header-title" v-if="type === 2">Успешно выгружено документов {{request.rids.length}}}}</div>
-                    <div class="request-section-table-body-header-title" v-if="type === 3">Успешно выгружено документов {{request.rids.length}}}}</div>
+                    <div class="request-section-table-body-header-title" v-if="type === 2">Успешно выгружено документов {{request.rids.length}}</div>
+                    <div class="request-section-table-body-header-title" v-if="type === 3">Успешно выгружено документов {{request.rids.length}}, скачано {{downloadLength(key,2)}}</div>
                     <div class="request-section-table-body-header-buttons">
                       <button class="request-section-table-body-header-button">
                         <div class="request-section-table-body-header-button-icon"></div>
@@ -78,7 +78,7 @@
                         <div class="request-section-table-body-header-button-icon"></div>
                         Отчет в XLS
                       </button>
-                      <button class="request-section-table-body-header-button">
+                      <button class="request-section-table-body-header-button" @click="downloadAll(request.rid)">
                         <div class="request-section-table-body-header-button-icon" style="background: url('/cloud-download.png') no-repeat center;border-radius: 0;background-size: auto;width: 20px;"></div>
                         Скачать все
                       </button>
@@ -121,20 +121,24 @@
                             <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-new" v-if="rid.upload_status_id === 1">Новый</button>
                             <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-if="rid.upload_status_id === 2">Скачано</button>
                           </template>
-                          <template v-else>
+                          <template v-else-if="type === 2">
 
+                          </template>
+                          <template v-else-if="type === 3">
+                            <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-new" v-if="rid.upload_status_id === 1">Новый</button>
+                            <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-if="rid.upload_status_id === 2">Скачано</button>
                           </template>
                         </td>
                         <td>
                           <div class="request-section-table-body-list-item-buttons">
                             <div class="request-section-table-body-list-item-trash" v-if="user.role_id === 3" @click="deleteRequest(key,ridKey,rid.id, request.rid)"></div>
-                            <div class="request-section-table-body-list-item-download"></div>
+                            <div class="request-section-table-body-list-item-download" @click="download(rid.id,rid.rid,false)"></div>
                           </div>
                         </td>
                       </tr>
                     </tbody>
                   </table>
-                  <div class="request-section-table-body-footer" v-if="user.role_id === 4">
+                  <div class="request-section-table-body-footer" v-if="user.role_id === 3 || user.role_id === 4">
                     <button class="request-section-table-body-header-button">
                       <div class="request-section-table-body-header-button-icon request-section-table-body-footer-draw"></div>
                       Подписать документы
@@ -183,8 +187,8 @@
             </td>
             <td>
               <div class="request-section-table-body-list-item-buttons">
-                <div class="request-section-table-body-list-item-trash"></div>
-                <div class="request-section-table-body-list-item-download"></div>
+                <div class="request-section-table-body-list-item-trash" @click="deleteTenant(request.id,request.rid);"></div>
+                <div class="request-section-table-body-list-item-download" @click="download(request.id,request.rid,true);"></div>
               </div>
             </td>
           </tr>
@@ -410,7 +414,62 @@ export default {
       } else if (this.type === 3) {
         await this.$store.dispatch('localStorage/getInvoiceStatuses');
       }
-    }
+    },
+    async deleteTenant(id,rid) {
+      let data  = {
+        id: id,
+        rid: rid
+      }
+      if (this.type === 1) {
+        await this.$store.dispatch('localStorage/completionDelete',data);
+      } else if (this.type === 2) {
+        await this.$store.dispatch('localStorage/applicationDelete',data);
+      } else if (this.type === 3) {
+        await this.$store.dispatch('localStorage/invoiceDelete',data);
+      }
+      await this.getDataRequests();
+    },
+    async downloadAll(rid) {
+      let res;
+      if (this.type === 1) {
+        res = await this.$store.dispatch('localStorage/completionDownloadAll',rid);
+      } else if (this.type === 2) {
+        res = await this.$store.dispatch('localStorage/applicationDownloadAll',rid);
+      } else if (this.type === 3) {
+        res = await this.$store.dispatch('localStorage/invoiceDownloadAll',rid);
+      }
+      if (res.hasOwnProperty('message')) {
+        return this.$toast.error(res.message).goAway(2000);
+      }
+
+      res.forEach(item => {
+        window.open(item,'_blank');
+      });
+
+    },
+    async download(id,rid,status) {
+      let data  = {
+        id: id,
+        rid: rid,
+        status: status
+      };
+      let res;
+      if (this.type === 1) {
+        res = await this.$store.dispatch('localStorage/completionDownload',data);
+      } else if (this.type === 2) {
+        res = await this.$store.dispatch('localStorage/applicationDownload',data);
+      } else if (this.type === 3) {
+        res = await this.$store.dispatch('localStorage/invoiceDownload',data);
+      }
+      if (res.hasOwnProperty('message')) {
+        this.$toast.error(res.message).goAway(2000);
+      } else if (res.hasOwnProperty('link')) {
+        window.open(res.link,'_blank');
+      }
+      if (res.status) {
+        await this.getDataRequests();
+      }
+    },
   }
 }
 </script>
