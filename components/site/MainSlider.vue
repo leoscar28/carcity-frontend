@@ -6,7 +6,7 @@
           <div class="main-slide">
             <img src="~/assets/img/demo/main-slide1.jpg" alt="" class="main-slide__img">
             <div class="main-slide__descr">
-              <p>CarCity.kz — официальный сайт крупнейшего торгового центра автозапчастей в РК</p>
+              <p>Ваша машина будет довольна. Любые автомобильные запчасти высокого качества.</p>
             </div>
           </div>
         </li>
@@ -22,7 +22,7 @@
           <div class="main-slide">
             <img src="~/assets/img/demo/main-slide3.jpg" alt="" class="main-slide__img">
             <div class="main-slide__descr">
-              <p>Огромный выбор 2 000 000+ наименований запчастей от ведущих мировых брендов</p>
+              <p>Выгодные цены. Качественные продукты. Выгодный шоппинг.</p>
             </div>
           </div>
         </li>

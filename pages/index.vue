@@ -60,7 +60,7 @@
                   <div class="flex-grow-1 ms-3">
                     <p class="mb-0 fs-18 fw-medium">
                       1 200+ специализированных бутиков. Лучшие продавцы с уникальным
-                      ассортиментом.
+                      ассортиментом
                     </p>
                   </div>
                 </div>
@@ -97,6 +97,10 @@
                   китайские и прочие иномарки.
                 </p>
                 <p class="section-paragraph">
+                  Наша философия основана на сохранении времени и денег покупателей, чтобы они могли жить
+                  лучше. Это сделало нас самым успешным ритейлером автомобильных запчастей в Казахстане.
+                </p>
+                <p class="section-paragraph">
                   Для любого автовладельца ТЦ «Car City» является синонимом низкой цены, гарантии
                   и качества!
                 </p>
@@ -122,12 +126,13 @@
                   Инфраструктура
                 </h2>
                 <p class="section-paragraph">
-                  На территории торгового центра расположились сотни магазинов по продаже
-                  автозапчастей и аксессуаров для любых марок, банк, уютные кофейни, банкоматы, терминалы и многое
-                  другое.
+                  На территории торгового центра расположились сотни магазинов по продаже автозапчастей и
+                  аксессуаров для любых марок, банк, уютные кофейни, банкоматы, терминалы и многое другое. Car City
+                  является самым комфортным в Алматы.
                 </p>
                 <p class="section-paragraph">
-                  Вы обязательно найдете все необходимые услуги на одной территории.
+                  Вы обязательно найдете все необходимое на одной территории. Наши услуги – это качественно новый
+                  уровень сервиса.
                 </p>
                 <p class="section-paragraph">
                   Все что нужно сразу, в одном месте.
@@ -189,12 +194,12 @@ export default {
     return {
       aboutItems: [
         { id: 1, iconUrl: require('~/assets/img/icons/secure-check.svg'), title: 'На рынке с 2005 года' },
-        { id: 2, iconUrl: require('~/assets/img/icons/expand.svg'), title: 'Площадь торгового центра – 31 585 м²' },
+        { id: 2, iconUrl: require('~/assets/img/icons/expand.svg'), title: 'Площадь торгового центра – 31 585 кв. м.' },
         { id: 3, iconUrl: require('~/assets/img/icons/achievement.svg'), title: 'Ежегодный победитель в номинации «Лучший Автомагазин» с 2017 года' },
         { id: 4, iconUrl: require('~/assets/img/icons/user-placemark.svg'), title: 'Удобное месторасположение по геолокации' }
       ],
       infrastructureItems: [
-        { id: 1, iconUrl: require('~/assets/img/icons/payment-card.svg'), title: 'Банкоматы БЦК, ForteBank, СберБанк, Народный банк, Kaspi банк' },
+        { id: 1, iconUrl: require('~/assets/img/icons/payment-card.svg'), title: 'Банкоматы Halyk Bank , Банк ЦентрКредит, ForteBank, Kaspi Bank, Сбербанк' },
         { id: 2, iconUrl: require('~/assets/img/icons/bank.svg'), title: 'Отделение банка НурБанк' },
         { id: 3, iconUrl: require('~/assets/img/icons/monitor.svg'), title: 'Терминалы 24KZ, QIWI, Interpay, Kaspi Postomat' },
         { id: 4, iconUrl: require('~/assets/img/icons/cup.svg'), title: 'Кофейни' },
