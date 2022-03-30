@@ -14,8 +14,17 @@
     <NuxtLink to="/reset">
       <div class="login-forgot">Не помню пароль</div>
     </NuxtLink>
+    <div class="login-input-checkbox" @click="terms = !terms" onselectstart="return false;">
+      <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':terms}"></div>
+      <div class="login-input-checkbox-title">Я принимаю условия пользовательского соглашения и даю согласие на обработку моих персональных данных</div>
+    </div>
+    <div class="login-input-checkbox" @click="rules = !rules" onselectstart="return false;">
+      <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':rules}"></div>
+      <div class="login-input-checkbox-title">Я ознакомлен с общими правилами торгового центра</div>
+    </div>
     <div class="login-btn">
-      <button @click="auth">Войти</button>
+      <button @click="auth" v-if="terms && rules">Войти</button>
+      <button v-else style="opacity: .2">Войти</button>
     </div>
   </div>
 </template>
@@ -27,7 +36,9 @@ export default {
     return {
       login: 'admin@carcity.kz',
       password: 'password',
-      show: false
+      show: false,
+      terms: false,
+      rules: false
     }
   },
   methods: {
