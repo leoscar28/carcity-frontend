@@ -14,7 +14,7 @@
           <div class="main-slide">
             <img src="~/assets/img/demo/main-slide2.jpg" alt="" class="main-slide__img">
             <div class="main-slide__descr">
-              <p>ТЦ «Car City» — крупнейший оффлайн торговый центр автозапчастей в средней Азии</p>
+              <p>ТЦ «Car City» — крупнейший офлайн торговый центр автозапчастей в средней Азии</p>
             </div>
           </div>
         </li>
