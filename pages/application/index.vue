@@ -12,6 +12,7 @@
       </div>
     </vue-custom-scrollbar>
     <request-comment :requestCommentShow="requestCommentShow" :type="type" :request="request" @requestCommentShowChange="requestCommentShowChange" @requestChange="requestChange"></request-comment>
+    <signature-loading></signature-loading>
   </div>
 </template>
 
@@ -19,10 +20,11 @@
 import vueCustomScrollbar from 'vue-custom-scrollbar'
 import "vue-custom-scrollbar/dist/vueScrollbar.css"
 import RequestComment from "~/components/modal/RequestComment"
+import SignatureLoading from "~/components/modal/SignatureLoading";
 export default {
   middleware: ['guest'],
   name: "index",
-  components: {vueCustomScrollbar,RequestComment},
+  components: {SignatureLoading, vueCustomScrollbar,RequestComment},
   data() {
     return {
       type: 2,

@@ -14,7 +14,22 @@
         <div class="request-section-main-filter-item-input">
           <select class="request-section-main-filter-item-input-select" v-model="upload_status_id">
             <option :value="null">Все статусы</option>
-            <option v-for="(status,key) in statuses" :key="key" :value="status.id">{{status.title}}</option>
+            <template v-if="type !== 2 && user.role_id !== 4 && user.role_id !== 1">
+              <option v-for="(status,key) in statuses" :key="key" :value="status.id">{{status.title}}</option>
+            </template>
+            <template v-else-if="user.role_id === 4">
+              <option v-for="(status,key) in statuses" :key="key" :value="status.id">
+                <template v-if="status.id === 1">Ожидает подписание вами</template>
+                <template v-else>{{status.title}}</template>
+              </option>
+            </template>
+            <template v-else-if="user.role_id === 1">
+              <option v-for="(status,key) in statuses" :key="key" :value="status.id">
+                <template v-if="status.id === 2">Ожидает подписание вами</template>
+                <template v-else-if="status.id === 3">Подписано</template>
+                <template v-else>{{status.title}}</template>
+              </option>
+            </template>
           </select>
         </div>
         <div class="request-section-main-filter-item-input">
@@ -81,7 +96,7 @@
                 <div class="request-section-table-body" v-show="!request.status">
                   <div class="request-section-table-body-header">
                     <div class="request-section-table-body-header-title" v-if="type === 1">Успешно выгружено документов {{request.rids.length}}, скачано {{downloadLength(key,2)}}</div>
-                    <div class="request-section-table-body-header-title" v-if="type === 2">Успешно выгружено документов {{request.rids.length}}</div>
+                    <div class="request-section-table-body-header-title" v-if="type === 2">Успешно выгружено документов {{request.rids.length}}, подписано вами {{signedSupervisor(key)}}</div>
                     <div class="request-section-table-body-header-title" v-if="type === 3">Успешно выгружено документов {{request.rids.length}}, скачано {{downloadLength(key,2)}}</div>
                     <div class="request-section-table-body-header-buttons">
                       <button class="request-section-table-body-header-button">
@@ -136,7 +151,9 @@
                             <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-if="rid.upload_status_id === 2">Скачано</button>
                           </template>
                           <template v-else-if="type === 2">
-
+                            <button class="request-section-table-body-list-item-btn request-section-table-body-header-button-reject" v-if="rid.upload_status_id === 1" @click="signFile(rid.id)">Подписать</button>
+                            <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-else-if="rid.upload_status_id === 2">{{statuses[rid.upload_status_id - 1].title}}</button>
+                            <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-else-if="rid.upload_status_id === 3">{{statuses[rid.upload_status_id - 1].title}}</button>
                           </template>
                           <template v-else-if="type === 3">
                             <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-new" v-if="rid.upload_status_id === 1">Новый</button>
@@ -152,8 +169,8 @@
                       </tr>
                     </tbody>
                   </table>
-                  <div class="request-section-table-body-footer" v-if="user.role_id === 3 || user.role_id === 4">
-                    <button class="request-section-table-body-header-button">
+                  <div class="request-section-table-body-footer" v-if="type === 2 && user.role_id === 4 && signedSupervisor(key) !== request.rids.length">
+                    <button class="request-section-table-body-header-button" @click="signFiles(request.rid)">
                       <div class="request-section-table-body-header-button-icon request-section-table-body-footer-draw"></div>
                       Подписать документы
                     </button>
@@ -191,8 +208,9 @@
                 <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-if="request.upload_status_id === 2">Скачано</button>
               </template>
               <template v-else-if="type === 2">
-                <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-subscribe" v-if="request.upload_status_id === 1">Подписать</button>
-                <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-signed" v-if="request.upload_status_id === 2">Скачано</button>
+                <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-subscribe" v-if="request.upload_status_id === 1">Ожидает подписания</button>
+                <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-signed" v-else-if="request.upload_status_id === 2"  @click="signFile(request.id)">Подписать</button>
+                <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-else-if="request.upload_status_id === 3">Подписано</button>
               </template>
               <template v-else-if="type === 3">
                 <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-new" v-if="request.upload_status_id === 1">Новый</button>
@@ -201,7 +219,6 @@
             </td>
             <td>
               <div class="request-section-table-body-list-item-buttons">
-                <div class="request-section-table-body-list-item-trash" @click="deleteTenant(request.id,request.rid);"></div>
                 <div class="request-section-table-body-list-item-download" @click="download(request.id,request.rid,true);"></div>
               </div>
             </td>
@@ -218,10 +235,11 @@
 import DatePicker from 'vue2-datepicker';
 DatePicker.locale('ru');
 import 'vue2-datepicker/index.css';
+import {Signa} from "~/utils/signa";
 export default {
   name: "RequestSection",
   props: ['type','requestChange'],
-  components: {DatePicker},
+  components: { DatePicker},
   computed: {
     user() {
       return this.$store.state.localStorage.user;
@@ -231,6 +249,9 @@ export default {
     },
     lang() {
       return this.$store.state.localStorage.lang;
+    },
+    signatureLoading() {
+      return this.$store.state.localStorage.signatureLoading;
     }
   },
   watch: {
@@ -263,6 +284,7 @@ export default {
     }
   },
   data() {
+    this.signa = new Signa();
     return {
       load: true,
       take: 30,
@@ -276,6 +298,7 @@ export default {
     }
   },
   async created() {
+    this.$store.commit('localStorage/setSignatureLoading',false);
     if (this.load) {
       this.load = false;
       this.setPage();
@@ -284,6 +307,109 @@ export default {
     }
   },
   methods: {
+    async signFiles(rid) {
+      if (!this.signatureLoading) {
+        this.$store.commit('localStorage/setSignatureLoading', true);
+        let data = {
+          rid: rid,
+          user_id: this.user.id,
+        };
+        data.res = await this.$store.dispatch('localStorage/applicationMultipleSignatureStart', data);
+        if (data.res.hasOwnProperty('message')) {
+          this.$store.commit('localStorage/setSignatureLoading',false);
+          return this.$toast.error(data.res.message).goAway(2000);
+        }
+        let xml = [];
+        data.res.forEach(item => {
+          xml.push(`<?xml version="1.0" encoding="utf-8"?><root><name>${item.data}</name></root>`);
+        });
+        this.signatureFiles(xml,data);
+      }
+    },
+    signatureFiles(arr,data) {
+      this.signa.signXmls(arr, (signedBase64) => {
+        if (data.hasOwnProperty('rid') && signedBase64) {
+          data.signature  = signedBase64;
+          this.signXmlFiles(data);
+        } else if (signedBase64) {
+          data.signature  = signedBase64[0];
+          this.signXmlFile(data);
+        } else {
+          this.$toast.error('Произошла ошибка').goAway(2000);
+        }
+        this.$store.commit('localStorage/setSignatureLoading',false);
+      });
+    },
+    async signFile(id) {
+      if (!this.signatureLoading) {
+        this.$store.commit('localStorage/setSignatureLoading',true);
+        let data  = {
+          id: id,
+          user_id: this.user.id,
+          role_id: this.user.role_id
+        };
+        let res = await this.$store.dispatch('localStorage/applicationSignatureStart',data);
+        if (res.hasOwnProperty('message')) {
+          this.$store.commit('localStorage/setSignatureLoading',false);
+          return this.$toast.error(res.message).goAway(2000);
+        }
+        this.signatureFiles([`<?xml version="1.0" encoding="utf-8"?><root><name>${res}</name></root>`],data);
+      }
+    },
+    async signXmlFiles(data) {
+      if (data.res.length !== data.signature.length) {
+        return this.$toast.error('Произошла ошибка, количество подписанных документов не соответствует количеству записей!').goAway(5000);
+      }
+      let res = await this.$store.dispatch('localStorage/applicationSignaturesCreate',data);
+      let key = 0, index;
+      this.requests.forEach(item => {
+        if (res.rid === item.rid) {
+          index = key;
+        }
+        key++;
+      });
+      if (index !== undefined) {
+        res.status  = false;
+        this.requests.splice(index,1,res);
+      }
+    },
+    async signXmlFile(data) {
+      let res = await this.$store.dispatch('localStorage/applicationSignatureCreate',data);
+      if (res.hasOwnProperty('message')) {
+        return this.$toast.error(res.message).goAway(2000);
+      }
+      let i = 0, index, key;
+      if (data.role_id === 4) {
+        this.requests.forEach(item => {
+          if (item.rid === res.rid) {
+            index = i;
+          }
+          i++;
+        });
+        i = 0;
+        this.requests[index].rids.forEach(item => {
+          if (item.id === res.id) {
+            key = i;
+          }
+          i++;
+        });
+        this.requests[index].rids.splice(key,1,res);
+      } else if (data.role_id === 1) {
+        key = 0;
+        let position = undefined;
+        this.requests.forEach(item => {
+          if (item.id === res.id) {
+            position  = key;
+          }
+          key++;
+        });
+        if (position) {
+          this.requests.splice(position,1,res);
+        } else {
+          await this.find();
+        }
+      }
+    },
     async deleteRequest(key,ridKey,id, rid) {
       this.requests[key].rids.splice(ridKey,1);
       if (this.type === 1) {
@@ -342,6 +468,15 @@ export default {
     },
     up() {
       this.range++;
+    },
+    signedSupervisor(key) {
+      let index = 0;
+      this.requests[key].rids.forEach(item => {
+        if (item.upload_status_id !== 1) {
+          index++;
+        }
+      });
+      return index;
     },
     downloadLength(key,status) {
       let index = 0;
@@ -455,11 +590,10 @@ export default {
       if (res.hasOwnProperty('message')) {
         return this.$toast.error(res.message).goAway(2000);
       }
-
+      let self  = this;
       res.forEach(item => {
         window.open(item,'_blank');
       });
-
     },
     async download(id,rid,status) {
       let data  = {
@@ -475,18 +609,24 @@ export default {
       } else if (this.type === 3) {
         res = await this.$store.dispatch('localStorage/invoiceDownload',data);
       }
-      console.log(res);
-      console.log(typeof res.link);
       if (res.hasOwnProperty('message')) {
         this.$toast.error(res.message).goAway(2000);
       } else if (res.hasOwnProperty('link')) {
-        console.log(res);
-        window.open(res.link,'_blank');
+        this.downloadFile(res.link);
       }
       if (res.status) {
         await this.getDataRequests();
       }
     },
+    downloadFile(link) {
+      const anchor = document.createElement('a');
+      anchor.href = link;
+      anchor.style.display  = 'none';
+      anchor.download = link;
+      document.body.appendChild(anchor);
+      anchor.click();
+      document.body.removeChild(anchor);
+    }
   }
 }
 </script>

@@ -7,6 +7,7 @@ import CompletionStatus from "~/repositories/completionStatus/completionStatus";
 import Application from "@/repositories/application/application";
 import ApplicationDate from "~/repositories/applicationDate/applicationDate";
 import ApplicationStatus from "~/repositories/applicationStatus/applicationStatus";
+import ApplicationSignature from "~/repositories/applicationSignature/applicationSignature";
 
 import Invoice from "@/repositories/invoice/invoice";
 import InvoiceDate from "~/repositories/invoiceDate/invoiceDate";
@@ -22,6 +23,7 @@ export const repository = ($axios) => ({
   application: Application($axios),
   applicationDate: ApplicationDate($axios),
   applicationStatus: ApplicationStatus($axios),
+  applicationSignature: ApplicationSignature($axios),
 
   invoice: Invoice($axios),
   invoiceDate: InvoiceDate($axios),

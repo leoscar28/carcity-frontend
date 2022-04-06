@@ -2,6 +2,7 @@ export const state = () => ({
   user: false,
   sidebar: false,
   statuses: [],
+  signatureLoading: false,
   lang: {
     formatLocale: {
       months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
@@ -23,6 +24,9 @@ export const mutations = {
   setUser(state,value) {
     state.user  = value;
   },
+  setSignatureLoading(state,value) {
+    state.signatureLoading  = value;
+  }
 }
 
 export const actions = {
@@ -74,6 +78,18 @@ export const actions = {
     return await this.$repository.invoiceDate.list(payload);
   },
 
+  async applicationSignaturesCreate({commit},payload) {
+    return await this.$repository.applicationSignature.multipleCreate(payload);
+  },
+  async applicationSignatureCreate({commit},payload) {
+    return await this.$repository.applicationSignature.create(payload);
+  },
+  async applicationMultipleSignatureStart({commit},payload) {
+    return await this.$repository.applicationSignature.multipleStart(payload);
+  },
+  async applicationSignatureStart({commit},payload) {
+    return await this.$repository.applicationSignature.start(payload);
+  },
   async applicationDownloadAll({commit},payload) {
     return await this.$repository.application.downloadAll(payload);
   },
