@@ -590,7 +590,6 @@ export default {
       if (res.hasOwnProperty('message')) {
         return this.$toast.error(res.message).goAway(2000);
       }
-      let self  = this;
       res.forEach(item => {
         window.open(item,'_blank');
       });
@@ -619,13 +618,14 @@ export default {
       }
     },
     downloadFile(link) {
-      const anchor = document.createElement('a');
-      anchor.href = link;
-      anchor.style.display  = 'none';
-      anchor.download = link;
-      document.body.appendChild(anchor);
-      anchor.click();
-      document.body.removeChild(anchor);
+      window.open(link,'_blank');
+      // const anchor = document.createElement('a');
+      // anchor.href = link;
+      // anchor.style.display  = 'none';
+      // anchor.download = link;
+      // document.body.appendChild(anchor);
+      // anchor.click();
+      // document.body.removeChild(anchor);
     }
   }
 }
