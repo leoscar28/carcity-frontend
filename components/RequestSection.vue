@@ -27,7 +27,7 @@
               <option v-for="(status,key) in statuses" :key="key" :value="status.id">
                 <template v-if="status.id === 2">Ожидает подписание вами</template>
                 <template v-else-if="status.id === 3">Подписано</template>
-                <template v-else>{{status.title}}</template>
+                <template v-else-if="status.id === 1">Ожидает подписание руководителем</template>
               </option>
             </template>
           </select>
