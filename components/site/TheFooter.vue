@@ -21,28 +21,44 @@
 
         <div class="col-lg-4 col-md-6">
           <ul class="footer__nav">
-            <li><a class="footer__nav-link" href="#">Пользовательское соглашение</a></li>
-            <li><a class="footer__nav-link" href="#">Политика конфеденциальности</a></li>
-            <li><a class="footer__nav-link" href="#">Правила ТЦ</a></li>
-            <li><a class="footer__nav-link" href="#">Правила размещения объявлений</a></li>
+            <li>
+              <NuxtLink class="footer__nav-link" :to="{ name: 'terms-of-use' }">
+                Пользовательское соглашение
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink class="footer__nav-link" :to="{ name: 'privacy-policy' }">
+                Политика конфеденциальности
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink class="footer__nav-link" :to="{ name: 'rules-shopping-center' }">
+                Правила ТЦ
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink class="footer__nav-link" :to="{ name: 'rules-ad' }">
+                Правила размещения объявлений
+              </NuxtLink>
+            </li>
           </ul>
         </div>
         <div v-if="$route.name === 'index'" class="col-lg-4 col-md-6">
           <ul class="footer__nav">
             <li>
-              <LinkScrollTo class="footer__nav-link" target-id="about">
-                О Car City
-              </LinkScrollTo>
+              <NuxtLink class="footer__nav-link" :to="{ name: 'index', hash: '#about' }">
+                О нас
+              </NuxtLink>
             </li>
             <li>
-              <LinkScrollTo class="footer__nav-link" target-id="infrastructure">
+              <NuxtLink class="footer__nav-link" :to="{ name: 'index', hash: '#infrastructure' }">
                 Инфраструктура
-              </LinkScrollTo>
+              </NuxtLink>
             </li>
             <!--            <li>-->
-            <!--              <LinkScrollTo class="footer__nav-link" target-id="plan">-->
+            <!--              <NuxtLink class="footer__nav-link" :to="{ name: 'index', hash: '#plan' }>-->
             <!--                План помещений-->
-            <!--              </LinkScrollTo>-->
+            <!--              </NuxtLink>-->
             <!--            </li>-->
           </ul>
         </div>
@@ -52,9 +68,7 @@
 </template>
 
 <script>
-import LinkScrollTo from '~/components/site/LinkScrollTo'
 export default {
-  components: { LinkScrollTo },
   props: {
     dark: {
       type: Boolean,

@@ -6,7 +6,7 @@
       tabindex="-1"
       @click.self="hide"
     >
-      <div class="modal-dialog">
+      <div class="modal-dialog" :class="[modalSize]">
         <div class="modal-content">
           <div class="modal-header">
             <slot name="header">
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import { currentScrollbarWidth } from '~/utils/scroll'
+
 export default {
   model: {
     prop: 'visible',
@@ -45,6 +47,31 @@ export default {
     title: {
       type: String,
       default: ''
+    },
+    size: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    modalSize () {
+      return this.size ? `modal-${this.size}` : ''
+    }
+  },
+  ...process.client && {
+    watch: {
+      visible: {
+        handler (newVal) {
+          if (newVal) {
+            document.body.classList.add('overflow-hidden')
+            document.body.style.paddingRight = currentScrollbarWidth + 'px'
+          } else {
+            document.body.classList.remove('overflow-hidden')
+            document.body.removeAttribute('style')
+          }
+        },
+        immediate: true
+      }
     }
   },
   methods: {
