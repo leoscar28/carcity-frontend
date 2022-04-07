@@ -137,12 +137,16 @@
                         <td>{{rid.created_at}}</td>
                         <td>{{rid.sum}}₸</td>
                         <td>
-                          <template v-if="rid.name === 'invoice'">
+                          {{rid.name}}
+<!--                          <template v-if="rid.name === 'invoice'">
                             Счет на оплату
                           </template>
                           <template v-else-if="rid.name === 'completion'">
                             Акт выполненных работ
                           </template>
+                          <template v-else>
+
+                          </template>-->
                         </td>
                         <td>{{rid.customer}}</td>
                         <td>
