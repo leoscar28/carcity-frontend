@@ -76,66 +76,65 @@
           </div>
         </div>
       </main>
-      <AppModal v-model="contactUsModalVisible" title="Введите свои данные" @scroll.stop>
+      <AppModal v-model="contactUsModalVisible" :title="language[current][9]" @scroll.stop>
         <form ref="form" @submit.prevent>
           <div class="mb-3">
-            <label for="name-input" class="form-label"><span class="text-danger">*</span> Наименование TOO/ИП</label>
-            <input id="name-input" placeholder="Введите наименование" type="text" class="form-control" v-model="form.company" ref="company" name="company">
+            <label for="name-input" class="form-label"><span class="text-danger">*</span> {{language[current][7]}}</label>
+            <input id="name-input" :placeholder="language[current][8]" type="text" class="form-control" v-model="form.company" ref="company" name="company">
           </div>
           <div class="mb-3">
-            <label for="bin-input" class="form-label"><span class="text-danger">*</span> БИН/ИИН</label>
-            <input id="bin-input" placeholder="Введите БИН/ИИН" type="text" class="form-control" v-model="form.bin" ref="bin" name="bin" max="15">
+            <label for="bin-input" class="form-label"><span class="text-danger">*</span> {{language[current][10]}}</label>
+            <input id="bin-input" :placeholder="language[current][11]" type="text" class="form-control" v-model="form.bin" ref="bin" name="bin" max="15">
           </div>
           <div class="mb-3">
-            <label for="category-input" class="form-label"><span class="text-danger">*</span> Категория товара или услуги</label>
-            <input id="category-input" placeholder="Введите категория товара или услугу" type="text" class="form-control" v-model="form.category" ref="category" name="category" max="250">
+            <label for="category-input" class="form-label"><span class="text-danger">*</span> {{language[current][12]}}</label>
+            <input id="category-input" :placeholder="language[current][13]" type="text" class="form-control" v-model="form.category" ref="category" name="category" max="250">
           </div>
           <div>
-            <label for="min-square-input" class="form-label"><span class="text-danger">*</span> Требуемая площадь помещения</label>
+            <label for="min-square-input" class="form-label"><span class="text-danger">*</span> {{language[current][14]}}</label>
             <div class="row">
               <div class="col-sm-6 mb-3">
-                <input id="min-square-input" placeholder="Минимальная" type="text" class="form-control" v-model="form.min" ref="min" name="min" max="10">
+                <input id="min-square-input" :placeholder="language[current][15]" type="text" class="form-control" v-model="form.min" ref="min" name="min" max="10">
               </div>
               <div class="col-sm-6 mb-3">
-                <input id="max-square-input" placeholder="Максимальная" type="text" class="form-control" v-model="form.max" ref="max" name="max" max="10">
+                <input id="max-square-input" :placeholder="language[current][16]" type="text" class="form-control" v-model="form.max" ref="max" name="max" max="10">
               </div>
             </div>
           </div>
           <div class="mb-3">
-            <label for="comment-input" class="form-label"><span class="text-danger">*</span> Другие условия для работы/комментарии</label>
-            <textarea id="comment-input" placeholder="Введите комментарий" type="text" class="form-control" v-model="form.comment" ref="comment" name="comment"/>
+            <label for="comment-input" class="form-label"><span class="text-danger">*</span> {{language[current][17]}}</label>
+            <textarea id="comment-input" :placeholder="language[current][18]" type="text" class="form-control" v-model="form.comment" ref="comment" name="comment"/>
           </div>
           <div class="mb-3">
-            <label for="user-input" class="form-label"><span class="text-danger">*</span> Контактное лицо</label>
-            <input id="user-input" placeholder="Введите контактное лицо" type="text" class="form-control" v-model="form.fullName" ref="fullName" name="fullName" max="250">
+            <label for="user-input" class="form-label"><span class="text-danger">*</span> {{language[current][19]}}</label>
+            <input id="user-input" :placeholder="language[current][20]" type="text" class="form-control" v-model="form.fullName" ref="fullName" name="fullName" max="250">
           </div>
           <div class="mb-3">
-            <label for="tel-input" class="form-label"><span class="text-danger">*</span> Телефон для связи</label>
-            <input id="tel-input" placeholder="Введите телефон" type="text" class="form-control" v-model="form.phone" ref="phone" name="phone" max="20" autocomplete="off">
+            <label for="tel-input" class="form-label"><span class="text-danger">*</span> {{language[current][21]}}</label>
+            <input id="tel-input" :placeholder="language[current][22]" type="text" class="form-control" v-model="form.phone" ref="phone" name="phone" max="20" autocomplete="off">
           </div>
           <div class="mb-3">
-            <label for="email-input" class="form-label">Email</label>
-            <input id="email-input" placeholder="Введите email" type="text" class="form-control" v-model="form.email" ref="email" name="email" max="100" autocomplete="off">
+            <label for="email-input" class="form-label">{{language[current][23]}}</label>
+            <input id="email-input" :placeholder="language[current][24]" type="text" class="form-control" v-model="form.email" ref="email" name="email" max="100" autocomplete="off">
           </div>
           <div class="mb-3">
             <div class="form-check">
               <input id="accept-privacy-policy" class="form-check-input" type="checkbox" v-model="form.agree">
               <label class="form-check-label" for="accept-privacy-policy">
-                Я принимаю условия <NuxtLink :to="{ name: 'terms-of-use' }" class="text-decoration-none">пользовательского соглашения</NuxtLink> и <NuxtLink :to="{ name: 'privacy-policy' }" class="text-decoration-none">политики
-                конфиденциальности</NuxtLink>
+                {{language[current][25]}} <NuxtLink :to="{ name: 'terms-of-use' }" class="text-decoration-none">{{language[current][26]}}</NuxtLink> и <NuxtLink :to="{ name: 'privacy-policy' }" class="text-decoration-none">{{language[current][27]}}</NuxtLink>
               </label>
             </div>
           </div>
         </form>
         <template #footer>
           <button class="btn btn-secondary" @click="contactUsModalVisible = false" v-if="!email">
-            Отмена
+            {{language[current][28]}}
           </button>
           <button class="btn btn-primary" :style="[!form.agree?{'opacity':'.2'}:{}]" @click="send" v-if="!email">
-            Отправить
+            {{language[current][29]}}
           </button>
           <button class="btn btn-primary" v-else>
-            Отправляем данные...
+            {{language[current][30]}}
           </button>
         </template>
       </AppModal>
@@ -180,8 +179,8 @@ export default {
         agree: false
       },
       language: [
-        ['Личный кабинет','Главная','Арендаторам','У нас предусмотрены гибкие условия для аренды, индивидуальный подход к каждому арендатору','Обратный звонок','С нами сотрудничают','Все необходимые условия для размещения вашего бизнеса'],
-        ['Жеке кабинет','Басты бет','Жалға алушыларға','Бізде жалға алу бойынша икемді жағдай, әр жалға алушымен жеке тіл табысу қарастырылған','Кері қоңырау','Бізбен бірге қызмет жасайды','Сіздің бизнесіңіздің орналасуына барлық керекті шарттар']
+        ['Личный кабинет','Главная','Арендаторам','У нас предусмотрены гибкие условия для аренды, индивидуальный подход к каждому арендатору','Обратный звонок','С нами сотрудничают','Все необходимые условия для размещения вашего бизнеса','Наименование TOO/ИП','Введите наименование','Введите свои данные','БИН/ИИН','Введите БИН/ИИН','Категория товара или услуги','Введите категория товара или услугу','Требуемая площадь помещения','Минимальная','Максимальная','Другие условия для работы/комментарии','Введите комментарий','Контактное лицо','Введите контактное лицо','Телефон для связи','Введите телефон','Email','Введите email','Я принимаю условия','пользовательского соглашения','политики конфиденциальности','Отмена','Отправить','Отправляем данные...'],
+        ['Жеке кабинет','Басты бет','Жалға алушыларға','Бізде жалға алу бойынша икемді жағдай, әр жалға алушымен жеке тіл табысу қарастырылған','Кері қоңырау','Бізбен бірге қызмет жасайды','Сіздің бизнесіңіздің орналасуына барлық керекті шарттар','TOO/ИП атауы','Атын енгізіңіз','Мәліметтеріңізді енгізіңіз','БСН/ЖСН','БСН/ЖСН енгізіңіз','Өнім немесе қызмет санаты','Өнім немесе қызмет санатын енгізіңіз','Қажетті бөлме ауданы','Ең аз','Максималды','Басқа жұмыс шарттары/түсініктемелері','Пікір енгізіңіз','Байланыстағы адам','Байланыстағы адамды енгізіңіз','Байланыс телефоны','Телефонды енгізіңіз','Email','Электрондық поштаны енгізіңіз','Мен шарттарды қабылдаймын','пайдаланушы келісімі','құпиялылық саясаты','Модалды жабу','Жіберу','Деректерди жиберу...']
       ],
       conditionItems: [
         [{ id: 1, iconUrl: require('~/assets/img/icons/percent-orange.svg'), title: 'Выгодные условия аренды' },
