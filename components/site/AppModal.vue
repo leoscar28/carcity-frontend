@@ -6,7 +6,7 @@
       tabindex="-1"
       @click.self="hide"
     >
-      <div class="modal-dialog" :class="[modalSize]">
+      <div class="modal-dialog" :class="[modalSize]" @click.stop>
         <div class="modal-content">
           <div class="modal-header">
             <slot name="header">
@@ -14,7 +14,6 @@
                 {{ title }}
               </h5>
             </slot>
-
             <button type="button" class="btn-close" aria-label="Close" @click="hide" />
           </div>
           <div class="modal-body">
@@ -26,7 +25,6 @@
         </div>
       </div>
     </div>
-
     <div v-if="visible" class="modal-backdrop" :class="{ show: visible }" />
   </div>
 </template>

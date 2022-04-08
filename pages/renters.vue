@@ -76,26 +76,66 @@
           </div>
         </div>
       </main>
-      <AppModal v-model="contactUsModalVisible" title="Обратный звонок">
-        <div class="mb-3">
-          <label for="name" class="form-label">Имя <span class="text-danger">*</span></label>
-          <input id="name" placeholder="Введите имя" type="text" class="form-control">
-        </div>
-        <div class="mb-3">
-          <label for="phone" class="form-label">Телефон <span class="text-danger">*</span></label>
-          <input id="phone" placeholder="Введите телефон" type="text" class="form-control">
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input id="email" placeholder="Введите email" type="text" class="form-control">
-        </div>
-
+      <AppModal v-model="contactUsModalVisible" title="Введите свои данные" @scroll.stop>
+        <form ref="form" @submit.prevent>
+          <div class="mb-3">
+            <label for="name-input" class="form-label"><span class="text-danger">*</span> Наименование TOO/ИП</label>
+            <input id="name-input" placeholder="Введите наименование" type="text" class="form-control" v-model="form.company" ref="company" name="company">
+          </div>
+          <div class="mb-3">
+            <label for="bin-input" class="form-label"><span class="text-danger">*</span> БИН/ИИН</label>
+            <input id="bin-input" placeholder="Введите БИН/ИИН" type="text" class="form-control" v-model="form.bin" ref="bin" name="bin" max="15">
+          </div>
+          <div class="mb-3">
+            <label for="category-input" class="form-label"><span class="text-danger">*</span> Категория товара или услуги</label>
+            <input id="category-input" placeholder="Введите категория товара или услугу" type="text" class="form-control" v-model="form.category" ref="category" name="category" max="250">
+          </div>
+          <div>
+            <label for="min-square-input" class="form-label"><span class="text-danger">*</span> Требуемая площадь помещения</label>
+            <div class="row">
+              <div class="col-sm-6 mb-3">
+                <input id="min-square-input" placeholder="Минимальная" type="text" class="form-control" v-model="form.min" ref="min" name="min" max="10">
+              </div>
+              <div class="col-sm-6 mb-3">
+                <input id="max-square-input" placeholder="Максимальная" type="text" class="form-control" v-model="form.max" ref="max" name="max" max="10">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="comment-input" class="form-label"><span class="text-danger">*</span> Другие условия для работы/комментарии</label>
+            <textarea id="comment-input" placeholder="Введите комментарий" type="text" class="form-control" v-model="form.comment" ref="comment" name="comment"/>
+          </div>
+          <div class="mb-3">
+            <label for="user-input" class="form-label"><span class="text-danger">*</span> Контактное лицо</label>
+            <input id="user-input" placeholder="Введите контактное лицо" type="text" class="form-control" v-model="form.fullName" ref="fullName" name="fullName" max="250">
+          </div>
+          <div class="mb-3">
+            <label for="tel-input" class="form-label"><span class="text-danger">*</span> Телефон для связи</label>
+            <input id="tel-input" placeholder="Введите телефон" type="text" class="form-control" v-model="form.phone" ref="phone" name="phone" max="20" autocomplete="off">
+          </div>
+          <div class="mb-3">
+            <label for="email-input" class="form-label">Email</label>
+            <input id="email-input" placeholder="Введите email" type="text" class="form-control" v-model="form.email" ref="email" name="email" max="100" autocomplete="off">
+          </div>
+          <div class="mb-3">
+            <div class="form-check">
+              <input id="accept-privacy-policy" class="form-check-input" type="checkbox" v-model="form.agree">
+              <label class="form-check-label" for="accept-privacy-policy">
+                Я принимаю условия <NuxtLink :to="{ name: 'terms-of-use' }" class="text-decoration-none">пользовательского соглашения</NuxtLink> и <NuxtLink :to="{ name: 'privacy-policy' }" class="text-decoration-none">политики
+                конфиденциальности</NuxtLink>
+              </label>
+            </div>
+          </div>
+        </form>
         <template #footer>
-          <button class="btn btn-secondary" @click="contactUsModalVisible = false">
+          <button class="btn btn-secondary" @click="contactUsModalVisible = false" v-if="!email">
             Отмена
           </button>
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" :style="[!form.agree?{'opacity':'.2'}:{}]" @click="send" v-if="!email">
             Отправить
+          </button>
+          <button class="btn btn-primary" v-else>
+            Отправляем данные...
           </button>
         </template>
       </AppModal>
@@ -111,6 +151,7 @@ import AppModal from "/components/site/AppModal";
 import TheFooter from "/components/site/TheFooter";
 import vueCustomScrollbar from 'vue-custom-scrollbar';
 import "vue-custom-scrollbar/dist/vueScrollbar.css";
+import emailjs from '@emailjs/browser';
 export default {
   components: {
     vueCustomScrollbar,TheHeader,PartnersSlider,ConditionPanel,AppModal,TheFooter
@@ -118,11 +159,26 @@ export default {
   computed: {
     current() {
       return this.$store.state.localStorage.current;
+    },
+    email() {
+      return this.$store.state.localStorage.email;
     }
   },
   data () {
     return {
       contactUsModalVisible: false,
+      form: {
+        company: '',
+        bin: '',
+        category: '',
+        min: '',
+        max: '',
+        comment: '',
+        fullName: '',
+        phone: '',
+        email: '',
+        agree: false
+      },
       language: [
         ['Личный кабинет','Главная','Арендаторам','У нас предусмотрены гибкие условия для аренды, индивидуальный подход к каждому арендатору','Обратный звонок','С нами сотрудничают','Все необходимые условия для размещения вашего бизнеса'],
         ['Жеке кабинет','Басты бет','Жалға алушыларға','Бізде жалға алу бойынша икемді жағдай, әр жалға алушымен жеке тіл табысу қарастырылған','Кері қоңырау','Бізбен бірге қызмет жасайды','Сіздің бизнесіңіздің орналасуына барлық керекті шарттар']
@@ -159,6 +215,65 @@ export default {
   methods: {
     showContactUsModal () {
       this.contactUsModalVisible = true
+    },
+    send() {
+      let form  = this.form;
+      let refs  = this.$refs;
+      if (!form.agree || this.email) {
+        return;
+      }
+      if (form.company.trim() === '') {
+        return refs.company.focus();
+      } else if (form.bin.trim() === '') {
+        return refs.bin.focus();
+      } else if (form.category.trim() === '') {
+        return refs.category.focus();
+      } else if (form.min.trim() === '') {
+        return refs.min.focus();
+      } else if (form.max.trim() === '') {
+        return refs.max.focus();
+      } else if (form.comment.trim() === '') {
+        return refs.comment.focus();
+      } else if (form.fullName.trim() === '') {
+        return refs.fullName.focus();
+      } else if (form.phone.trim() === '') {
+        return refs.phone.focus();
+      }
+      this.$store.commit('localStorage/setEmail',true);
+      emailjs.sendForm('service_7nc0w02', 'template_ul937oe', refs.form,  '2jmpXPP8YiXuqFWZE')
+        .then((result) => {
+          this.$store.commit('localStorage/setEmail',false);
+          this.$toast.show('Ваша заявка отправлена!').goAway(5000);
+          this.contactUsModalVisible = false;
+          this.form = {
+            company: '',
+            bin: '',
+            category: '',
+            min: '',
+            max: '',
+            comment: '',
+            fullName: '',
+            phone: '',
+            email: '',
+            agree: false
+          };
+        }, (error) => {
+          this.$store.commit('localStorage/setEmail',false);
+          this.$toast.error(error.text).goAway(5000);
+          this.contactUsModalVisible = false;
+          this.form = {
+            company: '',
+            bin: '',
+            category: '',
+            min: '',
+            max: '',
+            comment: '',
+            fullName: '',
+            phone: '',
+            email: '',
+            agree: false
+          };
+        });
     }
   }
 }

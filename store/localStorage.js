@@ -1,4 +1,5 @@
 export const state = () => ({
+  email: false,
   user: false,
   sidebar: false,
   statuses: [],
@@ -17,6 +18,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setEmail(state,value) {
+    state.email = value;
+  },
   setCurrent(state,value) {
     state.current = value;
   },
