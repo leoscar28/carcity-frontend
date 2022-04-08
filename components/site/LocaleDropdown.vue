@@ -7,23 +7,35 @@
       :aria-expanded="isOpen"
       @click="toggle"
     >
-      RU
+      {{languages[current]}}
     </button>
     <div class="dropdown-menu" style="min-width: 4rem;" :class="{'show': isOpen}">
-      <li><a class="dropdown-item" href="#">KZ</a></li>
-      <li><a class="dropdown-item" href="#">EN</a></li>
+      <li v-for="(language,key) in languages" :key="key" role="button" @click="selectLanguage(key)">
+        <a class="dropdown-item">{{language}}</a>
+      </li>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  computed: {
+    current() {
+      return this.$store.state.localStorage.current;
+    },
+    languages() {
+      return this.$store.state.localStorage.languages;
+    }
+  },
   data () {
     return {
       isOpen: false
     }
   },
   methods: {
+    selectLanguage(key) {
+      this.$store.commit('localStorage/setCurrent',key);
+    },
     toggle () {
       const _this = this
       const closeListener = (e) => {

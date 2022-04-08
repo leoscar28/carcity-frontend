@@ -6,7 +6,7 @@
       <TheHeader>
         <template #actions>
           <NuxtLink to="/partner" class="btn btn-outline-primary">
-            <span class="d-none d-sm-inline">Личный кабинет</span>
+            <span class="d-none d-sm-inline">{{language[current][0]}}</span>
             <svg
               class="d-sm-none"
               width="18"
@@ -25,10 +25,10 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="#" class="text-gray-600 text-decoration-none">Главная</a>
+                <nuxt-link to="/" class="text-gray-600 text-decoration-none">{{language[current][1]}}</nuxt-link>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
-                Арендаторам
+                {{language[current][2]}}
               </li>
             </ol>
           </nav>
@@ -36,8 +36,7 @@
           <div class="jumbo">
             <div class="jumbo__descr">
               <p>
-                У нас предусмотрены гибкие условия для аренды, индивидуальный подход к каждому
-                арендатору
+                {{language[current][3]}}
               </p>
               <div>
                 <!--              <a href="#" class="btn btn-primary btn-icon me-2 mb-2 mb-sm-0">
@@ -50,7 +49,7 @@
                   <svg width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1.83268 2.33268V15.666H10.166V2.33268H1.83268ZM0.999349 0.666016H10.9994C11.2204 0.666016 11.4323 0.753813 11.5886 0.910093C11.7449 1.06637 11.8327 1.27834 11.8327 1.49935V16.4993C11.8327 16.7204 11.7449 16.9323 11.5886 17.0886C11.4323 17.2449 11.2204 17.3327 10.9994 17.3327H0.999349C0.778335 17.3327 0.566374 17.2449 0.410093 17.0886C0.253813 16.9323 0.166016 16.7204 0.166016 16.4993V1.49935C0.166016 1.27834 0.253813 1.06637 0.410093 0.910093C0.566374 0.753813 0.778335 0.666016 0.999349 0.666016ZM5.99935 13.166C6.22036 13.166 6.43232 13.2538 6.58861 13.4101C6.74489 13.5664 6.83268 13.7783 6.83268 13.9993C6.83268 14.2204 6.74489 14.4323 6.58861 14.5886C6.43232 14.7449 6.22036 14.8327 5.99935 14.8327C5.77834 14.8327 5.56637 14.7449 5.41009 14.5886C5.25381 14.4323 5.16602 14.2204 5.16602 13.9993C5.16602 13.7783 5.25381 13.5664 5.41009 13.4101C5.56637 13.2538 5.77834 13.166 5.99935 13.166V13.166Z" fill="currentColor" />
                   </svg>
-                  <span>Обратный звонок</span>
+                  <span>{{language[current][4]}}</span>
                 </button>
               </div>
             </div>
@@ -58,17 +57,17 @@
 
           <div class="mb-5 pb-4">
             <h2 class="section-title">
-              С нами сотрудничают
+              {{language[current][5]}}
             </h2>
             <PartnersSlider />
           </div>
 
           <div>
             <h2 class="section-title mb-4">
-              Все необходимые условия для размещения вашего бизнеса
+              {{language[current][6]}}
             </h2>
             <div class="row">
-              <div v-for="item in conditionItems" :key="item.id" class="col-lg-4 col-md-6 mb-3">
+              <div v-for="item in conditionItems[current]" :key="item.id" class="col-lg-4 col-md-6 mb-3">
                 <ConditionPanel :icon="item.iconUrl" class="h-100">
                   {{ item.title }}
                 </ConditionPanel>
@@ -116,17 +115,31 @@ export default {
   components: {
     vueCustomScrollbar,TheHeader,PartnersSlider,ConditionPanel,AppModal,TheFooter
   },
+  computed: {
+    current() {
+      return this.$store.state.localStorage.current;
+    }
+  },
   data () {
     return {
       contactUsModalVisible: false,
-
+      language: [
+        ['Личный кабинет','Главная','Арендаторам','У нас предусмотрены гибкие условия для аренды, индивидуальный подход к каждому арендатору','Обратный звонок','С нами сотрудничают','Все необходимые условия для размещения вашего бизнеса'],
+        ['Жеке кабинет','Басты бет','Жалға алушыларға','Бізде жалға алу бойынша икемді жағдай, әр жалға алушымен жеке тіл табысу қарастырылған','Кері қоңырау','Бізбен бірге қызмет жасайды','Сіздің бизнесіңіздің орналасуына барлық керекті шарттар']
+      ],
       conditionItems: [
-        { id: 1, iconUrl: require('~/assets/img/icons/percent-orange.svg'), title: 'Выгодные условия аренды' },
-        { id: 2, iconUrl: require('~/assets/img/icons/stock-orange.svg'), title: 'Удобная зона разгрузки' },
-        { id: 3, iconUrl: require('~/assets/img/icons/bus-orange.svg'), title: 'Удобная транспортная развязка' },
-        { id: 4, iconUrl: require('~/assets/img/icons/car-orange.svg'), title: 'Парковка на 500 автомашин' },
-        { id: 5, iconUrl: require('~/assets/img/icons/secure-check-orange.svg'), title: 'Охрана здания 24/7' },
-        { id: 6, iconUrl: require('~/assets/img/icons/user-placemark-orange.svg'), title: 'Насыщенная инфраструктура района' }
+        [{ id: 1, iconUrl: require('~/assets/img/icons/percent-orange.svg'), title: 'Выгодные условия аренды' },
+          { id: 2, iconUrl: require('~/assets/img/icons/stock-orange.svg'), title: 'Удобная зона разгрузки' },
+          { id: 3, iconUrl: require('~/assets/img/icons/bus-orange.svg'), title: 'Удобная транспортная развязка' },
+          { id: 4, iconUrl: require('~/assets/img/icons/car-orange.svg'), title: 'Парковка на 500 автомашин' },
+          { id: 5, iconUrl: require('~/assets/img/icons/secure-check-orange.svg'), title: 'Охрана здания 24/7' },
+          { id: 6, iconUrl: require('~/assets/img/icons/user-placemark-orange.svg'), title: 'Насыщенная инфраструктура района' }],
+        [{ id: 1, iconUrl: require('~/assets/img/icons/percent-orange.svg'), title: 'Тиімді жалға алу жағдайлары' },
+          { id: 2, iconUrl: require('~/assets/img/icons/stock-orange.svg'), title: 'Ыңғайлы жүк түсіру аймағы' },
+          { id: 3, iconUrl: require('~/assets/img/icons/bus-orange.svg'), title: 'Қолайлы көлік жол айырығы' },
+          { id: 4, iconUrl: require('~/assets/img/icons/car-orange.svg'), title: '500 автокөлікке арналған көлік қоятын орын' },
+          { id: 5, iconUrl: require('~/assets/img/icons/secure-check-orange.svg'), title: '24/7 ғимаратты күзету' },
+          { id: 6, iconUrl: require('~/assets/img/icons/user-placemark-orange.svg'), title: 'Ауданның толық инфрақұрылымы' }]
       ]
     }
   },

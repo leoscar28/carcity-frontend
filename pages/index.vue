@@ -6,7 +6,7 @@
       <TheHeader>
         <template #actions>
           <NuxtLink to="/renters" class="btn btn-outline-primary">
-            <span class="d-none d-sm-inline">Арендаторам</span>
+            <span class="d-none d-sm-inline">{{language[current][0]}}</span>
             <svg
               class="d-sm-none"
               xmlns="http://www.w3.org/2000/svg"
@@ -23,10 +23,10 @@
         </template>
         <template #navbar>
           <LinkScrollTo target-id="about" class="header__nav-link">
-            О Car Сity
+            {{language[current][1]}}
           </LinkScrollTo>
           <LinkScrollTo target-id="infrastructure" class="header__nav-link">
-            Инфраструктура
+            {{language[current][2]}}
           </LinkScrollTo>
           <!--        <LinkScrollTo target-id="plan" class="header__nav-link">-->
           <!--          План помещений-->
@@ -37,7 +37,6 @@
         <section class="hero">
           <div class="container">
             <MainSlider class="mb-4" />
-
             <div class="row">
               <div class="col-lg-4 mb-3 mb-lg-0">
                 <div class="panel d-flex h-100">
@@ -46,7 +45,7 @@
                   </div>
                   <div class="flex-grow-1 ms-3">
                     <p class="mb-0 fs-18 fw-medium">
-                      1 000 000+ офлайн-посетителей и 500 000+ онлайн-посетителей в год
+                      {{language[current][3]}}
                     </p>
                   </div>
                 </div>
@@ -59,8 +58,7 @@
                   </div>
                   <div class="flex-grow-1 ms-3">
                     <p class="mb-0 fs-18 fw-medium">
-                      1 200+ специализированных бутиков. Лучшие продавцы с уникальным
-                      ассортиментом
+                      {{language[current][4]}}
                     </p>
                   </div>
                 </div>
@@ -73,7 +71,7 @@
                   </div>
                   <div class="flex-grow-1 ms-3">
                     <p class="mb-0 fs-18 fw-medium">
-                      2 000 000+ наименований запчастей от ведущих мировых брендов
+                      {{language[current][5]}}
                     </p>
                   </div>
                 </div>
@@ -86,28 +84,24 @@
             <div class="row">
               <div class="col-lg-5 mb-3 mb-lg-0">
                 <h2 class="section-title">
-                  О нас
+                  {{language[current][1]}}
                 </h2>
                 <p class="section-paragraph">
-                  ТЦ «Car City» - крупнейший офлайн торговый центр в Средней Азии.
+                  {{language[current][6]}}
                 </p>
                 <p class="section-paragraph">
-                  У нас вы найдёте большой ассортимент запчастей от ведущих мировых брендов, от
-                  конвейерных поставщиков до качественных аналогов. На европейские, японские, российские, корейские,
-                  китайские и прочие иномарки.
+                  {{language[current][7]}}
                 </p>
                 <p class="section-paragraph">
-                  Наша философия основана на сохранении времени и денег покупателей, чтобы они могли жить
-                  лучше. Это сделало нас самым успешным ритейлером автомобильных запчастей в Казахстане.
+                  {{language[current][8]}}
                 </p>
                 <p class="section-paragraph">
-                  Для любого автовладельца ТЦ «Car City» является синонимом низкой цены, гарантии
-                  и качества!
+                  {{language[current][9]}}
                 </p>
               </div>
               <div class="col-lg-7">
                 <AboutPanel
-                  v-for="item in aboutItems"
+                  v-for="item in aboutItems[current]"
                   :key="item.id"
                   :icon="item.iconUrl"
                   class="mb-3"
@@ -123,24 +117,21 @@
             <div class="row">
               <div class="col-lg-5 text-white mb-3 mb-lg-0">
                 <h2 class="section-title">
-                  Инфраструктура
+                  {{language[current][2]}}
                 </h2>
                 <p class="section-paragraph">
-                  На территории торгового центра расположились сотни магазинов по продаже автозапчастей и
-                  аксессуаров для любых марок, банк, уютные кофейни, банкоматы, терминалы и многое другое. Car City
-                  является самым комфортным в Алматы.
+                  {{language[current][10]}}
                 </p>
                 <p class="section-paragraph">
-                  Вы обязательно найдете все необходимое на одной территории. Наши услуги – это качественно новый
-                  уровень сервиса.
+                  {{language[current][11]}}
                 </p>
                 <p class="section-paragraph">
-                  Все что нужно сразу, в одном месте.
+                  {{language[current][12]}}
                 </p>
               </div>
               <div class="col-lg-7">
                 <div class="row">
-                  <div v-for="item in infrastructureItems" :key="item.id" class="col-md-6 mb-3">
+                  <div v-for="item in infrastructureItems[current]" :key="item.id" class="col-md-6 mb-3">
                     <InfrastructurePanel :icon="item.iconUrl" class="h-100">
                       {{ item.title }}
                     </InfrastructurePanel>
@@ -155,13 +146,12 @@
             <div class="row">
               <div class="col-lg-8">
                 <h2 class="section-title">
-                  На прилегающей территории ТЦ имеется ряд СТО с большим спектром услуг по
-                  обслуживанию автотранспорта
+                  {{language[current][13]}}
                 </h2>
               </div>
             </div>
             <div class="row">
-              <div v-for="item in serviceItems" :key="item.id" class="col-lg-3 col-md-6 mb-3">
+              <div v-for="item in serviceItems[current]" :key="item.id" class="col-lg-3 col-md-6 mb-3">
                 <ServicePanel :img="item.imgUrl" class="h-100">
                   {{ item.title }}
                 </ServicePanel>
@@ -190,36 +180,73 @@ export default {
   components: {
     vueCustomScrollbar,LinkScrollTo,TheHeader,MainSlider,AboutPanel,InfrastructurePanel,ServicePanel,TheFooter
   },
+  computed: {
+    current() {
+      return this.$store.state.localStorage.current;
+    }
+  },
   data () {
     return {
+      language: [
+        ['Арендаторам','О нас','Инфраструктура','1 000 000+ офлайн-посетителей и 500 000+ онлайн-посетителей в год','1 200+ специализированных бутиков. Лучшие продавцы с уникальным ассортиментом','2 000 000+ наименований запчастей от ведущих мировых брендов','ТЦ «Car City» - крупнейший офлайн торговый центр в Средней Азии.','У нас вы найдёте большой ассортимент запчастей от ведущих мировых брендов, от конвейерных поставщиков до качественных аналогов. На европейские, японские, российские, корейские, китайские и прочие иномарки.','Наша философия основана на сохранении времени и денег покупателей, чтобы они могли жить лучше. Это сделало нас самым успешным ритейлером автомобильных запчастей в Казахстане.','Для любого автовладельца ТЦ «Car City» является синонимом низкой цены, гарантии и качества!','На территории торгового центра расположились сотни магазинов по продаже автозапчастей и\n' +
+        '                  аксессуаров для любых марок, банк, уютные кофейни, банкоматы, терминалы и многое другое. Car City\n' +
+        '                  является самым комфортным в Алматы.','Вы обязательно найдете все необходимое на одной территории. Наши услуги – это качественно новый уровень сервиса.','Все что нужно сразу, в одном месте.','На прилегающей территории ТЦ имеется ряд СТО с большим спектром услуг по\n' +
+        '                  обслуживанию автотранспорта'],
+        ['Жалға алушыларға','Бiз туралы','Инфрақұрылымы','Жылына 1 000 000 + офлайн-келушілер және 500 000 + онлайн-келушілер','1 200 + мамандандырылған дүкендер мен бутиктер.\n' +
+        'Қайталанбайтын ассортименті бар таңдаулы сатушылар','2 000 000 + жетекші әлемдік брендтерден автобөлшектер.','«Car City» СО - Орталық Азиядағы ірі офлайн сауда орталығы','Сіз бізден, европалық, жапондық, ресейлік, корейлік, қытайлық және басқа да шетелдік\n' +
+        'автомобильдерге конвейерлік жеткізушілерінен бастап олардың сапалы аналогтарына дейін жетекші\n' +
+        'әлемдік брендтерден үлкен автобөлшектер ассортиментін таба аласыз.','Біздің философия сатып алушылардың уақыты мен ақшасын үнемдеу арқылы олардың өмірін\n' +
+        'жақсартуға негізделген. Осы бізді Қазақстандағы ең сәтті автокөлік бөлшегінің ритейлері болуымызға\n' +
+        'әсер етті.','«Car City» СО кез-келген автокөлік иесін үшін төмен баға мен сапа кепілдігінің синонимі болып\n' +
+        'табылады!','Сауда орталағының аймағында кез-келген маркалы көлікке автобөлшек және аксессуар сататын жүздеген дүкендер, банк, жайлы кофейнялар, банкоматтар, терминалдар орналасқан. Car City Алматы қаласындағы ең ыңғайлы жер болып табылады.','Сіз міндетті түрде бір жерден бәрін таба аласыз. Біздің қызметтер – сервистің жаңа сапалы деңгейі.','Керектің барлығы бір жерде.','Сауда орталығының іргелес аумағында автотранспортқақызмет көрсету бойынша кең қызмет тізімі бар\n' +
+        'ТҚКС жұмыс істейді.']
+      ],
       aboutItems: [
-        { id: 1, iconUrl: require('~/assets/img/icons/secure-check.svg'), title: 'На рынке с 2005 года' },
-        { id: 2, iconUrl: require('~/assets/img/icons/expand.svg'), title: 'Площадь торгового центра – 31 585 кв. м.' },
-        { id: 3, iconUrl: require('~/assets/img/icons/achievement.svg'), title: 'Ежегодный победитель в номинации «Лучший Автомагазин» с 2017 года' },
-        { id: 4, iconUrl: require('~/assets/img/icons/user-placemark.svg'), title: 'Удобное месторасположение по геолокации' }
+        [{ id: 1, iconUrl: require('~/assets/img/icons/secure-check.svg'), title: 'На рынке с 2005 года' },
+          { id: 2, iconUrl: require('~/assets/img/icons/expand.svg'), title: 'Площадь торгового центра – 31 585 кв. м.' },
+          { id: 3, iconUrl: require('~/assets/img/icons/achievement.svg'), title: 'Ежегодный победитель в номинации «Лучший Автомагазин» с 2017 года' },
+          { id: 4, iconUrl: require('~/assets/img/icons/user-placemark.svg'), title: 'Удобное месторасположение по геолокации' }],
+        [{ id: 1, iconUrl: require('~/assets/img/icons/secure-check.svg'), title: '2005 жылдан бері нарықта' },
+          { id: 2, iconUrl: require('~/assets/img/icons/expand.svg'), title: 'Сауда орталығының ауданы – 31 585 ш. м.' },
+          { id: 3, iconUrl: require('~/assets/img/icons/achievement.svg'), title: '2017 жылдан бері «Ең үздік автодүкен» номинациясы бойынша жыл сайынғы жеңімпаз' },
+          { id: 4, iconUrl: require('~/assets/img/icons/user-placemark.svg'), title: 'Геолокация бойынша қолайлы орналасқан' }],
       ],
       infrastructureItems: [
-        { id: 1, iconUrl: require('~/assets/img/icons/payment-card.svg'), title: 'Банкоматы Halyk Bank , Банк ЦентрКредит, ForteBank, Kaspi Bank, Сбербанк' },
-        { id: 2, iconUrl: require('~/assets/img/icons/bank.svg'), title: 'Отделение банка НурБанк' },
-        { id: 3, iconUrl: require('~/assets/img/icons/monitor.svg'), title: 'Терминалы 24KZ, QIWI, Interpay, Kaspi Postomat' },
-        { id: 4, iconUrl: require('~/assets/img/icons/cup.svg'), title: 'Кофейни' },
-        { id: 5, iconUrl: require('~/assets/img/icons/user-arrow.svg'), title: 'Услуги курьерской службы - AlemTat, Avis Logistics' },
-        { id: 6, iconUrl: require('~/assets/img/icons/car.svg'), title: 'Парковка на 500 автомашин' }
+        [{ id: 1, iconUrl: require('~/assets/img/icons/payment-card.svg'), title: 'Банкоматы Halyk Bank , Банк ЦентрКредит, ForteBank, Kaspi Bank, Сбербанк' },
+          { id: 2, iconUrl: require('~/assets/img/icons/bank.svg'), title: 'Отделение банка НурБанк' },
+          { id: 3, iconUrl: require('~/assets/img/icons/monitor.svg'), title: 'Терминалы 24KZ, QIWI, Interpay, Kaspi Postomat' },
+          { id: 4, iconUrl: require('~/assets/img/icons/cup.svg'), title: 'Кофейни' },
+          { id: 5, iconUrl: require('~/assets/img/icons/user-arrow.svg'), title: 'Услуги курьерской службы - AlemTat, Avis Logistics' },
+          { id: 6, iconUrl: require('~/assets/img/icons/car.svg'), title: 'Парковка на 500 автомашин' }],
+        [{ id: 1, iconUrl: require('~/assets/img/icons/payment-card.svg'), title: 'Halyk Bank , Банк ЦентрКредит, ForteBank, Kaspi Bank, Сбербанк банкоматтары' },
+          { id: 2, iconUrl: require('~/assets/img/icons/bank.svg'), title: 'Нұрбанк банкінің бөлімшесі' },
+          { id: 3, iconUrl: require('~/assets/img/icons/monitor.svg'), title: '24KZ, QIWI, Interpay, Kaspi Postomat терминалдары' },
+          { id: 4, iconUrl: require('~/assets/img/icons/cup.svg'), title: 'Кофейнялар' },
+          { id: 5, iconUrl: require('~/assets/img/icons/user-arrow.svg'), title: 'Алем ТАТ, Avis Logistics курьерлік компанияларының қызметтері' },
+          { id: 6, iconUrl: require('~/assets/img/icons/car.svg'), title: '500 автокөлікке арналған көлік қоятын орын' }]
       ],
       serviceItems: [
-        { id: 1, imgUrl: require('~/assets/img/demo/service1.png'), title: 'Пункт замены масла' },
-        { id: 2, imgUrl: require('~/assets/img/demo/service2.png'), title: 'Геометрия ходовой части' },
-        { id: 3, imgUrl: require('~/assets/img/demo/service3.png'), title: 'Токарные работы' },
-        { id: 4, imgUrl: require('~/assets/img/demo/service4.png'), title: 'Компьютерная диагностика' },
-        { id: 5, imgUrl: require('~/assets/img/demo/service5.png'), title: 'Реставрация трещин лобовых стёкол' },
-        { id: 6, imgUrl: require('~/assets/img/demo/service6.png'), title: 'Заправка кондиционеров' },
-        { id: 7, imgUrl: require('~/assets/img/demo/service7.png'), title: 'Ремонт двигателя, ходовой части' },
-        { id: 8, imgUrl: require('~/assets/img/demo/service8.png'), title: 'Шиномонтаж' }
+        [{ id: 1, imgUrl: require('~/assets/img/demo/service1.png'), title: 'Пункт замены масла' },
+          { id: 2, imgUrl: require('~/assets/img/demo/service2.png'), title: 'Геометрия ходовой части' },
+          { id: 3, imgUrl: require('~/assets/img/demo/service3.png'), title: 'Токарные работы' },
+          { id: 4, imgUrl: require('~/assets/img/demo/service4.png'), title: 'Компьютерная диагностика' },
+          { id: 5, imgUrl: require('~/assets/img/demo/service5.png'), title: 'Реставрация трещин лобовых стёкол' },
+          { id: 6, imgUrl: require('~/assets/img/demo/service6.png'), title: 'Заправка кондиционеров' },
+          { id: 7, imgUrl: require('~/assets/img/demo/service7.png'), title: 'Ремонт двигателя, ходовой части' },
+          { id: 8, imgUrl: require('~/assets/img/demo/service8.png'), title: 'Шиномонтаж' }],
+        [{ id: 1, imgUrl: require('~/assets/img/demo/service1.png'), title: 'Май алмастыру пункті' },
+          { id: 2, imgUrl: require('~/assets/img/demo/service2.png'), title: 'Жүрістік бөлігінің геометриясы' },
+          { id: 3, imgUrl: require('~/assets/img/demo/service3.png'), title: 'Жону жұмыстары' },
+          { id: 4, imgUrl: require('~/assets/img/demo/service4.png'), title: 'Компьютерлік диагностика' },
+          { id: 5, imgUrl: require('~/assets/img/demo/service5.png'), title: 'Алдыңғы әйнектегі сызаттарды қалпына келтіру' },
+          { id: 6, imgUrl: require('~/assets/img/demo/service6.png'), title: 'Кондиционерлерді қайта толтыру' },
+          { id: 7, imgUrl: require('~/assets/img/demo/service7.png'), title: 'Қозғалтқыш және жүрістік бөлікті жөндеу' },
+          { id: 8, imgUrl: require('~/assets/img/demo/service8.png'), title: 'Доңғалақ ауыстыру' }]
       ]
     }
   },
   head: {
-    title: 'Огромный выбор автозапчастей по доступным ценам на любые марки машин',
+    title: ['Огромный выбор автозапчастей по доступным ценам на любые марки машин','Автокөліктердің кез келген маркасы үшін қолжетімді бағамен автокөлік бөлшектерінің үлкен таңдауы'],
     meta: [
       {
         hid: 'description',

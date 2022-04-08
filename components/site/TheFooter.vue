@@ -23,22 +23,22 @@
           <ul class="footer__nav">
             <li>
               <NuxtLink class="footer__nav-link" :to="{ name: 'terms-of-use' }">
-                Пользовательское соглашение
+                {{language[current][0]}}
               </NuxtLink>
             </li>
             <li>
               <NuxtLink class="footer__nav-link" :to="{ name: 'privacy-policy' }">
-                Политика конфеденциальности
+                {{language[current][1]}}
               </NuxtLink>
             </li>
             <li>
               <NuxtLink class="footer__nav-link" :to="{ name: 'rules-shopping-center' }">
-                Правила ТЦ
+                {{language[current][2]}}
               </NuxtLink>
             </li>
             <li>
               <NuxtLink class="footer__nav-link" :to="{ name: 'rules-ad' }">
-                Правила размещения объявлений
+                {{language[current][3]}}
               </NuxtLink>
             </li>
           </ul>
@@ -47,12 +47,12 @@
           <ul class="footer__nav">
             <li>
               <NuxtLink class="footer__nav-link" :to="{ name: 'index', hash: '#about' }">
-                О нас
+                {{language[current][4]}}
               </NuxtLink>
             </li>
             <li>
               <NuxtLink class="footer__nav-link" :to="{ name: 'index', hash: '#infrastructure' }">
-                Инфраструктура
+                {{language[current][5]}}
               </NuxtLink>
             </li>
             <!--            <li>-->
@@ -73,6 +73,19 @@ export default {
     dark: {
       type: Boolean,
       default: false
+    }
+  },
+  data() {
+    return {
+      language: [
+        ['Пользовательское соглашение','Политика конфеденциальности','Правила ТЦ','Правила размещения объявлений','О нас','Инфраструктура'],
+        ['Пайдаланушылық келісім','Құпиялылық саясаты','СО ережелері','Жарнама беру ережелери','Бiз туралы','Инфрақұрылым']
+      ]
+    }
+  },
+  computed: {
+    current() {
+      return this.$store.state.localStorage.current;
     }
   }
 }

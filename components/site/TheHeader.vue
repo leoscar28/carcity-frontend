@@ -5,37 +5,54 @@
         <div class="header__main-row">
           <div class="d-flex align-items-center">
             <div class="header__logo me-4">
-              <a href="/">
+              <nuxt-link to="/">
                 <img src="~/assets/img/carcity-logo.png" alt="">
-              </a>
+              </nuxt-link>
             </div>
-
-            <!--            <LocaleDropdown />-->
+            <LocaleDropdown />
           </div>
 
           <div class="header__info-row d-none d-lg-flex">
             <div class="header__info">
               <img src="~/assets/img/icons/clock.svg" class="header__info-icon" alt="">
               <div>
-                <span class="header__info-title">Работаем ежедневно</span>
-                <span class="header__info-data">09:00 - 19:00</span>
+                <span class="header__info-title">{{language[current][6]}}</span>
+                <span class="header__info-data">
+                  <template v-if="current === 0">
+                    09.00 - 19.00
+                  </template>
+                  <template v-else-if="current === 1">
+                    <span class="font-12">09.00 - 19.00</span>
+                  </template>
+                </span>
               </div>
             </div>
-
             <div class="header__info">
               <img src="~/assets/img/icons/phone.svg" class="header__info-icon" alt="">
               <div>
-                <span class="header__info-title">Администрация ТЦ</span>
-                <a href="tel:+77273191300" class="header__info-data">+7 727 319 13 00</a>
+                <span class="header__info-title">{{language[current][5]}}</span>
+                <a href="tel:+77273191300" class="header__info-data">
+                  <template v-if="current === 0">
+                    +7 727 319 13 00
+                  </template>
+                  <template v-else-if="current === 1">
+                    <span class="font-12">+7 727 319 13 00</span>
+                  </template>
+                </a>
               </div>
             </div>
 
             <div class="header__info">
               <img src="~/assets/img/icons/placemark.svg" class="header__info-icon" alt="">
               <div>
-                <span class="header__info-title">Как добраться?</span>
+                <span class="header__info-title">{{language[current][4]}}</span>
                 <a href="https://go.2gis.com/yrh1n4" target="_blank" class="header__info-data">
-                  Алматы, мкр. Баянаул 57а
+                  <template v-if="current === 0">
+                    Алматы, мкр. Баян-аул 57а
+                  </template>
+                  <template v-else-if="current === 1">
+                    <span class="font-12">Алматы қ, Баян-аул ш-н ауданы 57а</span>
+                  </template>
                 </a>
               </div>
             </div>
@@ -44,7 +61,7 @@
           <div>
             <template v-if="isRentersPage">
               <NuxtLink to="partner" class="btn btn-outline-primary">
-                <span class="d-none d-sm-inline">Личный кабинет</span>
+                <span class="d-none d-sm-inline">{{language[current][3]}}</span>
                 <svg
                   class="d-sm-none"
                   width="18"
@@ -59,7 +76,7 @@
             </template>
             <template v-else>
               <NuxtLink to="/renters" class="btn btn-outline-primary">
-                <span class="d-none d-sm-inline">Арендаторам</span>
+                <span class="d-none d-sm-inline" :class="{'font-13':(current === 1)}">{{language[current][2]}}</span>
                 <svg
                   class="d-sm-none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -83,10 +100,10 @@
       <div class="container">
         <nav class="header__nav">
           <NuxtLink :to="{ name: 'index', hash: '#about' }" class="header__nav-link">
-            О нас
+            {{language[current][0]}}
           </NuxtLink>
           <NuxtLink :to="{ name: 'index', hash: '#infrastructure' }" class="header__nav-link">
-            Инфраструктура
+            {{language[current][1]}}
           </NuxtLink>
           <!--        <NuxtLink :to="{ name: 'index', hash: '#about' }" class="header__nav-link">-->
           <!--          План помещений-->
@@ -99,17 +116,25 @@
 
 <script>
 import { throttle } from '~/utils/utils'
-
+import LocaleDropdown from "@/components/site/LocaleDropdown";
 export default {
+  components: {LocaleDropdown},
   data () {
     this.handleScrollThrottled = throttle(this.handleScroll, 100)
     return {
+      language: [
+        ['О нас','Инфраструктура','Арендаторам','Личный кабинет','Как добраться?','Администрация ТЦ','Работаем ежедневно'],
+        ['Бiз туралы','Инфрақұрылым','Жалға алушыларға','Жеке кабинет','Қалай жетуге болады?','СО әкімшілігі','жұмыс кестесі']
+      ]
     }
   },
 
   computed: {
     isRentersPage () {
       return this.$route.name === 'renters'
+    },
+    current() {
+      return this.$store.state.localStorage.current;
     }
   },
   beforeMount () {
@@ -132,3 +157,11 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+  .font-13 {
+    font-size: 13px;
+  }
+  .font-12 {
+    font-size: 12px;
+  }
+</style>

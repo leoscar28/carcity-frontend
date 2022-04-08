@@ -6,7 +6,7 @@
           <div class="main-slide">
             <img src="~/assets/img/demo/main-slide1.jpg" alt="" class="main-slide__img">
             <div class="main-slide__descr">
-              <p>CarCity.kz — официальный сайт крупнейшего торгового центра автозапчастей в РК</p>
+              <p>{{language[current][0]}}</p>
             </div>
           </div>
         </li>
@@ -14,7 +14,7 @@
           <div class="main-slide">
             <img src="~/assets/img/demo/main-slide2.jpg" alt="" class="main-slide__img">
             <div class="main-slide__descr">
-              <p>ТЦ «Car City» — крупнейший оффлайн торговый центр автозапчастей в средней Азии</p>
+              <p>{{language[current][1]}}</p>
             </div>
           </div>
         </li>
@@ -22,7 +22,7 @@
           <div class="main-slide">
             <img src="~/assets/img/demo/main-slide3.jpg" alt="" class="main-slide__img">
             <div class="main-slide__descr">
-              <p>Огромный выбор 2 000 000+ наименований запчастей от ведущих мировых брендов</p>
+              <p>{{language[current][2]}}</p>
             </div>
           </div>
         </li>
@@ -56,6 +56,20 @@ export default {
       gap: 0,
       type: 'carousel'
     }).mount()
+  },
+  computed: {
+    current() {
+      return this.$store.state.localStorage.current;
+    }
+  },
+  data() {
+    return {
+      language: [
+        ['Ваша машина будет довольна.\n' +
+        'Любые автомобильные запчасти высокого качества.','CarCity.kz — официальный сайт крупнейшего торгового центра автозапчастей в РК','Выгодные цены. Качественные продукты. Выгодный шоппинг.'],
+        ['Сіздің машинаңыз риза болады. Жоғары сападағы кез-келген автобөлшектер.','«Car City» СО – Орталық Азиядағы ең үлкен офлайн автобөлшектер сауда орталығы','Тиімді бағалар. Сапалы өнімдер. Пайдалы шоппинг.']
+      ]
+    }
   }
 }
 </script>

@@ -3,6 +3,8 @@ export const state = () => ({
   sidebar: false,
   statuses: [],
   signatureLoading: false,
+  current: 0,
+  languages: ['RU','KZ'],
   lang: {
     formatLocale: {
       months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
@@ -15,6 +17,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setCurrent(state,value) {
+    state.current = value;
+  },
   setStatuses(state,value) {
     state.statuses  = value;
   },
