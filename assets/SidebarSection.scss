@@ -5,6 +5,7 @@
   z-index: 10;
   &-menu {
     display: flex;
+    gap: 4px;
     flex-direction: column;
     padding: 12px 0 12px 0;
     -moz-user-select: none;
@@ -19,16 +20,20 @@
     box-shadow: 0 0 2px 1px rgb(0 0 0 / 5%);
     &-list {
       display: flex;
+      gap: 4px;
       flex-direction: column;
+      margin-top: 4px;
       &-item {
-        min-height: 40px;
+        min-height: 34px;
         display: flex;
         grid-gap: 15px;
         gap: 15px;
         align-items: center;
         position: relative;
-        padding: 0 0 0 42px;
+        padding: 0 0 0 30px;
         color: #8C8C8C;
+        margin: 0 10px 0 10px;
+        border-radius: 5px;
         &-icon {
 
         }
@@ -38,7 +43,6 @@
         &:hover, &-active {
           background: #F0F0F0;
           color: #1890FF;
-          border-right: 3px solid #1890FF;
         }
       }
     }
@@ -49,12 +53,14 @@
       color: #000;
       position: relative;
       & > div:first-child {
-        padding: 0 25px 0 25px;
-        min-height: 40px;
+        padding: 0 15px 0 15px;
+        min-height: 34px;
         display: flex;
         gap: 15px;
         align-items: center;
         position: relative;
+        margin: 0 10px 0 10px;
+        border-radius: 5px;
       }
       &-icon {
         width: 16px;
@@ -82,7 +88,6 @@
       &:hover > div:first-child, &-active > div:first-child {
         background: #F0F0F0;
         color: #1890FF;
-        border-right: 3px solid #1890FF;
         & > .sidebar-section-menu-item-icon-home {
           background-image: url('/home-active.png');
         }
@@ -136,7 +141,7 @@
 }
 @media only screen and (min-width: 950px) and (max-width: 1120px) {
   .sidebar-section {
-    width: 60px;
+    width: 63px;
     &-menu {
       &-list {
         visibility: hidden;
@@ -147,8 +152,10 @@
         overflow: hidden;
         background: #fff;
         z-index: 20;
-        box-shadow: 3px 0 5px 0 rgba(0,0,0,.15);
-        width: 150px;
+        box-shadow: 3px 0 5px 0 rgb(0 0 0 / 15%);
+        width: 180px;
+        padding: 10px 0 10px 0;
+        margin-top: 0;
         &-item {
           padding: 0;
           font-size: 12px;

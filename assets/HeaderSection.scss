@@ -71,11 +71,11 @@
         & > input {
           height: 34px;
           width: 100%;
-          background: #F0F0F0;
-          border-radius: 2px;
-          border: none;
+          background: #fafafa;
+          border-radius: 5px;
           font-size: 14px;
           padding: 0 0 0 38px;
+          border: 1px solid #F4F4F4;
         }
         &-icon {
           width: 16px;
@@ -148,7 +148,7 @@
             transform: rotate(
                 45deg);
             top: -6px;
-            right: 30px;
+            right: 50px;
             box-shadow: 0 0 5px 1px rgba(0,0,0,.1);
           }
           &-main {
@@ -157,8 +157,8 @@
             z-index: 2;
             min-height: 50px;
             background: #fff;
-            border-radius: 4px;
-            padding: 5px 0 5px 0;
+            border-radius: 5px;
+            padding: 10px;
             overflow: hidden;
             &-item {
               height: 34px;
@@ -167,8 +167,9 @@
               align-items: center;
               cursor: pointer;
               font-weight: 500;
-              padding: 0 15px 0 15px;
+              padding: 0 10px 0 10px;
               gap: 10px;
+              border-radius: 5px;
               &:hover {
                 background: #F0F0F0;
               }

@@ -28,8 +28,8 @@
 
           &:hover, &-sel {
             background: #F0F0F0;
-            color: #1890FF;
-            border-right: 3px solid #1890FF;
+            color: #274985;
+            border-right: 3px solid #274985;
           }
         }
       }
@@ -168,13 +168,13 @@
         &-icon {
           width: 14px;
           height: 14px;
-          border: 2px solid #1890FF;
+          border: 2px solid #274985;
           border-radius: 2px;
           position: relative;
           &-checked:before, &-checked:after {
             content: "";
             position: absolute;
-            background: #1890FF;
+            background: #274985;
             width: 2px;
             height: 8px;
             top: 3px;
@@ -193,7 +193,7 @@
       &-btn {
         height: 32px;
         width: 100px;
-        background: #1890FF;
+        background: #274985;
         border-radius: 2px;
         border: none;
         color: #fff;
@@ -247,7 +247,7 @@
             font-size: 10px;
             &:hover, &-sel {
               border: none;
-              background: #1890FF;
+              background: #274985;
               color: #fff;
             }
           }

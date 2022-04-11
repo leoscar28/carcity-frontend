@@ -1,4 +1,5 @@
 export const state = () => ({
+  filter: true,
   terms: false,
   rules: false,
   email: false,
@@ -20,6 +21,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  toggleFilter(state) {
+    state.filter  = !state.filter;
+  },
   toggleRules(state) {
     state.rules = !state.rules;
   },

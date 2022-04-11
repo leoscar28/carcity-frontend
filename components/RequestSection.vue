@@ -5,8 +5,12 @@
         <div class="request-section-main-header-title" v-if="type === 1">Акт выполненных работ</div>
         <div class="request-section-main-header-title" v-else-if="type === 2">Договора и приложения</div>
         <div class="request-section-main-header-title" v-else-if="type === 3">Счет на оплату</div>
+        <button class="request-section-main-header-filter" @click="$store.commit('localStorage/toggleFilter')">
+          <i class="request-section-main-header-filter-icon"></i>
+          Фильтр
+        </button>
       </div>
-      <div class="request-section-main-filter">
+      <div class="request-section-main-filter" v-show="filter">
         <div class="request-section-main-filter-item-input" v-if="user.role_id === 1 && type !== 2">
           <div class="request-section-main-filter-item-input-icon matrix"></div>
           <input type="text" placeholder="Сумма" v-model="sum">
@@ -14,7 +18,7 @@
         <div class="request-section-main-filter-item-input">
           <select class="request-section-main-filter-item-input-select" v-model="upload_status_id">
             <option :value="null">Все статусы</option>
-            <template v-if="type !== 2 && user.role_id !== 4 && user.role_id !== 1">
+            <template v-if="(type !== 2 && user.role_id !== 4 && user.role_id !== 1) || user.role_id === 3">
               <option v-for="(status,key) in statuses" :key="key" :value="status.id">{{status.title}}</option>
             </template>
             <template v-else-if="user.role_id === 4">
@@ -51,8 +55,8 @@
                 <div class="request-section-table-header-id">ID</div>
                 <div class="request-section-table-header-status">Статус выгрузки</div>
                 <div class="request-section-table-header-date">Дата</div>
-                <div class="request-section-table-header-count">Всего документов</div>
-                <div class="request-section-table-header-count">Доступный для компаний</div>
+                <div class="request-section-table-header-count">Всего</div>
+                <div class="request-section-table-header-count">Доступные</div>
                 <div class="request-section-table-header-count">Не выгружены</div>
                 <div class="request-section-table-header-comment">Комментарий</div>
               </div>
@@ -63,14 +67,31 @@
           <template v-for="(request,key) in requests">
             <tr class="request-section-main-table-row" :key="key" onselectstart="return false;">
               <td>
-                <div class="request-section-table-header" @click.stop="request.status = !request.status">
+                <div class="request-section-table-header" :class="{'request-section-table-header-border':!request.status}" @click.stop="request.status = !request.status">
                   <div class="request-section-table-header-icon">
                     <div :class="{'request-section-table-header-icon-minus':!request.status,'request-section-table-header-icon-plus':request.status}"></div>
                   </div>
-                  <div class="request-section-table-header-id">{{request.id}}</div>
-                  <div class="request-section-table-header-status">{{statuses[request.upload_status_id - 1].title}}</div>
-                  <div class="request-section-table-header-date">{{request.created_at}}</div>
-                  <div class="request-section-table-header-count">{{request.document_all}}</div>
+                  <div class="request-section-table-header-id request-section-table-header-date-main">{{request.id}}</div>
+                  <div class="request-section-table-header-status">
+                    <template v-if="type === 1 || type === 3">
+                      <div class="request-section-table-header-status-new" v-if="request.upload_status_id === 1">{{statuses[request.upload_status_id - 1].title}}</div>
+                      <div class="request-section-table-header-status-download" v-else-if="request.upload_status_id === 2">{{statuses[request.upload_status_id - 1].title}}</div>
+                    </template>
+                    <template v-else>
+                      <div class="request-section-table-header-status-new" v-if="request.upload_status_id === 1">
+                        <template v-if="user.role_id === 3">
+                          {{statuses[request.upload_status_id - 1].title}}
+                        </template>
+                        <template v-else>
+                          Ожидает подписание вами
+                        </template>
+                      </div>
+                      <div class="request-section-table-header-status-download" v-if="request.upload_status_id === 2">{{statuses[request.upload_status_id - 1].title}}</div>
+                      <div class="request-section-table-header-status-success" v-if="request.upload_status_id === 3">{{statuses[request.upload_status_id - 1].title}}</div>
+                    </template>
+                  </div>
+                  <div class="request-section-table-header-date request-section-table-header-date-main">{{request.created_at}}</div>
+                  <div class="request-section-table-header-count request-section-table-header-count-success">{{request.document_all}}</div>
                   <div class="request-section-table-header-count">{{request.document_available}}</div>
                   <div class="request-section-table-header-count request-section-table-header-count-danger">{{request.document_all - request.document_available}}</div>
                   <template v-if="user.role_id === 3">
@@ -133,11 +154,11 @@
                     <tbody>
                       <tr class="request-section-table-body-list-item" v-for="(rid,ridKey) in request.rids" :key="ridKey">
                         <td>{{rid.number}}</td>
-                        <td>{{rid.organization}}</td>
+                        <td class="request-section-table-body-list-item-organization">{{rid.organization}}</td>
                         <td>{{rid.created_at}}</td>
                         <td>{{rid.sum}}₸</td>
-                        <td>{{rid.name}}</td>
-                        <td>{{rid.customer}}</td>
+                        <td class="request-section-table-body-list-item-name">{{rid.name}}</td>
+                        <td class="request-section-table-body-list-item-customer">{{rid.customer}}</td>
                         <td>
                           <template v-if="type === 1">
                             <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-new" v-if="rid.upload_status_id === 1">Новый</button>
@@ -189,10 +210,10 @@
         </thead>
         <tbody>
           <tr class="request-section-main-table-tr" v-for="(request,key) in requests" :key="key">
-            <td>{{request.number}}</td>
-            <td>{{request.organization}}</td>
+            <td class="request-section-table-header-date-main">{{request.number}}</td>
+            <td class="request-section-table-header-date-main">{{request.organization}}</td>
             <td>{{request.created_at}}</td>
-            <td>{{request.sum}}₸</td>
+            <td class="request-section-table-header-count-success">{{request.sum}}₸</td>
             <td>{{request.name}}</td>
             <td>{{request.customer}}</td>
             <td>
@@ -234,6 +255,9 @@ export default {
   props: ['type','requestChange'],
   components: { DatePicker},
   computed: {
+    filter() {
+      return this.$store.state.localStorage.filter;
+    },
     user() {
       return this.$store.state.localStorage.user;
     },
