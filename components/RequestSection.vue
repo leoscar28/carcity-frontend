@@ -136,18 +136,7 @@
                         <td>{{rid.organization}}</td>
                         <td>{{rid.created_at}}</td>
                         <td>{{rid.sum}}₸</td>
-                        <td>
-                          {{rid.name}}
-<!--                          <template v-if="rid.name === 'invoice'">
-                            Счет на оплату
-                          </template>
-                          <template v-else-if="rid.name === 'completion'">
-                            Акт выполненных работ
-                          </template>
-                          <template v-else>
-
-                          </template>-->
-                        </td>
+                        <td>{{rid.name}}</td>
                         <td>{{rid.customer}}</td>
                         <td>
                           <template v-if="type === 1">
@@ -157,7 +146,7 @@
                           <template v-else-if="type === 2">
                             <button class="request-section-table-body-list-item-btn request-section-table-body-header-button-reject" v-if="rid.upload_status_id === 1" @click="signFile(rid.id)">Подписать</button>
                             <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-else-if="rid.upload_status_id === 2">{{statuses[rid.upload_status_id - 1].title}}</button>
-                            <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-else-if="rid.upload_status_id === 3">{{statuses[rid.upload_status_id - 1].title}}</button>
+                            <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-signed" v-else-if="rid.upload_status_id === 3">{{statuses[rid.upload_status_id - 1].title}}</button>
                           </template>
                           <template v-else-if="type === 3">
                             <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-new" v-if="rid.upload_status_id === 1">Новый</button>
