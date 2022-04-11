@@ -14,11 +14,11 @@
     <NuxtLink to="/reset">
       <div class="login-forgot">Не помню пароль</div>
     </NuxtLink>
-    <div class="login-input-checkbox" @click="terms = !terms" onselectstart="return false;">
+    <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleTerms');" onselectstart="return false;">
       <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':terms}"></div>
       <div class="login-input-checkbox-title">Я принимаю условия пользовательского соглашения и даю согласие на обработку моих персональных данных</div>
     </div>
-    <div class="login-input-checkbox" @click="rules = !rules" onselectstart="return false;">
+    <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleRules');" onselectstart="return false;">
       <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':rules}"></div>
       <div class="login-input-checkbox-title">Я ознакомлен с общими правилами торгового центра</div>
     </div>
@@ -37,8 +37,14 @@ export default {
       login: 'admin@carcity.kz',
       password: 'password',
       show: false,
-      terms: false,
-      rules: false
+    }
+  },
+  computed: {
+    terms() {
+      return this.$store.state.localStorage.terms;
+    },
+    rules() {
+      return this.$store.state.localStorage.rules;
     }
   },
   methods: {

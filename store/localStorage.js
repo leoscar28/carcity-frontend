@@ -1,4 +1,6 @@
 export const state = () => ({
+  terms: false,
+  rules: false,
   email: false,
   user: false,
   sidebar: false,
@@ -18,6 +20,12 @@ export const state = () => ({
 })
 
 export const mutations = {
+  toggleRules(state) {
+    state.rules = !state.rules;
+  },
+  toggleTerms(state) {
+    state.terms = !state.terms;
+  },
   setEmail(state,value) {
     state.email = value;
   },
