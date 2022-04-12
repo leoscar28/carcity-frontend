@@ -149,7 +149,7 @@
                         <th>Компания</th>
                         <th>Статус</th>
                         <th>
-                          <div class="request-section-table-body-list-item-buttons">
+                          <div class="request-section-table-body-list-item-buttons" v-if="(request.document_all - request.document_available) > 0">
                             <div class="request-section-table-body-list-item-empty" style="margin-left: auto;" @click="request.ridStatus = !request.ridStatus"></div>
                           </div>
                         </th>
