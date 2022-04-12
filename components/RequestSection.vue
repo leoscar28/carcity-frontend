@@ -387,7 +387,6 @@ export default {
           role_id: this.user.role_id
         };
         let res = await this.$store.dispatch('localStorage/applicationSignatureStart',data);
-        return console.log(res);
         if (res.hasOwnProperty('message')) {
           this.$store.commit('localStorage/setSignatureLoading',false);
           return this.$toast.error(res.message).goAway(2000);

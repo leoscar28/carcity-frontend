@@ -4,7 +4,7 @@ export default ($axios) => ({
       .then(response => {
         return response.data.data;
       }).catch(error => {
-        return error.response;
+        return error.response.data;
       });
   },
   start(payload) {
@@ -12,7 +12,7 @@ export default ($axios) => ({
       .then(response => {
         return response.data.data;
       }).catch(error => {
-        return error.response;
+        return error.response.data;
       });
   },
   multipleCreate(payload) {
