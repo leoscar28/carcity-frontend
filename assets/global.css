@@ -1,5 +1,5 @@
 body {
-  background: #f7af3e !important;
+  background: #F0F0F0 !important;
   padding: 0 !important;
   margin: 0;
   font-family: 'Roboto', serif !important;
@@ -32,6 +32,7 @@ button > div {
 
 .body-section {
   display: flex;
+  background: #f7af3e !important;
 }
 .body-section-content {
   flex-grow: 1;
