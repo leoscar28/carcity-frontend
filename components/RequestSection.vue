@@ -390,6 +390,7 @@ export default {
         res.status  = false;
         this.requests.splice(index,1,res);
       }
+      this.$toast.show('Подписано '+data.signature.length+' документ(а)').goAway(2000);
     },
     async signXmlFile(data) {
       let res = await this.$store.dispatch('localStorage/applicationSignatureCreate',data);
