@@ -148,11 +148,15 @@
                         <th>Название</th>
                         <th>Компания</th>
                         <th>Статус</th>
-                        <th></th>
+                        <th>
+                          <div class="request-section-table-body-list-item-buttons">
+                            <div class="request-section-table-body-list-item-empty" style="margin-left: auto;" @click="request.ridStatus = !request.ridStatus"></div>
+                          </div>
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="request-section-table-body-list-item" v-for="(rid,ridKey) in request.rids" :key="ridKey">
+                      <tr class="request-section-table-body-list-item" v-for="(rid,ridKey) in request.rids" :key="ridKey" v-if="!request.ridStatus || !rid.users">
                         <td>{{rid.number}}</td>
                         <td class="request-section-table-body-list-item-organization">{{rid.organization}}</td>
                         <td>{{rid.created_at}}</td>
