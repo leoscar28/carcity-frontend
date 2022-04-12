@@ -18,7 +18,7 @@
         <div class="request-section-main-filter-item-input">
           <select class="request-section-main-filter-item-input-select" v-model="upload_status_id">
             <option :value="null">Все статусы</option>
-            <template v-if="(type !== 2 && user.role_id !== 4 && user.role_id !== 1) || user.role_id === 3">
+            <template v-if="(type !== 2 && user.role_id !== 4 && user.role_id !== 1) || user.role_id === 3 || user.role_id === 2">
               <option v-for="(status,key) in statuses" :key="key" :value="status.id">{{status.title}}</option>
             </template>
             <template v-else-if="user.role_id === 4">
@@ -117,7 +117,7 @@
                 <div class="request-section-table-body" v-show="!request.status">
                   <div class="request-section-table-body-header">
                     <div class="request-section-table-body-header-title" v-if="type === 1">Успешно выгружено документов {{request.rids.length}}, скачано {{downloadLength(key,2)}}</div>
-                    <div class="request-section-table-body-header-title" v-if="type === 2">Успешно выгружено документов {{request.rids.length}}, подписано вами {{signedSupervisor(key)}}</div>
+                    <div class="request-section-table-body-header-title" v-if="type === 2">Успешно выгружено документов {{request.rids.length}}, подписано вами {{signedSupervisor(key)}}, Подписано клиентом {{signedTenant(key)}}</div>
                     <div class="request-section-table-body-header-title" v-if="type === 3">Успешно выгружено документов {{request.rids.length}}, скачано {{downloadLength(key,2)}}</div>
                     <div class="request-section-table-body-header-buttons">
                       <button class="request-section-table-body-header-button">
@@ -165,7 +165,8 @@
                             <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-if="rid.upload_status_id === 2">Скачано</button>
                           </template>
                           <template v-else-if="type === 2">
-                            <button class="request-section-table-body-list-item-btn request-section-table-body-header-button-reject" v-if="rid.upload_status_id === 1" @click="signFile(rid.id)">Подписать</button>
+                            <button class="request-section-table-body-list-item-btn request-section-table-body-header-button-reject" v-if="rid.upload_status_id === 1 && user.role_id === 4" @click="signFile(rid.id)">Подписать</button>
+                            <button class="request-section-table-body-list-item-btn request-section-table-body-header-button-reject" v-else-if="rid.upload_status_id === 1 && user.role_id !== 4">{{statuses[rid.upload_status_id - 1].title}}</button>
                             <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-else-if="rid.upload_status_id === 2">{{statuses[rid.upload_status_id - 1].title}}</button>
                             <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-signed" v-else-if="rid.upload_status_id === 3">{{statuses[rid.upload_status_id - 1].title}}</button>
                           </template>
@@ -485,6 +486,15 @@ export default {
     },
     up() {
       this.range++;
+    },
+    signedTenant(key) {
+      let index = 0;
+      this.requests[key].rids.forEach(item => {
+        if (item.upload_status_id === 3) {
+          index++;
+        }
+      });
+      return index;
     },
     signedSupervisor(key) {
       let index = 0;

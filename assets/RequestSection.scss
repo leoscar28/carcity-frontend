@@ -41,6 +41,7 @@
             cursor: pointer;
             border-radius: 2px;
             font-weight: bold;
+            max-width: 160px;
             &-new {
               color: #1890FF;
               background: #E6F7FF;
@@ -143,7 +144,7 @@
       align-items: center;
       font-weight: normal;
       font-size: 11px;
-      gap: 16px;
+      gap: 10px;
       color: #000;
       cursor: pointer;
       padding: 10px;
@@ -582,10 +583,10 @@
       }
     }
     &-header, &-card-main {
-      height: 60px;
+      height: 54px;
       display: flex;
       align-items: center;
-      padding: 0 16px 0 16px;
+      padding: 0 10px 0 10px;
       border-bottom: 1px solid #f4f4f4;
       &-filter {
         margin-left: auto;
@@ -646,7 +647,7 @@
         }
       }
       &-title {
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 500;
       }
       &-buttons {
@@ -675,17 +676,17 @@
       height: auto;
     }
     &-filter {
-      height: 60px;
+      height: 54px;
       border-bottom: 1px solid #f4f4f4;
       display: flex;
-      padding: 0 16px 0 16px;
+      padding: 0 10px 0 10px;
       align-items: center;
-      gap: 16px;
+      gap: 10px;
       &-item {
         height: 34px;
         flex-grow: 1;
         display: flex;
-        gap: 16px;
+        gap: 10px;
         &:last-child {
           flex-grow: 0;
         }
