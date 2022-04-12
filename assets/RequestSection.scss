@@ -63,7 +63,7 @@
               color: #52C41A;
             }
           }
-          &-download, &-trash {
+          &-download, &-trash, &-empty {
             width: 20px;
             height: 20px;
             background: url('/cloud-download.png') no-repeat center;
@@ -75,6 +75,69 @@
           }
           &-trash {
             background-image: url('/trash-can.png');
+          }
+          &-empty {
+            background-image: url('/alert-circle.png');
+            position: relative;
+            opacity: 1;
+            &-data {
+              visibility: hidden;
+              opacity: 0;
+              width: 150px;
+              height: 50px;
+              position: absolute;
+              background: #fff;
+              box-shadow: 0 0 5px 1px rgb(0 0 0 / 10%);
+              border-radius: 5px;
+              right: 35px;
+              top: -15px;
+              z-index: 10;
+              transition: all .1s ease-out;
+              &:before {
+                content: "";
+                position: absolute;
+                background: #fff;
+                width: 12px;
+                height: 12px;
+                transform: rotate(45deg);
+                top: 18px;
+                right: -6px;
+                box-shadow: 0 0 5px 1px rgb(0 0 0 / 10%);
+              }
+              &-main {
+                width: 150px;
+                height: 50px;
+                border-radius: 5px;
+                background: #fff;
+                position: relative;
+                z-index: 2;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 0 10px 0 10px;
+                &-title {
+                  font-weight: bold;
+                }
+                &-value {
+                  color: #8C8C8C;
+                }
+              }
+              &-copy {
+                width: 30px;
+                height: 30px;
+                background: #fafafa url('/content-copy.png') no-repeat center;
+                position: absolute;
+                z-index: 10;
+                right: 10px;
+                border: 1px solid #f4f4f4;
+                border-radius: 5px;
+              }
+            }
+            &:hover > div {
+              opacity: 1;
+              visibility: visible;
+              right: 25px;
+            }
           }
           &-buttons {
             display: flex;

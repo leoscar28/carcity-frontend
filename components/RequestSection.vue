@@ -179,6 +179,15 @@
                           <div class="request-section-table-body-list-item-buttons">
                             <div class="request-section-table-body-list-item-trash" v-if="user.role_id === 3" @click="deleteRequest(key,ridKey,rid.id, request.rid)"></div>
                             <div class="request-section-table-body-list-item-download" @click="download(rid.id,rid.rid,false)"></div>
+                            <div class="request-section-table-body-list-item-empty" v-if="!rid.users">
+                              <div class="request-section-table-body-list-item-empty-data">
+                                <div class="request-section-table-body-list-item-empty-data-main">
+                                  <div class="request-section-table-body-list-item-empty-data-main-title">БИН/ИИН</div>
+                                  <div class="request-section-table-body-list-item-empty-data-main-value">{{rid.customer_id}}</div>
+                                  <div class="request-section-table-body-list-item-empty-data-copy" @click="copy(rid.customer_id)"></div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </td>
                       </tr>
@@ -325,6 +334,14 @@ export default {
     }
   },
   methods: {
+    copy(bin) {
+      let self  = this;
+      navigator.clipboard.writeText(bin).then(function() {
+        self.$toast.show('Скопировано').goAway(2000);
+      }, function(err) {
+        self.$toast.error('Async: Could not copy text: '+ err).goAway(2000);
+      });
+    },
     async signFiles(rid) {
       if (!this.signatureLoading) {
         this.$store.commit('localStorage/setSignatureLoading', true);
