@@ -355,7 +355,6 @@ export default {
         } else {
           this.$toast.error('Произошла ошибка').goAway(2000);
         }
-        this.$store.commit('localStorage/setSignatureLoading',false);
       });
     },
     async signFile(id) {
@@ -390,6 +389,7 @@ export default {
         res.status  = false;
         this.requests.splice(index,1,res);
       }
+      this.$store.commit('localStorage/setSignatureLoading',false);
       this.$toast.show('Подписано '+data.signature.length+' документ(а)').goAway(2000);
     },
     async signXmlFile(data) {
@@ -398,6 +398,7 @@ export default {
         return this.$toast.error(res.message).goAway(2000);
       }
       let i = 0, index, key;
+      this.$store.commit('localStorage/setSignatureLoading',false);
       if (data.role_id === 4) {
         this.requests.forEach(item => {
           if (item.rid === res.rid) {
