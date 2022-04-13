@@ -374,6 +374,7 @@ export default {
           data.signature  = signedBase64[0];
           this.signXmlFile(data);
         } else {
+          this.$store.commit('localStorage/setSignatureLoading',false);
           this.$toast.error('Произошла ошибка').goAway(2000);
         }
       });
