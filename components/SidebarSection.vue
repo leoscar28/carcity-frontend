@@ -43,6 +43,14 @@
           </div>
         </div>
       </NuxtLink>
+      <NuxtLink to="/instruction">
+        <div class="sidebar-section-menu-item" :class="{'sidebar-section-menu-item-active':($nuxt.$route.name === 'instruction')}">
+          <div>
+            <div class="sidebar-section-menu-item-icon sidebar-section-menu-item-icon-help"></div>
+            <div class="sidebar-section-menu-item-title">Инструкции</div>
+          </div>
+        </div>
+      </NuxtLink>
     </div>
   </div>
 </template>

@@ -34,8 +34,8 @@ export default {
   name: "Login",
   data() {
     return {
-      login: 'admin@carcity.kz',
-      password: 'password',
+      login: '',
+      password: '',
       show: false,
     }
   },

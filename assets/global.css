@@ -35,7 +35,7 @@ button > div {
   background: #f7af3e !important;
 }
 .body-section-content {
-  flex-grow: 1;
+  flex: 1;
 }
 .gem {
   background-image: url('/gem.png') !important;
