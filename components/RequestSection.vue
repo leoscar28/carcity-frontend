@@ -122,10 +122,10 @@
                       <div class="request-section-table-body-header-title" v-if="type === 2">Успешно выгружено документов {{request.rids.length}}, подписано вами {{signedSupervisor(key)}}, Подписано клиентом {{signedTenant(key)}}</div>
                       <div class="request-section-table-body-header-title" v-if="type === 3">Успешно выгружено документов {{request.rids.length}}, скачано {{downloadLength(key,2)}}</div>
                       <div class="request-section-table-body-header-buttons">
-                        <button class="request-section-table-body-header-button">
+<!--                        <button class="request-section-table-body-header-button">
                           <div class="request-section-table-body-header-button-icon"></div>
                           Отчет в CSV
-                        </button>
+                        </button>-->
                         <button class="request-section-table-body-header-button">
                           <div class="request-section-table-body-header-button-icon"></div>
                           Отчет в XLS
