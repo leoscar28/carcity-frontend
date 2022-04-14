@@ -36,6 +36,7 @@
       padding: 0 12px 0 12px;
       border-radius: 5px;
       font-size: 12px;
+      background: #fafafa;
     }
   }
   &-input {
@@ -47,14 +48,14 @@
       &-icon {
         width: 16px;
         height: 16px;
-        border: 1px solid #8C8C8C;
+        border: 1px solid #f4f4f4;
         &-checked {
           &:before, &:after {
             content: '';
             position: absolute;
             width: 10px;
             height: 2px;
-            background: #1890FF;
+            background: #274985;
             transform: rotate(-45deg);
             margin: 6px 0 0 3px;
           }
@@ -217,16 +218,16 @@
     }
   }
   &-forgot {
-    font-size: 14px;
-    color: #1890FF;
+    font-size: 12px;
+    color: #274985;
     margin: 0 30px 0 30px;
   }
   &-btn {
-    margin: 30px 30px 0 30px;
+    margin: 30px;
     & > button {
       height: 44px;
       width: 100%;
-      background: #1890FF;
+      background: #274985;
       border: none;
       color: #fff;
       border-radius: 5px;

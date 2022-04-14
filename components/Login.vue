@@ -6,10 +6,10 @@
       </div>
       <div class="login-title">Войдите в систему</div>
       <div class="login-input">
-        <input type="text" placeholder="Введите e-mail или телефон" v-model="login" ref="login" maxlength="50">
+        <input type="text" placeholder="Введите e-mail или телефон" v-model="login" ref="login" maxlength="50" @keyup.enter="auth">
       </div>
       <div class="login-input-password">
-        <input :type="show ? 'text' : 'password'" placeholder="Введите пароль" v-model="password" ref="password" maxlength="50">
+        <input :type="show ? 'text' : 'password'" placeholder="Введите пароль" v-model="password" ref="password" maxlength="50" @keyup.enter="auth">
         <div class="login-input-password-option" :class="{'login-input-password-hide':!show}" @click="show = !show"></div>
       </div>
       <NuxtLink to="/reset">
@@ -59,16 +59,18 @@ export default {
       } else if (this.password.trim() === '') {
         return this.$refs.password.focus();
       }
-      let auth  = this.$toast.show('Авторизация...');
-      const res = await this.$store.dispatch('localStorage/auth', {
-        login: this.login.trim(),
-        password: this.password.trim()
-      });
-      auth.goAway(0);
-      if (res) {
-        await this.$router.push('dashboard');
-      } else {
-        this.$toast.error('Не правильный логин или пароль').goAway(2000);
+      if (this.terms && this.rules) {
+        let auth  = this.$toast.show('Авторизация...');
+        const res = await this.$store.dispatch('localStorage/auth', {
+          login: this.login.trim(),
+          password: this.password.trim()
+        });
+        auth.goAway(0);
+        if (res) {
+          await this.$router.push('dashboard');
+        } else {
+          this.$toast.error('Не правильный логин или пароль').goAway(2000);
+        }
       }
     }
   }
