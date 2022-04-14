@@ -9,7 +9,7 @@ body {
   padding: 1px 0 1px 0;
   height: 100vh;
   width: 100%;
-  background: #f7af3e!important;
+  background: #f7af3e url('/abstract-bg.svg') no-repeat bottom/contain;
 }
 * {
   outline: none !important;
@@ -38,7 +38,7 @@ button > div {
 
 .body-section {
   display: flex;
-  background: #f7af3e !important;
+  background: #f7af3e url('/abstract-bg.svg') no-repeat bottom/contain;
 }
 .body-section-content {
   flex: 1;
