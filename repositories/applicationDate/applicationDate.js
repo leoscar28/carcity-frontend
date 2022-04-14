@@ -15,6 +15,14 @@ export default ($axios) => ({
         return 0;
       });
   },
+  get(payload) {
+    return $axios.post('/api/applicationDate/get',payload)
+      .then(response => {
+        return response.data.data;
+      }).catch(error => {
+        return [];
+      });
+  },
   list(payload) {
     return $axios.post('/api/applicationDate/list',payload)
       .then(response => {

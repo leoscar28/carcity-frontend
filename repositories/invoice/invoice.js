@@ -38,5 +38,13 @@ export default ($axios) => ({
       }).catch(error => {
         return error.response.data;
       });
+  },
+  getByRid(rid) {
+    return $axios.get('/api/invoice/getByRid/'+rid)
+      .then(response => {
+        return response.data.data;
+      }).catch(error => {
+        return error.response.data;
+      });
   }
 });

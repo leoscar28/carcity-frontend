@@ -8,6 +8,10 @@
       border-radius: 0 0 5px 5px;
       border: 1px solid #F5F5F5;
       border-top: none;
+      &-loading {
+        transform: scale(0.5) translate(-50%, 0) !important;
+        left: 50%;
+      }
       &-list {
         width: 100%;
         border-top: 1px solid #F5F5F5;

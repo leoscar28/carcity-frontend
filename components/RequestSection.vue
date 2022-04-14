@@ -67,7 +67,7 @@
           <template v-for="(request,key) in requests">
             <tr class="request-section-main-table-row" :key="key" onselectstart="return false;">
               <td>
-                <div class="request-section-table-header" :class="{'request-section-table-header-border':!request.status}" @click.stop="request.status = !request.status">
+                <div class="request-section-table-header" :class="{'request-section-table-header-border':!request.status}" @click.stop="requestStatus(key)">
                   <div class="request-section-table-header-icon">
                     <div :class="{'request-section-table-header-icon-minus':!request.status,'request-section-table-header-icon-plus':request.status}"></div>
                   </div>
@@ -115,31 +115,33 @@
                   </template>
                 </div>
                 <div class="request-section-table-body" v-show="!request.status">
-                  <div class="request-section-table-body-header">
-                    <div class="request-section-table-body-header-title" v-if="type === 1">Успешно выгружено документов {{request.rids.length}}, скачано {{downloadLength(key,2)}}</div>
-                    <div class="request-section-table-body-header-title" v-if="type === 2">Успешно выгружено документов {{request.rids.length}}, подписано вами {{signedSupervisor(key)}}, Подписано клиентом {{signedTenant(key)}}</div>
-                    <div class="request-section-table-body-header-title" v-if="type === 3">Успешно выгружено документов {{request.rids.length}}, скачано {{downloadLength(key,2)}}</div>
-                    <div class="request-section-table-body-header-buttons">
-                      <button class="request-section-table-body-header-button">
-                        <div class="request-section-table-body-header-button-icon"></div>
-                        Отчет в CSV
-                      </button>
-                      <button class="request-section-table-body-header-button">
-                        <div class="request-section-table-body-header-button-icon"></div>
-                        Отчет в XLS
-                      </button>
-                      <button class="request-section-table-body-header-button" @click="downloadAll(request.rid)">
-                        <div class="request-section-table-body-header-button-icon" style="background: url('/cloud-download.png') no-repeat center;border-radius: 0;background-size: auto;width: 20px;"></div>
-                        Скачать все
-                      </button>
-                      <button class="request-section-table-body-header-button request-section-table-body-header-button-reject" v-if="user.role_id === 3" @click.stop="cancelFlight(request.rid)">
-                        <div class="request-section-table-body-header-button-icon request-section-table-body-header-button-reject-icon"></div>
-                        Отменить рейс
-                      </button>
+                  <div v-if="!request.rids" class="request-section-table-body-loading lds-ring"><div></div><div></div><div></div><div></div></div>
+                  <template v-else>
+                    <div class="request-section-table-body-header">
+                      <div class="request-section-table-body-header-title" v-if="type === 1">Успешно выгружено документов {{request.rids.length}}, скачано {{downloadLength(key,2)}}</div>
+                      <div class="request-section-table-body-header-title" v-if="type === 2">Успешно выгружено документов {{request.rids.length}}, подписано вами {{signedSupervisor(key)}}, Подписано клиентом {{signedTenant(key)}}</div>
+                      <div class="request-section-table-body-header-title" v-if="type === 3">Успешно выгружено документов {{request.rids.length}}, скачано {{downloadLength(key,2)}}</div>
+                      <div class="request-section-table-body-header-buttons">
+                        <button class="request-section-table-body-header-button">
+                          <div class="request-section-table-body-header-button-icon"></div>
+                          Отчет в CSV
+                        </button>
+                        <button class="request-section-table-body-header-button">
+                          <div class="request-section-table-body-header-button-icon"></div>
+                          Отчет в XLS
+                        </button>
+                        <button class="request-section-table-body-header-button" @click="downloadAll(request.rid)">
+                          <div class="request-section-table-body-header-button-icon" style="background: url('/cloud-download.png') no-repeat center;border-radius: 0;background-size: auto;width: 20px;"></div>
+                          Скачать все
+                        </button>
+                        <button class="request-section-table-body-header-button request-section-table-body-header-button-reject" v-if="user.role_id === 3" @click.stop="cancelFlight(request.rid)">
+                          <div class="request-section-table-body-header-button-icon request-section-table-body-header-button-reject-icon"></div>
+                          Отменить рейс
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                  <table class="request-section-table-body-list" v-show="request.rids">
-                    <thead>
+                    <table class="request-section-table-body-list" v-show="request.rids">
+                      <thead>
                       <tr class="request-section-table-body-list-item">
                         <th>Номер документа</th>
                         <th>Организация</th>
@@ -154,8 +156,8 @@
                           </div>
                         </th>
                       </tr>
-                    </thead>
-                    <tbody>
+                      </thead>
+                      <tbody>
                       <tr class="request-section-table-body-list-item" v-for="(rid,ridKey) in request.rids" :key="ridKey" v-if="!request.ridStatus || !rid.users">
                         <td>{{rid.number}}</td>
                         <td class="request-section-table-body-list-item-organization">{{rid.organization}}</td>
@@ -195,14 +197,15 @@
                           </div>
                         </td>
                       </tr>
-                    </tbody>
-                  </table>
-                  <div class="request-section-table-body-footer" v-if="type === 2 && user.role_id === 4 && signedSupervisor(key) !== request.rids.length">
-                    <button class="request-section-table-body-header-button" @click="signFiles(request.rid)">
-                      <div class="request-section-table-body-header-button-icon request-section-table-body-footer-draw"></div>
-                      Подписать документы
-                    </button>
-                  </div>
+                      </tbody>
+                    </table>
+                    <div class="request-section-table-body-footer" v-if="type === 2 && user.role_id === 4 && signedSupervisor(key) !== request.rids.length">
+                      <button class="request-section-table-body-header-button" @click="signFiles(request.rid)">
+                        <div class="request-section-table-body-header-button-icon request-section-table-body-footer-draw"></div>
+                        Подписать документы
+                      </button>
+                    </div>
+                  </template>
                 </div>
               </td>
             </tr>
@@ -338,6 +341,22 @@ export default {
     }
   },
   methods: {
+    requestStatus(key) {
+      if (!this.requests[key].rids && !this.requests[key].loading) {
+        this.getRids(key);
+      }
+      this.requests[key].status = !this.requests[key].status;
+    },
+    async getRids(key) {
+      this.requests[key].loading = true;
+      if (this.type === 1) {
+        this.requests[key].rids = await this.$store.dispatch('localStorage/completionGetByRid',this.requests[key].rid);
+      } else if (this.type === 2) {
+        this.requests[key].rids = await this.$store.dispatch('localStorage/applicationGetByRid',this.requests[key].rid);
+      } else if (this.type === 3) {
+        this.requests[key].rids = await this.$store.dispatch('localStorage/invoiceGetByRid',this.requests[key].rid);
+      }
+    },
     copy(bin) {
       let self  = this;
       navigator.clipboard.writeText(bin).then(function() {

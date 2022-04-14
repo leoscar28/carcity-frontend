@@ -82,6 +82,9 @@ export const actions = {
   async invoiceDelete({commit},payload) {
     return await this.$repository.invoice.delete(payload);
   },
+  async invoiceGetByRid({commit},rid) {
+    return await this.$repository.invoice.getByRid(rid);
+  },
   async getInvoiceStatuses({commit}) {
     let res = await this.$repository.invoiceStatus.list();
     commit('setStatuses',res);
@@ -96,6 +99,9 @@ export const actions = {
     return await this.$repository.invoiceDate.pages(payload);
   },
   async getInvoiceDates({commit},payload) {
+    return await this.$repository.invoiceDate.get(payload);
+  },
+  async listInvoiceDates({commit},payload) {
     return await this.$repository.invoiceDate.list(payload);
   },
 
@@ -120,6 +126,9 @@ export const actions = {
   async applicationDelete({commit},payload) {
     return await this.$repository.application.delete(payload);
   },
+  async applicationGetByRid({commit},payload) {
+    return await this.$repository.application.getByRid(payload);
+  },
   async getApplicationStatuses({commit}) {
     let res = await this.$repository.applicationStatus.list();
     commit('setStatuses',res);
@@ -134,6 +143,9 @@ export const actions = {
     return await this.$repository.applicationDate.pages(payload);
   },
   async getApplicationDates({commit},payload) {
+    return await this.$repository.applicationDate.get(payload);
+  },
+  async listApplicationDates({commit},payload) {
     return await this.$repository.applicationDate.list(payload);
   },
 
@@ -145,6 +157,9 @@ export const actions = {
   },
   async completionDelete({commit},payload) {
     return await this.$repository.completion.delete(payload);
+  },
+  async completionGetByRid({commit},payload) {
+    return await this.$repository.completion.getByRid(payload);
   },
   async getCompletionStatuses({commit}) {
     let res = await this.$repository.completionStatus.list();
@@ -160,6 +175,9 @@ export const actions = {
     return await this.$repository.completionDate.pages(payload);
   },
   async getCompletionDates({commit},payload) {
+    return await this.$repository.completionDate.get(payload);
+  },
+  async listCompletionDates({commit},payload) {
     return await this.$repository.completionDate.list(payload);
   },
 
