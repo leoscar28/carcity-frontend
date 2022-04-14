@@ -1,30 +1,32 @@
 <template>
-  <div class="login-main">
-    <div class="login-logo">
-      <img src="/logo.svg" width="100%" alt="logo">
-    </div>
-    <div class="login-title">Войдите в систему</div>
-    <div class="login-input">
-      <input type="text" placeholder="Введите e-mail или телефон" v-model="login" ref="login" maxlength="50">
-    </div>
-    <div class="login-input-password">
-      <input :type="show ? 'text' : 'password'" placeholder="Введите пароль" v-model="password" ref="password" maxlength="50">
-      <div class="login-input-password-option" :class="{'login-input-password-hide':!show}" @click="show = !show"></div>
-    </div>
-    <NuxtLink to="/reset">
-      <div class="login-forgot">Не помню пароль</div>
-    </NuxtLink>
-    <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleTerms');" onselectstart="return false;">
-      <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':terms}"></div>
-      <div class="login-input-checkbox-title">Я принимаю условия пользовательского соглашения и даю согласие на обработку моих персональных данных</div>
-    </div>
-    <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleRules');" onselectstart="return false;">
-      <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':rules}"></div>
-      <div class="login-input-checkbox-title">Я ознакомлен с общими правилами торгового центра</div>
-    </div>
-    <div class="login-btn">
-      <button @click="auth" v-if="terms && rules">Войти</button>
-      <button v-else style="opacity: .2">Войти</button>
+  <div class="bg">
+    <div class="login-main">
+      <div class="login-logo">
+        <img src="/logo.svg" width="100%" alt="logo">
+      </div>
+      <div class="login-title">Войдите в систему</div>
+      <div class="login-input">
+        <input type="text" placeholder="Введите e-mail или телефон" v-model="login" ref="login" maxlength="50">
+      </div>
+      <div class="login-input-password">
+        <input :type="show ? 'text' : 'password'" placeholder="Введите пароль" v-model="password" ref="password" maxlength="50">
+        <div class="login-input-password-option" :class="{'login-input-password-hide':!show}" @click="show = !show"></div>
+      </div>
+      <NuxtLink to="/reset">
+        <div class="login-forgot">Не помню пароль</div>
+      </NuxtLink>
+      <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleTerms');" onselectstart="return false;">
+        <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':terms}"></div>
+        <div class="login-input-checkbox-title">Я принимаю условия пользовательского соглашения и даю согласие на обработку моих персональных данных</div>
+      </div>
+      <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleRules');" onselectstart="return false;">
+        <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':rules}"></div>
+        <div class="login-input-checkbox-title">Я ознакомлен с общими правилами торгового центра</div>
+      </div>
+      <div class="login-btn">
+        <button @click="auth" v-if="terms && rules">Войти</button>
+        <button v-else style="opacity: .2">Войти</button>
+      </div>
     </div>
   </div>
 </template>
