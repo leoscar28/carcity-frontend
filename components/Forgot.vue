@@ -16,7 +16,7 @@
       <template v-else>
         <div class="login-title">Введите номер телефона который был привязан к аккунту</div>
         <div class="login-input">
-          <input type="tel" v-mask="'+7###-###-##-##'" placeholder="+7___-___-__-__" ref="phone" v-model="phone" :readonly="!status">
+          <input type="tel" v-mask="'###-###-##-##'" placeholder="+7___-___-__-__" ref="phone" v-model="phone" :readonly="!status">
         </div>
         <div class="login-btn">
           <button @click="restore">Отправить запрос</button>
@@ -47,7 +47,7 @@ export default {
           return this.$refs.phone.focus();
         }
         this.status = false;
-        let phone = this.phone.replace(/\D/g, '').substring(1);
+        let phone = this.phone.replace(/\D/g, '');
         let res = await this.$store.dispatch('localStorage/restore', phone);
         this.status = true;
         if (res.hasOwnProperty('message')) {
