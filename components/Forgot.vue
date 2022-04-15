@@ -16,7 +16,7 @@
       <template v-else>
         <div class="login-title">Введите номер телефона который был привязан к аккунту</div>
         <div class="login-input">
-          <input type="tel" v-mask="'###-###-##-##'" placeholder="+7___-___-__-__" ref="phone" v-model="phone" :readonly="!status">
+          <input type="tel" v-mask="'###-###-##-##'" placeholder="___-___-__-__" ref="phone" v-model="phone" :readonly="!status">
         </div>
         <div class="login-btn">
           <button @click="restore">Отправить запрос</button>
