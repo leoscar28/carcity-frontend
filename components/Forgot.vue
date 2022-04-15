@@ -43,7 +43,7 @@ export default {
   methods: {
     async restore() {
       if (this.status) {
-        if (this.phone.length !== 15) {
+        if (this.phone.length !== 13) {
           return this.$refs.phone.focus();
         }
         this.status = false;
