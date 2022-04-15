@@ -232,6 +232,7 @@
       color: #fff;
       border-radius: 5px;
       cursor: pointer;
+      font-size: 14px;
     }
     &-double {
       display: flex;
@@ -242,10 +243,10 @@
     }
   }
   &-remembered {
-    color: #1890FF;
+    color: #274985;
     margin: 16px 30px 0 30px;
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
     cursor: pointer;
   }
 }

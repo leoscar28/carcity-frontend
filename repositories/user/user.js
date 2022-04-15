@@ -23,6 +23,14 @@ export default ($axios) => ({
         return false;
       });
   },
+  restore(phone) {
+    return $axios.get('/api/user/restore/'+phone)
+      .then(response => {
+        return response.data.data;
+      }).catch(error => {
+        return error.response.data;
+      });
+  },
   auth(data) {
     return $axios.post('/api/user/auth',data)
       .then(response => {

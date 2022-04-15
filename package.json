@@ -23,6 +23,7 @@
     "vue-custom-scrollbar": "^1.4.1",
     "vue-masked-input": "^0.5.2",
     "vue-scroll-stop": "^0.1.5",
+    "vue-the-mask": "^0.11.1",
     "vue2-datepicker": "^3.10.4",
     "vuedraggable": "^2.24.3"
   },

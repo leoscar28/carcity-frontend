@@ -4,6 +4,7 @@
 
 <script>
 export default {
+  middleware: ['verified'],
   name: "index"
 }
 </script>

@@ -4,6 +4,7 @@ export const state = () => ({
   rules: false,
   email: false,
   user: false,
+  restoreUser: false,
   sidebar: false,
   statuses: [],
   signatureLoading: false,
@@ -21,6 +22,12 @@ export const state = () => ({
 })
 
 export const mutations = {
+  cancelRestoreUser(state) {
+    state.restoreUser = false;
+  },
+  setRestoreUser(state,value) {
+    state.restoreUser = value;
+  },
   toggleFilter(state) {
     state.filter  = !state.filter;
   },
@@ -180,7 +187,9 @@ export const actions = {
   async listCompletionDates({commit},payload) {
     return await this.$repository.completionDate.list(payload);
   },
-
+  async restore({commit},payload) {
+    return await this.$repository.user.restore(payload);
+  },
   async auth({commit},payload) {
     const res = await this.$repository.user.auth(payload);
     commit('setUser',res);
@@ -209,7 +218,7 @@ export const actions = {
   async codeCheck({commit},payload) {
     const res = await this.$repository.user.codeCheck(payload);
     if (!res.hasOwnProperty('message')) {
-      commit('setUser',res);
+      commit('setRestoreUser',res);
     }
     return res;
   },
