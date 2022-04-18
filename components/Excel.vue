@@ -32,6 +32,7 @@ export default {
         }
         this.status = true;
         let self = this;
+        console.log(res);
         return res.map(function callback(val) {
           return {
             'Номер документа': val.number,
