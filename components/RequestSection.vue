@@ -126,10 +126,7 @@
                           <div class="request-section-table-body-header-button-icon"></div>
                           Отчет в CSV
                         </button>-->
-                        <button class="request-section-table-body-header-button">
-                          <div class="request-section-table-body-header-button-icon"></div>
-                          Отчет в XLS
-                        </button>
+                        <excel :statuses="statuses" :type="type" :rid="request.rid"></excel>
                         <button class="request-section-table-body-header-button" @click="downloadAll(request.rid)">
                           <div class="request-section-table-body-header-button-icon" style="background: url('/cloud-download.png') no-repeat center;border-radius: 0;background-size: auto;width: 20px;"></div>
                           Скачать все
@@ -270,7 +267,7 @@ import {Signa} from "~/utils/signa";
 export default {
   name: "RequestSection",
   props: ['type','requestChange'],
-  components: { DatePicker},
+  components: {DatePicker},
   computed: {
     filter() {
       return this.$store.state.localStorage.filter;
@@ -321,6 +318,7 @@ export default {
     this.signa = new Signa();
     return {
       load: true,
+      downloadStatus: true,
       take: 30,
       paginate: 1,
       range: 1,
@@ -649,42 +647,50 @@ export default {
       await this.getDataRequests();
     },
     async downloadAll(rid) {
-      let res;
-      if (this.type === 1) {
-        res = await this.$store.dispatch('localStorage/completionDownloadAll',rid);
-      } else if (this.type === 2) {
-        res = await this.$store.dispatch('localStorage/applicationDownloadAll',rid);
-      } else if (this.type === 3) {
-        res = await this.$store.dispatch('localStorage/invoiceDownloadAll',rid);
+      if (this.downloadStatus) {
+        this.downloadStatus = false;
+        let res;
+        if (this.type === 1) {
+          res = await this.$store.dispatch('localStorage/completionDownloadAll',rid);
+        } else if (this.type === 2) {
+          res = await this.$store.dispatch('localStorage/applicationDownloadAll',rid);
+        } else if (this.type === 3) {
+          res = await this.$store.dispatch('localStorage/invoiceDownloadAll',rid);
+        }
+        this.downloadStatus = true;
+        if (res.hasOwnProperty('message')) {
+          return this.$toast.error(res.message).goAway(2000);
+        }
+        res.forEach(item => {
+          window.open(item,'_blank');
+        });
       }
-      if (res.hasOwnProperty('message')) {
-        return this.$toast.error(res.message).goAway(2000);
-      }
-      res.forEach(item => {
-        window.open(item,'_blank');
-      });
     },
     async download(id,rid,status) {
-      let data  = {
-        id: id,
-        rid: rid,
-        status: status
-      };
-      let res;
-      if (this.type === 1) {
-        res = await this.$store.dispatch('localStorage/completionDownload',data);
-      } else if (this.type === 2) {
-        res = await this.$store.dispatch('localStorage/applicationDownload',data);
-      } else if (this.type === 3) {
-        res = await this.$store.dispatch('localStorage/invoiceDownload',data);
-      }
-      if (res.hasOwnProperty('message')) {
-        this.$toast.error(res.message).goAway(2000);
-      } else if (res.hasOwnProperty('link')) {
-        this.downloadFile(res.link);
-      }
-      if (res.status) {
-        await this.getDataRequests();
+      if (this.downloadStatus) {
+        this.downloadStatus = false;
+        let data  = {
+          id: id,
+          rid: rid,
+          status: status
+        };
+        let res;
+        if (this.type === 1) {
+          res = await this.$store.dispatch('localStorage/completionDownload',data);
+        } else if (this.type === 2) {
+          res = await this.$store.dispatch('localStorage/applicationDownload',data);
+        } else if (this.type === 3) {
+          res = await this.$store.dispatch('localStorage/invoiceDownload',data);
+        }
+        this.downloadStatus = true;
+        if (res.hasOwnProperty('message')) {
+          this.$toast.error(res.message).goAway(2000);
+        } else if (res.hasOwnProperty('link')) {
+          this.downloadFile(res.link);
+        }
+        if (res.status) {
+          await this.getDataRequests();
+        }
       }
     },
     downloadFile(link) {

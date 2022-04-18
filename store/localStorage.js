@@ -125,7 +125,7 @@ export const actions = {
     return await this.$repository.applicationSignature.start(payload);
   },
   async applicationDownloadAll({commit},payload) {
-    return await this.$repository.application.downloadAll(payload);
+    return await this.$repository.application.downloaAlldAll(payload);
   },
   async applicationDownload({commit},payload) {
     return await this.$repository.application.download(payload);

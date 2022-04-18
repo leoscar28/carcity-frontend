@@ -21,6 +21,7 @@
     "v-mask": "^2.3.0",
     "vue-advanced-cropper": "^1.9.0",
     "vue-custom-scrollbar": "^1.4.1",
+    "vue-json-excel": "^0.3.0",
     "vue-masked-input": "^0.5.2",
     "vue-scroll-stop": "^0.1.5",
     "vue-the-mask": "^0.11.1",
