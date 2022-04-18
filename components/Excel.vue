@@ -32,8 +32,6 @@ export default {
         }
         this.status = true;
         let self = this;
-        console.log(res);
-        console.log(this.statuses);
         return res.map(function callback(val) {
           return {
             'Номер документа': val.number,
@@ -42,7 +40,7 @@ export default {
             'Сумма': val.sum + ' тг',
             'Название': val.name,
             'Компания': val.users.company,
-            'Статус': self.statuses[val.upload_status_id].title,
+            'Статус': self.statuses[val.upload_status_id - 1].title,
           };
         });
       }
