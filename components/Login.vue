@@ -6,7 +6,7 @@
       </div>
       <div class="login-title">Войдите в систему</div>
       <div class="login-input">
-        <input type="text" placeholder="Введите e-mail или телефон" v-model="login" ref="login" maxlength="50" @keyup.enter="auth" autocomplete="off">
+        <input type="text" placeholder="Введите логин" v-model="login" ref="login" maxlength="50" @keyup.enter="auth" autocomplete="off">
       </div>
       <div class="login-input-password">
         <input :type="show ? 'text' : 'password'" placeholder="Введите пароль" v-model="password" ref="password" maxlength="50" @keyup.enter="auth" autocomplete="off">

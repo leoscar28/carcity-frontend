@@ -15,7 +15,42 @@
           <input type="text" placeholder="Поиск">
         </div>
         <div class="header-section-main-right-menu">
-          <div class="header-section-main-right-menu-notification"></div>
+          <div class="header-section-main-right-menu-notification">
+<!--            <div class="header-section-main-right-menu-dropdown-notification" style="display: block">
+              <div class="header-section-main-right-menu-dropdown-main-notification">
+                <div class="header-section-main-right-menu-dropdown-main-title">Уведомления</div>
+                <div class="header-section-main-right-menu-dropdown-main-list">
+                  <div class="header-section-main-right-menu-dropdown-main-list-item">
+                    <div class="header-section-main-right-menu-dropdown-main-list-item-icon"></div>
+                    <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+                      <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Подпишите договоры и приложения</div>
+                      <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">от 15.02.2022</div>
+                    </div>
+                    <div class="header-section-main-right-menu-dropdown-main-list-item-time">2 мин назад</div>
+                  </div>
+                  <div class="header-section-main-right-menu-dropdown-main-list-item">
+                    <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-orange"></div>
+                    <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+                      <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Подпишите договоры и приложения</div>
+                      <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">от 15.02.2022</div>
+                    </div>
+                    <div class="header-section-main-right-menu-dropdown-main-list-item-time">2 мин назад</div>
+                  </div>
+                  <div class="header-section-main-right-menu-dropdown-main-list-item">
+                    <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
+                    <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+                      <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Акты выполненных работ выгружены из 1C</div>
+                      <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">от 15.02.2022</div>
+                    </div>
+                    <div class="header-section-main-right-menu-dropdown-main-list-item-time">2 мин назад</div>
+                  </div>
+                </div>
+                <div class="header-section-main-right-menu-dropdown-main-footer">
+                  Показать все
+                </div>
+              </div>
+            </div>-->
+          </div>
           <div class="header-section-main-right-menu-user">
             <div class="header-section-main-right-menu-user-icon" v-if="user.image_id" :style="{'background-image':'url('+user.image_id.src+')'}"></div>
             <div class="header-section-main-right-menu-user-icon" v-else>

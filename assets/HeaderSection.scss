@@ -100,6 +100,11 @@
           height: 18px;
           background: url('/notification.svg') no-repeat center;
           background-size: contain;
+          position: relative;
+          cursor: pointer;
+          &:hover > .header-section-main-right-menu-dropdown-notification {
+            display: block;
+          }
         }
         &-user {
           display: flex;
@@ -129,7 +134,7 @@
             display: block;
           }
         }
-        &-dropdown {
+        &-dropdown, &-dropdown-notification {
           display: none;
           position: absolute;
           width: 170px;
@@ -151,7 +156,7 @@
             right: 15px;
             box-shadow: 0 0 5px 1px rgba(0,0,0,.1);
           }
-          &-main {
+          &-main, &-main-notification {
             width: 100%;
             position: relative;
             z-index: 2;
@@ -160,6 +165,47 @@
             border-radius: 5px;
             padding: 10px;
             overflow: hidden;
+            &-title {
+              font-size: 14px;
+              padding: 10px;
+            }
+            &-list {
+              &-item {
+                border-top: 1px solid #F4F4F4;
+                display: flex;
+                padding: 10px;
+                gap: 10px;
+                font-size: 12px;
+                cursor: pointer;
+                &:hover {
+                  background: #FAFAFA;
+                }
+                &-icon {
+                  width: 34px;
+                  height: 34px;
+                  background: url('/doc.png') #00549F no-repeat center;
+                  border-radius: 30px;
+                  &-orange {
+                    background-color: #FAAD14;
+                  }
+                  &-green {
+                    background-color: #52C41A;
+                  }
+                }
+                &-detail {
+                  &-title {
+                    font-weight: bold;
+                  }
+                  &-time {
+                    color: #1E1E1E;
+                  }
+                }
+                &-time {
+                  margin-left: auto;
+                  color: #8C8C8C;
+                }
+              }
+            }
             &-item {
               height: 34px;
               width: 100%;
@@ -190,7 +236,27 @@
                 color: #1E1E1E;
               }
             }
+            &-footer {
+              color: #274985;
+              border-top: 1px solid #F4F4F4;
+              text-align: center;
+              font-size: 12px;
+              padding: 8px 0 8px 0;
+              font-weight: bold;
+              cursor: pointer;
+              &:hover {
+                background: #FAFAFA;
+              }
+            }
           }
+          &-main-notification {
+            padding: 0;
+          }
+        }
+        &-dropdown-notification {
+          width: 400px;
+          top: 37px;
+          right: -14px;
         }
       }
     }
