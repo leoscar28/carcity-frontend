@@ -20,6 +20,16 @@ import vueCustomScrollbar from 'vue-custom-scrollbar'
 import "vue-custom-scrollbar/dist/vueScrollbar.css"
 import RequestComment from "~/components/modal/RequestComment"
 export default {
+  head: {
+    title: 'Счета на оплату',
+    meta: [
+      /*{
+        hid: 'description',
+        name: 'description',
+        content: 'Home page description'
+      }*/
+    ],
+  },
   middleware: ['guest'],
   name: "index",
   components: {vueCustomScrollbar,RequestComment},

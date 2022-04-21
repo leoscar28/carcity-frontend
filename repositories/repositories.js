@@ -13,6 +13,8 @@ import Invoice from "@/repositories/invoice/invoice";
 import InvoiceDate from "~/repositories/invoiceDate/invoiceDate";
 import InvoiceStatus from "~/repositories/invoiceStatus/invoiceStatus";
 
+import Notification from "~/repositories/notification/notification";
+
 export const repository = ($axios) => ({
   user: User($axios),
 
@@ -27,5 +29,7 @@ export const repository = ($axios) => ({
 
   invoice: Invoice($axios),
   invoiceDate: InvoiceDate($axios),
-  invoiceStatus: InvoiceStatus($axios)
+  invoiceStatus: InvoiceStatus($axios),
+
+  notification: Notification($axios),
 })

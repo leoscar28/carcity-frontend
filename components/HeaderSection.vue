@@ -16,7 +16,7 @@
         </div>
         <div class="header-section-main-right-menu">
           <div class="header-section-main-right-menu-notification">
-<!--            <div class="header-section-main-right-menu-dropdown-notification" style="display: block">
+            <div class="header-section-main-right-menu-dropdown-notification" style="display: block">
               <div class="header-section-main-right-menu-dropdown-main-notification">
                 <div class="header-section-main-right-menu-dropdown-main-title">Уведомления</div>
                 <div class="header-section-main-right-menu-dropdown-main-list">
@@ -45,11 +45,11 @@
                     <div class="header-section-main-right-menu-dropdown-main-list-item-time">2 мин назад</div>
                   </div>
                 </div>
-                <div class="header-section-main-right-menu-dropdown-main-footer">
+                <div class="header-section-main-right-menu-dropdown-main-footer" @click="$store.commit('localStorage/setNotificationModal',true)">
                   Показать все
                 </div>
               </div>
-            </div>-->
+            </div>
           </div>
           <div class="header-section-main-right-menu-user">
             <div class="header-section-main-right-menu-user-icon" v-if="user.image_id" :style="{'background-image':'url('+user.image_id.src+')'}"></div>
@@ -84,7 +84,19 @@ export default {
   computed: {
     user() {
       return this.$store.state.localStorage.user;
-    }
+    },
+  },
+  created() {
+    this.$store.dispatch('localStorage/getViewNotificationCount',this.user.id);
+    this.$store.dispatch('localStorage/getViewNotifications',{
+      user_id: this.user.id,
+      skip: 0
+    });
+    this.$store.dispatch('localStorage/getNotificationCount',this.user.id);
+    this.$store.dispatch('localStorage/getNotifications',{
+      user_id: this.user.id,
+      skip: 0
+    });
   },
   methods: {
     logout() {

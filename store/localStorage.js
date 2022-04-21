@@ -1,4 +1,5 @@
 export const state = () => ({
+  notificationModal: false,
   filter: true,
   terms: false,
   rules: false,
@@ -22,6 +23,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setNotificationModal(state,value) {
+    state.notificationModal = value;
+  },
   cancelRestoreUser(state) {
     state.restoreUser = false;
   },
@@ -58,7 +62,18 @@ export const mutations = {
 }
 
 export const actions = {
-
+  async getViewNotificationCount({commit},payload) {
+    return await this.$repository.notification.viewCount(payload);
+  },
+  async getViewNotifications({commit},payload) {
+    return await this.$repository.notification.view(payload);
+  },
+  async getNotificationCount({commit},payload) {
+    return await this.$repository.notification.count(payload);
+  },
+  async getNotifications({commit},payload) {
+    return await this.$repository.notification.get(payload);
+  },
   async getInvoicePages({commit},payload) {
     return await this.$repository.invoice.pages(payload);
   },

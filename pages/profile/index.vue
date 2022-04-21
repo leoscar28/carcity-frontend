@@ -18,6 +18,16 @@
 import vueCustomScrollbar from 'vue-custom-scrollbar'
 import "vue-custom-scrollbar/dist/vueScrollbar.css"
 export default {
+  head: {
+    title: 'Профиль',
+    meta: [
+      /*{
+        hid: 'description',
+        name: 'description',
+        content: 'Home page description'
+      }*/
+    ],
+  },
   name: "index",
   components: {vueCustomScrollbar},
 }

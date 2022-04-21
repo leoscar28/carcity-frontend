@@ -22,6 +22,16 @@ import "vue-custom-scrollbar/dist/vueScrollbar.css"
 import RequestComment from "~/components/modal/RequestComment"
 import SignatureLoading from "~/components/modal/SignatureLoading";
 export default {
+  head: {
+    title: 'Договора и приложения',
+    meta: [
+      /*{
+        hid: 'description',
+        name: 'description',
+        content: 'Home page description'
+      }*/
+    ],
+  },
   middleware: ['guest'],
   name: "index",
   components: {SignatureLoading, vueCustomScrollbar,RequestComment},
