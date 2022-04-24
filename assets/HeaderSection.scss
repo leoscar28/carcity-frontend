@@ -102,8 +102,19 @@
           background-size: contain;
           position: relative;
           cursor: pointer;
-          &:hover > .header-section-main-right-menu-dropdown-notification {
-            display: block;
+          &-count {
+            background: #FF4D5A;
+            position: absolute;
+            color: #fff;
+            font-size: 12px;
+            padding: 0 5px 0 5px;
+            border-radius: 10px;
+            min-width: 21px;
+            text-align: center;
+            top: -10px;
+            right: -11px;
+            animation: leaves .4s linear infinite alternate;
+            -webkit-animation: leaves .4s linear infinite alternate;
           }
         }
         &-user {
@@ -169,6 +180,24 @@
               font-size: 14px;
               padding: 10px;
             }
+            &-empty {
+              height: 130px;
+              display: flex;
+              gap: 5px;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              &-icon {
+                width: 30px;
+                height: 30px;
+                background: url('/bell.png') no-repeat center;
+                background-size: contain;
+              }
+              &-title {
+                font-size: 12px;
+                color: #8C8C8C;
+              }
+            }
             &-list {
               display: flex;
               flex-direction: column;
@@ -204,6 +233,12 @@
                   &-green {
                     background-color: #52C41A;
                   }
+                  &-upload {
+                    background-image: url('/upload.png');
+                  }
+                  &-check {
+                    background-image: url('/ready.png') !important;
+                  }
                 }
                 &-detail {
                   flex: 1;
@@ -221,6 +256,9 @@
                 &-time {
                   margin-left: auto;
                   color: #8C8C8C;
+                  width: 70px;
+                  text-align: right;
+                  font-size: 12px;
                 }
               }
             }
@@ -276,6 +314,9 @@
           width: 400px;
           top: 37px;
           right: -14px;
+          &-show {
+            display: block;
+          }
         }
       }
     }

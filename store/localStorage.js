@@ -1,8 +1,14 @@
 export const state = () => ({
   notificationModal: false,
+  notificationCount: 0,
+  notifications: [],
+  notificationViewCount: 0,
+  notificationTenantCount: 0,
+  notificationsTenant: [],
+  notificationTenantViewCount: 0,
   filter: true,
-  terms: false,
-  rules: false,
+  terms: true,
+  rules: true,
   email: false,
   user: false,
   restoreUser: false,
@@ -23,6 +29,26 @@ export const state = () => ({
 })
 
 export const mutations = {
+
+  setNotificationTenantCount(state,value) {
+    state.notificationTenantCount = value;
+  },
+  setNotificationTenantViewCount(state,value) {
+    state.notificationTenantViewCount = value;
+  },
+  setNotificationsTenant(state,value) {
+    state.notificationsTenant = value;
+  },
+
+  setNotificationViewCount(state,value) {
+    state.notificationViewCount = value;
+  },
+  setNotificationCount(state,value) {
+    state.notificationCount = value;
+  },
+  setNotifications(state,value) {
+    state.notifications = value;
+  },
   setNotificationModal(state,value) {
     state.notificationModal = value;
   },
@@ -62,18 +88,39 @@ export const mutations = {
 }
 
 export const actions = {
-  async getViewNotificationCount({commit},payload) {
-    return await this.$repository.notification.viewCount(payload);
+
+  async getViewNotificationTenantCount({commit},payload) {
+    let res = await this.$repository.notificationTenant.viewCount(payload);
+    commit('setNotificationTenantViewCount',res);
   },
-  async getViewNotifications({commit},payload) {
-    return await this.$repository.notification.view(payload);
+  async getNotificationTenantCount({commit},payload) {
+    let res = await this.$repository.notificationTenant.count(payload);
+    commit('setNotificationTenantCount',res);
+  },
+  async getNotificationsTenant({commit},payload) {
+    return await this.$repository.notificationTenant.get(payload);
+  },
+  async setNotificationTenantView({commit},payload) {
+    let res = await this.$repository.notificationTenant.setView(payload);
+    commit('setNotificationTenantViewCount',res);
+  },
+
+  async setNotificationView({commit},payload) {
+    let res = await this.$repository.notification.setView(payload);
+    commit('setNotificationViewCount',res);
+  },
+  async getViewNotificationCount({commit},payload) {
+    let res = await this.$repository.notification.viewCount(payload);
+    commit('setNotificationViewCount',res);
   },
   async getNotificationCount({commit},payload) {
-    return await this.$repository.notification.count(payload);
+    let res = await this.$repository.notification.count(payload);
+    commit('setNotificationCount',res);
   },
   async getNotifications({commit},payload) {
     return await this.$repository.notification.get(payload);
   },
+
   async getInvoicePages({commit},payload) {
     return await this.$repository.invoice.pages(payload);
   },

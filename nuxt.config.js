@@ -42,7 +42,15 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/google-fonts'
+    [
+      '@nuxtjs/laravel-echo', {
+      broadcaster: 'pusher',
+      key: '7294c42852cd7f0cba8d',
+      cluster: 'ap2',
+      forceTLS: true
+    }
+    ],
+    '@nuxtjs/google-fonts',
   ],
 
   googleFonts: {
@@ -65,7 +73,7 @@ export default {
   build: {
   },
   env: {
-    baseUrl: 'http://127.0.0.1:8000'
+    baseUrl: 'http://127.0.0.1:8000',
   },
   axios: {
     baseURL: 'http://127.0.0.1:8000',

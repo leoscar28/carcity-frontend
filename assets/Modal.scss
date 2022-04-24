@@ -666,6 +666,21 @@
         }
       }
     }
+    &-notification {
+      &-more {
+        padding: 0 15px 0 15px;
+        height: 30px;
+        background: #274985;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-left: 10px;
+        font-size: 12px;
+      }
+    }
   }
 }
 #circleG{

@@ -1,6 +1,6 @@
 export default ($axios) => ({
   setView(payload) {
-    return $axios.post('/api/notification/setView/',payload)
+    return $axios.post('/api/notificationTenant/setView/',payload)
       .then(response => {
         return response.data.data;
       }).catch(error => {
@@ -8,15 +8,15 @@ export default ($axios) => ({
       });
   },
   viewCount(payload) {
-    return $axios.get('/api/notification/viewCount/'+payload)
-        .then(response => {
-          return response.data.data;
-        }).catch(error => {
-          return 0;
-        });
+    return $axios.get('/api/notificationTenant/viewCount/'+payload)
+      .then(response => {
+        return response.data.data;
+      }).catch(error => {
+        return 0;
+      });
   },
   count(payload) {
-    return $axios.get('/api/notification/count/'+payload)
+    return $axios.get('/api/notificationTenant/count/'+payload)
       .then(response => {
         return response.data.data;
       }).catch(error => {
@@ -24,7 +24,7 @@ export default ($axios) => ({
       });
   },
   get(payload) {
-    return $axios.post('/api/notification/get/',payload)
+    return $axios.post('/api/notificationTenant/get/',payload)
       .then(response => {
         return response.data.data;
       }).catch(error => {

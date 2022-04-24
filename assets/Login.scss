@@ -48,14 +48,16 @@
       &-icon {
         width: 16px;
         height: 16px;
-        border: 1px solid #f4f4f4;
+        border: 1px solid #274985;
+        border-radius: 2px;
+        background: #274985;
         &-checked {
           &:before, &:after {
             content: '';
             position: absolute;
             width: 10px;
             height: 2px;
-            background: #274985;
+            background: #fff;
             transform: rotate(-45deg);
             margin: 6px 0 0 3px;
           }

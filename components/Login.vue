@@ -17,11 +17,11 @@
       </NuxtLink>
       <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleTerms');" onselectstart="return false;">
         <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':terms}"></div>
-        <div class="login-input-checkbox-title">Я принимаю условия пользовательского соглашения и даю согласие на обработку моих персональных данных</div>
+        <div class="login-input-checkbox-title">Я принимаю условия <NuxtLink :to="{ name: 'terms-of-use' }" style="display: contents; font-weight: bold;" @click.stop target="_blank">пользовательского соглашения</NuxtLink> и даю согласие на обработку моих персональных данных</div>
       </div>
       <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleRules');" onselectstart="return false;">
         <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':rules}"></div>
-        <div class="login-input-checkbox-title">Я ознакомлен с общими правилами торгового центра</div>
+        <div class="login-input-checkbox-title">Я ознакомлен с общими <NuxtLink :to="{ name: 'rules-shopping-center' }" style="display: contents; font-weight: bold;" @click.stop target="_blank">правилами торгового центра</NuxtLink></div>
       </div>
       <div class="login-btn">
         <button @click="auth" v-if="terms && rules">Войти</button>

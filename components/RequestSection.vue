@@ -329,6 +329,41 @@ export default {
       requests: [],
     }
   },
+  mounted() {
+    if (this.user.role_id !== 1) {
+      this.$echo.channel("applicationDate").on("applicationDate", (res) => {
+        if (this.type === 2 && res.hasOwnProperty('applicationDate')) {
+          this.newRequest(res.applicationDate);
+        }
+      });
+      this.$echo.channel("completionDate").on("completionDate", (res) => {
+        if (this.type === 1 && res.hasOwnProperty('completionDate')) {
+          this.newRequest(res.completionDate);
+        }
+      });
+      this.$echo.channel("invoiceDate").on("invoiceDate", (res) => {
+        if (this.type === 3 && res.hasOwnProperty('invoiceDate')) {
+          this.newRequest(res.invoiceDate);
+        }
+      });
+    } else {
+      this.$echo.channel("application."+this.user.bin).on("application", (res) => {
+        if (this.type === 2 && res.hasOwnProperty('application')) {
+          this.newRequest(res.application);
+        }
+      });
+      this.$echo.channel("completion."+this.user.bin).on("completion", (res) => {
+        if (this.type === 1 && res.hasOwnProperty('completion')) {
+          this.newRequest(res.completion);
+        }
+      });
+      this.$echo.channel("invoice."+this.user.bin).on("invoice", (res) => {
+        if (this.type === 3 && res.hasOwnProperty('invoice')) {
+          this.newRequest(res.invoice);
+        }
+      });
+    }
+  },
   async created() {
     this.$store.commit('localStorage/setSignatureLoading',false);
     if (this.load) {
@@ -339,6 +374,22 @@ export default {
     }
   },
   methods: {
+    newRequest(request) {
+      let status = -1, i = 0;
+      this.requests.forEach(item => {
+        if (item.id === request.id) {
+          status =  i;
+        }
+        i++;
+      });
+      if (status < 0 && request.status === 1) {
+        this.requests = [request,...this.requests];
+      } else if (request.status === 1) {
+        this.splice(i,1,request);
+      } else {
+        this.splice(i,1);
+      }
+    },
     requestStatus(key) {
       if (!this.requests[key].rids && !this.requests[key].loading) {
         this.getRids(key);
