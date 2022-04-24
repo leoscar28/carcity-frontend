@@ -89,5 +89,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import "assets/Modal.scss";
+
 </style>
