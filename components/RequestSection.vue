@@ -759,5 +759,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '/assets/RequestSection.scss';
+  @import 'assets/RequestSection.scss';
 </style>

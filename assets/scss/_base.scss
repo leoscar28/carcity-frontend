@@ -412,7 +412,146 @@
     margin-bottom: 0.5rem;
   }
 }
-
+.hamburger {
+  display: none;
+  .line {
+    width: 26px;
+    height: 3px;
+    background-color: #1E1E1E;
+    display: block;
+    margin: 4px auto;
+    transition: all 0.3s ease-in-out;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+.mobile-menu{
+  display: none;
+  margin: 24px 0;
+}
+.mob__nav-link {
+  display: flex;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+  color: #274985;
+  margin: 6px 0;
+  text-decoration: none;
+}
+.main-slide-m__img{
+  display: none;
+}
+#hamburger.is-active {
+  .line {
+    &:nth-child(2) {
+      opacity: 0;
+    }
+    &:nth-child(1) {
+      -webkit-transform: translateY(8px) rotate(45deg);
+      -ms-transform: translateY(8px) rotate(45deg);
+      -o-transform: translateY(8px) rotate(45deg);
+      transform: translateY(8px) rotate(45deg);
+    }
+    &:nth-child(3) {
+      -webkit-transform: translateY(-7px) rotate(-45deg);
+      -ms-transform: translateY(-7px) rotate(-45deg);
+      -o-transform: translateY(-7px) rotate(-45deg);
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+}
+@media only screen and (max-width: 1050px) {
+  .header.header--has-navbar {
+    margin-bottom: 0;
+  }
+  .hide-mob{
+    display:none;
+  }
+  .hamburger {
+    display: block;
+  }
+  .mobile-menu{
+     display: block;
+  }
+  .header__info-row {
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 74px;
+    left: 0;
+    background: #FFFFFF;
+    padding-top: 40px;
+    z-index: 11;
+    transition: transform .5s ease;
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+  }
+  .header__info-row.is-active {
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+  }
+  .header__info {
+    width: 780px;
+    margin: 0 auto;
+  }
+  .header__info:last-child {
+    margin-right: auto;
+  }
+  .header__info-title {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;color: #595959;
+  }
+  .header__info-data {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;color: #1E1E1E;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .header__info-row {
+    padding: 0 15px;
+  }
+  .header__info {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .section {
+    padding-bottom: 3.25rem;
+    padding-top: 3.25rem;
+  }
+  .hide-slide{
+    display: none;
+  }
+  .main-slide {
+    height: 220px;
+  }
+  .main-slide-m__img{
+    display: block;
+  }
+  .main-slide__descr {
+    width: calc(100% - 20px);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1E1E1E;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    padding: 8px;
+    margin: 10px;
+  }
+  .glide__arrows--circle .glide__arrow{
+    width: 34px;
+    height: 34px;
+  }
+  .glide__arrows--circle .glide__arrow svg {
+    width: 10px;
+  }
+}
 // Карту решили закомментировать и вести на карту 2ГИС по ссылке из шапки
 //.map-link {
 //  display: block;

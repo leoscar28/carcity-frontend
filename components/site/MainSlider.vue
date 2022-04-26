@@ -4,6 +4,7 @@
       <ul class="glide__slides">
         <li class="glide__slide">
           <div class="main-slide">
+            <img src="~/assets/img/demo/m1.png" alt="" class="main-slide__img main-slide-m__img">
             <img src="~/assets/img/demo/main-slide1.jpg" alt="" class="main-slide__img">
             <div class="main-slide__descr">
               <p>{{language[current][0]}}</p>
@@ -12,6 +13,7 @@
         </li>
         <li class="glide__slide">
           <div class="main-slide">
+            <img src="~/assets/img/demo/m2.png" alt="" class="main-slide__img main-slide-m__img">
             <img src="~/assets/img/demo/main-slide2.jpg" alt="" class="main-slide__img">
             <div class="main-slide__descr">
               <p>{{language[current][1]}}</p>
@@ -20,6 +22,7 @@
         </li>
         <li class="glide__slide">
           <div class="main-slide">
+            <img src="~/assets/img/demo/m3.png" alt="" class="main-slide__img main-slide-m__img">
             <img src="~/assets/img/demo/main-slide3.jpg" alt="" class="main-slide__img">
             <div class="main-slide__descr">
               <p>{{language[current][2]}}</p>

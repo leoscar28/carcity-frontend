@@ -1128,6 +1128,16 @@ export default {
     current() {
       return this.$store.state.localStorage.current;
     }
-  }
+  },
+  data() {
+    return {
+      lang: ['Правила ТЦ','СО ережелері']
+    }
+  },
+  head() {
+    return {
+      title: this.lang[this.current],
+    }
+  },
 }
 </script>

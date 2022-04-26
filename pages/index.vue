@@ -36,7 +36,7 @@
           <MainSlider class="mb-4" />
           <div class="row">
             <div class="col-lg-4 mb-3 mb-lg-0">
-              <div class="panel d-flex h-100">
+              <div class="panel d-flex h-100" data-aos="flip-up" data-aos-easing="ease-in-cubic">
                 <div class="flex-shrink-0 pt-1">
                   <img src="~/assets/img/icons/user-arrow.svg" width="26" height="29" alt="">
                 </div>
@@ -49,7 +49,7 @@
             </div>
 
             <div class="col-lg-4 mb-3 mb-lg-0">
-              <div class="panel d-flex h-100">
+              <div class="panel d-flex h-100" data-aos="flip-up" data-aos-easing="ease-in-cubic">
                 <div class="flex-shrink-0 pt-1">
                   <img src="~/assets/img/icons/store.svg" width="28" height="24" alt="">
                 </div>
@@ -62,7 +62,7 @@
             </div>
 
             <div class="col-lg-4 mb-3 mb-lg-0">
-              <div class="panel d-flex h-100">
+              <div class="panel d-flex h-100" data-aos="flip-up" data-aos-easing="ease-in-cubic">
                 <div class="flex-shrink-0 pt-1">
                   <img src="~/assets/img/icons/stock.svg" width="28" height="21" alt="">
                 </div>

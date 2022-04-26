@@ -1,5 +1,5 @@
 <template>
-  <div class="panel condition">
+  <div class="panel condition" data-aos="fade-up" data-aos-easing="ease-in-cubic">
     <div class="mb-3">
       <img :src="icon" width="32" height="24" alt="">
     </div>

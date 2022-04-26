@@ -1,5 +1,5 @@
 <template>
-  <div class="panel">
+  <div class="panel" data-aos="fade-up" data-aos-easing="ease-in-cubic">
     <div v-if="icon" class="mb-3">
       <img :src="icon" width="32" height="24" alt="">
     </div>

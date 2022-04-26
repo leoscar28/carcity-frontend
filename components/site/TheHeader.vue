@@ -58,6 +58,26 @@
             </div>
           </div>
 
+          <div :class="isActive ? 'header__info-row d-lg-flex is-active' : 'header__info-row d-lg-flex'">
+            <div class="mobile-menu">
+              <NuxtLink :to="{ name: 'index', hash: '#about' }" class="mob__nav-link" @click.native="closeHamburger">
+                {{language[current][0]}}
+              </NuxtLink>
+              <NuxtLink :to="{ name: 'index', hash: '#infrastructure' }" class="mob__nav-link" @click.native="closeHamburger">
+                {{language[current][1]}}
+              </NuxtLink>
+<!--              <NuxtLink :to="{ name: 'index', hash: '#' }" class="mob__nav-link" @click="closeHamburger">
+                <img src="~/assets/img/icons/icn1.svg" class="header__info-icon" alt="">
+                Поиск автозапчастей
+              </NuxtLink>
+              <NuxtLink :to="{ name: 'index', hash: '#' }" class="mob__nav-link" @click="closeHamburger">
+                <img src="~/assets/img/icons/icn2.svg" class="header__info-icon" alt="">
+                Список бутиков
+              </NuxtLink>-->
+            </div>
+
+          </div>
+
           <div>
             <template v-if="isRentersPage">
               <NuxtLink to="partner" class="btn btn-outline-primary">
@@ -92,11 +112,16 @@
               </NuxtLink>
             </template>
           </div>
+          <div id="hamburger" :class="isActive ? 'hamburger is-active' : 'hamburger'" @click="toggleHamburger">
+            <span class="line" />
+            <span class="line" />
+            <span class="line" />
+          </div>
         </div>
       </div>
     </div>
 
-    <div v-if="!isRentersPage" class="header__navbar">
+    <div v-if="!isRentersPage" class="header__navbar hide-mob">
       <div class="container">
         <nav class="header__nav">
           <NuxtLink :to="{ name: 'index', hash: '#about' }" class="header__nav-link">
@@ -122,6 +147,7 @@ export default {
   data () {
     this.handleScrollThrottled = throttle(this.handleScroll, 100)
     return {
+      isActive: false,
       language: [
         ['О нас','Инфраструктура','Арендаторам','Личный кабинет','Как добраться?','Администрация ТЦ','Работаем ежедневно'],
         ['Бiз туралы','Инфрақұрылым','Жалға алушыларға','Жеке кабинет','Қалай жетуге болады?','СО әкімшілігі','жұмыс кестесі']
@@ -153,6 +179,12 @@ export default {
       } else {
         headerEl.classList.remove('header--navbar-hidden')
       }
+    },
+    toggleHamburger () {
+      this.isActive = !this.isActive
+    },
+    closeHamburger (ev) {
+      this.isActive = false
     }
   }
 }

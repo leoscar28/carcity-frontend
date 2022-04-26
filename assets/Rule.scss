@@ -1,7 +1,7 @@
 .rule {
   margin: 20px;
   &-content {
-    box-shadow: 0 0 2px 1px rgb(0 0 0 / 5%);
+    box-shadow: 0 0 2px 1px rgba(0,0,0,.05);
     overflow: hidden;
     background: #fff;
     border-radius: 5px;

@@ -327,6 +327,16 @@ export default {
     current() {
       return this.$store.state.localStorage.current;
     }
-  }
+  },
+  data() {
+    return {
+      lang: ['Пайдаланушылық келісім','Пользовательское соглашение']
+    }
+  },
+  head() {
+    return {
+      title: this.lang[this.current],
+    }
+  },
 }
 </script>

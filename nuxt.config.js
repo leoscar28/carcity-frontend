@@ -30,11 +30,13 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     "~assets/global.css",
+    'aos/dist/aos.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     {src: '~/plugins/repository.js', ssr: false},
+    { src: '~/plugins/aos.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -79,6 +81,14 @@ export default {
     baseURL: 'http://127.0.0.1:8000',
   },
   router: {
-
+    scrollBehavior (to) {
+      if (to.hash) {
+        return {
+          selector: to.hash,
+          behavior: 'smooth'
+        }
+      }
+      return { x: 0, y: 0 }
+    }
   },
 }
