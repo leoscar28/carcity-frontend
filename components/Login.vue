@@ -21,7 +21,7 @@
       </div>
       <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleRules');" onselectstart="return false;">
         <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':rules}"></div>
-        <div class="login-input-checkbox-title">Я ознакомлен с общими <NuxtLink :to="{ name: 'rule' }" style="display: contents; font-weight: bold;" @click.stop target="_blank">правилами торгового центра</NuxtLink></div>
+        <div class="login-input-checkbox-title">Я ознакомлен с общими <NuxtLink :to="{ name: 'rules' }" style="display: contents; font-weight: bold;" @click.stop target="_blank">правилами торгового центра</NuxtLink></div>
       </div>
       <div class="login-btn">
         <button @click="auth" v-if="terms && rules">Войти</button>

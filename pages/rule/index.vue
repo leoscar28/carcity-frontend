@@ -26,6 +26,7 @@ export default {
       }*/
     ],
   },
+  middleware: ['guest'],
   name: "index",
   components: {vueCustomScrollbar},
 }
