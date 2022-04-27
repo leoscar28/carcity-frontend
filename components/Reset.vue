@@ -4,7 +4,7 @@
       <div class="login-logo">
         <img src="/logo.svg" width="100%" alt="logo">
       </div>
-      <div class="login-title">Введите e-mail или номер телефона который был привязан к аккуанту</div>
+      <div class="login-title">Введите e-mail или номер телефона который был привязан к аккаунту</div>
       <div class="login-btn">
         <button style="opacity: 0.2;">Сбросить по эл.почте</button>
       </div>
