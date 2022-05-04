@@ -218,6 +218,18 @@ export const actions = {
     return await this.$repository.applicationDate.list(payload);
   },
 
+  async completionSignaturesCreate({commit},payload) {
+    return await this.$repository.completionSignature.multipleCreate(payload);
+  },
+  async completionSignatureCreate({commit},payload) {
+    return await this.$repository.completionSignature.create(payload);
+  },
+  async completionMultipleSignatureStart({commit},payload) {
+    return await this.$repository.completionSignature.multipleStart(payload);
+  },
+  async completionSignatureStart({commit},payload) {
+    return await this.$repository.completionSignature.start(payload);
+  },
   async completionDownloadAll({commit},payload) {
     return await this.$repository.completion.downloadAll(payload);
   },

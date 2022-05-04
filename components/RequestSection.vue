@@ -4,7 +4,7 @@
       <div class="request-section-main-header">
         <div class="request-section-main-header-title" v-if="type === 1">Акт выполненных работ</div>
         <div class="request-section-main-header-title" v-else-if="type === 2">Договора и приложения</div>
-        <div class="request-section-main-header-title" v-else-if="type === 3">Счет на оплату</div>
+        <div class="request-section-main-header-title" v-else-if="type === 3">Счета на оплату</div>
         <button class="request-section-main-header-filter" @click="$store.commit('localStorage/toggleFilter')">
           <i class="request-section-main-header-filter-icon"></i>
           Фильтр
@@ -18,7 +18,7 @@
         <div class="request-section-main-filter-item-input">
           <select class="request-section-main-filter-item-input-select" v-model="upload_status_id">
             <option :value="null">Все статусы</option>
-            <template v-if="(type !== 2 && user.role_id !== 4 && user.role_id !== 1) || user.role_id === 3 || user.role_id === 2">
+            <template v-if="(type === 3 && user.role_id !== 4 && user.role_id !== 1) || user.role_id === 3 || user.role_id === 2">
               <option v-for="(status,key) in statuses" :key="key" :value="status.id">{{status.title}}</option>
             </template>
             <template v-else-if="user.role_id === 4">
@@ -118,7 +118,7 @@
                   <div v-if="!request.rids" class="request-section-table-body-loading lds-ring"><div></div><div></div><div></div><div></div></div>
                   <template v-else>
                     <div class="request-section-table-body-header">
-                      <div class="request-section-table-body-header-title" v-if="type === 1">Успешно выгружено документов {{request.rids.length}}, скачано {{downloadLength(key,2)}}</div>
+                      <div class="request-section-table-body-header-title" v-if="type === 1">Успешно выгружено документов {{request.rids.length}}, подписано вами {{signedSupervisor(key)}}, Подписано клиентом {{signedTenant(key)}}</div>
                       <div class="request-section-table-body-header-title" v-if="type === 2">Успешно выгружено документов {{request.rids.length}}, подписано вами {{signedSupervisor(key)}}, Подписано клиентом {{signedTenant(key)}}</div>
                       <div class="request-section-table-body-header-title" v-if="type === 3">Успешно выгружено документов {{request.rids.length}}, скачано {{downloadLength(key,2)}}</div>
                       <div class="request-section-table-body-header-buttons">
@@ -155,48 +155,50 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <tr class="request-section-table-body-list-item" v-for="(rid,ridKey) in request.rids" :key="ridKey" v-if="!request.ridStatus || !rid.users">
-                        <td>{{rid.number}}</td>
-                        <td class="request-section-table-body-list-item-organization">{{rid.organization}}</td>
-                        <td>{{rid.created_at}}</td>
-                        <td>{{rid.sum}}₸</td>
-                        <td class="request-section-table-body-list-item-name">{{rid.name}}</td>
-                        <td class="request-section-table-body-list-item-customer">{{rid.customer}}</td>
-                        <td>
-                          <template v-if="type === 1">
-                            <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-new" v-if="rid.upload_status_id === 1">Новый</button>
-                            <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-if="rid.upload_status_id === 2">Скачано</button>
-                          </template>
-                          <template v-else-if="type === 2">
-                            <button class="request-section-table-body-list-item-btn request-section-table-body-header-button-reject" v-if="rid.upload_status_id === 1 && user.role_id === 4" @click="signFile(rid.id)">Подписать</button>
-                            <button class="request-section-table-body-list-item-btn request-section-table-body-header-button-reject" v-else-if="rid.upload_status_id === 1 && user.role_id !== 4">{{statuses[rid.upload_status_id - 1].title}}</button>
-                            <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-else-if="rid.upload_status_id === 2">{{statuses[rid.upload_status_id - 1].title}}</button>
-                            <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-signed" v-else-if="rid.upload_status_id === 3">{{statuses[rid.upload_status_id - 1].title}}</button>
-                          </template>
-                          <template v-else-if="type === 3">
-                            <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-new" v-if="rid.upload_status_id === 1">Новый</button>
-                            <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-if="rid.upload_status_id === 2">Скачано</button>
-                          </template>
-                        </td>
-                        <td>
-                          <div class="request-section-table-body-list-item-buttons">
-                            <div class="request-section-table-body-list-item-trash" v-if="user.role_id === 3" @click="deleteRequest(key,ridKey,rid.id, request.rid)"></div>
-                            <div class="request-section-table-body-list-item-download" @click="download(rid.id,rid.rid,false)"></div>
-                            <div class="request-section-table-body-list-item-empty" v-if="!rid.users">
-                              <div class="request-section-table-body-list-item-empty-data">
-                                <div class="request-section-table-body-list-item-empty-data-main">
-                                  <div class="request-section-table-body-list-item-empty-data-main-title">БИН/ИИН</div>
-                                  <div class="request-section-table-body-list-item-empty-data-main-value">{{rid.customer_id}}</div>
-                                  <div class="request-section-table-body-list-item-empty-data-copy" @click="copy(rid.customer_id)"></div>
+                        <tr class="request-section-table-body-list-item" v-for="(rid,ridKey) in request.rids" :key="ridKey" v-if="!request.ridStatus || !rid.users">
+                          <td>{{rid.number}}</td>
+                          <td class="request-section-table-body-list-item-organization">{{rid.organization}}</td>
+                          <td>{{rid.created_at}}</td>
+                          <td>{{rid.sum}}₸</td>
+                          <td class="request-section-table-body-list-item-name">{{rid.name}}</td>
+                          <td class="request-section-table-body-list-item-customer">{{rid.customer}}</td>
+                          <td>
+                            <template v-if="type === 1">
+                              <button class="request-section-table-body-list-item-btn request-section-table-body-header-button-reject" v-if="rid.upload_status_id === 1 && user.role_id === 4" @click="signFile(rid.id)">Подписать</button>
+                              <button class="request-section-table-body-list-item-btn request-section-table-body-header-button-reject" v-else-if="rid.upload_status_id === 1 && user.role_id !== 4">{{statuses[rid.upload_status_id - 1].title}}</button>
+                              <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-else-if="rid.upload_status_id === 2">{{statuses[rid.upload_status_id - 1].title}}</button>
+                              <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-signed" v-else-if="rid.upload_status_id === 3">{{statuses[rid.upload_status_id - 1].title}}</button>
+                            </template>
+                            <template v-else-if="type === 2">
+                              <button class="request-section-table-body-list-item-btn request-section-table-body-header-button-reject" v-if="rid.upload_status_id === 1 && user.role_id === 4" @click="signFile(rid.id)">Подписать</button>
+                              <button class="request-section-table-body-list-item-btn request-section-table-body-header-button-reject" v-else-if="rid.upload_status_id === 1 && user.role_id !== 4">{{statuses[rid.upload_status_id - 1].title}}</button>
+                              <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-else-if="rid.upload_status_id === 2">{{statuses[rid.upload_status_id - 1].title}}</button>
+                              <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-signed" v-else-if="rid.upload_status_id === 3">{{statuses[rid.upload_status_id - 1].title}}</button>
+                            </template>
+                            <template v-else-if="type === 3">
+                              <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-new" v-if="rid.upload_status_id === 1">Новый</button>
+                              <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-if="rid.upload_status_id === 2">Скачано</button>
+                            </template>
+                          </td>
+                          <td>
+                            <div class="request-section-table-body-list-item-buttons">
+                              <div class="request-section-table-body-list-item-trash" v-if="user.role_id === 3" @click="deleteRequest(key,ridKey,rid.id, request.rid)"></div>
+                              <div class="request-section-table-body-list-item-download" @click="download(rid.id,rid.rid,false)"></div>
+                              <div class="request-section-table-body-list-item-empty" v-if="!rid.users">
+                                <div class="request-section-table-body-list-item-empty-data">
+                                  <div class="request-section-table-body-list-item-empty-data-main">
+                                    <div class="request-section-table-body-list-item-empty-data-main-title">БИН/ИИН</div>
+                                    <div class="request-section-table-body-list-item-empty-data-main-value">{{rid.customer_id}}</div>
+                                    <div class="request-section-table-body-list-item-empty-data-copy" @click="copy(rid.customer_id)"></div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </td>
-                      </tr>
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
-                    <div class="request-section-table-body-footer" v-if="type === 2 && user.role_id === 4 && signedSupervisor(key) !== request.rids.length">
+                    <div class="request-section-table-body-footer" v-if="(type === 2 || type === 1) && user.role_id === 4 && signedSupervisor(key) !== request.rids.length">
                       <button class="request-section-table-body-header-button" @click="signFiles(request.rid)">
                         <div class="request-section-table-body-header-button-icon request-section-table-body-footer-draw"></div>
                         Подписать документы
@@ -232,8 +234,9 @@
             <td>{{request.customer}}</td>
             <td>
               <template v-if="type === 1">
-                <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-new" v-if="request.upload_status_id === 1">Новый</button>
-                <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-if="request.upload_status_id === 2">Скачано</button>
+                <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-subscribe" v-if="request.upload_status_id === 1">Ожидает подписания</button>
+                <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-signed" v-else-if="request.upload_status_id === 2"  @click="signFile(request.id)">Подписать</button>
+                <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-download" v-else-if="request.upload_status_id === 3">Подписано</button>
               </template>
               <template v-else-if="type === 2">
                 <button class="request-section-table-body-list-item-btn request-section-table-body-list-item-btn-subscribe" v-if="request.upload_status_id === 1">Ожидает подписания</button>
@@ -421,7 +424,11 @@ export default {
           rid: rid,
           user_id: this.user.id,
         };
-        data.res = await this.$store.dispatch('localStorage/applicationMultipleSignatureStart', data);
+        if (this.type === 1) {
+          data.res = await this.$store.dispatch('localStorage/completionMultipleSignatureStart', data);
+        } else {
+          data.res = await this.$store.dispatch('localStorage/applicationMultipleSignatureStart', data);
+        }
         if (data.res.hasOwnProperty('message')) {
           this.$store.commit('localStorage/setSignatureLoading',false);
           return this.$toast.error(data.res.message).goAway(2000);
@@ -455,7 +462,12 @@ export default {
           user_id: this.user.id,
           role_id: this.user.role_id
         };
-        let res = await this.$store.dispatch('localStorage/applicationSignatureStart',data);
+        let res;
+        if (this.type === 1) {
+          res = await this.$store.dispatch('localStorage/completionSignatureStart',data);
+        } else {
+          res = await this.$store.dispatch('localStorage/applicationSignatureStart',data);
+        }
         if (res.hasOwnProperty('message')) {
           this.$store.commit('localStorage/setSignatureLoading',false);
           return this.$toast.error(res.message).goAway(2000);
@@ -467,7 +479,12 @@ export default {
       if (data.res.length !== data.signature.length) {
         return this.$toast.error('Произошла ошибка, количество подписанных документов не соответствует количеству записей!').goAway(5000);
       }
-      let res = await this.$store.dispatch('localStorage/applicationSignaturesCreate',data);
+      let res;
+      if (this.type === 1) {
+        res = await this.$store.dispatch('localStorage/completionSignaturesCreate',data);
+      } else {
+        res = await this.$store.dispatch('localStorage/applicationSignaturesCreate',data);
+      }
       let key = 0, index;
       this.requests.forEach(item => {
         if (res.rid === item.rid) {
@@ -483,7 +500,12 @@ export default {
       this.$toast.show('Подписано '+data.signature.length+' документ(а)').goAway(2000);
     },
     async signXmlFile(data) {
-      let res = await this.$store.dispatch('localStorage/applicationSignatureCreate',data);
+      let res;
+      if (this.type === 1) {
+        res = await this.$store.dispatch('localStorage/completionSignatureCreate',data);
+      } else {
+        res = await this.$store.dispatch('localStorage/applicationSignatureCreate',data);
+      }
       if (res.hasOwnProperty('message')) {
         return this.$toast.error(res.message).goAway(2000);
       }

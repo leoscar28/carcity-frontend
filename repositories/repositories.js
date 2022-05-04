@@ -3,6 +3,7 @@ import User from '/repositories/user/user';
 import Completion from "~/repositories/completion/completion";
 import CompletionDate from "~/repositories/completionDate/completionDate";
 import CompletionStatus from "~/repositories/completionStatus/completionStatus";
+import CompletionSignature from "@/repositories/completionSignature/completionSignature";
 
 import Application from "@/repositories/application/application";
 import ApplicationDate from "~/repositories/applicationDate/applicationDate";
@@ -22,6 +23,7 @@ export const repository = ($axios) => ({
   completion: Completion($axios),
   completionDate: CompletionDate($axios),
   completionStatus: CompletionStatus($axios),
+  completionSignature: CompletionSignature($axios),
 
   application: Application($axios),
   applicationDate: ApplicationDate($axios),
