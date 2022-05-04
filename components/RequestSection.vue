@@ -73,7 +73,7 @@
                   </div>
                   <div class="request-section-table-header-id request-section-table-header-date-main">{{request.id}}</div>
                   <div class="request-section-table-header-status">
-                    <template v-if="type === 1 || type === 3">
+                    <template v-if="type === 3">
                       <div class="request-section-table-header-status-new" v-if="request.upload_status_id === 1">{{statuses[request.upload_status_id - 1].title}}</div>
                       <div class="request-section-table-header-status-download" v-else-if="request.upload_status_id === 2">{{statuses[request.upload_status_id - 1].title}}</div>
                     </template>

@@ -20,7 +20,7 @@
       <template v-if="notification.type === 2">
         <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-check"></div>
         <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
-          <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Акты выполненных работ скачаны</div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Акты выполненных работ подписаны клиентами</div>
           <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">от {{notification.completion_id.created_at}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
         </div>
       </template>
