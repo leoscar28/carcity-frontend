@@ -12,7 +12,7 @@
         <template v-else>
           <div class="header-section-main-right-menu-dropdown-main-list-item-icon"></div>
           <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
-            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Новый Акты выполненных работ</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Новый Акт выполненных работ</div>
             <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">от {{notification.created_at}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.completion_id.number }}</span></div>
           </div>
         </template>
