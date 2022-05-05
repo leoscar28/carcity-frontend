@@ -506,11 +506,11 @@ export default {
       } else {
         res = await this.$store.dispatch('localStorage/applicationSignatureCreate',data);
       }
+      this.$store.commit('localStorage/setSignatureLoading',false);
       if (res.hasOwnProperty('message')) {
         return this.$toast.error(res.message).goAway(2000);
       }
       let i = 0, index, key;
-      this.$store.commit('localStorage/setSignatureLoading',false);
       if (data.role_id === 4) {
         this.requests.forEach(item => {
           if (item.rid === res.rid) {
