@@ -28,10 +28,9 @@
               </option>
             </template>
             <template v-else-if="user.role_id === 1">
-              <option v-for="(status,key) in statuses" :key="key" :value="status.id">
+              <option v-for="(status,key) in statuses" :key="key" :value="status.id" v-if="status.id !== 1">
                 <template v-if="status.id === 2">Ожидает подписание вами</template>
-                <template v-else-if="status.id === 3">Подписано</template>
-                <template v-else-if="status.id === 1">Ожидает подписание руководителем</template>
+                <template v-else>Подписано</template>
               </option>
             </template>
           </select>
@@ -632,6 +631,7 @@ export default {
       let data = {
         pagination: this.paginate,
         take: this.take,
+        role_id: this.user.role_id
       };
       if (this.sum.trim() !== '') {
         data.sum= this.sum;
