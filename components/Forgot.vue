@@ -5,7 +5,7 @@
         <img src="/logo.svg" width="100%" alt="logo">
       </div>
       <template v-if="$route.query.type && $route.query.type === 'email'">
-        <div class="login-title">Введите e-mail который был привязан к аккунту</div>
+        <div class="login-title">Введите e-mail который был привязан к аккаунту</div>
         <div class="login-input">
           <input type="text" placeholder="E-mail">
         </div>
@@ -14,7 +14,7 @@
         </div>
       </template>
       <template v-else>
-        <div class="login-title">Введите номер телефона который был привязан к аккунту</div>
+        <div class="login-title">Введите номер телефона который был привязан к аккаунту</div>
         <div class="login-input">
           <input type="tel" v-mask="'###-###-##-##'" placeholder="___-___-__-__" ref="phone" v-model="phone" :readonly="!status">
         </div>
