@@ -30,6 +30,7 @@ export default {
         } else if (this.type === 3) {
           res = await this.$store.dispatch('localStorage/invoiceGetByRid',this.rid);
         }
+        console.log(res);
         this.status = true;
         let self = this;
         return res.map(function callback(val) {
