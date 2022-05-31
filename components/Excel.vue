@@ -40,7 +40,7 @@ export default {
             'Дата': val.created_at,
             'Сумма': val.sum + ' тг',
             'Название': val.name,
-            'Компания': val.users.company,
+            'Компания': val.hasOwnProperty('users')?val.users.company:'',
             'Статус': self.statuses[val.upload_status_id - 1].title,
           };
         });
