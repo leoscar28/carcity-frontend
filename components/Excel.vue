@@ -30,7 +30,6 @@ export default {
         } else if (this.type === 3) {
           res = await this.$store.dispatch('localStorage/invoiceGetByRid',this.rid);
         }
-        console.log(res);
         this.status = true;
         let self = this;
         return res.map(function callback(val) {
@@ -40,7 +39,7 @@ export default {
             'Дата': val.created_at,
             'Сумма': val.sum + ' тг',
             'Название': val.name,
-            'Компания': val.users?val.users.company:'',
+            'Компания': val.users?val.users.company:val.customer,
             'Статус': self.statuses[val.upload_status_id - 1].title,
           };
         });
