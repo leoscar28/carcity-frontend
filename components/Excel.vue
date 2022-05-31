@@ -1,5 +1,5 @@
 <template>
-  <download-excel class="request-section-table-body-header-button" :fetch="download" :name="types[this.type]+'-'+rid+'.xls'">
+  <download-excel class="request-section-table-body-header-button" :fetch="download" :name="types[this.type - 1]+'-'+rid+'.xls'">
     <div class="request-section-table-body-header-button-icon"></div>
     Отчет в XLS
   </download-excel>

@@ -430,7 +430,7 @@ export default {
         }
         if (data.res.hasOwnProperty('message')) {
           this.$store.commit('localStorage/setSignatureLoading',false);
-          return this.$toast.error(data.res.message).goAway(2000);
+          return this.$toast.error(data.res.message).goAway(3000);
         }
         let xml = [];
         data.res.forEach(item => {
