@@ -433,18 +433,15 @@ export default {
     filterCheck(number, sum, customer, statusSelected, rid) {
       //request.number,request.sum,request.customer,request.statusSelected,rid
       let status  = true;
-      if (number && number.trim() !== '' && !rid.number.trim().toLowerCase().includes(number)) {
+      if (number && number.trim() !== '' && !rid.number.trim().toLowerCase().includes(number.trim().toLowerCase())) {
         status  = false;
       }
-      if (sum && sum.trim() !== '' && !rid.sum.trim().toLowerCase().includes(sum)) {
+      if (sum && sum.trim() !== '' && !rid.sum.trim().toLowerCase().includes(sum.trim().toLowerCase())) {
         status  = false;
       }
-      if (customer && customer.trim() !== '' && !rid.customer.trim().toLowerCase().includes(customer)) {
+      if (customer && customer.trim() !== '' && !rid.customer.trim().toLowerCase().includes(customer.trim().toLowerCase())) {
         status  = false;
       }
-      /*if (statusSelected && statusSelected.trim() !== '' && !rid.customer.includes(customer)) {
-        status  = false;
-      }*/
       if (statusSelected && (rid.upload_status_id !== statusSelected)) {
         status  = false;
       }
