@@ -49,6 +49,9 @@ button > div {
 .matrix {
   background-image: url('/matrix.png') !important;
 }
+.building {
+  background-image: url('/office-building.png') !important;
+}
 .calendar {
   background-image: url('/calendar.png') !important;
 }

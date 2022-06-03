@@ -35,6 +35,14 @@
             </template>
           </select>
         </div>
+<!--        <div class="request-section-main-filter-item-input">
+          <div class="request-section-main-filter-item-input-icon building"></div>
+          <input type="text" placeholder="Компания" v-model="company">
+        </div>
+        <div class="request-section-main-filter-item-input">
+          <div class="request-section-main-filter-item-input-icon building"></div>
+          <input type="text" placeholder="Номер документа" v-model="number">
+        </div>-->
         <div class="request-section-main-filter-item-input">
           <div class="request-section-main-filter-item-input-icon calendar"></div>
           <date-picker v-model="date" range readonly format="YYYY.MM.DD" :lang="lang" :range-separator="' - '" :editable="false" ></date-picker>
@@ -139,13 +147,24 @@
                     <table class="request-section-table-body-list" v-show="request.rids">
                       <thead>
                       <tr class="request-section-table-body-list-item">
-                        <th>Номер документа</th>
+                        <th>
+                          <input type="text" placeholder="Номер документа" class="request-section-table-body-list-item-input" v-model="request.number">
+                        </th>
                         <th>Организация</th>
                         <th>Дата</th>
-                        <th>Сумма</th>
+                        <th>
+                          <input type="text" placeholder="Сумма" class="request-section-table-body-list-item-input" v-model="request.sum">
+                        </th>
                         <th>Название</th>
-                        <th>Компания</th>
-                        <th>Статус</th>
+                        <th>
+                          <input type="text" placeholder="Компания" class="request-section-table-body-list-item-input" v-model="request.customer">
+                        </th>
+                        <th>
+                          <select class="request-section-table-body-list-item-select" v-model="request.statusSelected">
+                            <option :value="undefined" selected>Статусы</option>
+                            <option v-for="(status,key) in statusConverted" :key="key" :value="status.id">{{ status.title }}</option>
+                          </select>
+                        </th>
                         <th>
                           <div class="request-section-table-body-list-item-buttons" v-if="(request.document_all - request.document_available) > 0">
                             <div class="request-section-table-body-list-item-empty" style="margin-left: auto;" @click="request.ridStatus = !request.ridStatus"></div>
@@ -154,7 +173,7 @@
                       </tr>
                       </thead>
                       <tbody>
-                        <tr class="request-section-table-body-list-item" v-for="(rid,ridKey) in request.rids" :key="ridKey" v-if="!request.ridStatus || !rid.users">
+                        <tr class="request-section-table-body-list-item" v-for="(rid,ridKey) in request.rids" :key="ridKey" v-if="(!request.ridStatus || !rid.users) && filterCheck(request.number,request.sum,request.customer,request.statusSelected,rid)">
                           <td>{{rid.number}}</td>
                           <td class="request-section-table-body-list-item-organization">{{rid.organization}}</td>
                           <td>{{rid.created_at}}</td>
@@ -285,6 +304,39 @@ export default {
     },
     signatureLoading() {
       return this.$store.state.localStorage.signatureLoading;
+    },
+    statusConverted() {
+      let arr = [];
+      let statuses  = this.$store.state.localStorage.statuses;
+      if ((this.type === 3 && this.user.role_id !== 4 && this.user.role_id !== 1) || this.user.role_id === 3 || this.user.role_id === 2) {
+        return statuses
+      } else if (this.user.role_id === 4) {
+        statuses.forEach(item => {
+          if (item.id === 1) {
+            arr.push({
+              id: item.id,
+              title: 'Ожидает подписание вами'
+            });
+          } else {
+            arr.push(item);
+          }
+        });
+      } else if (this.user.role_id === 1) {
+        statuses.forEach(item => {
+          if (item.id === 2) {
+            arr.push({
+              id: item.id,
+              title: 'Ожидает подписание вами'
+            });
+          } else if (item.id === 3) {
+            arr.push({
+              id: item.id,
+              title: 'Подписано'
+            });
+          }
+        });
+      }
+      return arr;
     }
   },
   watch: {
@@ -328,6 +380,8 @@ export default {
       upload_status_id: null,
       date: null,
       sum: '',
+      company: '',
+      number: '',
       requests: [],
     }
   },
@@ -376,6 +430,26 @@ export default {
     }
   },
   methods: {
+    filterCheck(number, sum, customer, statusSelected, rid) {
+      //request.number,request.sum,request.customer,request.statusSelected,rid
+      let status  = true;
+      if (number && number.trim() !== '' && !rid.number.trim().toLowerCase().includes(number)) {
+        status  = false;
+      }
+      if (sum && sum.trim() !== '' && !rid.sum.trim().toLowerCase().includes(sum)) {
+        status  = false;
+      }
+      if (customer && customer.trim() !== '' && !rid.customer.trim().toLowerCase().includes(customer)) {
+        status  = false;
+      }
+      /*if (statusSelected && statusSelected.trim() !== '' && !rid.customer.includes(customer)) {
+        status  = false;
+      }*/
+      if (statusSelected && (rid.upload_status_id !== statusSelected)) {
+        status  = false;
+      }
+      return status;
+    },
     newRequest(request) {
       let status = -1, i = 0;
       this.requests.forEach(item => {
@@ -634,19 +708,31 @@ export default {
         role_id: this.user.role_id
       };
       if (this.sum.trim() !== '') {
-        data.sum= this.sum;
+        data.sum  =   this.sum;
       }
+
+      if (this.company.trim() !== '') {
+        data.company  =   this.company;
+      }
+
+      if (this.number.trim() !== '') {
+        data.number  =   this.number;
+      }
+
       if (this.upload_status_id) {
         data.upload_status_id = this.upload_status_id;
       }
+
       if (this.date && this.date[0] && this.date[1]) {
         let start = this.date[0];
         let end   = this.date[1];
         data.created_at = start.getFullYear()+'-'+(start.getMonth()+1)+'-'+start.getDate()+'_'+end.getFullYear()+'-'+(end.getMonth()+1)+'-'+end.getDate();
       }
+
       if (this.user.role_id === 1) {
         data.bin  = this.user.bin;
       }
+
       if (this.user.role_id !== 1) {
         if (this.type === 1) {
           this.pages  = await this.$store.dispatch('localStorage/getCompletionDatePages', data);
@@ -686,6 +772,8 @@ export default {
       this.date = '';
       this.paginate = 1;
       this.range  = 1;
+      this.number = '';
+      this.company  = '';
       await this.find();
     },
     setPage() {
