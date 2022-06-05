@@ -431,12 +431,11 @@ export default {
   },
   methods: {
     filterCheck(number, sum, customer, statusSelected, rid) {
-      //request.number,request.sum,request.customer,request.statusSelected,rid
       let status  = true;
       if (number && number.trim() !== '' && !rid.number.trim().toLowerCase().includes(number.trim().toLowerCase())) {
         status  = false;
       }
-      if (sum && sum.trim() !== '' && !rid.sum.trim().toLowerCase().includes(sum.trim().toLowerCase())) {
+      if (sum && sum.trim().replace(/\s/g, '') !== '' && !rid.sum.trim().replace(/\s/g, '').toLowerCase().includes(sum.trim().toLowerCase())) {
         status  = false;
       }
       if (customer && customer.trim() !== '' && !rid.customer.trim().toLowerCase().includes(customer.trim().toLowerCase())) {
