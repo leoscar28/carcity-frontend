@@ -451,7 +451,7 @@ export default {
       if (number && number.trim() !== '' && !rid.number.trim().toLowerCase().includes(number.trim().toLowerCase())) {
         status  = false;
       }
-      if (sum && sum.trim().replace(/\s/g, '') !== '' && !this.contains(sum.trim().toLowerCase(),rid.sum)) {
+      if (sum && sum.trim().replace(/\s/g, '') !== '' && !this.contains(rid.sum,sum.trim().toLowerCase())) {
         status  = false;
       }
       if (customer && customer.trim() !== '' && !rid.customer.trim().toLowerCase().includes(customer.trim().toLowerCase())) {
