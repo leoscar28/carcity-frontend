@@ -430,13 +430,28 @@ export default {
     }
   },
   methods: {
+    contains(number, digit) {
+      if (number < 0) { // make sure negatives are dealt with properly, alternatively replace this if statement with number = Math.abs(number)
+        number *= -1;
+      }
+      if (number === digit) { // this is to deal with the number=0, digit=0 edge case
+        return true;
+      }
+      while (number !== 0) { // stop once all digits are cut off
+        if (number % 10 === digit) { // check if the last digit matches
+          return true;
+        }
+        number = Math.floor(number / 10); // cut off the last digit
+      }
+      return false;
+    },
     filterCheck(number, sum, customer, statusSelected, rid) {
       let status  = true;
       console.log(rid.sum);
       if (number && number.trim() !== '' && !rid.number.trim().toLowerCase().includes(number.trim().toLowerCase())) {
         status  = false;
       }
-      if (sum && sum.trim().replace(/\s/g, '') !== '' && !rid.sum.includes(sum.trim().toLowerCase())) {
+      if (sum && sum.trim().replace(/\s/g, '') !== '' && !this.contains(sum.trim().toLowerCase(),rid.sum)) {
         status  = false;
       }
       if (customer && customer.trim() !== '' && !rid.customer.trim().toLowerCase().includes(customer.trim().toLowerCase())) {
