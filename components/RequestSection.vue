@@ -432,6 +432,7 @@ export default {
   methods: {
     filterCheck(number, sum, customer, statusSelected, rid) {
       let status  = true;
+      console.log(rid);
       if (number && number.trim() !== '' && !rid.number.trim().toLowerCase().includes(number.trim().toLowerCase())) {
         status  = false;
       }
