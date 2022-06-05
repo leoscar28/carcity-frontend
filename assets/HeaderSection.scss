@@ -328,6 +328,17 @@
       &-left {
         width: 64px;
         border-right: 1px solid #F0F0F0;
+        cursor: pointer;
+        &-close > .header-section-main-left-icon > div {
+          background: transparent;
+          position: relative;
+          &:before, &:after {
+            transform: rotate(45deg);
+          }
+          &:after {
+            transform: rotate(-45deg);
+          }
+        }
         &-logo {
           display: none;
         }

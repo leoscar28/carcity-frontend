@@ -1,8 +1,8 @@
 <template>
   <header class="header-section">
     <div class="header-section-main">
-      <div class="header-section-main-left">
-        <div class="header-section-main-left-icon" @click="$store.commit('localStorage/toggleSidebar');">
+      <div class="header-section-main-left" :class="{'header-section-main-left-close':$store.state.localStorage.sidebar}" @click="$store.commit('localStorage/toggleSidebar');">
+        <div class="header-section-main-left-icon">
           <div></div>
         </div>
         <NuxtLink to="/">

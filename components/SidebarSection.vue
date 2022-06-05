@@ -1,8 +1,8 @@
 <template>
-  <div class="sidebar-section" :class="{'sidebar-section-show':$store.state.localStorage.sidebar}">
+  <div class="sidebar-section" :class="{'sidebar-section-show':$store.state.localStorage.sidebar}" @click="$store.commit('localStorage/closeSidebar');">
     <div class="sidebar-section-menu">
       <div class="sidebar-section-menu-item sidebar-section-menu-item-arrow" :class="{'sidebar-section-menu-item-arrow-active':dropdown}">
-        <div @click="dropdown = !dropdown">
+        <div @click.stop="dropdown = !dropdown">
           <div class="sidebar-section-menu-item-icon sidebar-section-menu-item-icon-folder"></div>
           <div class="sidebar-section-menu-item-title">Документооборот</div>
         </div>

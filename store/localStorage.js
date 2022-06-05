@@ -79,6 +79,9 @@ export const mutations = {
   toggleSidebar(state) {
     state.sidebar = !state.sidebar;
   },
+  closeSidebar(state) {
+    state.sidebar = false;
+  },
   setUser(state,value) {
     state.user  = value;
   },
