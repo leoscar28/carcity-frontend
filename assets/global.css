@@ -39,6 +39,7 @@ button > div {
 .body-section {
   display: flex;
   background: #f7af3e url('/abstract-bg.svg') no-repeat fixed bottom;
+  height: 100vh;
 }
 .body-section-content {
   flex: 1;

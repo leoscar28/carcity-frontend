@@ -1049,32 +1049,99 @@
         gap: 5px;
         border-radius: 2px;
         font-size: 8px;
+        &-date {
+          &-main {
+
+          }
+        }
       }
     }
     &-main {
       &-table {
         width: 100px !important;
+        &-head {
+          display: none;
+        }
+        &-tr {
+          display: flex;
+          width: 394px;
+          flex-flow: wrap;
+          font-size: 9px;
+          &:nth-child(odd) {
+            background: #f4f4f4;
+          }
+          & td {
+            width: max-content;
+            display: flex;
+            align-items: center;
+            border: none;
+            &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4) {
+              padding-bottom: 5px !important;
+            }
+            &:nth-child(5), &:nth-child(6), &:nth-child(7), &:nth-child(8) {
+              padding-top: 5px !important;
+            }
+            &:nth-child(5) {
+              display: none;
+            }
+            &:first-child {
+              width: 18%;
+            }
+            &:nth-child(2) {
+              width: 37%;
+            }
+            &:nth-child(3) {
+              width: 25%;
+              text-align: center;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            &:nth-child(6) {
+              width: 55%;
+            }
+            &:nth-child(7) {
+              width: 25%;
+              display: flex;
+              justify-content: center;
+            }
+          }
+        }
       }
       &-filter {
         flex-direction: column;
         height: auto;
         align-items: baseline;
+        padding: 10px;
         & > div {
           width: 100% !important;
+        }
+        &-item {
+          &-input {
+            & > input, & > select {
+
+            }
+          }
         }
       }
       &-footer {
         flex-direction: column;
-        align-items: baseline;
-        margin: 10px 0 10px 0;
+        padding: 10px 0 10px 0;
+        height: auto;
+        justify-content: center;
+        gap: 10px;
         &-pagination {
-          &-item, &-item-right, &-item-dots {
-            width: 20px;
-            height: 20px;
+          gap: 2px;
+          &-item, &-item-right, &-item-left, &-item-dots {
+            width: 24px;
+            height: 24px;
             font-size: 10px;
+            &-dots {
+              display: none;
+            }
           }
           &-take {
-            height: 20px;
+            height: 24px;
             font-size: 10px;
           }
         }
@@ -1082,7 +1149,7 @@
           margin-left: 10px;
           display: flex;
           gap: 10px;
-          margin-top: 10px;
+          font-size: 10px;
         }
       }
     }

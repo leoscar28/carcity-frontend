@@ -5,7 +5,6 @@
   &-main {
     background: #fff;
     width: 380px;
-    height: 500px;
     margin: 50px auto 50px auto;
     border-radius: 5px;
     box-shadow: 0 0 2px 1px rgba(0,0,0,.05);
@@ -257,7 +256,8 @@
     &-main {
       width: auto;
       margin: 50px 15px 50px 15px;
-      height: 350px;
+      min-height: 350px;
+      padding: 0 0 15px 0;
     }
     &-logo {
       padding: 40px 0 0 0;
@@ -275,7 +275,9 @@
       }
     }
     &-input {
-
+      &-checkbox {
+        margin: 8px 15px 0 15px;
+      }
     }
     &-forgot {
       margin: 0 15px 0 15px;
