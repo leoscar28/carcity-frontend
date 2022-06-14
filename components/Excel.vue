@@ -11,7 +11,7 @@ import downloadExcel from "vue-json-excel";
 export default {
   name: "Excel",
   components: {downloadExcel},
-  props: ['statuses','type','rid'],
+  props: ['statuses','type','rid','number','sum','customer','statusSelected'],
   data() {
     return {
       types: ['Акт выполненных работ','Договора и приложения','Счета на оплату'],
@@ -32,17 +32,52 @@ export default {
         }
         this.status = true;
         let self = this;
-        return res.map(function callback(val) {
-          return {
-            'Номер документа': val.number,
-            'Организация': val.organization,
-            'Дата': val.created_at,
-            'Сумма': val.sum + ' тг',
-            'Название': val.name,
-            'Компания': val.users?val.users.company:val.customer,
-            'Статус': self.statuses[val.upload_status_id - 1].title,
-          };
-        });
+        //'number','sum','customer','status'
+        console.log(this.statusSelected);
+        console.log(res);
+        return res.reduce(function callback(filtered, val) {
+          /*
+                let status  = true;
+      if (number && number.trim() !== '' && !rid.number.trim().toLowerCase().includes(number.trim().toLowerCase())) {
+        status  = false;
+      }
+      if (sum && sum.trim().replace(/\s/g, '') !== '' && !rid.sum.toString().replace(/\s/g, '').includes(sum)) {
+        status  = false;
+      }
+      if (customer && customer.trim() !== '' && !rid.customer.trim().toLowerCase().includes(customer.trim().toLowerCase())) {
+        status  = false;
+      }
+      if (statusSelected && (rid.upload_status_id !== statusSelected)) {
+        status  = false;
+      }
+           */
+          let stat = true;
+          if (self.number && self.number.trim() !== '' && !val.number.trim().toLowerCase().includes(self.number.trim().toLowerCase())) {
+            stat  = false;
+          }
+          if (self.sum && self.sum.trim().replace(/\s/g, '') !== '' && !val.sum.toString().replace(/\s/g, '').includes(self.sum)) {
+            stat  = false;
+          }
+          if (self.customer && customer.trim() !== '' && !val.customer.trim().toLowerCase().includes(self.customer.trim().toLowerCase())) {
+            stat  = false;
+          }
+          if (self.statusSelected && (val.upload_status_id !== self.statusSelected)) {
+            stat = false;
+          }
+
+          if (stat) {
+            filtered.push({
+              'Номер документа': val.number,
+              'Организация': val.organization,
+              'Дата': val.created_at,
+              'Сумма': val.sum + ' тг',
+              'Название': val.name,
+              'Компания': val.users ? val.users.company : val.customer,
+              'Статус': self.statuses[val.upload_status_id - 1].title,
+            });
+          }
+          return filtered;
+        }, []);
       }
     },
   }

@@ -132,8 +132,10 @@
 <!--                        <button class="request-section-table-body-header-button">
                           <div class="request-section-table-body-header-button-icon"></div>
                           Отчет в CSV
-                        </button>-->
-                        <excel :statuses="statuses" :type="type" :rid="request.rid"></excel>
+                        </button>
+                        request.number,request.sum,request.customer,request.statusSelected,rid
+                        -->
+                        <excel :statuses="statuses" :type="type" :rid="request.rid" :number="request.number" :sum="request.sum" :customer="request.customer" :statusSelected="request.statusSelected"></excel>
                         <button class="request-section-table-body-header-button" @click="downloadAll(request.rid)">
                           <div class="request-section-table-body-header-button-icon" style="background: url('/cloud-download.png') no-repeat center;border-radius: 0;background-size: auto;width: 20px;"></div>
                           Скачать все
