@@ -2,6 +2,7 @@
   <div>
     <vue-custom-scrollbar class="scroll-area" :settings="{
         suppressScrollX: false,
+        minScrollbarLength: 50
       }">
       <HeaderSection></HeaderSection>
       <div class="body-section">
