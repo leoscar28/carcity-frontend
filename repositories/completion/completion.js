@@ -39,6 +39,14 @@ export default ($axios) => ({
         return error.response.data;
       });
   },
+  downloadByIds(ids) {
+    return $axios.post('/api/completion/downloadByIds/',ids)
+      .then(response => {
+        return response.data.data;
+      }).catch(error => {
+        return error.response.data;
+      });
+  },
   getByRid(rid) {
     return $axios.get('/api/completion/getByRid/'+rid)
       .then(response => {

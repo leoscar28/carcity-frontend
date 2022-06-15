@@ -58,7 +58,7 @@ export default {
           if (self.sum && self.sum.trim().replace(/\s/g, '') !== '' && !val.sum.toString().replace(/\s/g, '').includes(self.sum)) {
             stat  = false;
           }
-          if (self.customer && customer.trim() !== '' && !val.customer.trim().toLowerCase().includes(self.customer.trim().toLowerCase())) {
+          if (self.customer && customer.trim() !== '' && !val.company.trim().toLowerCase().includes(self.customer.trim().toLowerCase())) {
             stat  = false;
           }
           if (self.statusSelected && (val.upload_status_id !== self.statusSelected)) {

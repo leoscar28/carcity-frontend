@@ -148,6 +148,9 @@ export const actions = {
   async invoiceDownloadAll({commit},payload) {
     return await this.$repository.invoice.downloadAll(payload);
   },
+  async invoiceDownloadByIds({commit},payload) {
+    return await this.$repository.invoice.downloadByIds(payload);
+  },
   async invoiceDownload({commit},payload) {
     return await this.$repository.invoice.download(payload);
   },
@@ -192,6 +195,9 @@ export const actions = {
   async applicationDownloadAll({commit},payload) {
     return await this.$repository.application.downloadAll(payload);
   },
+  async applicationDownloadByIds({commit},payload) {
+    return await this.$repository.application.downloadByIds(payload);
+  },
   async applicationDownload({commit},payload) {
     return await this.$repository.application.download(payload);
   },
@@ -235,6 +241,9 @@ export const actions = {
   },
   async completionDownloadAll({commit},payload) {
     return await this.$repository.completion.downloadAll(payload);
+  },
+  async completionDownloadByIds({commit},payload) {
+    return await this.$repository.completion.downloadByIds(payload);
   },
   async completionDownload({commit},payload) {
     return await this.$repository.completion.download(payload);

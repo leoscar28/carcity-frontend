@@ -136,7 +136,7 @@
                         request.number,request.sum,request.customer,request.statusSelected,rid
                         -->
                         <excel :statuses="statuses" :type="type" :rid="request.rid" :number="request.number" :sum="request.sum" :customer="request.customer" :statusSelected="request.statusSelected"></excel>
-                        <button class="request-section-table-body-header-button" @click="downloadAll(request.rid)">
+                        <button class="request-section-table-body-header-button" @click="downloadAll(request,request.number,request.sum,request.customer,request.statusSelected)">
                           <div class="request-section-table-body-header-button-icon" style="background: url('/cloud-download.png') no-repeat center;border-radius: 0;background-size: auto;width: 20px;"></div>
                           Скачать все
                         </button>
@@ -455,7 +455,7 @@ export default {
       if (sum && sum.trim().replace(/\s/g, '') !== '' && !rid.sum.toString().replace(/\s/g, '').includes(sum)) {
         status  = false;
       }
-      if (customer && customer.trim() !== '' && !rid.customer.trim().toLowerCase().includes(customer.trim().toLowerCase())) {
+      if (customer && customer.trim() !== '' && !rid.company.trim().toLowerCase().includes(customer.trim().toLowerCase())) {
         status  = false;
       }
       if (statusSelected && (rid.upload_status_id !== statusSelected)) {
@@ -820,16 +820,44 @@ export default {
       }
       await this.getDataRequests();
     },
-    async downloadAll(rid) {
+    async downloadAll(request,number,sum,customer,statusSelected) {
       if (this.downloadStatus) {
         this.downloadStatus = false;
         let res;
+        let ids   = [];
+        request.rids.forEach(item => {
+          let stat  = true;
+          if (number && number.trim() !== '' && !item.number.trim().toLowerCase().includes(number.trim().toLowerCase())) {
+            stat  = false;
+          }
+          if (sum && sum.trim().replace(/\s/g, '') !== '' && !item.sum.toString().replace(/\s/g, '').includes(sum)) {
+            stat  = false;
+          }
+          if (customer && customer.trim() !== '' && !item.company.trim().toLowerCase().includes(customer.trim().toLowerCase())) {
+            stat  = false;
+          }
+          if (statusSelected && (item.upload_status_id  !==  statusSelected)) {
+            stat = false;
+          }
+          if (stat) {
+            ids.push(item.id);
+          }
+        });
         if (this.type === 1) {
-          res = await this.$store.dispatch('localStorage/completionDownloadAll',rid);
+          //res = await this.$store.dispatch('localStorage/completionDownloadAll',request.rid);
+          res = await this.$store.dispatch('localStorage/completionDownloadByIds',{
+            ids: ids
+          });
         } else if (this.type === 2) {
-          res = await this.$store.dispatch('localStorage/applicationDownloadAll',rid);
+          //res = await this.$store.dispatch('localStorage/applicationDownloadAll',request.rid);
+          res = await this.$store.dispatch('localStorage/applicationDownloadByIds',{
+            ids: ids
+          });
         } else if (this.type === 3) {
-          res = await this.$store.dispatch('localStorage/invoiceDownloadAll',rid);
+          //res = await this.$store.dispatch('localStorage/invoiceDownloadAll',request.rid);
+          res = await this.$store.dispatch('localStorage/invoiceDownloadByIds',{
+            ids: ids
+          });
         }
         this.downloadStatus = true;
         if (res.hasOwnProperty('message')) {
