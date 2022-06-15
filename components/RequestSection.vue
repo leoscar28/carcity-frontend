@@ -455,7 +455,7 @@ export default {
       if (sum && sum.trim().replace(/\s/g, '') !== '' && !rid.sum.toString().replace(/\s/g, '').includes(sum)) {
         status  = false;
       }
-      if (customer && customer.trim() !== '' && !rid.company.trim().toLowerCase().includes(customer.trim().toLowerCase())) {
+      if (customer && customer.trim() !== '' && !rid.customer.trim().toLowerCase().includes(customer.trim().toLowerCase())) {
         status  = false;
       }
       if (statusSelected && (rid.upload_status_id !== statusSelected)) {
@@ -833,7 +833,7 @@ export default {
           if (sum && sum.trim().replace(/\s/g, '') !== '' && !item.sum.toString().replace(/\s/g, '').includes(sum)) {
             stat  = false;
           }
-          if (customer && customer.trim() !== '' && !item.company.trim().toLowerCase().includes(customer.trim().toLowerCase())) {
+          if (customer && customer.trim() !== '' && !item.customer.trim().toLowerCase().includes(customer.trim().toLowerCase())) {
             stat  = false;
           }
           if (statusSelected && (item.upload_status_id  !==  statusSelected)) {
