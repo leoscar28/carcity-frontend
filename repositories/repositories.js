@@ -17,6 +17,8 @@ import InvoiceStatus from "~/repositories/invoiceStatus/invoiceStatus";
 import Notification from "~/repositories/notification/notification";
 import NotificationTenant from "@/repositories/notificationTenant/notificationTenant";
 
+import Room from "~/repositories/room/room";
+
 export const repository = ($axios) => ({
   user: User($axios),
 
@@ -36,4 +38,6 @@ export const repository = ($axios) => ({
 
   notification: Notification($axios),
   notificationTenant: NotificationTenant($axios),
+
+  room: Room($axios),
 })

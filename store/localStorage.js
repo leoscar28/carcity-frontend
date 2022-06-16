@@ -91,7 +91,9 @@ export const mutations = {
 }
 
 export const actions = {
-
+  async roomGetByUserId({commit},payload) {
+    return await this.$repository.room.getByUserId(payload);
+  },
   async getViewNotificationTenantCount({commit},payload) {
     let res = await this.$repository.notificationTenant.viewCount(payload);
     commit('setNotificationTenantViewCount',res);

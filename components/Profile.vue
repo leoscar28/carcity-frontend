@@ -57,12 +57,33 @@
         <div class="profile-section-main-right-fields">
           <button class="profile-section-main-right-btn" @click="save">Сохранить</button>
         </div>
+        <div class="profile-section-main-right-title">Аренда помещений</div>
+        <div class="profile-section-rooms" v-show="rooms.length > 0">
+          <div class="profile-section-rooms-item" v-for="(room,key) in rooms" :key="key">
+            <div class="profile-section-rooms-item-field">
+              <div class="profile-section-rooms-item-field-title">Ярус</div>
+              <div class="profile-section-rooms-item-field-value">{{room.tier.title}}</div>
+            </div>
+            <div class="profile-section-rooms-item-field">
+              <div class="profile-section-rooms-item-field-title">Тип помощения</div>
+              <div class="profile-section-rooms-item-field-value">{{room.roomType.title}}</div>
+            </div>
+            <div class="profile-section-rooms-item-field">
+              <div class="profile-section-rooms-item-field-title">Название</div>
+              <div class="profile-section-rooms-item-field-value">{{room.title}}</div>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </template>
 
 <script>
+/*
+{ "id": 979, "title": "319", "tier": { "id": 4, "title": "4 Ярус" }, "roomType": { "id": 1, "title": "Бутик" }, "status": 2 }
+ */
 export default {
   name: "Profile",
   computed: {
@@ -77,9 +98,11 @@ export default {
       last_name: '',
       bin: '',
       company: '',
+      rooms: []
     }
   },
-  created() {
+  async created() {
+    this.rooms  = await this.$store.dispatch('localStorage/roomGetByUserId',this.user.id);
   },
   mounted() {
     this.setData();
