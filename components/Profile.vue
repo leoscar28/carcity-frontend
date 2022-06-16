@@ -57,7 +57,7 @@
         <div class="profile-section-main-right-fields">
           <button class="profile-section-main-right-btn" @click="save">Сохранить</button>
         </div>
-        <div class="profile-section-main-right-title"v-show="rooms.length > 0">Аренда помещений</div>
+        <div class="profile-section-main-right-title"v-show="rooms.length > 0">Арендованные помещения</div>
         <div class="profile-section-rooms" v-show="rooms.length > 0">
           <div class="profile-section-rooms-item" v-for="(room,key) in rooms" :key="key">
             <div class="profile-section-rooms-item-field">
