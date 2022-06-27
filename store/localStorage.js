@@ -2,6 +2,8 @@ export const state = () => ({
   notificationModal: false,
   notificationCount: 0,
   notifications: [],
+  slider: [],
+  sliderDetail: [],
   notificationViewCount: 0,
   notificationTenantCount: 0,
   notificationsTenant: [],
@@ -29,7 +31,12 @@ export const state = () => ({
 })
 
 export const mutations = {
-
+  setSliderDetail(state,value) {
+    state.sliderDetail  = value;
+  },
+  setSlider(state,value) {
+    state.slider  = value;
+  },
   setNotificationTenantCount(state,value) {
     state.notificationTenantCount = value;
   },
@@ -91,6 +98,17 @@ export const mutations = {
 }
 
 export const actions = {
+
+  async sliderDetailGet({commit}) {
+    let res = await this.$repository.sliderDetail.get();
+    commit('setSliderDetail',res);
+  },
+
+  async sliderGet({commit}) {
+    let res = await this.$repository.slider.get();
+    commit('setSlider',res);
+  },
+
   async roomGetByUserId({commit},payload) {
     return await this.$repository.room.getByUserId(payload);
   },

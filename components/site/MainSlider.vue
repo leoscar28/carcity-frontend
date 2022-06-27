@@ -2,30 +2,12 @@
   <div id="main-slider" class="glide">
     <div class="glide__track" data-glide-el="track">
       <ul class="glide__slides">
-        <li class="glide__slide">
+        <li class="glide__slide" v-for="(slide,key) in slider" :key="key">
           <div class="main-slide">
-            <img src="~/assets/img/demo/m1.png" alt="" class="main-slide__img main-slide-m__img">
-            <img src="~/assets/img/demo/main-slide1.jpg" alt="" class="main-slide__img">
+            <img :src="slide.img" alt="" class="main-slide__img">
             <div class="main-slide__descr">
-              <p>{{language[current][0]}}</p>
-            </div>
-          </div>
-        </li>
-        <li class="glide__slide">
-          <div class="main-slide">
-            <img src="~/assets/img/demo/m2.png" alt="" class="main-slide__img main-slide-m__img">
-            <img src="~/assets/img/demo/main-slide2.jpg" alt="" class="main-slide__img">
-            <div class="main-slide__descr">
-              <p>{{language[current][1]}}</p>
-            </div>
-          </div>
-        </li>
-        <li class="glide__slide">
-          <div class="main-slide">
-            <img src="~/assets/img/demo/m3.png" alt="" class="main-slide__img main-slide-m__img">
-            <img src="~/assets/img/demo/main-slide3.jpg" alt="" class="main-slide__img">
-            <div class="main-slide__descr">
-              <p>{{language[current][2]}}</p>
+              <p v-if="current === 0">{{slide.title}}</p>
+              <p v-else>{{slide.title_kz}}</p>
             </div>
           </div>
         </li>
@@ -63,15 +45,17 @@ export default {
   computed: {
     current() {
       return this.$store.state.localStorage.current;
+    },
+    slider() {
+      return this.$store.state.localStorage.slider;
     }
+  },
+  created() {
+    this.$store.dispatch('localStorage/sliderGet');
   },
   data() {
     return {
-      language: [
-        ['Ваша машина будет довольна.\n' +
-        'Любые автомобильные запчасти высокого качества.','CarCity.kz — официальный сайт крупнейшего торгового центра автозапчастей в РК','Выгодные цены. Качественные продукты. Выгодный шоппинг.'],
-        ['Сіздің машинаңыз риза болады. Жоғары сападағы кез-келген автобөлшектер.','«Car City» СО – Орталық Азиядағы ең үлкен офлайн автобөлшектер сауда орталығы','Тиімді бағалар. Сапалы өнімдер. Пайдалы шоппинг.']
-      ]
+      language: []
     }
   }
 }

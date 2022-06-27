@@ -19,6 +19,9 @@ import NotificationTenant from "@/repositories/notificationTenant/notificationTe
 
 import Room from "~/repositories/room/room";
 
+import Slider from "~/repositories/slider/slider";
+import SliderDetail from "~/repositories/sliderDetail/sliderDetail";
+
 export const repository = ($axios) => ({
   user: User($axios),
 
@@ -40,4 +43,7 @@ export const repository = ($axios) => ({
   notificationTenant: NotificationTenant($axios),
 
   room: Room($axios),
+
+  slider: Slider($axios),
+  sliderDetail: SliderDetail($axios),
 })

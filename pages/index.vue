@@ -35,40 +35,17 @@
         <div class="container">
           <MainSlider class="mb-4" />
           <div class="row">
-            <div class="col-lg-4 mb-3 mb-lg-0">
+            <div class="col-lg-4 mb-3 mb-lg-0" v-for="(slideDetail,key) in sliderDetail" :key="key">
               <div class="panel d-flex h-100" data-aos="flip-up" data-aos-easing="ease-in-cubic">
                 <div class="flex-shrink-0 pt-1">
                   <img src="~/assets/img/icons/user-arrow.svg" width="26" height="29" alt="">
                 </div>
                 <div class="flex-grow-1 ms-3">
-                  <p class="mb-0 fs-18 fw-medium">
-                    {{language[current][3]}}
+                  <p class="mb-0 fs-18 fw-medium" v-if="current === 0">
+                    {{slideDetail.title}}
                   </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 mb-3 mb-lg-0">
-              <div class="panel d-flex h-100" data-aos="flip-up" data-aos-easing="ease-in-cubic">
-                <div class="flex-shrink-0 pt-1">
-                  <img src="~/assets/img/icons/store.svg" width="28" height="24" alt="">
-                </div>
-                <div class="flex-grow-1 ms-3">
-                  <p class="mb-0 fs-18 fw-medium">
-                    {{language[current][4]}}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 mb-3 mb-lg-0">
-              <div class="panel d-flex h-100" data-aos="flip-up" data-aos-easing="ease-in-cubic">
-                <div class="flex-shrink-0 pt-1">
-                  <img src="~/assets/img/icons/stock.svg" width="28" height="21" alt="">
-                </div>
-                <div class="flex-grow-1 ms-3">
-                  <p class="mb-0 fs-18 fw-medium">
-                    {{language[current][5]}}
+                  <p class="mb-0 fs-18 fw-medium" v-else>
+                    {{slideDetail.title_kz}}
                   </p>
                 </div>
               </div>
@@ -184,6 +161,9 @@ export default {
   computed: {
     current() {
       return this.$store.state.localStorage.current;
+    },
+    sliderDetail() {
+      return this.$store.state.localStorage.sliderDetail;
     }
   },
   methods: {
@@ -191,6 +171,9 @@ export default {
       let el  = document.getElementById('scroll');
       console.log(el.scrollTop);
     }
+  },
+  created() {
+    this.$store.dispatch('localStorage/sliderDetailGet');
   },
   data () {
     return {
