@@ -102,7 +102,12 @@ export default {
     }
   },
   async created() {
-    this.rooms  = await this.$store.dispatch('localStorage/roomGetByUserId',this.user.id);
+    if (this.user.role_id === 5) {
+      this.rooms  = await this.$store.dispatch('localStorage/roomGetByUserId',this.user.id);
+    } else {
+      this.rooms  = [];
+    }
+
   },
   mounted() {
     this.setData();
