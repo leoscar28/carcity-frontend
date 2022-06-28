@@ -57,30 +57,34 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-5 mb-3 mb-lg-0">
-              <h2 class="section-title">
-                {{language[current][1]}}
-              </h2>
-              <p class="section-paragraph">
-                {{language[current][6]}}
-              </p>
-              <p class="section-paragraph">
-                {{language[current][7]}}
-              </p>
-              <p class="section-paragraph">
-                {{language[current][8]}}
-              </p>
-              <p class="section-paragraph">
-                {{language[current][9]}}
-              </p>
+              <template v-for="(aboutItem,key) in about">
+                <h2 class="section-title" :key="key" v-if="current === 0">
+                  {{aboutItem.title}}
+                </h2>
+                <h2 class="section-title" :key="key" v-else>
+                  {{aboutItem.title_kz}}
+                </h2>
+                <p class="section-paragraph" style="white-space: pre-wrap; text-align: left" v-if="current === 0">
+                  {{aboutItem.description}}
+                </p>
+                <p class="section-paragraph" style="white-space: pre-wrap; text-align: left" v-else>
+                  {{aboutItem.description_kz}}
+                </p>
+              </template>
             </div>
             <div class="col-lg-7">
               <AboutPanel
-                v-for="item in aboutItems[current]"
+                v-for="item in aboutOption"
                 :key="item.id"
-                :icon="item.iconUrl"
+                :icon="item.img"
                 class="mb-3"
               >
-                {{ item.title }}
+                <span v-if="current === 0">
+                  {{ item.title }}
+                </span>
+                <span v-else>
+                  {{ item.title_kz }}
+                </span>
               </AboutPanel>
             </div>
           </div>
@@ -164,6 +168,12 @@ export default {
     },
     sliderDetail() {
       return this.$store.state.localStorage.sliderDetail;
+    },
+    about() {
+      return this.$store.state.localStorage.about;
+    },
+    aboutOption() {
+      return this.$store.state.localStorage.aboutOption;
     }
   },
   methods: {
@@ -174,6 +184,8 @@ export default {
   },
   created() {
     this.$store.dispatch('localStorage/sliderDetailGet');
+    this.$store.dispatch('localStorage/aboutGet');
+    this.$store.dispatch('localStorage/aboutOptionGet');
   },
   data () {
     return {

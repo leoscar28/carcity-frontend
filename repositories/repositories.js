@@ -22,6 +22,9 @@ import Room from "~/repositories/room/room";
 import Slider from "~/repositories/slider/slider";
 import SliderDetail from "~/repositories/sliderDetail/sliderDetail";
 
+import About from "~/repositories/about/about";
+import AboutOption from "@/repositories/aboutOption/aboutOption";
+
 export const repository = ($axios) => ({
   user: User($axios),
 
@@ -46,4 +49,7 @@ export const repository = ($axios) => ({
 
   slider: Slider($axios),
   sliderDetail: SliderDetail($axios),
+
+  about: About($axios),
+  aboutOption: AboutOption($axios)
 })

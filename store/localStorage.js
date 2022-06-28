@@ -4,6 +4,8 @@ export const state = () => ({
   notifications: [],
   slider: [],
   sliderDetail: [],
+  about: [],
+  aboutOption: [],
   notificationViewCount: 0,
   notificationTenantCount: 0,
   notificationsTenant: [],
@@ -31,6 +33,12 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setAboutOption(state,value) {
+    state.aboutOption = value;
+  },
+  setAbout(state,value) {
+    state.about = value;
+  },
   setSliderDetail(state,value) {
     state.sliderDetail  = value;
   },
@@ -98,6 +106,14 @@ export const mutations = {
 }
 
 export const actions = {
+  async aboutOptionGet({commit}) {
+    let res = await this.$repository.aboutOption.get();
+    commit('setAboutOption',res);
+  },
+  async aboutGet({commit}) {
+    let res = await this.$repository.about.get();
+    commit('setAbout',res);
+  },
 
   async sliderDetailGet({commit}) {
     let res = await this.$repository.sliderDetail.get();
