@@ -25,6 +25,13 @@ import SliderDetail from "~/repositories/sliderDetail/sliderDetail";
 import About from "~/repositories/about/about";
 import AboutOption from "@/repositories/aboutOption/aboutOption";
 
+import Infrastructure from "@/repositories/infrastructure/infrastructure";
+import InfrastructureOption from "@/repositories/infrastructureOption/infrastructureOption";
+
+import VehicleMaintenance from "@/repositories/vehicleMaintenance/vehicleMaintenance";
+
+import Contact from "@/repositories/contact/contact";
+
 export const repository = ($axios) => ({
   user: User($axios),
 
@@ -51,5 +58,12 @@ export const repository = ($axios) => ({
   sliderDetail: SliderDetail($axios),
 
   about: About($axios),
-  aboutOption: AboutOption($axios)
+  aboutOption: AboutOption($axios),
+
+  infrastructure: Infrastructure($axios),
+  infrastructureOption: InfrastructureOption($axios),
+
+  vehicleMaintenance: VehicleMaintenance($axios),
+
+  contact: Contact($axios),
 })

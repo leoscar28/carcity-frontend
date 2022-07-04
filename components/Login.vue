@@ -67,7 +67,7 @@ export default {
         });
         auth.goAway(0);
         if (res) {
-          await this.$router.push('dashboard');
+          await this.$router.push('invoice');
         } else {
           this.$toast.error('Не правильный логин или пароль').goAway(2000);
         }

@@ -7,10 +7,10 @@
           <div class="sidebar-section-menu-item-title">Документооборот</div>
         </div>
         <div class="sidebar-section-menu-list" v-show="dropdown">
-          <NuxtLink to="/dashboard">
-            <div class="sidebar-section-menu-list-item" :class="{'sidebar-section-menu-list-item-active':($nuxt.$route.name === 'dashboard')}">
+          <NuxtLink to="/invoice">
+            <div class="sidebar-section-menu-list-item" :class="{'sidebar-section-menu-list-item-active':($nuxt.$route.name === 'invoice')}">
               <div class="sidebar-section-menu-list-item-icon"></div>
-              <div class="sidebar-section-menu-list-item-title">Акт выполненных работ</div>
+              <div class="sidebar-section-menu-list-item-title">Счета на оплату</div>
             </div>
           </NuxtLink>
           <NuxtLink to="/application">
@@ -19,10 +19,10 @@
               <div class="sidebar-section-menu-list-item-title">Договора и приложения</div>
             </div>
           </NuxtLink>
-          <NuxtLink to="/invoice">
-            <div class="sidebar-section-menu-list-item" :class="{'sidebar-section-menu-list-item-active':($nuxt.$route.name === 'invoice')}">
+          <NuxtLink to="/dashboard">
+            <div class="sidebar-section-menu-list-item" :class="{'sidebar-section-menu-list-item-active':($nuxt.$route.name === 'dashboard')}">
               <div class="sidebar-section-menu-list-item-icon"></div>
-              <div class="sidebar-section-menu-list-item-title">Счет на оплату</div>
+              <div class="sidebar-section-menu-list-item-title">Акт выполненных работ</div>
             </div>
           </NuxtLink>
         </div>

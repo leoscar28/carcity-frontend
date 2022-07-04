@@ -31,12 +31,12 @@
               <img src="~/assets/img/icons/phone.svg" class="header__info-icon" alt="">
               <div>
                 <span class="header__info-title">{{language[current][5]}}</span>
-                <a href="tel:+77273191300" class="header__info-data">
+                <a :href="'tel:'+phone.phone" class="header__info-data" v-for="(phone,key) in contact" :key="key">
                   <template v-if="current === 0">
-                    +7 727 319 13 00
+                    {{phone.phone}}
                   </template>
                   <template v-else-if="current === 1">
-                    <span class="font-12">+7 727 319 13 00</span>
+                    <span class="font-12">{{phone.phone}}</span>
                   </template>
                 </a>
               </div>
@@ -154,13 +154,18 @@ export default {
       ]
     }
   },
-
+  created() {
+    this.$store.dispatch('localStorage/contactGet');
+  },
   computed: {
     isRentersPage () {
       return this.$route.name === 'renters'
     },
     current() {
       return this.$store.state.localStorage.current;
+    },
+    contact() {
+      return this.$store.state.localStorage.contact;
     }
   },
   beforeMount () {

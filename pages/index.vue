@@ -94,24 +94,25 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-5 text-white mb-3 mb-lg-0">
-              <h2 class="section-title">
-                {{language[current][2]}}
-              </h2>
-              <p class="section-paragraph">
-                {{language[current][10]}}
-              </p>
-              <p class="section-paragraph">
-                {{language[current][11]}}
-              </p>
-              <p class="section-paragraph">
-                {{language[current][12]}}
-              </p>
+              <template v-for="(info,key) in infrastructure">
+                <h2 class="section-title" :key="key">
+                  <template v-if="current === 0">{{info.title.trim()}}</template>
+                  <template v-else>{{info.title_kz.trim()}}</template>
+                </h2>
+                <p class="section-paragraph" style="white-space: pre-wrap; text-align: left" v-if="current === 0">{{info.description.trim()}}</p>
+                <p class="section-paragraph" style="white-space: pre-wrap; text-align: left" v-else>{{info.description_kz.trim()}}</p>
+              </template>
             </div>
             <div class="col-lg-7">
               <div class="row">
-                <div v-for="item in infrastructureItems[current]" :key="item.id" class="col-md-6 mb-3">
-                  <InfrastructurePanel :icon="item.iconUrl" class="h-100">
-                    {{ item.title }}
+                <div v-for="(item,key) in infrastructureOption" :key="key" class="col-md-6 mb-3">
+                  <InfrastructurePanel :icon="item.img" class="h-100">
+                    <template v-if="current === 0">
+                      {{ item.title }}
+                    </template>
+                    <template v-else>
+                      {{ item.title_kz }}
+                    </template>
                   </InfrastructurePanel>
                 </div>
               </div>
@@ -129,9 +130,14 @@
             </div>
           </div>
           <div class="row">
-            <div v-for="item in serviceItems[current]" :key="item.id" class="col-lg-3 col-md-6 mb-3">
-              <ServicePanel :img="item.imgUrl" class="h-100">
-                {{ item.title }}
+            <div v-for="(item,key) in vehicleMaintenance" class="col-lg-3 col-md-6 mb-3" :key="key">
+              <ServicePanel :img="item.img" class="h-100">
+                <template v-if="current === 0">
+                  {{ item.title }}
+                </template>
+                <template v-else>
+                  {{ item.title_kz }}
+                </template>
               </ServicePanel>
             </div>
           </div>
@@ -174,18 +180,24 @@ export default {
     },
     aboutOption() {
       return this.$store.state.localStorage.aboutOption;
-    }
-  },
-  methods: {
-    scrollHandle(evt) {
-      let el  = document.getElementById('scroll');
-      console.log(el.scrollTop);
+    },
+    infrastructure() {
+      return this.$store.state.localStorage.infrastructure;
+    },
+    infrastructureOption() {
+      return this.$store.state.localStorage.infrastructureOption;
+    },
+    vehicleMaintenance() {
+      return this.$store.state.localStorage.vehicleMaintenance;
     }
   },
   created() {
     this.$store.dispatch('localStorage/sliderDetailGet');
     this.$store.dispatch('localStorage/aboutGet');
     this.$store.dispatch('localStorage/aboutOptionGet');
+    this.$store.dispatch('localStorage/infrastructureGet');
+    this.$store.dispatch('localStorage/infrastructureOptionGet');
+    this.$store.dispatch('localStorage/vehicleMaintenanceGet');
   },
   data () {
     return {
@@ -203,16 +215,6 @@ export default {
         'әсер етті.','«Car City» СО кез-келген автокөлік иесін үшін төмен баға мен сапа кепілдігінің синонимі болып\n' +
         'табылады!','Сауда орталағының аймағында кез-келген маркалы көлікке автобөлшек және аксессуар сататын жүздеген дүкендер, банк, жайлы кофейнялар, банкоматтар, терминалдар орналасқан. Car City Алматы қаласындағы ең ыңғайлы жер болып табылады.','Сіз міндетті түрде бір жерден бәрін таба аласыз. Біздің қызметтер – сервистің жаңа сапалы деңгейі.','Керектің барлығы бір жерде.','Сауда орталығының іргелес аумағында автотранспортқақызмет көрсету бойынша кең қызмет тізімі бар\n' +
         'ТҚКС жұмыс істейді.']
-      ],
-      aboutItems: [
-        [{ id: 1, iconUrl: require('~/assets/img/icons/secure-check.svg'), title: 'На рынке с 2005 года' },
-          { id: 2, iconUrl: require('~/assets/img/icons/expand.svg'), title: 'Площадь торгового центра – 31 585 кв. м.' },
-          { id: 3, iconUrl: require('~/assets/img/icons/achievement.svg'), title: 'Ежегодный победитель в номинации «Лучший Автомагазин» с 2017 года' },
-          { id: 4, iconUrl: require('~/assets/img/icons/user-placemark.svg'), title: 'Удобное месторасположение по геолокации' }],
-        [{ id: 1, iconUrl: require('~/assets/img/icons/secure-check.svg'), title: '2005 жылдан бері нарықта' },
-          { id: 2, iconUrl: require('~/assets/img/icons/expand.svg'), title: 'Сауда орталығының ауданы – 31 585 ш. м.' },
-          { id: 3, iconUrl: require('~/assets/img/icons/achievement.svg'), title: '2017 жылдан бері «Ең үздік автодүкен» номинациясы бойынша жыл сайынғы жеңімпаз' },
-          { id: 4, iconUrl: require('~/assets/img/icons/user-placemark.svg'), title: 'Геолокация бойынша қолайлы орналасқан' }],
       ],
       infrastructureItems: [
         [{ id: 1, iconUrl: require('~/assets/img/icons/payment-card.svg'), title: 'Банкоматы Halyk Bank , Банк ЦентрКредит, ForteBank, Kaspi Bank, Сбербанк' },

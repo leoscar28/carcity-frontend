@@ -6,6 +6,10 @@ export const state = () => ({
   sliderDetail: [],
   about: [],
   aboutOption: [],
+  infrastructure: [],
+  infrastructureOption: [],
+  vehicleMaintenance: [],
+  contact: [],
   notificationViewCount: 0,
   notificationTenantCount: 0,
   notificationsTenant: [],
@@ -33,6 +37,18 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setContact(state,value) {
+    state.contact = value;
+  },
+  setVehicleMaintenance(state,value) {
+    state.vehicleMaintenance  = value;
+  },
+  setInfrastructureOption(state,value) {
+    state.infrastructureOption = value;
+  },
+  setInfrastructure(state,value) {
+    state.infrastructure = value;
+  },
   setAboutOption(state,value) {
     state.aboutOption = value;
   },
@@ -106,6 +122,27 @@ export const mutations = {
 }
 
 export const actions = {
+
+  async contactGet({commit}) {
+    let res = await this.$repository.contact.get();
+    commit('setContact',res);
+  },
+
+  async vehicleMaintenanceGet({commit}) {
+    let res = await this.$repository.vehicleMaintenance.get();
+    commit('setVehicleMaintenance',res);
+  },
+
+  async infrastructureOptionGet({commit}) {
+    let res = await this.$repository.infrastructureOption.get();
+    commit('setInfrastructureOption',res);
+  },
+
+  async infrastructureGet({commit}) {
+    let res = await this.$repository.infrastructure.get();
+    commit('setInfrastructure',res);
+  },
+
   async aboutOptionGet({commit}) {
     let res = await this.$repository.aboutOption.get();
     commit('setAboutOption',res);
