@@ -32,6 +32,8 @@ import VehicleMaintenance from "@/repositories/vehicleMaintenance/vehicleMainten
 
 import Contact from "@/repositories/contact/contact";
 
+import TermsOfUse from "@/repositories/termsOfUse/termsOfUse";
+
 export const repository = ($axios) => ({
   user: User($axios),
 
@@ -66,4 +68,6 @@ export const repository = ($axios) => ({
   vehicleMaintenance: VehicleMaintenance($axios),
 
   contact: Contact($axios),
+
+  termsOfUse: TermsOfUse($axios),
 })

@@ -122,7 +122,9 @@ export const mutations = {
 }
 
 export const actions = {
-
+  async termsOfUseGet({commit}) {
+    return this.$repository.termsOfUse.get();
+  },
   async contactGet({commit}) {
     let res = await this.$repository.contact.get();
     commit('setContact',res);
