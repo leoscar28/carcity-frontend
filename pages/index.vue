@@ -224,38 +224,6 @@ export default {
         'табылады!','Сауда орталағының аймағында кез-келген маркалы көлікке автобөлшек және аксессуар сататын жүздеген дүкендер, банк, жайлы кофейнялар, банкоматтар, терминалдар орналасқан. Car City Алматы қаласындағы ең ыңғайлы жер болып табылады.','Сіз міндетті түрде бір жерден бәрін таба аласыз. Біздің қызметтер – сервистің жаңа сапалы деңгейі.','Керектің барлығы бір жерде.','Сауда орталығының іргелес аумағында автотранспортқақызмет көрсету бойынша кең қызмет тізімі бар\n' +
         'ТҚКС жұмыс істейді.']
       ],
-      infrastructureItems: [
-        [{ id: 1, iconUrl: require('~/assets/img/icons/payment-card.svg'), title: 'Банкоматы Halyk Bank , Банк ЦентрКредит, ForteBank, Kaspi Bank, Сбербанк' },
-          { id: 2, iconUrl: require('~/assets/img/icons/bank.svg'), title: 'Отделение банка НурБанк' },
-          { id: 3, iconUrl: require('~/assets/img/icons/monitor.svg'), title: 'Терминалы 24KZ, QIWI, Interpay, Kaspi Postomat' },
-          { id: 4, iconUrl: require('~/assets/img/icons/cup.svg'), title: 'Кофейни' },
-          { id: 5, iconUrl: require('~/assets/img/icons/user-arrow.svg'), title: 'Услуги курьерской службы - AlemTat, Avis Logistics' },
-          { id: 6, iconUrl: require('~/assets/img/icons/car.svg'), title: 'Парковка на 500 автомашин' }],
-        [{ id: 1, iconUrl: require('~/assets/img/icons/payment-card.svg'), title: 'Halyk Bank , Банк ЦентрКредит, ForteBank, Kaspi Bank, Сбербанк банкоматтары' },
-          { id: 2, iconUrl: require('~/assets/img/icons/bank.svg'), title: 'Нұрбанк банкінің бөлімшесі' },
-          { id: 3, iconUrl: require('~/assets/img/icons/monitor.svg'), title: '24KZ, QIWI, Interpay, Kaspi Postomat терминалдары' },
-          { id: 4, iconUrl: require('~/assets/img/icons/cup.svg'), title: 'Кофейнялар' },
-          { id: 5, iconUrl: require('~/assets/img/icons/user-arrow.svg'), title: 'Алем ТАТ, Avis Logistics курьерлік компанияларының қызметтері' },
-          { id: 6, iconUrl: require('~/assets/img/icons/car.svg'), title: '500 автокөлікке арналған көлік қоятын орын' }]
-      ],
-      serviceItems: [
-        [{ id: 1, imgUrl: require('~/assets/img/demo/service1.png'), title: 'Пункт замены масла' },
-          { id: 2, imgUrl: require('~/assets/img/demo/service2.png'), title: 'Геометрия ходовой части' },
-          { id: 3, imgUrl: require('~/assets/img/demo/service3.png'), title: 'Токарные работы' },
-          { id: 4, imgUrl: require('~/assets/img/demo/service4.png'), title: 'Компьютерная диагностика' },
-          { id: 5, imgUrl: require('~/assets/img/demo/service5.png'), title: 'Реставрация трещин лобовых стёкол' },
-          { id: 6, imgUrl: require('~/assets/img/demo/service6.png'), title: 'Заправка кондиционеров' },
-          { id: 7, imgUrl: require('~/assets/img/demo/service7.png'), title: 'Ремонт двигателя, ходовой части' },
-          { id: 8, imgUrl: require('~/assets/img/demo/service8.png'), title: 'Шиномонтаж' }],
-        [{ id: 1, imgUrl: require('~/assets/img/demo/service1.png'), title: 'Май алмастыру пункті' },
-          { id: 2, imgUrl: require('~/assets/img/demo/service2.png'), title: 'Жүрістік бөлігінің геометриясы' },
-          { id: 3, imgUrl: require('~/assets/img/demo/service3.png'), title: 'Жону жұмыстары' },
-          { id: 4, imgUrl: require('~/assets/img/demo/service4.png'), title: 'Компьютерлік диагностика' },
-          { id: 5, imgUrl: require('~/assets/img/demo/service5.png'), title: 'Алдыңғы әйнектегі сызаттарды қалпына келтіру' },
-          { id: 6, imgUrl: require('~/assets/img/demo/service6.png'), title: 'Кондиционерлерді қайта толтыру' },
-          { id: 7, imgUrl: require('~/assets/img/demo/service7.png'), title: 'Қозғалтқыш және жүрістік бөлікті жөндеу' },
-          { id: 8, imgUrl: require('~/assets/img/demo/service8.png'), title: 'Доңғалақ ауыстыру' }]
-      ]
     }
   },
   head: {

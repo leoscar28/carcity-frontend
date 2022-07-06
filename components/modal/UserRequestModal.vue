@@ -84,7 +84,6 @@
         return !this.form.phone || !this.form.category_id || !this.form.brand_id || !this.form.description;
       }
     },
-    props:['show'],
     emits:['success', 'cancel'],
     methods:{
       clearForm(){

@@ -1,6 +1,6 @@
 export default function ({ store, redirect }) {
   if (store.state.localStorage.user) {
-    if (store.state.localStorage.user.role_id != 5) {
+    if (store.state.localStorage.user.role_id !== 5) {
       return redirect('/dashboard')
     }
     return redirect('/profile')

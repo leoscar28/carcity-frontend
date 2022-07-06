@@ -80,6 +80,7 @@ export default {
   },
   axios: {
     baseURL: 'http://127.0.0.1:8000',
+    imageUrl: 'https://storage.car-city.kz'
   },
   router: {
     scrollBehavior (to) {
