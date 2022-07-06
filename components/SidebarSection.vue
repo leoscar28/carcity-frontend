@@ -90,11 +90,16 @@ export default {
   name: "SidebarSection",
   data() {
     return {
-      dropdown: false
+      dropdown: ''
     }
   },
   created() {
     this.check();
+  },
+  computed:{
+    user() {
+      return this.$store.state.localStorage.user;
+    },
   },
   methods: {
     check() {

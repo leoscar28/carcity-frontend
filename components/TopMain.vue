@@ -12,7 +12,7 @@
     </div>
     <div class="top-main-right" v-show="!user">
       <div class="top-main-right-login">
-        <NuxtLink :to="{ name: 'partner' }">
+        <NuxtLink to="/login">
           <button class="top-main-right-login-btn">Войти</button>
         </NuxtLink>
         <NuxtLink :to="{ name: 'reset' }" class="top-main-right-login-title">
