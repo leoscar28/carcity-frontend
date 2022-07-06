@@ -33,7 +33,7 @@ export default {
       }*/
     ],
   },
-  middleware: ['guest'],
+  middleware: ['guest', 'dashboard'],
   name: "index",
   components: {SignatureLoading,vueCustomScrollbar,RequestComment},
   data() {

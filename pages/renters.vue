@@ -5,7 +5,7 @@
       }">
       <TheHeader>
         <template #actions>
-          <NuxtLink to="/partner" class="btn btn-outline-primary">
+          <NuxtLink to="/login" class="btn btn-outline-primary">
             <span class="d-none d-sm-inline">{{language[current][0]}}</span>
             <svg
               class="d-sm-none"

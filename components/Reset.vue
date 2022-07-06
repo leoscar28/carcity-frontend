@@ -14,7 +14,7 @@
           <button>Сбросить по номеру телефона</button>
         </div>
       </NuxtLink>
-      <NuxtLink to="/partner">
+      <NuxtLink to="/login">
         <div class="login-remembered">Я вспомнил пароль</div>
       </NuxtLink>
     </div>

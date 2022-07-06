@@ -76,6 +76,7 @@ export default {
   },
   env: {
     baseUrl: 'http://127.0.0.1:8000',
+    imageUrl: 'http://storage.car-city.kz/'
   },
   axios: {
     baseURL: 'http://127.0.0.1:8000',

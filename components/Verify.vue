@@ -110,7 +110,7 @@ export default {
     },
     async cancel() {
       this.$store.commit('localStorage/cancelRestoreUser');
-      await this.$router.push('partner');
+      await this.$router.push('/login');
     },
     async checkCode() {
       if (this.status) {
@@ -126,7 +126,8 @@ export default {
         this.status = false;
         let user  = this.restoreUser;
         let data  = {
-          id: user.id
+          id: user.id,
+          restore: true
         };
         if (this.type === 1) {
           data.phone_check  = parseInt(this.code.join(''));

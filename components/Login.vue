@@ -47,6 +47,9 @@ export default {
     },
     rules() {
       return this.$store.state.localStorage.rules;
+    },
+    user() {
+      return this.$store.state.localStorage.user
     }
   },
   methods: {
@@ -67,7 +70,11 @@ export default {
         });
         auth.goAway(0);
         if (res) {
-          await this.$router.push('invoice');
+          if (this.user.role_id === 5) {
+            await this.$router.push('/profile');
+          } else {
+            await this.$router.push('/invoice');
+          }
         } else {
           this.$toast.error('Не правильный логин или пароль').goAway(2000);
         }

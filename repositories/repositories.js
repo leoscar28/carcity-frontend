@@ -34,6 +34,15 @@ import Contact from "@/repositories/contact/contact";
 
 import TermsOfUse from "@/repositories/termsOfUse/termsOfUse";
 
+import DictionaryBrand from "/repositories/dictionaryBrand/dictionaryBrand";
+import DictionaryService from "/repositories/dictionaryService/dictionaryService";
+import DictionarySparePart from "/repositories/dictionarySparePart/dictionarySparePart";
+
+import UserBanner from "/repositories/userBanner/userBanner";
+import UserReview from "/repositories/userReview/userReview";
+import UserRequest from "/repositories/userRequest/userRequest";
+import UserFavorite from "/repositories/userFavorite/userFavorite";
+
 export const repository = ($axios) => ({
   user: User($axios),
 
@@ -70,4 +79,13 @@ export const repository = ($axios) => ({
   contact: Contact($axios),
 
   termsOfUse: TermsOfUse($axios),
+
+  dictionaryBrand: DictionaryBrand($axios),
+  dictionaryService: DictionaryService($axios),
+  dictionarySparePart: DictionarySparePart($axios),
+
+  userBanner: UserBanner($axios),
+  userReview: UserReview($axios),
+  userRequest: UserRequest($axios),
+  userFavorite: UserFavorite($axios)
 })

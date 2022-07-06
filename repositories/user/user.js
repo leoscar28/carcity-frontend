@@ -39,6 +39,14 @@ export default ($axios) => ({
         return false;
       });
   },
+  registration(data) {
+    return $axios.post('/api/user/registration',data)
+      .then(response => {
+        return response.data.data;
+      }).catch(error => {
+        return error.response.data;
+      });
+  },
   changePassword(data) {
     return $axios.post('/api/user/password/'+data.id,data.data).then(response => {
       return response.data;

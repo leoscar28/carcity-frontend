@@ -2,20 +2,18 @@
   <div class="request-section">
     <div class="request-section-main">
       <div class="request-section-main-header">
-        <div class="request-section-main-header-title" v-if="type === 1">Акт выполненных работ</div>
-        <div class="request-section-main-header-title" v-else-if="type === 2">Договора и приложения</div>
-        <div class="request-section-main-header-title" v-else-if="type === 3">Счета на оплату</div>
-        <button class="request-section-main-header-filter" @click="$store.commit('localStorage/toggleFilter')">
-          <i class="request-section-main-header-filter-icon"></i>
-          Фильтр
-        </button>
+        <div class="request-section-main-header-title">{{ title }}</div>
+        <div class="request-section-main-header-sub-buttons">
+          <button v-if="type === 5 && user.role_id === 1" @click="$store.commit('localStorage/setUserBannerModalOne', true)" class="request-section-main-header-sub-buttons-ad">Подать объявление</button>
+          <button class="request-section-main-header-sub-buttons-filter" @click="$store.commit('localStorage/toggleFilter')"><i class="request-section-main-header-sub-buttons-filter-icon"></i>Фильтр</button>
+        </div>
       </div>
       <div class="request-section-main-filter" v-show="filter">
         <div class="request-section-main-filter-item-input" v-if="user.role_id === 1 && type !== 2">
           <div class="request-section-main-filter-item-input-icon matrix"></div>
           <input type="text" placeholder="Сумма" v-model="sum">
         </div>
-        <div class="request-section-main-filter-item-input">
+        <div v-if="![4,5,6,'review', 'request'].includes(type)" class="request-section-main-filter-item-input">
           <select class="request-section-main-filter-item-input-select" v-model="upload_status_id">
             <option :value="null">Все статусы</option>
             <template v-if="(type === 3 && user.role_id !== 4 && user.role_id !== 1) || user.role_id === 3 || user.role_id === 2">
@@ -35,6 +33,34 @@
             </template>
           </select>
         </div>
+        <div v-if="type === 'review'" class="request-section-main-filter-item-input">
+          <select class="request-section-main-filter-item-input-select" v-model="review_status">
+            <option :value="null">Все статусы</option>
+            <option :value="10">Опубликованные</option>
+            <option :value="40">Удаленные</option>
+          </select>
+        </div>
+        <template v-if="type === 'request'">
+          <div v-if="user.role_id !== 1"  class="request-section-main-filter-item-input">
+            <select class="request-section-main-filter-item-input-select" v-model="request_status">
+              <option :value="null">Все статусы</option>
+              <option :value="10">Активные запросы</option>
+              <option :value="40">Не активные</option>
+            </select>
+          </div>
+          <div class="request-section-main-filter-item-input">
+            <select class="request-section-main-filter-item-input-select" v-model="category_id">
+              <option :value="null">Все категории</option>
+              <option v-for="item in categories" :value="item.id">{{item.name}}</option>
+            </select>
+          </div>
+          <div class="request-section-main-filter-item-input">
+            <select class="request-section-main-filter-item-input-select" v-model="brand_id">
+              <option :value="null">Все марки</option>
+              <option v-for="item in brands" :value="item.id">{{item.name}}</option>
+            </select>
+          </div>
+        </template>
 <!--        <div class="request-section-main-filter-item-input">
           <div class="request-section-main-filter-item-input-icon building"></div>
           <input type="text" placeholder="Компания" v-model="company">
@@ -53,6 +79,34 @@
         </div>
       </div>
       <request-section-footer :paginate="paginate" :pages="pages" :take="take" :range="range" @up="up" @down="down" @setRange="setRange" @setPaginate="setPaginate" @setTake="setTake"></request-section-footer>
+      <template v-if="[4,5,6].includes(this.type)">
+        <template v-if="requests.length">
+          <WidgetUserBanner v-for="(item, index) in requests" :key="item.id" :item="item" @refresh="getDataRequests"/>
+        </template>
+        <div v-else class="request-section-main-table-empty">
+          <img src="/empty_box.png" />
+          <p>Пока здесь нет объявлений</p>
+        </div>
+      </template>
+      <template v-else-if="this.type === 'review'">
+        <template v-if="requests.length">
+          <WidgetReviewWithBanner v-for="(item, index) in requests" :key="item.id" :item="item"/>
+        </template>
+        <div v-else class="request-section-main-table-empty">
+          <img src="/empty_box.png" />
+          <p>Пока здесь нет отзывов</p>
+        </div>
+      </template>
+      <template v-else-if="this.type === 'request'">
+        <template v-if="requests.length">
+          <WidgetUserRequest v-for="(item, index) in requests" :key="item.id" :item="item"/>
+        </template>
+        <div v-else class="request-section-main-table-empty">
+          <img src="/empty_box.png" />
+          <p>Пока здесь нет заявок</p>
+        </div>
+      </template>
+      <template v-else>
       <table class="request-section-main-table" v-if="user.role_id !== 1 && requests.length > 0">
         <thead>
           <tr>
@@ -276,9 +330,11 @@
           </tr>
         </tbody>
       </table>
+      </template>
       <div class="request-section-main-table-empty" v-else>Записей не найдено</div>
       <request-section-footer :paginate="paginate" :pages="pages" :take="take" :range="range" @up="up" @down="down" @setRange="setRange" @setPaginate="setPaginate" @setTake="setTake"></request-section-footer>
     </div>
+    <UserBannerModal v-if="type === 5" @saved="getDataRequests"/>
   </div>
 </template>
 
@@ -287,11 +343,42 @@ import DatePicker from 'vue2-datepicker';
 DatePicker.locale('ru');
 import 'vue2-datepicker/index.css';
 import {Signa} from "~/utils/signa";
+import WidgetUserBanner from "./WidgetUserBanner";
+import UserBannerModal from "./modal/UserBannerModal";
+import RequestSectionFooter from "./RequestSectionFooter";
+import UserBannerComment from "./modal/UserBannerComment";
+import WidgetReviewWithBanner from "./WidgetReviewWithBanner";
+import WidgetUserRequest from "./WidgetUserRequest";
 export default {
   name: "RequestSection",
   props: ['type','requestChange'],
-  components: {DatePicker},
+  components: {
+    WidgetUserRequest,
+    WidgetReviewWithBanner,
+    UserBannerComment, RequestSectionFooter, UserBannerModal, WidgetUserBanner, DatePicker},
   computed: {
+    title(){
+      switch (this.type) {
+        case 1:
+          return 'Акт выполненных работ';
+        case 2:
+          return 'Договора и приложения';
+        case 3:
+          return 'Счета на оплату';
+        case 4:
+          return 'Новые объявления';
+        case 5:
+          return 'Объявления';
+        case 6:
+          return 'Неактивные объявления';
+        case 'review':
+          return 'Отзывы';
+        case 'request':
+          return 'Заявки';
+        default:
+          return 'Без заголовка'
+      }
+    },
     filter() {
       return this.$store.state.localStorage.filter;
     },
@@ -385,6 +472,13 @@ export default {
       company: '',
       number: '',
       requests: [],
+      editable: false,
+      review_status: null,
+      request_status: null,
+      category_id: null,
+      brand_id: null,
+      brands:[],
+      categories:[]
     }
   },
   mounted() {
@@ -429,6 +523,8 @@ export default {
       this.setPage();
       await this.getStatuses();
       await this.getDataRequests();
+      this.categories = await this.$store.dispatch('localStorage/listDictionarySpareParts');
+      this.brands = await this.$store.dispatch('localStorage/listDictionaryBrands');
     }
   },
   methods: {
@@ -742,8 +838,42 @@ export default {
         data.created_at = start.getFullYear()+'-'+(start.getMonth()+1)+'-'+start.getDate()+'_'+end.getFullYear()+'-'+(end.getMonth()+1)+'-'+end.getDate();
       }
 
+      if (this.type === 'request') {
+        if (this.brand_id) {
+          data['brand_id'] = this.brand_id;
+        }
+        if (this.category_id) {
+          data['category_id'] = this.category_id;
+        }
+      }
+
       if (this.user.role_id === 1) {
         data.bin  = this.user.bin;
+        if (['request', 'review'].includes(this.type)) {
+          data.customer_id = this.user.id
+          if (this.type === 'request') {
+            data.status = [10];
+          }
+
+        } else {
+          data.user_id = this.user.id
+        }
+      } else {
+        if (this.type === 'review' && this.review_status) {
+          data.status = [this.review_status]
+        }
+        if (this.type === 'request' && this.request_status) {
+          data.status = [this.request_status]
+        }
+      }
+      if ([4,5,6].includes(this.type)) {
+        if (this.type === 4) {
+          data.type = 'new';
+        } else if (this.type === 6) {
+          data.type = 'inactive';
+        } else if (this.type === 5 && this.user.role_id !== 1) {
+          data.type = 'active';
+        }
       }
 
       if (this.user.role_id !== 1) {
@@ -756,7 +886,17 @@ export default {
         } else if (this.type === 3) {
           this.pages  = await this.$store.dispatch('localStorage/getInvoiceDatePages', data);
           this.requests = await this.$store.dispatch('localStorage/getInvoiceDates', data);
+        } else if ([4,5,6].includes(this.type)) {
+          this.pages  = await this.$store.dispatch('localStorage/getUserBannerPages', data);
+          this.requests = await this.$store.dispatch('localStorage/getUserBanners', data);
+        } else if (this.type === 'request') {
+          this.pages  = await this.$store.dispatch('localStorage/getUserRequestsPages', data);
+          this.requests = await this.$store.dispatch('localStorage/getUserRequests', data);
+        } else if (this.type === 'review') {
+          this.pages  = await this.$store.dispatch('localStorage/getUserReviewsPages', data);
+          this.requests = await this.$store.dispatch('localStorage/getUserReviews', data);
         }
+
       } else {
         if (this.type === 1) {
           this.pages  = await this.$store.dispatch('localStorage/getCompletionPages', data);
@@ -767,6 +907,15 @@ export default {
         } else if (this.type === 3) {
           this.pages  = await this.$store.dispatch('localStorage/getInvoicePages', data);
           this.requests = await this.$store.dispatch('localStorage/getInvoices', data);
+        } else if ([4,5,6].includes(this.type)) {
+          this.pages  = await this.$store.dispatch('localStorage/getUserBannerPages', data);
+          this.requests = await this.$store.dispatch('localStorage/getUserBanners', data);
+        } else if (this.type === 'request') {
+          this.pages  = await this.$store.dispatch('localStorage/getUserRequestsPages', data);
+          this.requests = await this.$store.dispatch('localStorage/getUserRequests', data);
+        } else if (this.type === 'review') {
+          this.pages  = await this.$store.dispatch('localStorage/getUserReviewsPages', data);
+          this.requests = await this.$store.dispatch('localStorage/getUserReviews', data);
         }
       }
       this.load = true;
@@ -804,6 +953,12 @@ export default {
         await this.$store.dispatch('localStorage/getApplicationStatuses');
       } else if (this.type === 3) {
         await this.$store.dispatch('localStorage/getInvoiceStatuses');
+      } else if ([4,5,6].includes(this.type)) {
+        if (this.user.role_id === 1) {
+          await this.$store.dispatch('localStorage/getUserBannerStatuses');
+        } else {
+          await this.$store.dispatch('localStorage/getManagerBannerStatuses');
+        }
       }
     },
     async deleteTenant(id,rid) {

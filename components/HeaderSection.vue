@@ -180,7 +180,7 @@ export default {
     },
     logout() {
       this.$store.commit('localStorage/setUser',false);
-      this.$router.replace({path: '/partner'});
+      this.$router.replace({path: '/login'});
     },
     hideNotifications() {
       this.notificationShow = false;

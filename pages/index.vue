@@ -31,9 +31,14 @@
       </template>
     </TheHeader>
     <main>
+
+
       <section class="hero">
         <div class="container">
           <MainSlider class="mb-4" />
+
+          <UserBannerSection />
+
           <div class="row">
             <div class="col-lg-4 mb-3 mb-lg-0" v-for="(slideDetail,key) in sliderDetail" :key="key">
               <div class="panel d-flex h-100" data-aos="flip-up" data-aos-easing="ease-in-cubic">
@@ -53,6 +58,7 @@
           </div>
         </div>
       </section>
+
       <section id="about" class="about section">
         <div class="container">
           <div class="row">
@@ -163,9 +169,11 @@ import ServicePanel from '/components/site/ServicePanel';
 import TheFooter from "/components/site/TheFooter";
 import vueCustomScrollbar from 'vue-custom-scrollbar'
 import "vue-custom-scrollbar/dist/vueScrollbar.css"
+import UserBannerSection from "../components/UserBannerSection";
 export default {
   name: 'IndexPage',
   components: {
+    UserBannerSection,
     vueCustomScrollbar,LinkScrollTo,TheHeader,MainSlider,AboutPanel,InfrastructurePanel,ServicePanel,TheFooter
   },
   computed: {

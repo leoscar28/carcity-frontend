@@ -37,6 +37,10 @@
       border-radius: 5px;
       font-size: 12px;
       background: #fafafa;
+
+      &.is-error {
+        border-color: #f5222d;
+      }
     }
   }
   &-input {

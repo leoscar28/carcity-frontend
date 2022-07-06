@@ -2,11 +2,11 @@
   <div class="sidebar-section" :class="{'sidebar-section-show':$store.state.localStorage.sidebar}" @click="$store.commit('localStorage/closeSidebar');">
     <div class="sidebar-section-menu">
       <div class="sidebar-section-menu-item sidebar-section-menu-item-arrow" :class="{'sidebar-section-menu-item-arrow-active':dropdown}">
-        <div @click.stop="dropdown = !dropdown">
+        <div @click.stop="dropdown = 'docs'">
           <div class="sidebar-section-menu-item-icon sidebar-section-menu-item-icon-folder"></div>
           <div class="sidebar-section-menu-item-title">Документооборот</div>
         </div>
-        <div class="sidebar-section-menu-list" v-show="dropdown">
+        <div class="sidebar-section-menu-list" v-show="dropdown === 'docs'">
           <NuxtLink to="/invoice">
             <div class="sidebar-section-menu-list-item" :class="{'sidebar-section-menu-list-item-active':($nuxt.$route.name === 'invoice')}">
               <div class="sidebar-section-menu-list-item-icon"></div>
@@ -27,14 +27,44 @@
           </NuxtLink>
         </div>
       </div>
-      <NuxtLink to="/ad">
-        <div class="sidebar-section-menu-item" :class="{'sidebar-section-menu-item-active':($nuxt.$route.name === 'ad')}">
-          <div>
-            <div class="sidebar-section-menu-item-icon sidebar-section-menu-item-icon-briefcase"></div>
-            <div class="sidebar-section-menu-item-title">Подача объявлений</div>
-          </div>
+      <div class="sidebar-section-menu-item sidebar-section-menu-item-arrow" :class="{'sidebar-section-menu-item-arrow-active':dropdown === 'ads'}">
+        <div @click="dropdown = 'ads'">
+          <div class="sidebar-section-menu-item-icon sidebar-section-menu-item-icon-folder"></div>
+          <div class="sidebar-section-menu-item-title">Объявления</div>
         </div>
-      </NuxtLink>
+        <div class="sidebar-section-menu-list" v-show="dropdown === 'ads'">
+          <NuxtLink v-if="user.role_id !== 1" to="/ads/new">
+            <div class="sidebar-section-menu-list-item" :class="{'sidebar-section-menu-list-item-active':($nuxt.$route.name === 'ads-new')}">
+              <div class="sidebar-section-menu-list-item-icon"></div>
+              <div class="sidebar-section-menu-list-item-title">Новые</div>
+            </div>
+          </NuxtLink>
+          <NuxtLink to="/ads/active">
+            <div class="sidebar-section-menu-list-item" :class="{'sidebar-section-menu-list-item-active':($nuxt.$route.name === 'ads-active')}">
+              <div class="sidebar-section-menu-list-item-icon"></div>
+              <div class="sidebar-section-menu-list-item-title">Активные</div>
+            </div>
+          </NuxtLink>
+          <NuxtLink to="/ads/inactive">
+            <div class="sidebar-section-menu-list-item" :class="{'sidebar-section-menu-list-item-active':($nuxt.$route.name === 'ads-inactive')}">
+              <div class="sidebar-section-menu-list-item-icon"></div>
+              <div class="sidebar-section-menu-list-item-title">Неактивные</div>
+            </div>
+          </NuxtLink>
+          <NuxtLink to="/ads/requests">
+            <div class="sidebar-section-menu-list-item" :class="{'sidebar-section-menu-list-item-active':($nuxt.$route.name === 'ads-requests')}">
+              <div class="sidebar-section-menu-list-item-icon"></div>
+              <div class="sidebar-section-menu-list-item-title">Заявки покупателей</div>
+            </div>
+          </NuxtLink>
+          <NuxtLink v-if="user.role_id !== 1" to="/ads/reviews">
+            <div class="sidebar-section-menu-list-item" :class="{'sidebar-section-menu-list-item-active':($nuxt.$route.name === 'ads-reviews')}">
+              <div class="sidebar-section-menu-list-item-icon"></div>
+              <div class="sidebar-section-menu-list-item-title">Отзывы</div>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
       <NuxtLink to="/rule">
         <div class="sidebar-section-menu-item" :class="{'sidebar-section-menu-item-active':($nuxt.$route.name === 'rule')}">
           <div>
@@ -69,7 +99,10 @@ export default {
   methods: {
     check() {
       if (['dashboard','application','invoice'].includes(this.$nuxt.$route.name)) {
-        this.dropdown = true;
+        this.dropdown = 'docs';
+      }
+      if (this.$nuxt.$route.name.includes('ads-')) {
+        this.dropdown = 'ads';
       }
     }
   }

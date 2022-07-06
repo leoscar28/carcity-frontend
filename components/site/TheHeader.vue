@@ -80,7 +80,7 @@
 
           <div>
             <template v-if="isRentersPage">
-              <NuxtLink to="partner" class="btn btn-outline-primary">
+              <NuxtLink to="/login" class="btn btn-outline-primary">
                 <span class="d-none d-sm-inline">{{language[current][3]}}</span>
                 <svg
                   class="d-sm-none"
@@ -124,26 +124,50 @@
     <div v-if="!isRentersPage" class="header__navbar hide-mob">
       <div class="container">
         <nav class="header__nav">
-          <NuxtLink :to="{ name: 'index', hash: '#about' }" class="header__nav-link">
-            {{language[current][0]}}
-          </NuxtLink>
-          <NuxtLink :to="{ name: 'index', hash: '#infrastructure' }" class="header__nav-link">
-            {{language[current][1]}}
-          </NuxtLink>
-          <!--        <NuxtLink :to="{ name: 'index', hash: '#about' }" class="header__nav-link">-->
-          <!--          План помещений-->
-          <!--        </NuxtLink>-->
+          <template v-if="isPromotionsPage">
+            <NuxtLink to="/" class="header__nav-link d-flex align-items-center"><Icon name="shop_blue" class="d-block"/> Список бутиков</NuxtLink>
+            <div v-if="isSimplyUser" @click="$store.commit('localStorage/setUserRequestModal',true)" class="header__nav-link d-flex align-items-center"><Icon name="keys_blue"  class="d-block"/> Подать заявку на запчасть</div>
+
+            <div class="header__nav__buttons">
+              <template v-if="!user">
+                <NuxtLink to="/login" class="btn btn-outline-primary">Войти</NuxtLink>
+                <NuxtLink to="/registration" class="btn btn-primary">Регистрация</NuxtLink>
+              </template>
+              <template v-else>
+                <UserMenu/>
+              </template>
+            </div>
+          </template>
+          <template v-else>
+            <NuxtLink :to="{ name: 'index', hash: '#about' }" class="header__nav-link">{{language[current][0]}}</NuxtLink>
+            <NuxtLink :to="{ name: 'index', hash: '#infrastructure' }" class="header__nav-link">{{language[current][1]}}</NuxtLink>
+
+            <div class="header__nav__buttons">
+              <template v-if="!user">
+                <NuxtLink to="/login" class="btn btn-outline-primary">Войти</NuxtLink>
+                <NuxtLink to="/registration" class="btn btn-primary">Регистрация</NuxtLink>
+              </template>
+              <template v-else>
+                <UserMenu/>
+              </template>
+            </div>
+          </template>
         </nav>
       </div>
     </div>
+    <UserRequestModal/>
   </header>
+
 </template>
 
 <script>
 import { throttle } from '~/utils/utils'
 import LocaleDropdown from "@/components/site/LocaleDropdown";
+import Icon from "../icons/Icon";
+import UserMenu from "../UserMenu";
+import UserRequestModal from "../modal/UserRequestModal";
 export default {
-  components: {LocaleDropdown},
+  components: {UserRequestModal, UserMenu, Icon, LocaleDropdown},
   data () {
     this.handleScrollThrottled = throttle(this.handleScroll, 100)
     return {
@@ -158,6 +182,9 @@ export default {
     this.$store.dispatch('localStorage/contactGet');
   },
   computed: {
+    isPromotionsPage() {
+      return this.$route.name.includes('promotions');
+    },
     isRentersPage () {
       return this.$route.name === 'renters'
     },
@@ -166,6 +193,12 @@ export default {
     },
     contact() {
       return this.$store.state.localStorage.contact;
+    },
+    user(){
+      return this.$store.state.localStorage.user;
+    },
+    isSimplyUser(){
+      return this.user.role_id === 5 || !this.user;
     }
   },
   beforeMount () {

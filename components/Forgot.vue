@@ -22,7 +22,7 @@
           <button @click="restore">Отправить запрос</button>
         </div>
       </template>
-      <NuxtLink to="/partner">
+      <NuxtLink to="/login">
         <div class="login-remembered">Я вспомнил пароль</div>
       </NuxtLink>
     </div>

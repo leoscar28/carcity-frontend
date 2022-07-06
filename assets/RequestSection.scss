@@ -1,5 +1,15 @@
 .request-section {
   margin: 20px;
+
+  .widget-request, .widget-review-with-banner {
+    font-size:14px;
+    border-radius: 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  @media (max-width:960px) {
+    margin: 0 0 16px;
+  }
   &-table {
     &-body {
       background: rgb(240 250 250);
@@ -338,6 +348,11 @@
     overflow: hidden;
     background: #fff;
     border-radius: 5px;
+
+    @media (max-width:960px) {
+      border-radius: 0;
+    }
+
     &-error {
       display: flex;
       flex-direction: column;
@@ -663,25 +678,45 @@
       height: 54px;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       padding: 0 10px 0 10px;
       border-bottom: 1px solid #f4f4f4;
-      &-filter {
-        margin-left: auto;
-        border-radius: 5px;
-        font-size: 12px;
+      &-sub-buttons {
         display: flex;
-        grid-gap: 5px;
-        gap: 5px;
-        border: 1px solid #f4f4f4;
-        height: 34px;
-        background: #fafafa;
-        align-items: center;
-        padding: 0 10px 0 10px;
-        cursor: pointer;
-        &-icon {
-          width: 16px;
-          height: 16px;
-          background: url('/filter.png') no-repeat center;
+        grid-gap: 8px;
+        &-filter {
+          margin-left: auto;
+          border-radius: 5px;
+          font-size: 12px;
+          display: flex;
+          grid-gap: 5px;
+          gap: 5px;
+          border: 1px solid #f4f4f4;
+          height: 34px;
+          background: #fafafa;
+          align-items: center;
+          padding: 0 10px 0 10px;
+          cursor: pointer;
+          &-icon {
+            width: 16px;
+            height: 16px;
+            background: url('/filter.png') no-repeat center;
+          }
+        }
+        &-ad {
+          margin-left: auto;
+          border-radius: 5px;
+          font-size: 12px;
+          display: flex;
+          grid-gap: 5px;
+          gap: 5px;
+          border: 1px solid #274985;
+          height: 34px;
+          background: #274985;
+          align-items: center;
+          padding: 0 10px 0 10px;
+          cursor: pointer;
+          color: #ffffff;
         }
       }
       &-card {

@@ -6,7 +6,7 @@
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.6);
-    z-index: 12;
+    z-index: 999;
     padding: 50px 0 50px 0;
     overflow: auto;
   }
@@ -24,6 +24,18 @@
       box-shadow: 0 0 2px 1px rgb(0 0 0 / 5%);
       border-radius: 5px;
       overflow: hidden;
+      &-xl {
+        width: 800px;
+        max-width: 95%;
+        min-height: 100%;
+      }
+    }
+    &-form {
+      display: flex;
+      flex-direction: column;
+      grid-gap: 16px;
+      margin: 16px;
+      font-size: 14px;
     }
     &-body {
       margin: 24px;

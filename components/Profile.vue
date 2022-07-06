@@ -1,7 +1,7 @@
 <template>
   <div class="profile-section">
     <div class="profile-section-main">
-      <LeftProfile></LeftProfile>
+      <LeftProfile/>
       <div class="profile-section-main-right">
         <div class="profile-section-main-right-title">Профиль</div>
         <div class="profile-section-main-right-fields">
@@ -18,7 +18,7 @@
             <input type="text" v-model="last_name" maxlength="150">
           </div>
         </div>
-        <template v-if="user.roles.id === 1">
+        <template v-if="[1,5].includes(user.role_id)">
           <div class="profile-section-main-right-fields">
             <div class="profile-section-main-right-field">
               <div class="profile-section-main-right-field-title">Телефон</div>
@@ -29,7 +29,7 @@
               <input type="text" v-model="user.email" readonly>
             </div>
           </div>
-          <div class="profile-section-main-right-fields">
+          <div v-if="user.role_id === 1" class="profile-section-main-right-fields">
             <div class="profile-section-main-right-field">
               <div class="profile-section-main-right-field-title">Наименование TOO/ИП</div>
               <input type="text" :value="company" readonly>
@@ -84,8 +84,10 @@
 /*
 { "id": 979, "title": "319", "tier": { "id": 4, "title": "4 Ярус" }, "roomType": { "id": 1, "title": "Бутик" }, "status": 2 }
  */
+import LeftProfile from "./LeftProfile";
 export default {
   name: "Profile",
+  components: {LeftProfile},
   computed: {
     user() {
       return this.$store.state.localStorage.user;

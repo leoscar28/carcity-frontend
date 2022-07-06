@@ -40,7 +40,7 @@ export default {
       }*/
     ],
   },
-  middleware: ['guest'],
+  middleware: ['guest', 'dashboard'],
   name: "index",
   components: {vueCustomScrollbar},
 }

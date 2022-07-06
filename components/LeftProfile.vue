@@ -7,7 +7,7 @@
       <NuxtLink to="/profile">
         <div class="profile-section-main-left-menu-item" :class="{'profile-section-main-left-menu-item-sel':($nuxt.$route.name === 'profile')}">Профиль</div>
       </NuxtLink>
-      <NuxtLink to="/password">
+      <NuxtLink to="/profile/password">
         <div class="profile-section-main-left-menu-item" :class="{'profile-section-main-left-menu-item-sel':($nuxt.$route.name === 'password')}">Сменить пароль</div>
       </NuxtLink>
     </div>

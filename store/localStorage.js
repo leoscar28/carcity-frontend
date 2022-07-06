@@ -1,4 +1,8 @@
 export const state = () => ({
+  editableBanner: false,
+  userRequestModal: false,
+  userBannerModalOne: false,
+  userBannerModalTwo: false,
   notificationModal: false,
   notificationCount: 0,
   notifications: [],
@@ -20,6 +24,7 @@ export const state = () => ({
   email: false,
   user: false,
   restoreUser: false,
+  registerUser: false,
   sidebar: false,
   statuses: [],
   signatureLoading: false,
@@ -37,6 +42,12 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setEditableBanner(state,value) {
+    state.editableBanner = value;
+    if (value) {
+      state.userBannerModalTwo = true;
+    }
+  },
   setContact(state,value) {
     state.contact = value;
   },
@@ -89,6 +100,12 @@ export const mutations = {
   setRestoreUser(state,value) {
     state.restoreUser = value;
   },
+  cancelRegisterUser(state) {
+    state.registerUser = false;
+  },
+  setRegisterUser(state,value) {
+    state.registerUser = value;
+  },
   toggleFilter(state) {
     state.filter  = !state.filter;
   },
@@ -118,6 +135,25 @@ export const mutations = {
   },
   setSignatureLoading(state,value) {
     state.signatureLoading  = value;
+  },
+  setUserBannerModalOne(state,value) {
+    state.userBannerModalOne = value;
+  },
+  setUserBannerModalTwo(state,value) {
+    state.userBannerModalTwo = value;
+  },
+  setUserRequestModal(state,value) {
+    state.userRequestModal = value;
+  },
+  addFavorite(state, id) {
+    const user  = state.user;
+    user.favorites.push(id);
+    state.user = user;
+  },
+  removeFavorite(state, id) {
+    const user  = state.user;
+    user.favorites = user.favorites.filter((i) => {return i != id;});
+    state.user = user;
   }
 }
 
@@ -356,6 +392,13 @@ export const actions = {
     commit('setUser',res);
     return res;
   },
+  async registration({commit},payload) {
+    const res = await this.$repository.user.registration(payload);
+    if (!res.hasOwnProperty('message')) {
+      commit('setRegisterUser', res);
+    }
+    return res;
+  },
   async changePassword({commit},payload) {
     return await this.$repository.user.changePassword(payload);
   },
@@ -379,8 +422,125 @@ export const actions = {
   async codeCheck({commit},payload) {
     const res = await this.$repository.user.codeCheck(payload);
     if (!res.hasOwnProperty('message')) {
-      commit('setRestoreUser',res);
+      if (payload.restore) {
+        commit('setRestoreUser',res);
+      }
+      if (payload.registration){
+        commit('setRegisterUser', res);
+      }
     }
     return res;
+  },
+  async listDictionaryBrands({commit}) {
+    let res = await this.$repository.dictionaryBrand.list();
+    return res;
+  },
+  async listDictionaryServices({commit},payload) {
+    let res = await this.$repository.dictionaryService.list();
+    return res;
+  },
+  async listDictionarySpareParts({commit},payload) {
+    let res = await this.$repository.dictionarySparePart.list();
+    return res;
+  },
+  async getUserBannerStatuses({commit}) {
+    let res = {10: 'На модерации', 15:'На модерации', 20: 'На доработку', 30: 'Не опубликовано', 31: 'Опубликовано', 40: 'В архиве'}
+    commit('setStatuses',res);
+  },
+  async getManagerBannerStatuses({commit}) {
+    let res = {10: 'Новое объявление', 15:'Изменено', 20: 'На доработку', 30: 'Не опубликовано', 31: 'Опубликовано', 40: 'В архиве'}
+    commit('setStatuses',res);
+  },
+  async getUserBannerPages({commit},payload) {
+    return await this.$repository.userBanner.pages(payload);
+  },
+  async getUserBanners({commit},payload) {
+    return await this.$repository.userBanner.all(payload);
+  },
+  async getUserBannerById({commit}, payload) {
+    let res = this.$repository.userBanner.getById(payload);
+    return res;
+  },
+  async createUserBanner({commit}, payload) {
+    let res = this.$repository.userBanner.create(payload);
+    return res;
+  },
+  async archiveUserBanner({commit}, id) {
+    let res = await this.$repository.userBanner.archive(id);
+    return res;
+  },
+  async deleteUserBanner({commit}, id) {
+    let res = await this.$repository.userBanner.delete(id);
+    return res;
+  },
+  async needEditsUserBanner({commit}, payload) {
+    let res = await this.$repository.userBanner.needEdits(payload);
+    return res;
+  },
+  async activateUserBanner({commit}, id) {
+    let res = await this.$repository.userBanner.activate(id);
+    return res;
+  },
+  async upUserBanner({commit}, id) {
+    let res = await this.$repository.userBanner.up(id);
+    return res;
+  },
+  async showUserBannerPhone({commit}, id) {
+    let res = await this.$repository.userBanner.showPhone(id);
+    return res;
+  },
+  async publishUserBanner({commit}, id) {
+    let res = await this.$repository.userBanner.publish(id);
+    return res;
+  },
+  async unpublishUserBanner({commit}, id) {
+    let res = await this.$repository.userBanner.unpublish(id);
+    return res;
+  },
+  async updateUserBanner({commit}, payload) {
+    let res = await this.$repository.userBanner.update(payload);
+    return res;
+  },
+  async getUserReviewPages({commit},payload) {
+    return await this.$repository.userReview.pages(payload);
+  },
+  async getUserReviews({commit},payload) {
+    return await this.$repository.userReview.all(payload);
+  },
+  async createUserReview({commit}, payload) {
+    let res = this.$repository.userReview.create(payload);
+    return res;
+  },
+  async deleteUserReview({commit}, payload) {
+    let res = await this.$repository.userReview.delete(payload);
+    return res;
+  },
+  async getUserRequestPages({commit},payload) {
+    return await this.$repository.userRequest.pages(payload);
+  },
+  async getUserRequests({commit},payload) {
+    return await this.$repository.userRequest.all(payload);
+  },
+  async createUserRequest({commit}, payload) {
+    let res = this.$repository.userRequest.create(payload);
+    return res;
+  },
+  async unpublishUserRequest({commit}, id) {
+    let res = await this.$repository.userRequest.unpublish(id);
+    return res;
+  },
+  async getUserFavoritePages({commit},payload) {
+    return await this.$repository.userFavorite.pages(payload);
+  },
+  async getUserFavorites({commit},payload) {
+    return await this.$repository.userFavorite.all(payload);
+  },
+  async addUserFavorite({commit, state}, id) {
+    commit('addFavorite', id);
+    return await this.$repository.userFavorite.add({user_id: state.user.id, user_banner_id:id });
+  },
+  async removeUserFavorite({commit, state}, id) {
+    commit('removeFavorite', id)
+    return await this.$repository.userFavorite.remove({user_id: state.user.id, user_banner_id:id });
   },
 };
