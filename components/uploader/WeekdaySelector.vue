@@ -1,8 +1,8 @@
 <template>
   <div class="form-control form-control-sm weekday-selector">
-    <label v-for="(day, index) in lang.formatLocale.weekdaysMin" :key="index" class="weekday" :class="{'weekday--active': isActive(index)}">
-      {{ day }}
-      <input type="checkbox" v-model="weekdays" :value="index">
+    <label v-for="(day, index) in weekdaysArr" :key="index" class="weekday" :class="{'weekday--active': isActive(day.id)}">
+      {{ day.name }}
+      <input type="checkbox" v-model="weekdays" :value="day.id">
     </label>
   </div>
 </template>
@@ -13,12 +13,18 @@
       props:['formWeekdays'],
       emits:['select'],
       data(){
-        return {weekdays:this.formWeekdays}
-      },
-      computed:{
-          lang(){
-            return this.$store.state.localStorage.lang;
-          }
+        return {
+          weekdays:this.formWeekdays,
+          weekdaysArr:[
+            {name:'Пн', id:1},
+            {name:'Вт', id:2},
+            {name:'Ср', id:3},
+            {name:'Чт', id:4},
+            {name:'Пт', id:5},
+            {name:'Сб', id:6},
+            {name:'Вс', id:0},
+          ]
+        }
       },
       methods:{
         isActive(index){

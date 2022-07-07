@@ -2,7 +2,7 @@
   <NuxtLink :to="'/promotions/'+item.id" class="widget-ubf" @click.self.native="">
     <div class="widget-ubf__sub">
       <div class="widget-ubf__sub__image">
-        <img v-if="item.images.length" :src="imageUrl + item.images[0].path" :alt="item.title" />
+        <img v-if="item.images.length" :src="item.images[0].path" :alt="item.title" />
         <img v-else src="/default.jpg" alt="" />
       </div>
       <div class="widget-ubf__sub__room">
@@ -37,9 +37,6 @@
       computed: {
         user(){
           return this.$store.state.localStorage.user
-        },
-        imageUrl(){
-          return process.env.imageUrl;
         }
       }
     }

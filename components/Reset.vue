@@ -2,7 +2,7 @@
   <div class="bg">
     <div class="login-main">
       <div class="login-logo">
-        <img src="/logo.svg" width="100%" alt="logo">
+        <NuxtLink to="/"><img src="/logo.svg" width="100%" alt="logo"></NuxtLink>
       </div>
       <div class="login-title">Введите номер телефона который был привязан к аккаунту</div>
 <!--      <div class="login-title">Введите e-mail или номер телефона который был привязан к аккаунту</div>

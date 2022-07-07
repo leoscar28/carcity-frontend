@@ -23,6 +23,10 @@
     font-weight: 500;
     text-align: center;
 
+    &:hover {
+      background: #8c8c8c;
+    }
+
     &__text {
       font-size: 14px;
       color: #274985;

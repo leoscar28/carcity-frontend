@@ -35,6 +35,8 @@
           <div class="form-tab-content" v-if="tabIndex === 0">
             <div>
               <div class="form-tab-title">Выберите категорию</div>
+              <div v-if="form.category_id !== categoryIds" @click="form.category_id = categoryIds" class="from-tab-select-all">Выбрать все</div>
+              <div v-else @click="form.category_id = []" class="from-tab-select-all">Сбросить все</div>
             </div>
             <div class="checkbox-groups" :style="categoriesHeight">
               <CheckboxGroup v-for="(group, letter) in categories" :key="letter" :title="letter">
@@ -49,6 +51,8 @@
           <div class="form-tab-content" v-if="tabIndex === 1 && isTypeSpare">
             <div>
               <div class="form-tab-title">Выберите марку</div>
+              <div v-if="form.brand_id !== brandIds" @click="form.brand_id = brandIds" class="from-tab-select-all">Выбрать все</div>
+              <div v-else @click="form.brand_id = []" class="from-tab-select-all">Сбросить все</div>
             </div>
             <div class="checkbox-groups" :style="brandsHeight">
               <CheckboxGroup v-for="(group, letter) in brands" :key="letter" :title="letter">
@@ -76,7 +80,7 @@
                 </div>
                 <div class="mb-3">
                   <label class="form-label"><span class="text-danger">*</span> Описание, не короче 80 символов</label>
-                  <textarea v-model="form.description"  rows="6" class="form-control form-control-sm" placeholder="Подумайте, какие подробности вы хотели бы узнать из объявления. И добавьте их в описание."></textarea>
+                  <textarea v-model="form.description"  rows="6" class="form-control form-control-sm" placeholder="Добавьте описание и перечень ассортимента, для активного поиска ваших объявлений"></textarea>
                 </div>
               </div>
               <div class="col-md-6">
@@ -118,13 +122,13 @@
               <div class="col-md-12">
                 <DropZone @files-dropped="addFiles" v-slot="slotProps" class="mb-3">
                   <label for="file-input" class="d-block">
-                    <EmptyDropZone v-show="!files.length"/>
-                    <input type="file" id="file-input" class="d-none" multiple @change="onInputChange" />
+                    <EmptyDropZone />
+                    <input type="file" id="file-input" accept=".jpg,.png"  class="d-none" multiple @change="onInputChange" />
                   </label>
                   <ImageList :files="files" @remove-file="removeFile"/>
                 </DropZone>
                 <p class="mb-1"><IconCheck/> Добавляйте только фотографии</p>
-                <p class="mb-1"><IconCheck/> Вы можете добавить 5 фотографии</p>
+                <p class="mb-1"><IconCheck/> Вы можете добавить до 5 фотографий</p>
                 <p class="mb-1"><IconCheck/> Размер фото не должно превышать 5 мб</p>
                 <p class="mb-1"><IconClose/> Не добавляйте скриншоты, картинки, фотоколлажи</p>
                 <p class="mb-1"><IconClose/> Проследите, чтобы на фото не было логотипов, контактных данных и ссылок на сайты</p>
@@ -184,8 +188,11 @@
             return {
               files: [],
               tabIndex: 0,
+              brandIds:[],
               brands: [],
+              servicesIds:[],
               services: [],
+              sparePartsIds:[],
               spareParts: [],
               rooms:[],
               sparePartsCount: 0,
@@ -210,18 +217,24 @@
         },
       async created(){
         let sps = await this.$store.dispatch('localStorage/listDictionarySpareParts');
+        this.sparePartsIds = sps.map(a => a.id);
         this.sparePartsCount = sps.length;
         this.spareParts = this.group(sps)
         let srs = await this.$store.dispatch('localStorage/listDictionaryServices');
+        this.servicesIds = srs.map(a => a.id);
         this.servicesCount = srs.length;
         this.services = this.group(srs)
         let brs = await this.$store.dispatch('localStorage/listDictionaryBrands');
+        this.brandIds = brs.map(a => a.id);
         this.brandsCount = brs.length;
         this.brands = this.group(brs)
         this.rooms = await this.$store.dispatch('localStorage/roomGetByUserId', this.user.id)
       },
       directives: {mask},
       computed: {
+        categoryIds(){
+          return this.isTypeSpare ? this.sparePartsIds : this.servicesIds;
+        },
         categories(){
             return this.isTypeSpare ? this.spareParts : this.services;
           },
@@ -500,11 +513,11 @@
     font-weight: 500;
     line-height: 22px;
     color: #1E1E1E;
+  }
 
-    span {
-      color: #274985;
-      cursor: pointer;
-    }
+  .from-tab-select-all {
+    color: #274985;
+    cursor: pointer;
   }
 
   .checkbox-weekdays {

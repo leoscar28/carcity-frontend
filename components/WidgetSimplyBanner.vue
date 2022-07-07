@@ -1,7 +1,7 @@
 <template>
   <div class="widget-simply-banner">
     <div class="widget-simply-banner__image">
-      <img v-if="item.images.length" :src="imageUrl + item.images[0].path" alt="" />
+      <img v-if="item.images.length" :src="item.images[0].path" alt="" />
       <img v-else src="/default.jpg" alt="" />
     </div>
     <div class="widget-simply-banner__content">
@@ -56,9 +56,6 @@
         let month = String(date.getMonth() + 1).padStart(2,'0');
         let year = String(date.getFullYear());
         return [day, month, year].join('.');
-      },
-      imageUrl(){
-        return process.env.imageUrl;
       }
     }
   }

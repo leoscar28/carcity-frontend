@@ -2,7 +2,7 @@
   <div class="bg">
     <div class="login-main">
       <div class="login-logo">
-        <img src="/logo.svg" width="100%" alt="logo">
+        <NuxtLink to="/"><img src="/logo.svg" width="100%" alt="logo"></NuxtLink>
       </div>
       <template v-if="!password">
         <div class="login-title" v-if="type === 1">На ваш телефон номер был отправлен смс код для подтверждения регистрации</div>

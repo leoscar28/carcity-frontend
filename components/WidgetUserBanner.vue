@@ -2,7 +2,7 @@
     <div class="widget-ub">
       <div class="widget-ub__sub">
         <div class="widget-ub__sub__image">
-          <img v-if="item.images.length" :src="imageUrl + item.images[0].path" alt=""/>
+          <img v-if="item.images.length" :src="item.images[0].path" alt=""/>
           <img v-else src="/default.jpg" alt=""/>
         </div>
         <div class="widget-ub__sub__room">
@@ -60,7 +60,7 @@
         </div>
         <div class="widget-ub__content__footer">
           <div class="widget-ub__content__footer__infos">
-            <span class="widget-ub__content__footer__info"><Icon name="calendar"/> от {{createdDate}}</span>
+            <span v-if="item.status === 31" class="widget-ub__content__footer__info"><Icon name="calendar"/> от {{startDate}} до {{endDate}}</span>
             <span v-if="item.view_count" class="widget-ub__content__footer__info d-md-flex d-none"><Icon name="views"/> {{ item.view_count }}</span>
             <span v-if="item.phone_view_count" class="widget-ub__content__footer__info d-md-flex d-none"><Icon name="calls"/> {{ item.phone_view_count }}</span>
             <span v-if="item.reviews" class="widget-ub__content__footer__info d-md-flex d-none"><Icon name="reviews"/> {{ item.reviews.count }}</span>
@@ -84,15 +84,20 @@
       props: ['item'],
       emits: ['refresh'],
       computed: {
-        imageUrl(){
-          return process.env.imageUrl;
-        },
-        createdDate(){
+        startDate(){
           let date = new Date(this.item.published_at);
           let day = String(date.getDate()).padStart(2,'0');
           let month = String(date.getMonth() + 1).padStart(2,'0');
           let year = String(date.getFullYear());
-          return [day, month, year].join('.');
+          return [day, month].join('.');
+        },
+        endDate(){
+          let date = new Date(this.item.published_at);
+          date.setDate(date.getDate() + 30)
+          let day = String(date.getDate()).padStart(2,'0');
+          let month = String(date.getMonth() + 1).padStart(2,'0');
+          let year = String(date.getFullYear());
+          return [day, month].join('.');
         },
         color() {
           let c = null;

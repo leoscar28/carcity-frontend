@@ -55,13 +55,16 @@
     border: 1px dashed #d9d9d9;
     border-radius: 4px;
     transition: .2s ease;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 20px;
 
     @media (max-width: 768px) {
       padding: 0.5rem;
     }
 
     &[data-active=true] {
-      border: 1px solid #D9D9D9;
+      border: 1px solid #e5e5e5;
       background: #ffffff;
     }
   }

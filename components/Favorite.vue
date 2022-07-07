@@ -1,5 +1,5 @@
 <template>
-    <div class="favorite" v-if="user" @click.prevent.stop="justDoIt">
+    <div class="favorite" v-if="isSimplyUser" @click.prevent.stop="justDoIt">
       <Icon :name="name" :key="name"/>
     </div>
 </template>
@@ -13,6 +13,9 @@
       computed:{
         isFavorite(){
           return this.user ? this.user.favorites.includes(this.id) : false;
+        },
+        isSimplyUser(){
+          return this.user && this.user.role_id === 5;
         },
         user(){
           return this.$store.state.localStorage.user;

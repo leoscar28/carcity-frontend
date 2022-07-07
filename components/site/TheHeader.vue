@@ -66,14 +66,21 @@
               <NuxtLink :to="{ name: 'index', hash: '#infrastructure' }" class="mob__nav-link" @click.native="closeHamburger">
                 {{language[current][1]}}
               </NuxtLink>
-<!--              <NuxtLink :to="{ name: 'index', hash: '#' }" class="mob__nav-link" @click="closeHamburger">
-                <img src="~/assets/img/icons/icn1.svg" class="header__info-icon" alt="">
-                Поиск автозапчастей
-              </NuxtLink>
-              <NuxtLink :to="{ name: 'index', hash: '#' }" class="mob__nav-link" @click="closeHamburger">
-                <img src="~/assets/img/icons/icn2.svg" class="header__info-icon" alt="">
-                Список бутиков
-              </NuxtLink>-->
+              <div v-if="isSimplyUser || !user" @click="$store.commit('localStorage/setUserRequestModal',true)" class="mob__nav-link">Подать заявку на запчасть</div>
+              <template v-if="!user">
+                <NuxtLink to="/login" class="mob__nav-link">Войти</NuxtLink>
+                <NuxtLink to="/registration" class="mob__nav-link">Регистрация</NuxtLink>
+              </template>
+              <template v-else>
+                <template v-if="isSimplyUser">
+                  <NuxtLink to="/profile/requests" class="mob__nav-link">Мои заявки</NuxtLink>
+                  <NuxtLink to="/profile/favorites" class="mob__nav-link">Избранное</NuxtLink>
+                  <NuxtLink to="/profile/reviews" class="mob__nav-link">Мои отзывы</NuxtLink>
+                </template>
+                <NuxtLink v-else to="/dashboard" class="mob__nav-link">Личный кабинет</NuxtLink>
+                <NuxtLink to="/profile" class="mob__nav-link">Настройки</NuxtLink>
+                <div @click="logout" class="mob__nav-link">Выход</div>
+              </template>
             </div>
 
           </div>
@@ -124,34 +131,18 @@
     <div v-if="!isRentersPage" class="header__navbar hide-mob">
       <div class="container">
         <nav class="header__nav">
-          <template v-if="isPromotionsPage">
-            <NuxtLink to="/" class="header__nav-link d-flex align-items-center"><Icon name="shop_blue" class="d-block"/> Список бутиков</NuxtLink>
-            <div v-if="isSimplyUser" @click="$store.commit('localStorage/setUserRequestModal',true)" class="header__nav-link d-flex align-items-center"><Icon name="keys_blue"  class="d-block"/> Подать заявку на запчасть</div>
-
-            <div class="header__nav__buttons">
-              <template v-if="!user">
-                <NuxtLink to="/login" class="btn btn-outline-primary">Войти</NuxtLink>
-                <NuxtLink to="/registration" class="btn btn-primary">Регистрация</NuxtLink>
-              </template>
-              <template v-else>
-                <UserMenu/>
-              </template>
-            </div>
-          </template>
-          <template v-else>
-            <NuxtLink :to="{ name: 'index', hash: '#about' }" class="header__nav-link">{{language[current][0]}}</NuxtLink>
-            <NuxtLink :to="{ name: 'index', hash: '#infrastructure' }" class="header__nav-link">{{language[current][1]}}</NuxtLink>
-
-            <div class="header__nav__buttons">
-              <template v-if="!user">
-                <NuxtLink to="/login" class="btn btn-outline-primary">Войти</NuxtLink>
-                <NuxtLink to="/registration" class="btn btn-primary">Регистрация</NuxtLink>
-              </template>
-              <template v-else>
-                <UserMenu/>
-              </template>
-            </div>
-          </template>
+          <NuxtLink :to="{ name: 'index', hash: '#about' }" class="header__nav-link">{{language[current][0]}}</NuxtLink>
+          <NuxtLink :to="{ name: 'index', hash: '#infrastructure' }" class="header__nav-link">{{language[current][1]}}</NuxtLink>
+          <div v-if="isSimplyUser || !user" @click="$store.commit('localStorage/setUserRequestModal',true)" class="header__nav-link d-flex align-items-center"><Icon name="keys_blue"  class="d-block"/> Подать заявку на запчасть</div>
+          <div class="header__nav__buttons">
+            <template v-if="!user">
+              <NuxtLink to="/login" class="btn btn-outline-primary">Войти</NuxtLink>
+              <NuxtLink to="/registration" class="btn btn-primary">Регистрация</NuxtLink>
+            </template>
+            <template v-else>
+              <UserMenu/>
+            </template>
+          </div>
         </nav>
       </div>
     </div>
@@ -198,7 +189,10 @@ export default {
       return this.$store.state.localStorage.user;
     },
     isSimplyUser(){
-      return this.user.role_id === 5 || !this.user;
+      return this.user.role_id === 5;
+    },
+    isCustomer(){
+      return this.user.role_id === 1;
     }
   },
   beforeMount () {
@@ -208,6 +202,10 @@ export default {
     window.removeEventListener('scroll', this.handleScrollThrottled)
   },
   methods: {
+    logout() {
+      this.$store.commit('localStorage/setUser',false);
+      this.$router.replace({path: '/'});
+    },
     handleScroll (ev) {
       const headerEl = document.getElementById('header')
       const scrollTop = window.pageYOffset

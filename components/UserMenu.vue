@@ -1,16 +1,18 @@
 <template>
   <div class="user-menu">
     <div class="user-menu__photo">
-      <img v-if="user.image" :src="imageUrl + user.image.path" alt="" />
+      <img v-if="user.image" :src="user.image.path" alt="" />
       <img v-else src="/defaultUser.png" alt="" />
     </div>
     <div class="user-menu__email">{{user.email}}</div>
     <div class="user-menu__dropdown">
       <div class="user-menu__dropdown__main">
-        <NuxtLink v-if="isSimplyUser" to="/profile/requests" class="user-menu__dropdown__main__item"><Icon name="keys"/> Мои заявки</NuxtLink>
-        <NuxtLink v-if="isSimplyUser" to="/profile/favorites" class="user-menu__dropdown__main__item"><Icon name="star"/> Избранное</NuxtLink>
-        <NuxtLink v-if="isSimplyUser" to="/profile/reviews" class="user-menu__dropdown__main__item"><Icon name="chat"/> Мои отзывы</NuxtLink>
-        <NuxtLink v-if="isCustomer" to="/dashboard" class="user-menu__dropdown__main__item"><Icon name="keys"/> Личный кабинет</NuxtLink>
+        <template v-if="isSimplyUser">
+          <NuxtLink to="/profile/requests" class="user-menu__dropdown__main__item"><Icon name="keys"/> Мои заявки</NuxtLink>
+          <NuxtLink to="/profile/favorites" class="user-menu__dropdown__main__item"><Icon name="star"/> Избранное</NuxtLink>
+          <NuxtLink to="/profile/reviews" class="user-menu__dropdown__main__item"><Icon name="chat"/> Мои отзывы</NuxtLink>
+        </template>
+        <NuxtLink v-else to="/dashboard" class="user-menu__dropdown__main__item"><Icon name="keys"/> Личный кабинет</NuxtLink>
         <NuxtLink to="/profile" class="user-menu__dropdown__main__item"><Icon name="gear"/> Настройки</NuxtLink>
         <div @click="logout" class="user-menu__dropdown__main__item"><Icon name="login"/> Выход</div>
       </div>
@@ -32,9 +34,6 @@
       },
       isCustomer(){
         return this.user.role_id === 1;
-      },
-      imageUrl(){
-        return process.env.imageUrl;
       }
     },
     methods:{

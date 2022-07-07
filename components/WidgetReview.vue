@@ -1,7 +1,7 @@
 <template>
     <div class="widget-review">
       <div class="widget-review__image">
-        <img v-if="item.user.image" :src="imageUrl + item.user.image.path" alt="" />
+        <img v-if="item.user.image" :src="item.user.image.path" alt="" />
         <img v-else src="/defaultUser.png" alt="" />
       </div>
       <div class="widget-review__content">
@@ -47,9 +47,6 @@
         },
         isAdmin(){
           return [2,3,4].includes(this.user.id)
-        },
-        imageUrl(){
-          return process.env.imageUrl;
         }
       },
       methods:{

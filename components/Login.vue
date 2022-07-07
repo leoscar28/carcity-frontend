@@ -2,7 +2,7 @@
   <div class="bg">
     <div class="login-main">
       <div class="login-logo">
-        <img src="/logo.svg" width="100%" alt="logo">
+        <NuxtLink to="/"><img src="/logo.svg" width="100%" alt="logo"></NuxtLink>
       </div>
       <div class="login-title">Войдите в систему</div>
       <div class="login-input">

@@ -7,10 +7,10 @@
 
       <div class="banner-section-main">
         <div v-if="item.images && item.images.length && imageView" class="banner-section-block banner-section-block-images">
-          <div class="image-view" :style="{backgroundImage: 'url(' + imageUrl + imageView+')'}"></div>
+          <div class="image-view" :style="{backgroundImage: 'url('+ imageView+')'}"></div>
           <div class="image-previews">
             <div v-for="image in item.images" :key="image.title" @click="imageView = image.path" class="image-preview">
-              <img :src="imageUrl + image.path" />
+              <img :src="image.path" />
             </div>
           </div>
         </div>
@@ -175,9 +175,6 @@
 
     },
     computed:{
-      imageUrl(){
-        return process.env.imageUrl;
-      },
       statuses() {
         return this.$store.state.localStorage.statuses;
       },

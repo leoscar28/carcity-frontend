@@ -75,12 +75,10 @@ export default {
   build: {
   },
   env: {
-    baseUrl: 'http://127.0.0.1:8000',
-    imageUrl: 'http://storage.car-city.kz/'
+    baseUrl: 'http://127.0.0.1:8000'
   },
   axios: {
-    baseURL: 'http://127.0.0.1:8000',
-    imageUrl: 'https://storage.car-city.kz'
+    baseURL: 'http://127.0.0.1:8000'
   },
   router: {
     scrollBehavior (to) {
