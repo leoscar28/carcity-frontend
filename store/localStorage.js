@@ -158,6 +158,9 @@ export const mutations = {
 }
 
 export const actions = {
+  async rulesShoppingCenterGet({commit}) {
+    return this.$repository.rulesShoppingCenter.get();
+  },
   async termsOfUseGet({commit}) {
     return this.$repository.termsOfUse.get();
   },

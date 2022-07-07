@@ -43,6 +43,8 @@ import UserReview from "/repositories/userReview/userReview";
 import UserRequest from "/repositories/userRequest/userRequest";
 import UserFavorite from "/repositories/userFavorite/userFavorite";
 
+import RulesShoppingCenter from "@/repositories/rulesShoppingCenter/rulesShoppingCenter";
+
 export const repository = ($axios) => ({
   user: User($axios),
 
@@ -87,5 +89,7 @@ export const repository = ($axios) => ({
   userBanner: UserBanner($axios),
   userReview: UserReview($axios),
   userRequest: UserRequest($axios),
-  userFavorite: UserFavorite($axios)
+  userFavorite: UserFavorite($axios),
+
+  rulesShoppingCenter: RulesShoppingCenter($axios),
 })
