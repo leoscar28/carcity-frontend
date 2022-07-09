@@ -12,11 +12,8 @@
               <div class="rule-content-header">
                 <div class="rule-content-header-title">Инструкции</div>
               </div>
-              <div class="rule-content-video">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/rpJzNjR06PA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
-              <div class="rule-content-video">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/CTgInlnbq54" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <div class="rule-content-video" v-for="(item,key) in body" :key="key">
+                <iframe width="560" height="315" :src="item.title" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
             </div>
           </div>
@@ -30,6 +27,14 @@
 import vueCustomScrollbar from 'vue-custom-scrollbar'
 import "vue-custom-scrollbar/dist/vueScrollbar.css"
 export default {
+  data() {
+    return {
+      body: '',
+    }
+  },
+  async created() {
+    this.body = await this.$store.dispatch('localStorage/instructionGet');
+  },
   head: {
     title: 'Инструкции',
     meta: [

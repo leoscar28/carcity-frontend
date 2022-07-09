@@ -44,6 +44,12 @@ import UserRequest from "/repositories/userRequest/userRequest";
 import UserFavorite from "/repositories/userFavorite/userFavorite";
 
 import RulesShoppingCenter from "@/repositories/rulesShoppingCenter/rulesShoppingCenter";
+import PrivacyPolicy from "@/repositories/privacyPolicy/privacyPolicy";
+
+import RulesAd from "@/repositories/rulesAd/rulesAd";
+import Rule from "@/repositories/rule/rule";
+
+import Instruction from "@/repositories/instruction/instruction";
 
 export const repository = ($axios) => ({
   user: User($axios),
@@ -92,4 +98,11 @@ export const repository = ($axios) => ({
   userFavorite: UserFavorite($axios),
 
   rulesShoppingCenter: RulesShoppingCenter($axios),
+
+  privacyPolicy: PrivacyPolicy($axios),
+
+  rulesAd: RulesAd($axios),
+  rule: Rule($axios),
+
+  instruction: Instruction($axios),
 })

@@ -158,7 +158,7 @@
     async fetch() {
       await this.getStatuses();
       this.item = await this.$store.dispatch('localStorage/getUserBannerById', this.ubid);
-      if (this.item.type == 1) {
+      if (this.item.type === 1) {
         this.categories = await this.$store.dispatch('localStorage/listDictionarySpareParts');
         this.brands = await this.$store.dispatch('localStorage/listDictionaryBrands');
       } else {
