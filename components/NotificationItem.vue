@@ -85,31 +85,74 @@
       </template>
     </template>
     <template v-else-if="notification.user_banner_id">
-      <template v-if="notification.type === 1">
+      <template v-if="notification.type === 10">
         <template v-if="user.role_id !== 1">
           <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
           <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
-            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title" v-if="notification.status === 10">Новое объявление на модерации</div>
-            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title" v-if="notification.status === 15">Измененное объявление на модерации</div>
-            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title" v-if="notification.status === 20">Объявление отправлено на доработку</div>
-            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title" v-if="notification.status === 30">Объявление снято с публикации</div>
-            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title" v-if="notification.status === 31">Объявление опубликовано</div>
-            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title" v-if="notification.status === 40">Объявление дективировано</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Новое объявление на модерации</div>
             <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_banner_id.id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
           </div>
         </template>
         <template v-else>
           <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
           <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
-            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title" v-if="notification.status === 10">Объявление отправлено на модерацию</div>
-            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title" v-if="notification.status === 15">Объявление отправлено на повторную модерацию</div>
-            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title" v-if="notification.status === 20">Объявление требует доработки</div>
-            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title" v-if="notification.status === 30">Объявление снято с публикации</div>
-            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title" v-if="notification.status === 31">Объявление опубликовано</div>
-            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title" v-if="notification.status === 40">Объявление дективировано</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Объявление отправлено на модерацию</div>
             <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_banner_id.id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
           </div>
         </template>
+      </template>
+      <template v-if="notification.type === 15">
+        <template v-if="user.role_id !== 1">
+          <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Измененное объявление на модерации</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_banner_id.id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
+          </div>
+        </template>
+        <template v-else>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Объявление отправлено на повторную модерацию</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_banner_id.id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
+          </div>
+        </template>
+      </template>
+      <template v-if="notification.type === 20">
+        <template v-if="user.role_id !== 1">
+          <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Объявление отправлено на доработку</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_banner_id.id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
+          </div>
+        </template>
+        <template v-else>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Объявление требует доработки</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_banner_id.id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
+          </div>
+        </template>
+      </template>
+      <template v-if="notification.type === 30">
+          <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Объявление снято с публикации</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_banner_id.id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
+          </div>
+      </template>
+      <template v-if="notification.type === 31">
+          <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Объявление опубликовано</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_banner_id.id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
+          </div>
+      </template>
+      <template v-if="notification.type === 40">
+          <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title" >Объявление дективировано</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_banner_id.id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
+          </div>
       </template>
     </template>
   </div>
