@@ -53,6 +53,8 @@ import Instruction from "@/repositories/instruction/instruction";
 
 import Mailing from "/repositories/mailing/mailing";
 
+import Tier from "@/repositories/tier/tier";
+
 export const repository = ($axios) => ({
   user: User($axios),
 
@@ -108,5 +110,7 @@ export const repository = ($axios) => ({
 
   instruction: Instruction($axios),
 
-  mailing: Mailing($axios)
+  mailing: Mailing($axios),
+
+  tier: Tier($axios),
 })

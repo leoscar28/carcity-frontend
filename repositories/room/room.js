@@ -7,4 +7,12 @@ export default ($axios) => ({
         return [];
       });
   },
+  get() {
+    return $axios.get('/api/room/get')
+      .then(response => {
+        return response.data.data;
+      }).catch(error => {
+        return [];
+      });
+  },
 });

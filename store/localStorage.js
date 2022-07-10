@@ -14,6 +14,8 @@ export const state = () => ({
   infrastructureOption: [],
   vehicleMaintenance: [],
   contact: [],
+  tiers: [],
+  rooms: [],
   notificationViewCount: 0,
   notificationTenantCount: 0,
   notificationsTenant: [],
@@ -43,6 +45,12 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setRooms(state,value) {
+    state.rooms = value;
+  },
+  setTiers(state,value) {
+    state.tiers = value;
+  },
   setEditableBanner(state,value) {
     state.editableBanner = value;
     if (value) {
@@ -162,6 +170,14 @@ export const mutations = {
 }
 
 export const actions = {
+  async roomGet({commit}) {
+    let res = await this.$repository.room.get();
+    commit('setRooms',res);
+  },
+  async tiersGet({commit}) {
+    let res = await this.$repository.tier.get();
+    commit('setTiers',res);
+  },
   async instructionGet({commit}) {
     return this.$repository.instruction.get();
   },

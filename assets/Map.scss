@@ -1,0 +1,119 @@
+.map {
+  &-all {
+    display: flex;
+    gap: 24px;
+    & > div {
+      border: 1px solid #F0F0F0;
+      background: #fff;
+
+      border-radius:  5px;
+    }
+  }
+
+  &-left {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 12px;
+    gap: 12px;
+    height: max-content;
+    padding: 24px;
+    &-title {
+      font-size: 12px;
+    }
+    &-input {
+      & > input {
+        border: 1px solid #D9D9D9;
+        font-size: 12px;
+        height: 38px;
+        padding: 0 10px 0 10px;
+        border-radius: 3px;
+        width: 100%;
+      }
+    }
+    &-list {
+      height: 350px;
+      overflow: hidden;
+      &-main {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        overflow: hidden;
+      }
+      &-item {
+        height: 38px;
+        background: #F5F5F5;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px 0 10px;
+        border: 1px solid #F0F0F0;
+        cursor: pointer;
+        &-description {
+          font-size: 10px;
+          &-title {
+            font-weight: bold;
+          }
+          &-status {
+
+          }
+        }
+        &-id {
+          margin-left: auto;
+          font-size: 10px;
+          border-radius: 10px;
+          background: #D9D9D9;
+          color: #8C8C8C;
+          padding: 1px 8px 1px 8px;
+        }
+        &:hover {
+          border: 1px solid #274985;
+          & > .map-left-list-item-id {
+            background: #274985;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  &-right {
+    background: transparent !important;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    flex: 1;
+    &-main {
+      background: #fff;
+      width: 100%;
+      border-radius: 5px;
+    }
+    &-footer {
+      display: flex;
+      gap: 12px;
+      &-item {
+        background: #fff;
+        display: flex;
+        align-items: center;
+        border-radius: 30px;
+        font-size: 12px;
+        padding: 5px 15px 5px 15px;
+        cursor: pointer;
+        &:hover, &-sel {
+          background: #274985;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 680px) {
+  .map {
+    &-all {
+      flex-direction: column;
+    }
+    &-left {
+      width: 100%;
+    }
+  }
+}
