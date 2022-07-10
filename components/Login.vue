@@ -15,13 +15,17 @@
       <NuxtLink to="/reset">
         <div class="login-forgot">Не помню пароль</div>
       </NuxtLink>
-      <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleTerms');" onselectstart="return false;">
+      <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleTerms')" onselectstart="return false;">
         <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':terms}"></div>
         <div class="login-input-checkbox-title">Я принимаю условия <NuxtLink :to="{ name: 'terms-of-use' }" style="display: contents; font-weight: bold;" @click.stop target="_blank">пользовательского соглашения</NuxtLink> и даю согласие на обработку моих персональных данных</div>
       </div>
-      <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleRules');" onselectstart="return false;">
+      <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleRules')" onselectstart="return false;">
         <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':rules}"></div>
         <div class="login-input-checkbox-title">Я ознакомлен с общими <NuxtLink :to="{ name: 'rules' }" style="display: contents; font-weight: bold;" @click.stop target="_blank">правилами торгового центра</NuxtLink></div>
+      </div>
+      <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleRulesAd')" onselectstart="return false;">
+        <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':rulesAd}"></div>
+        <div class="login-input-checkbox-title">Я ознакомлен с <NuxtLink :to="{ name: 'rules-ad' }" style="display: contents; font-weight: bold;" @click.stop target="_blank">правилами размещения объявлений</NuxtLink></div>
       </div>
       <div class="login-btn">
         <button @click="auth" v-if="terms && rules">Войти</button>
@@ -47,6 +51,9 @@ export default {
     },
     rules() {
       return this.$store.state.localStorage.rules;
+    },
+    rulesAd() {
+      return this.$store.state.localStorage.rulesAd;
     },
     user() {
       return this.$store.state.localStorage.user

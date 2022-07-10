@@ -1,6 +1,9 @@
 <template>
   <div class="sidebar-section" :class="{'sidebar-section-show':$store.state.localStorage.sidebar}" @click="$store.commit('localStorage/closeSidebar');">
     <div class="sidebar-section-menu">
+      <NuxtLink to="/" class="d-lg-none d-block text-center px-5 py-2 ">
+        <img src="/logo.svg" height="40" alt="logo" >
+      </NuxtLink>
       <div class="sidebar-section-menu-item sidebar-section-menu-item-arrow" :class="{'sidebar-section-menu-item-arrow-active':dropdown}">
         <div @click.stop="dropdown = 'docs'">
           <div class="sidebar-section-menu-item-icon sidebar-section-menu-item-icon-folder"></div>
@@ -78,6 +81,22 @@
           <div>
             <div class="sidebar-section-menu-item-icon sidebar-section-menu-item-icon-help"></div>
             <div class="sidebar-section-menu-item-title">Инструкции</div>
+          </div>
+        </div>
+      </NuxtLink>
+      <NuxtLink to="/filing-rules">
+        <div class="sidebar-section-menu-item" :class="{'sidebar-section-menu-item-active':($nuxt.$route.name === 'filing-rules')}">
+          <div>
+            <div class="sidebar-section-menu-item-icon sidebar-section-menu-item-icon-help"></div>
+            <div class="sidebar-section-menu-item-title">Правила подачи объявлений</div>
+          </div>
+        </div>
+      </NuxtLink>
+      <NuxtLink v-if="[2,3,4].includes(user.role_id)" to="/mailing">
+        <div class="sidebar-section-menu-item" :class="{'sidebar-section-menu-item-active':($nuxt.$route.name === 'mailing')}">
+          <div>
+            <div class="sidebar-section-menu-item-icon sidebar-section-menu-item-icon-folder"></div>
+            <div class="sidebar-section-menu-item-title">Рассылка</div>
           </div>
         </div>
       </NuxtLink>

@@ -21,6 +21,7 @@ export const state = () => ({
   filter: true,
   terms: true,
   rules: true,
+  rulesAd: true,
   email: false,
   user: false,
   restoreUser: false,
@@ -111,6 +112,9 @@ export const mutations = {
   },
   toggleRules(state) {
     state.rules = !state.rules;
+  },
+  toggleRulesAd(state) {
+    state.rulesAd = !state.rulesAd;
   },
   toggleTerms(state) {
     state.terms = !state.terms;
@@ -560,4 +564,7 @@ export const actions = {
     commit('removeFavorite', id)
     return await this.$repository.userFavorite.remove({user_id: state.user.id, user_banner_id:id });
   },
+  async mailing({commit}, payload) {
+    return await this.$repository.mailing.send(payload);
+  }
 };

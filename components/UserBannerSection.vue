@@ -1,77 +1,78 @@
 <template>
-    <div class="row mb-5">
-        <div class="col-xl-12 mb-lg-5 mb-3">
-          <div class="row">
-            <div class="col-lg-12 px-md-2 px-0">
-              <div class="promotion-form">
-                <div>Что вы ищите?</div>
-                <div class="row">
-                  <div class="col-md-6 mb-md-3 mb-2">
-                    <input v-model="term" type="text" class="form-control" placeholder="Поиск по названию запчасти"/>
-                  </div>
-                  <div class="col-md-6 mb-md-3 mb-2">
-                    <select v-model="type" class="form-control">
-                      <option value="1">Запчасти</option>
-                      <option value="2">Услуги</option>
-                    </select>
-                  </div>
-                </div>
-                <div v-if="type == 1" class="brands  mb-md-3 mb-2">
-                  <div class="promotion-links">
-                    <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray fw-bold">Марка</span>
-                    <span v-for="(brand, index) in brandsForMenu" @click="setBrand(brand.id)"  class="promotion-link fw-bold" :class="{'promotion-link--active': brand_id.includes(brand.id), 'd-md-block d-none': index > 4}">{{brand.name}}</span>
-                    <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray fw-bold">ещё ...</span>
-                  </div>
-                  <div v-show="showBrands" class="checkbox-groups mt-2" :style="brandsHeight">
-                    <CheckboxGroup v-for="(group, letter) in brands" :key="letter" :title="letter">
-                      <label  v-for="(item, index) in group" :key="index">
-                        {{ item.name }}
-                        <input type="checkbox" v-model="brand_id" :value="item.id">
-                        <span class="checkmark"></span>
-                      </label >
-                    </CheckboxGroup>
-                  </div>
-                </div>
-                <div class="categories">
-                  <div class="promotion-links">
-                    <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray fw-bold">Категория</span>
-                    <span v-for="category in categoriesForMenu" @click="setCategory(category.id)" class="promotion-link fw-bold" :class="{'promotion-link--active': category_id.includes(category.id), 'd-md-block d-none': index > 1}">{{category.name}}</span>
-                    <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray fw-bold">ещё ...</span>
-                  </div>
-                  <div v-show="showCategories" class="checkbox-groups mt-2" :style="categoriesHeight">
-                    <CheckboxGroup v-for="(group, letter) in categories" :key="letter" :title="letter">
-                      <label  v-for="(item, index) in group" :key="index">
-                        {{ item.name }}
-                        <input type="checkbox" v-model="category_id" :value="item.id">
-                        <span class="checkmark"></span>
-                      </label >
-                    </CheckboxGroup>
-                  </div>
-                </div>
-                <div class="text-center d-flex flex-md-row flex-column align-items-center justify-content-center gap-3 mt-md-3 mt-2 pt-2">
-                  <div class="form-check">
-                    <input v-model="withImage" class="form-check-input" type="checkbox" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      С фото
-                    </label>
-                  </div>
-                  <button @click="getItems(1)" class="btn btn-primary">Показать объявления</button>
-                </div>
+  <div class="row mb-5">
+    <div class="col-xl-12 mb-lg-5 mb-3">
+      <div class="row">
+        <div class="col-lg-12 px-md-2 px-0">
+          <div class="promotion-form">
+            <div>Что вы ищите?</div>
+            <div class="row">
+              <div class="col-md-6 mb-md-3 mb-2">
+                <input v-model="term" type="text" class="form-control" placeholder="Поиск по названию запчасти"/>
               </div>
+              <div class="col-md-6 mb-md-3 mb-2">
+                <select v-model="type" class="form-control">
+                  <option value="1">Запчасти</option>
+                  <option value="2">Услуги</option>
+                </select>
+              </div>
+            </div>
+            <div v-if="type == 1" class="brands  mb-md-3 mb-2">
+              <div class="promotion-links">
+                <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray fw-bold">Марка</span>
+                <span v-for="(brand, index) in brandsForMenu" @click="setBrand(brand.id)"  class="promotion-link fw-bold" :class="{'promotion-link--active': brand_id.includes(brand.id), 'd-md-block d-none': index > 4}">{{brand.name}}</span>
+                <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray fw-bold">ещё ...</span>
+              </div>
+              <div v-show="showBrands" class="checkbox-groups mt-2" :style="brandsHeight">
+                <CheckboxGroup v-for="(group, letter) in brands" :key="letter" :title="letter">
+                  <label  v-for="(item, index) in group" :key="index">
+                    {{ item.name }}
+                    <input type="checkbox" v-model="brand_id" :value="item.id">
+                    <span class="checkmark"></span>
+                  </label >
+                </CheckboxGroup>
+              </div>
+            </div>
+            <div class="categories">
+              <div class="promotion-links">
+                <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray fw-bold">Категория</span>
+                <span v-for="category in categoriesForMenu" @click="setCategory(category.id)" class="promotion-link fw-bold" :class="{'promotion-link--active': category_id.includes(category.id), 'd-md-block d-none': index > 1}">{{category.name}}</span>
+                <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray fw-bold">ещё ...</span>
+              </div>
+              <div v-show="showCategories" class="checkbox-groups mt-2" :style="categoriesHeight">
+                <CheckboxGroup v-for="(group, letter) in categories" :key="letter" :title="letter">
+                  <label  v-for="(item, index) in group" :key="index">
+                    {{ item.name }}
+                    <input type="checkbox" v-model="category_id" :value="item.id">
+                    <span class="checkmark"></span>
+                  </label >
+                </CheckboxGroup>
+              </div>
+            </div>
+            <div class="text-center d-flex flex-md-row flex-column align-items-center justify-content-center gap-3 mt-md-3 mt-2 pt-2">
+              <div class="form-check">
+                <input v-model="withImage" class="form-check-input" type="checkbox" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  С фото
+                </label>
+              </div>
+              <button @click="getItems(1)" class="btn btn-primary">Показать объявления</button>
             </div>
           </div>
         </div>
-        <div class="col-xl-12 mb-lg-5 mb-3">
-          <h4 v-if="isPage" class="fw-bold mb-3 pb-1">Все объявления</h4>
-          <div class="promotion-items">
-            <WidgetUserBannerFront v-for="item in items" :item="item" :key="item.id"/>
-          </div>
-        </div>
-        <div v-if="!isPage" class="col-xl-12 text-center mb-lg-5 mb-0">
-            <NuxtLink to="/promotions" class="btn btn-outline-primary">Показать все объявления</NuxtLink>
-        </div>
-        <UserBannerSectionPagination :paginate="paginate" :pages="pages" :take="take" :range="range" @up="up" @down="down" @setRange="setRange" @setPaginate="setPaginate" @setTake="setTake"/>
+      </div>
     </div>
+    <div class="col-xl-12 mb-lg-5 mb-3">
+      <h4 v-if="isPage" class="fw-bold mb-3 pb-1">Все объявления</h4>
+      <div class="items-sort" v-if="isPage">Сортировка по: <div @click="nextOrderBy">{{orderBy.name}}</div><div @click="changeSort"><Icon class="d-block" :class="{'icon--rotate': sort === 'ASC'}" name="filter_list" size="26"/></div></div>
+      <div class="promotion-items">
+        <WidgetUserBannerFront v-for="item in items" :item="item" :key="item.id"/>
+      </div>
+    </div>
+    <div v-if="!isPage" class="col-xl-12 text-center mb-lg-5 mb-0">
+      <NuxtLink to="/promotions" class="btn btn-outline-primary">Показать все объявления</NuxtLink>
+    </div>
+    <UserBannerSectionPagination :paginate="paginate" :pages="pages" :take="take" :range="range" @up="up" @down="down" @setRange="setRange" @setPaginate="setPaginate" @setTake="setTake"/>
+  </div>
 </template>
 
 <script>
@@ -79,166 +80,189 @@
   import WidgetUserBannerFront from "./WidgetUserBannerFront";
   import CheckboxGroup from "./uploader/CheckboxGroup";
   import UserBannerSectionPagination from "./UserBannerSectionPagination";
+  import Icon from "./icons/Icon";
   const AD_TYPE_SPARE_PART = 1;
   const AD_TYPE_SERVICE = 2;
 
-    export default {
-        name: "UserBannerSection",
-      components: {UserBannerSectionPagination, CheckboxGroup, WidgetUserBannerFront},
-      props: {
-          isPage: Boolean
-      },
-      data(){
-        return {
-          term:'',
-          showCategories:false,
-          showBrands: false,
-          items:[],
-          categories:[],
-          categoriesCount: null,
-          brands:[],
-          brandsCount: null,
-          type: AD_TYPE_SPARE_PART,
-          category_id:[],
-          brand_id:[],
-          withImage: false,
-          categoriesForMenu: [],
-          brandsForMenu: [],
-          take: this.isPage ? 15 : 10,
-          paginate: 1,
-          range: 1,
-          pages: 0,
+  export default {
+    name: "UserBannerSection",
+    components: {Icon, UserBannerSectionPagination, CheckboxGroup, WidgetUserBannerFront},
+    props: {
+      isPage: Boolean
+    },
+    data(){
+      return {
+        sort: 'DESC',
+        orderBy: {name: 'Дате', value: 'updated'},
+        orderByIndex: 0,
+        orderByArr: [
+          {name: 'Дате', value: 'updated'},
+          {name: 'Рейтингу', value: 'rating'},
+          {name: 'Количеству отзывов', value: 'review'}
+        ],
+        term:'',
+        showCategories:false,
+        showBrands: false,
+        items:[],
+        categories:[],
+        categoriesCount: null,
+        brands:[],
+        brandsCount: null,
+        type: AD_TYPE_SPARE_PART,
+        category_id:[],
+        brand_id:[],
+        withImage: false,
+        categoriesForMenu: [],
+        brandsForMenu: [],
+        take: this.isPage ? 15 : 10,
+        paginate: 1,
+        range: 1,
+        pages: 0,
+      }
+    },
+    computed:{
+      dataForRequest(){
+        let data =  {
+          type: 'published',
+          take: this.take,
+          pagination: this.paginate,
+          brand_id: this.brand_id,
+          category_id: this.category_id,
+          order_by: this.orderBy.value,
+          sort: this.sort,
+          pages: null,
+          data: {
+            type: this.type
+          }
         }
-      },
-      computed:{
-        dataForRequest(){
-          let data =  {
-            type: 'published',
-            take: this.take,
-            pagination: this.paginate,
-            brand_id: this.brand_id,
-            category_id: this.category_id,
-            pages: null,
-            data: {
-              type: this.type
-            }
-          }
 
-          if (this.withImage) {
-            data['with_image'] = 1;
-          }
-
-          if (this.term) {
-            data['term'] = this.term;
-          }
-          return data;
-        },
-        columns(){
-          let columns = 3;
-
-          if(process.client) {
-            if (window.innerWidth <= 960) {
-              columns = 2
-            }
-          }
-          return columns;
-        },
-        categoriesHeight(){
-          return {maxHeight: (this.categoriesCount/this.columns * 35) + 'px' }
-        },
-        brandsHeight(){
-          return {maxHeight: (this.brandsCount/this.columns * 30) + 'px' }
+        if (this.withImage) {
+          data['with_image'] = 1;
         }
+
+        if (this.term) {
+          data['term'] = this.term;
+        }
+        return data;
       },
-      async created() {
+      columns(){
+        let columns = 3;
 
-        let cats = [],
-          brs = [];
+        if(process.client) {
+          if (window.innerWidth <= 960) {
+            columns = 2
+          }
+        }
+        return columns;
+      },
+      categoriesHeight(){
+        return {maxHeight: (this.categoriesCount/this.columns * 35) + 'px' }
+      },
+      brandsHeight(){
+        return {maxHeight: (this.brandsCount/this.columns * 30) + 'px' }
+      }
+    },
+    async created() {
 
+      let cats = [],
+        brs = [];
+
+      if (this.isPage) {
+        this.pages = await this.$store.dispatch('localStorage/getUserBannerPages', this.dataForRequest);
+      }
+      this.items = await this.$store.dispatch('localStorage/getUserBanners', this.dataForRequest);
+
+      cats = await this.$store.dispatch('localStorage/listDictionarySpareParts')
+      this.categories = this.group(cats);
+      this.categoriesForMenu = this.filterForMenu(cats);
+      this.categoriesCount = cats.length;
+
+      brs = await this.$store.dispatch('localStorage/listDictionaryBrands')
+      this.brands = this.group(brs);
+      this.brandsForMenu = this.filterForMenu(brs);
+      this.brandsCount = brs.length;
+    },
+    methods:{
+      async changeSort(){
+        this.sort = this.sort === 'ASC' ? 'DESC' : 'ASC';
+        await this.getItems()
+      },
+      async nextOrderBy(){
+        ++this.orderByIndex;
+        if (this.orderByIndex > 2) {
+          this.orderByIndex = 0;
+        }
+        this.orderBy = this.orderByArr[this.orderByIndex];
+        await this.getItems()
+      },
+      group(list){
+        let groups = list.reduce((groups, item) => ({ ...groups, [item.name[0]]: [...(groups[item.name[0]] || []), item] }), {})
+        return Object.keys(groups).sort().reduce((obj, key) => { obj[key] = groups[key]; return obj; }, {});
+      },
+      filterForMenu(list){
+        return list.filter((item) => { return item.for_menu === 1})
+      },
+      async getItems(page = null){
         if (this.isPage) {
+          if (page) {
+            this.paginate = page;
+          }
           this.pages = await this.$store.dispatch('localStorage/getUserBannerPages', this.dataForRequest);
         }
         this.items = await this.$store.dispatch('localStorage/getUserBanners', this.dataForRequest);
+      },
+      setCategory(id){
+        if (this.category_id.includes(id)) {
+          this.category_id = this.category_id.filter((i) => {return i !== id})
+        } else {
+          this.category_id.push(id)
+        }
+      },
+      setBrand(id){
+        if (this.brand_id.includes(id)) {
+          this.brand_id = this.brand_id.filter((i) => {return i !== id})
+        } else {
+          this.brand_id.push(id)
+        }
+      },
+      async setTake(value) {
+        this.take = value;
+        this.paginate = 1;
+        this.range = 1;
+        await this.getItems();
+      },
+      async setPaginate(value) {
+        this.paginate = value;
+        await this.getItems();
+      },
+      setRange(value) {
+        this.range  = value;
+      },
+      down() {
+        this.range--;
+      },
+      up() {
+        this.range++;
+      }
+    },
+    watch:{
+      type: async function(val) {
+        let cats = [];
+        this.category_id = [];
+        this.brand_id = [];
+        this.showBrands = false;
+        this.showCategories = false;
 
-        cats = await this.$store.dispatch('localStorage/listDictionarySpareParts')
+        cats = (val == AD_TYPE_SPARE_PART) ?
+          await this.$store.dispatch('localStorage/listDictionarySpareParts') :
+          await this.$store.dispatch('localStorage/listDictionaryServices');
+
         this.categories = this.group(cats);
         this.categoriesForMenu = this.filterForMenu(cats);
         this.categoriesCount = cats.length;
-
-        brs = await this.$store.dispatch('localStorage/listDictionaryBrands')
-        this.brands = this.group(brs);
-        this.brandsForMenu = this.filterForMenu(brs);
-        this.brandsCount = brs.length;
-      },
-      methods:{
-        group(list){
-          let groups = list.reduce((groups, item) => ({ ...groups, [item.name[0]]: [...(groups[item.name[0]] || []), item] }), {})
-          return Object.keys(groups).sort().reduce((obj, key) => { obj[key] = groups[key]; return obj; }, {});
-        },
-        filterForMenu(list){
-          return list.filter((item) => { return item.for_menu === 1})
-        },
-        async getItems(page = null){
-          if (this.isPage) {
-            if (page) {
-              this.paginate = page;
-            }
-            this.pages = await this.$store.dispatch('localStorage/getUserBannerPages', this.dataForRequest);
-          }
-          this.items = await this.$store.dispatch('localStorage/getUserBanners', this.dataForRequest);
-        },
-        setCategory(id){
-          if (this.category_id.includes(id)) {
-            this.category_id = this.category_id.filter((i) => {return i !== id})
-          } else {
-            this.category_id.push(id)
-          }
-        },
-        setBrand(id){
-          if (this.brand_id.includes(id)) {
-            this.brand_id = this.brand_id.filter((i) => {return i !== id})
-          } else {
-            this.brand_id.push(id)
-          }
-        },
-        async setTake(value) {
-          this.take = value;
-          this.paginate = 1;
-          this.range = 1;
-          await this.getItems();
-        },
-        async setPaginate(value) {
-          this.paginate = value;
-          await this.getItems();
-        },
-        setRange(value) {
-          this.range  = value;
-        },
-        down() {
-          this.range--;
-        },
-        up() {
-          this.range++;
-        }
-      },
-      watch:{
-          type: async function(val) {
-            let cats = [];
-            this.category_id = [];
-            this.brand_id = [];
-            this.showBrands = false;
-            this.showCategories = false;
-
-            cats = (val == AD_TYPE_SPARE_PART) ?
-              await this.$store.dispatch('localStorage/listDictionarySpareParts') :
-              await this.$store.dispatch('localStorage/listDictionaryServices');
-
-            this.categories = this.group(cats);
-            this.categoriesForMenu = this.filterForMenu(cats);
-            this.categoriesCount = cats.length;
-          }
       }
     }
+  }
 </script>
 
 <style lang="scss">
@@ -276,41 +300,56 @@
     }
   }
 
+  .items-sort {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    grid-gap: 4px;
+    font-size: 18px;
+    margin-bottom: 20px;
 
- .promotion-items {
-   display: flex;
-   flex-wrap: wrap;
-   grid-gap: 20px;
-   min-height: 300px;
+    div {
+      cursor: pointer;
+      color: #274985;
+      border-bottom: 1px dashed;
+    }
+  }
 
-   @media (max-width:768px) {
-     grid-gap: 16px;
-   }
- }
+  .promotion-items {
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 20px;
+    min-height: 300px;
 
- .promotion-links {
-   color: #274985;
-   font-size: 16px;
-   display: flex;
-   grid-gap: 8px;
-   flex-direction: row;
-   flex-wrap:wrap;
- }
+    @media (max-width:768px) {
+      grid-gap: 16px;
+    }
+  }
 
- .promotion-link {
-   cursor: pointer;
-   border: 1px dashed transparent;
-   border-bottom-color: #274985;
-   &--gray {
-     color: #8C8C8C;
-     border-bottom-color: #8C8C8C;
-   }
-   &--active {
-     border-style: solid;
-     background: #274985;
-     color: #FFFFFF;
-   }
- }
+  .promotion-links {
+    color: #274985;
+    font-size: 16px;
+    display: flex;
+    grid-gap: 8px;
+    flex-direction: row;
+    flex-wrap:wrap;
+  }
+
+  .promotion-link {
+    cursor: pointer;
+    border: 1px dashed transparent;
+    border-bottom-color: #274985;
+    &--gray {
+      color: #8C8C8C;
+      border-bottom-color: #8C8C8C;
+    }
+    &--active {
+      border-style: solid;
+      background: #274985;
+      color: #FFFFFF;
+    }
+  }
 
 
 

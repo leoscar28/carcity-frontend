@@ -44,5 +44,9 @@
     background-size: 100%;
     background-repeat: no-repeat;
     margin-right: 4px;
+
+    &--rotate {
+      transform: rotateX(180deg)
+    }
   }
 </style>

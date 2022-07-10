@@ -51,6 +51,8 @@ import Rule from "@/repositories/rule/rule";
 
 import Instruction from "@/repositories/instruction/instruction";
 
+import Mailing from "/repositories/mailing/mailing";
+
 export const repository = ($axios) => ({
   user: User($axios),
 
@@ -105,4 +107,6 @@ export const repository = ($axios) => ({
   rule: Rule($axios),
 
   instruction: Instruction($axios),
+
+  mailing: Mailing($axios)
 })

@@ -136,6 +136,15 @@
     emits:['title'],
     data(){
       return {
+        weekdaysArr:[
+          {name:'Пн', id:1},
+          {name:'Вт', id:2},
+          {name:'Ср', id:3},
+          {name:'Чт', id:4},
+          {name:'Пт', id:5},
+          {name:'Сб', id:6},
+          {name:'Вс', id:0},
+        ],
         showReworkModal:false,
         rating: 0,
         reviewSend:false,
@@ -203,9 +212,6 @@
       monthsShort(){
         return this.$store.state.localStorage.lang.formatLocale.monthsShort
       },
-      weekdaysMin(){
-        return this.$store.state.localStorage.lang.formatLocale.weekdaysMin
-      },
       backUrl(){
         return this.isModeration ? '/ads/new' : '/ads/active';
       },
@@ -223,8 +229,8 @@
           let w = this.item.weekdays;
           let out = '';
 
-          this.weekdaysMin.forEach((value, index) => {
-            out += w.includes(index) ? `<span>${value}</span>` : `<span class="not-work-day">${value}</span>`;
+          this.weekdaysArr.forEach((value, index) => {
+            out += w.includes(value.id) ? `<span>${value.name}</span>` : `<span class="not-work-day">${value.name}</span>`;
           })
 
           return `<div class="work-days">${out}</div>`
@@ -474,7 +480,7 @@
         .image-view {
           width: 100%;
           border-radius: 16px;
-          padding-top:66%;
+          padding-top:75%;
           background-color: #C4C4C4;
           background-position: center;
           background-repeat: no-repeat;

@@ -13,6 +13,14 @@
       <div v-if="!editable" class="modal-content-header">Подача объявления</div>
       <div v-else class="modal-content-header">Отредактировать объявление</div>
       <div class="modal-content-form">
+        <div class="text-end">
+          <button v-if="tabIndex !== 0" @click="prevTab()" class="form-tab-button form-tab-button__back">Назад</button>
+          <button v-if="tabIndex !== 2" @click="nextTab()" :disabled="empty"  class="form-tab-button" >Дальше</button>
+          <template  v-if="tabIndex === 2">
+            <button v-if="!editable" @click="saveAd()" :disabled="!formDataValid" class="form-tab-button">Добавить объявление</button>
+            <button v-else @click="saveAd(true)" :disabled="!formDataValid" class="form-tab-button">Обновить объявление</button>
+          </template>
+        </div>
         <div class="form-tab-navs">
           <div class="form-tab-nav" :class="{'form-tab-nav-active': tabIndex === 0, 'form-tab-nav-complete': tabIndex > 0}">
             <span>
