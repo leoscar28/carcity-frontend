@@ -132,6 +132,7 @@ export default {
     document.removeEventListener('click', this.hideNotifications);
   },
   async created() {
+    console.log('here');
     document.addEventListener('click', this.hideNotifications);
     this.$store.commit('localStorage/setNotificationModal',false);
     if (this.user.role_id !== 1) {
@@ -149,6 +150,7 @@ export default {
         user_id: this.user.id,
         skip: 0
       });
+      console.log(res)
       this.$store.commit('localStorage/setNotificationsTenant', res);
     }
   },
