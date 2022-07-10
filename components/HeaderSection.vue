@@ -87,6 +87,7 @@ export default {
       });
     } else {
       this.$echo.channel("notificationTenant."+this.user.id).on("notificationTenant", (res) => {
+        console.log(res);
         this.newNotification(res);
       });
     }
