@@ -1,6 +1,6 @@
 export default ($axios) => ({
   setView(payload) {
-    return $axios.post('/api/notification/setView/',payload)
+    return $axios.post('/api/notification/setView',payload)
       .then(response => {
         return response.data.data;
       }).catch(error => {
@@ -24,7 +24,7 @@ export default ($axios) => ({
       });
   },
   get(payload) {
-    return $axios.post('/api/notification/get/',payload)
+    return $axios.post('/api/notification/get',payload)
       .then(response => {
         return response.data.data;
       }).catch(error => {

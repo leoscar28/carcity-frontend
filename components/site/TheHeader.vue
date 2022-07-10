@@ -128,24 +128,33 @@
       </div>
     </div>
 
-    <div v-if="!isRentersPage" class="header__navbar hide-mob">
-      <div class="container">
-        <nav class="header__nav">
-          <NuxtLink :to="{ name: 'index', hash: '#about' }" class="header__nav-link">{{language[current][0]}}</NuxtLink>
-          <NuxtLink :to="{ name: 'index', hash: '#infrastructure' }" class="header__nav-link">{{language[current][1]}}</NuxtLink>
-          <div v-if="isSimplyUser || !user" @click="$store.commit('localStorage/setUserRequestModal',true)" class="header__nav-link d-flex align-items-center"><Icon name="keys_blue"  class="d-block"/> Подать заявку на запчасть</div>
-          <div class="header__nav__buttons">
-            <template v-if="!user">
-              <NuxtLink to="/login" class="btn btn-outline-primary">Войти</NuxtLink>
-              <NuxtLink to="/registration" class="btn btn-primary">Регистрация</NuxtLink>
-            </template>
-            <template v-else>
-              <UserMenu/>
-            </template>
-          </div>
-        </nav>
+    <template v-if="!isRentersPage" >
+      <div class="header__navbar hide-mob">
+        <div class="container">
+          <nav class="header__nav">
+            <NuxtLink :to="{ name: 'index', hash: '#about' }" class="header__nav-link">{{language[current][0]}}</NuxtLink>
+            <NuxtLink :to="{ name: 'index', hash: '#infrastructure' }" class="header__nav-link">{{language[current][1]}}</NuxtLink>
+            <div v-if="isSimplyUser || !user" @click="$store.commit('localStorage/setUserRequestModal',true)" class="header__nav-link d-flex align-items-center"><Icon name="keys_blue"  class="d-block"/> Подать заявку на запчасть</div>
+            <div class="header__nav__buttons">
+              <template v-if="!user">
+                <NuxtLink to="/login" class="btn btn-outline-primary">Войти</NuxtLink>
+                <NuxtLink to="/registration" class="btn btn-primary">Регистрация</NuxtLink>
+              </template>
+              <template v-else>
+                <UserMenu/>
+              </template>
+            </div>
+          </nav>
+        </div>
       </div>
-    </div>
+      <div v-if="isSimplyUser || !user" @click="$store.commit('localStorage/setUserRequestModal',true)"  class="header__navbar d-md-none d-block" >
+        <div class="container">
+          <nav class="header__nav">
+            <div class="header__nav-link d-flex align-items-center"><Icon name="keys_blue"  class="d-block"/> Подать заявку на запчасть</div>
+          </nav>
+        </div>
+      </div>
+    </template>
     <UserRequestModal/>
   </header>
 
