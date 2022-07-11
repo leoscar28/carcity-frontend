@@ -281,9 +281,11 @@
           return f.title && f.room_id && f.description && f.description.length > 80 && f.time && f.weekdays && f.employee_name && f.employee_phone && f.employee_phone.length === 17;
         },
         categoriesHeight(){
-          return window.innerWidth > 1024 ? {maxHeight: ((this.type === AD_TYPE_SPARE_PART ? this.sparePartsCount : this.servicesCount)/2 * 35) + 'px' } : {};
+          let count =  this.form.type === AD_TYPE_SPARE_PART ? this.sparePartsCount : this.servicesCount;
+          return window.innerWidth > 1024 ? {maxHeight: (count/2 * 35) + 'px' } : {};
         },
         brandsHeight(){
+
           return  window.innerWidth > 1024 ? {maxHeight: (this.brandsCount/2 * 30) + 'px' } : {};
         }
       },

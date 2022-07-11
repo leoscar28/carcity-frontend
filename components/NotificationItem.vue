@@ -155,6 +155,60 @@
           </div>
       </template>
     </template>
+    <template v-else-if="notification.user_request_id">
+      <template v-if="notification.type === 1">
+        <template v-if="user.role_id !== 1">
+          <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Новая заявка на запчасть</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_request_id.id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
+          </div>
+        </template>
+      </template>
+      <template v-if="notification.type === 2">
+        <template v-if="user.role_id !== 1">
+          <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Пользователь нашел запчасть</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_request_id.id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
+          </div>
+        </template>
+      </template>
+    </template>
+    <template v-else-if="notification.user_review_id">
+      <template v-if="notification.type === 1">
+        <template v-if="user.role_id !== 1">
+          <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Новое отзыв на арендатора</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_review_id.user_banner_id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
+          </div>
+        </template>
+        <template v-else>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Новый отзыв</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_review_id.user_banner_id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
+          </div>
+        </template>
+      </template>
+      <template v-if="notification.type === 2">
+        <template v-if="user.role_id !== 1">
+          <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Отзыв на арендатора удален</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_review_id.user_banner_id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
+          </div>
+        </template>
+        <template v-else>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Администратор удалил отзыв</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_review_id.user_banner_id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
+          </div>
+        </template>
+      </template>
+    </template>
   </div>
 </template>
 
