@@ -74,6 +74,12 @@
               </div>
             </div>
           </div>
+          <div class="mb-5 pb-4">
+            <h2 class="section-title">
+              Выберите помещение
+            </h2>
+            <map-renters></map-renters>
+          </div>
         </div>
       </main>
       <AppModal v-model="contactUsModalVisible" :title="language[current][9]" @scroll.stop>
@@ -151,8 +157,10 @@ import TheFooter from "/components/site/TheFooter";
 import vueCustomScrollbar from 'vue-custom-scrollbar';
 import "vue-custom-scrollbar/dist/vueScrollbar.css";
 import emailjs from '@emailjs/browser';
+import Mapview from "@/pages/mapview";
 export default {
   components: {
+    Mapview,
     vueCustomScrollbar,TheHeader,PartnersSlider,ConditionPanel,AppModal,TheFooter
   },
   computed: {
