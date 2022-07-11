@@ -37,9 +37,9 @@
             </template>
           </div>
           <div v-if="item.reviews" class="banner-section-block banner-section-block__reviews">
-              <div class="text-gray-600">Рейтинг продавца</div>
-              <div> <star-rating :padding="8" :increment="0.1" :star-size="18" :show-rating="!!item.reviews.rating" :rating="Number(item.reviews.rating)" :read-only="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" /></div>
-              <div class="banner-section-block__reviews__count"> {{ item.reviews.count}} отзывов</div>
+            <div class="text-gray-600">Рейтинг продавца</div>
+            <div> <star-rating :padding="8" :increment="0.1" :star-size="18" :show-rating="!!item.reviews.rating" :rating="Number(item.reviews.rating)" :read-only="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" /></div>
+            <div class="banner-section-block__reviews__count"> {{ item.reviews.count}} отзывов</div>
           </div>
           <div class="banner-section-block">
             <WidgetBannerSectionWithIcon icon="clock_blue" title="Время работы магазина" :subtitle="workTime" />
@@ -52,7 +52,7 @@
         <div class="banner-section-block  banner-section-block-data">
           <div class="banner-section-block-data-subheader">
             <div class="text-gray-600">
-                Опубликовано {{ makeDate(item.published_at) }}
+              Опубликовано {{ makeDate(item.published_at) }}
             </div>
             <div v-if="!isFront" :style="color">
               {{ statuses[item.status] }}
@@ -65,14 +65,14 @@
             {{ item.title }}
           </div>
           <div v-if="hasCategories" class="banner-section-block-data-content">
-            <div class="banner-section-block-data-content-header">Категории</div>
-            <div class="text-in-bubbles">
+            <div class="banner-section-block-data-content-header">Категории <div @click="showCategories = !showCategories" v-text="showCategories ? 'скрыть' : 'показать'" class="show-toggle"></div></div>
+            <div v-if="showCategories" class="text-in-bubbles">
               <WidgetTextInBubble v-for="(i, index) in availCats" :text="i.name" :key="index"/>
             </div>
           </div>
           <div v-if="hasBrands"  class="banner-section-block-data-content">
-            <div class="banner-section-block-data-content-header">Марки</div>
-            <div class="text-in-bubbles">
+            <div class="banner-section-block-data-content-header">Марки <div @click="showBrands = !showBrands" v-text="showBrands ? 'скрыть' : 'показать'" class="show-toggle"></div></div>
+            <div v-if="showBrands" class="text-in-bubbles">
               <WidgetTextInBubble v-for="(i, index) in availBrands" :text="i.name" :key="index"/>
             </div>
           </div>
@@ -136,6 +136,8 @@
     emits:['title'],
     data(){
       return {
+        showCategories: false,
+        showBrands: false,
         weekdaysArr:[
           {name:'Пн', id:1},
           {name:'Вт', id:2},
@@ -178,7 +180,7 @@
         this.imageView = this.item.images[0].path;
       }
       if (this.item.review_items && this.item.review_items.length){
-        this.reviewCount = this.item.review_items.length < 3 ? this.item.review_items.length : 3;
+        this.reviewCount = this.item.review_items.length < 5 ? this.item.review_items.length : 5;
       }
       this.$emit('title',this.item.title);
 
@@ -319,7 +321,7 @@
         this.$fetch();
       },
       showMore(){
-        let rc =  this.reviewCount + 3;
+        let rc =  this.reviewCount + 5;
         this.reviewCount = rc > this.item.review_items.length ? this.item.review_items.length : rc;
       }
     }
@@ -570,6 +572,17 @@
           &-header {
             font-weight: 700;
             margin-bottom: 8px;
+            .show-toggle {
+              display: inline-block;
+              color: #a5a5a5;
+              font-weight: 100;
+              font-size: 12px;
+              cursor: pointer;
+              padding: 0 4px;
+              &:hover {
+                background: #ebebeb
+              }
+            }
           }
         }
       }

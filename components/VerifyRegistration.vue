@@ -118,7 +118,7 @@ export default {
           this.$toast.error('Регистрация завершена').goAway(3000);
           this.$store.commit('localStorage/cancelRegisterUser');
           this.$store.commit('localStorage/setUser', res);
-          await this.$router.push('/login');
+          await this.$router.push('/');
         } else {
           for (const [key, value] of Object.entries(res)) {
             this.$toast.error(`${value}`).goAway(2000);

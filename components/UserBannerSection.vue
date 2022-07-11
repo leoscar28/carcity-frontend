@@ -63,7 +63,7 @@
     </div>
     <div class="col-xl-12 mb-lg-5 mb-3">
       <h4 v-if="isPage" class="fw-bold mb-3 pb-1">Все объявления</h4>
-      <div class="items-sort" v-if="isPage">Сортировка по: <div @click="nextOrderBy">{{orderBy.name}}</div><div @click="changeSort"><Icon class="d-block" :class="{'icon--rotate': sort === 'ASC'}" name="filter_list" size="26"/></div></div>
+      <div class="items-sort" v-if="isPage">Сортировка по: <div @click="nextOrderBy">{{orderBy.name}}</div><div @click="changeSort"><Icon class="d-block m-0" :class="{'icon--rotate': sort === 'ASC'}" name="filter_list" size="26"/></div></div>
       <div class="promotion-items">
         <WidgetUserBannerFront v-for="item in items" :item="item" :key="item.id"/>
       </div>
@@ -305,7 +305,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    grid-gap: 4px;
+    grid-gap: 12px;
     font-size: 18px;
     margin-bottom: 20px;
 
@@ -313,6 +313,10 @@
       cursor: pointer;
       color: #274985;
       border-bottom: 1px dashed;
+      padding: 0 8px;
+      &:hover {
+        background: #b8c6dd;
+      }
     }
   }
 
