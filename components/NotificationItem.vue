@@ -180,7 +180,7 @@
         <template v-if="user.role_id !== 1">
           <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
           <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
-            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Новое отзыв на арендатора</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Новый отзыв на арендатора</div>
             <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_review_id.user_banner_id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
           </div>
         </template>
