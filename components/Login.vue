@@ -78,7 +78,7 @@ export default {
         auth.goAway(0);
         if (res) {
           if (this.user.role_id === 5) {
-            await this.$router.push('/profile');
+            await this.$router.push('/');
           } else {
             await this.$router.push('/invoice');
           }
