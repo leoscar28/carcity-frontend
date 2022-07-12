@@ -19,7 +19,7 @@
             <div v-if="type == 1" class="brands  mb-md-3 mb-2">
               <div class="promotion-links">
                 <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray fw-bold">Марка</span>
-                <span v-for="(brand, index) in brandsForMenu" @click="setBrand(brand.id)"  class="promotion-link fw-bold" :class="{'promotion-link--active': brand_id.includes(brand.id), 'd-md-block d-none': index > 4}">{{brand.name}}</span>
+                <span v-for="(brand, index) in brandsForMenu" @click="setBrand(brand.id)"  class="promotion-link fw-bold d-md-block d-none" :class="{'promotion-link--active': brand_id.includes(brand.id)}">{{brand.name}}</span>
                 <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray fw-bold">ещё ...</span>
               </div>
               <div v-show="showBrands" class="checkbox-groups mt-2" :style="brandsHeight">
@@ -35,7 +35,7 @@
             <div class="categories">
               <div class="promotion-links">
                 <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray fw-bold">Категория</span>
-                <span v-for="category in categoriesForMenu" @click="setCategory(category.id)" class="promotion-link fw-bold" :class="{'promotion-link--active': category_id.includes(category.id), 'd-md-block d-none': index > 1}">{{category.name}}</span>
+                <span v-for="category in categoriesForMenu" @click="setCategory(category.id)" class="promotion-link fw-bold d-md-block d-none" :class="{'promotion-link--active': category_id.includes(category.id)}">{{category.name}}</span>
                 <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray fw-bold">ещё ...</span>
               </div>
               <div v-show="showCategories" class="checkbox-groups mt-2" :style="categoriesHeight">

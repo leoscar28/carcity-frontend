@@ -14,17 +14,21 @@
       </div>
     </div>
     <div class="widget-request__content row">
-      <div class="col-md-4 mb-3">
+      <div class="col-md-3 mb-3">
         <div class="text-gray-600">Указанный телефон</div>
         <div>{{item.phone}}</div>
       </div>
-      <div class="col-md-4 mb-3">
+      <div class="col-md-3 mb-3">
         <div class="text-gray-600">Категория</div>
         <div v-if="item.category">{{item.category.name}}</div>
       </div>
-      <div class="col-md-4 mb-3">
+      <div class="col-md-3 mb-3">
         <div class="text-gray-600">Марка</div>
         <div v-if="item.brand">{{item.brand.name}}</div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="text-gray-600">Дата</div>
+        <div v-if="item.created_at">{{makeDate(item.created_at)}}</div>
       </div>
       <div class="col-md-12">
         <div class="text-gray-600">Описание</div>
@@ -64,7 +68,19 @@
         async setFound(){
           await this.$store.dispatch('localStorage/unpublishUserRequest', this.item.id);
           this.item.status = 40;
-        }
+        },
+        makeDate(date){
+          if (date) {
+            date = new Date(date);
+            let day = String(date.getDate()).padStart(2,'0');
+            let month = String(date.getMonth()).padStart(2,'0');
+            let year = String(date.getFullYear());
+            let hour = String(date.getHours()).padStart(2,'0');
+            let minutes = String(date.getMinutes()).padStart(2,'0');
+            return [[day, month, year].join('.'), [hour, minutes].join(':')].join(' ');
+          }
+          return '';
+        },
       }
     }
 </script>

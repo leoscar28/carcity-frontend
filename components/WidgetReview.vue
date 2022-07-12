@@ -14,7 +14,7 @@
         </div>
         <div class="widget-review__content__footer">
           {{ date }} <span v-if="isAdmin && item.status === 10" @click="showUnpublishModal = true" class="btn__remove text-danger"><Icon name="close" class="d-block"/>Удалить</span>
-          <UserReviewUnpublishModal :show="showUnpublishModal" @cancel="showUnpublishModal = false" @success="needEdits" />
+          <UserReviewUnpublishModal :show="showUnpublishModal" @cancel="showUnpublishModal = false" @success="disableComment" />
         </div>
       </div>
     </div>
@@ -46,11 +46,11 @@
           return this.$store.state.localStorage.user;
         },
         isAdmin(){
-          return [2,3,4].includes(this.user.id)
+          return [2].includes(this.user.id)
         }
       },
       methods:{
-        async needEdits(data){
+        async disableComment(data){
           this.loading = true;
           let activation  = this.$toast.show('Удаляем ...');
           await this.$store.dispatch('localStorage/deleteUserReview', {id: this.item.id, comment: data.comment});
@@ -58,6 +58,7 @@
           this.item.status = 40;
           this.item.comment  = data.comment;
           this.loading = false;
+          this.showUnpublishModal = false;
         },
       }
     }
