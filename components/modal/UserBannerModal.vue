@@ -77,18 +77,19 @@
               <div class="col-md-12">
                 <div class="mb-3">
                   <label class="form-label"><span class="text-danger">*</span> Бутик</label>
-                  <select v-model="form.room_id" class="form-control form-control-sm">
+                  <select v-model="form.room_id" class="form-control form-control-sm" :class="{'is-invalid': !form.room_id, 'is-valid': form.room_id}">
                     <option v-if="!form.room_id" value="">Выберите бутик</option>
                     <option v-for="(room, index) in rooms" :value="room.id" :key="index">{{ room.roomType.title }} {{ room.title }}, {{ room.tier.title }}</option>
                   </select>
                 </div>
                 <div class="mb-3">
                   <label class="form-label"><span class="text-danger">*</span> Заголовок</label>
-                  <input v-model="form.title" class="form-control form-control-sm" placeholder="Введите заголовок"/>
+                  <input v-model="form.title" class="form-control form-control-sm" :class="{'is-invalid': !form.title, 'is-valid': form.title}" placeholder="Введите заголовок"/>
                 </div>
                 <div class="mb-3">
                   <label class="form-label"><span class="text-danger">*</span> Описание, не короче 80 символов</label>
-                  <textarea v-model="form.description"  rows="6" class="form-control form-control-sm" placeholder="Добавьте описание и перечень ассортимента, для активного поиска ваших объявлений"></textarea>
+                  <textarea v-model="form.description"  rows="6" class="form-control form-control-sm" :class="{'is-invalid': form.description.length < 80, 'is-valid': form.description.length >= 80}" placeholder="Добавьте описание и перечень ассортимента, для активного поиска ваших объявлений"></textarea>
+                  <div v-if="form.description && form.description.length < 80" class="invalid-feedback">Описание короче 80 символов ({{form.description.length}})</div>
                 </div>
               </div>
               <div class="col-md-6">
@@ -100,19 +101,19 @@
               <div class="col-md-6">
                 <div class="mb-3">
                   <label class="form-label"><span class="text-danger">*</span> Рабочие дни</label>
-                  <WeekdaySelector :form-weekdays="form.weekdays" @select="setWeekdays"/>
+                  <WeekdaySelector :form-weekdays="form.weekdays" :class="{'is-invalid': !form.weekdays.length, 'is-valid': form.weekdays.length}" @select="setWeekdays"/>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="mb-3">
                   <label class="form-label"><span class="text-danger">*</span> Телефон</label>
-                  <input v-model="form.employee_phone" v-mask="'+7 (###) ###-####'" placeholder="Введите телефон" class="form-control form-control-sm" />
+                  <input v-model="form.employee_phone" v-mask="'+7 (###) ###-####'" placeholder="Введите телефон" class="form-control form-control-sm" :class="{'is-invalid': form.employee_phone.length < 17, 'is-valid': form.employee_phone.length === 17}"/>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="mb-3">
                   <label class="form-label"><span class="text-danger">*</span> Имя сотрудника</label>
-                  <input v-model="form.employee_name" class="form-control form-control-sm" placeholder="Введите имя сотрудника"/>
+                  <input v-model="form.employee_name" class="form-control form-control-sm" :class="{'is-invalid': !form.employee_name, 'is-valid': form.employee_name}" placeholder="Введите имя сотрудника"/>
                 </div>
               </div>
               <div class="col-md-6">
@@ -285,7 +286,6 @@
           return window.innerWidth > 1024 ? {maxHeight: (count/2 * 35) + 'px' } : {};
         },
         brandsHeight(){
-
           return  window.innerWidth > 1024 ? {maxHeight: (this.brandsCount/2 * 30) + 'px' } : {};
         }
       },
