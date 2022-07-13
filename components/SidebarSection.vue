@@ -1,10 +1,10 @@
 <template>
   <div class="sidebar-section" :class="{'sidebar-section-show':$store.state.localStorage.sidebar}" @click="$store.commit('localStorage/closeSidebar');">
     <div class="sidebar-section-menu">
-      <NuxtLink to="/" class="d-lg-none d-block text-center px-5 py-2 ">
+      <NuxtLink to="/" class="d-md-none d-block text-center px-5 py-2 ">
         <img src="/logo.svg" height="40" alt="logo" >
       </NuxtLink>
-      <div class="sidebar-section-menu-item sidebar-section-menu-item-arrow" :class="{'sidebar-section-menu-item-arrow-active':dropdown}">
+      <div class="sidebar-section-menu-item sidebar-section-menu-item-arrow" :class="{'sidebar-section-menu-item-arrow-active':dropdown === 'docs'}">
         <div @click.stop="dropdown = 'docs'">
           <div class="sidebar-section-menu-item-icon sidebar-section-menu-item-icon-folder"></div>
           <div class="sidebar-section-menu-item-title">Документооборот</div>
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="sidebar-section-menu-item sidebar-section-menu-item-arrow" :class="{'sidebar-section-menu-item-arrow-active':dropdown === 'ads'}">
-        <div @click="dropdown = 'ads'">
+        <div @click.stop="dropdown = 'ads'">
           <div class="sidebar-section-menu-item-icon sidebar-section-menu-item-icon-folder"></div>
           <div class="sidebar-section-menu-item-title">Объявления</div>
         </div>
@@ -128,6 +128,10 @@ export default {
       if (this.$nuxt.$route.name.includes('ads-')) {
         this.dropdown = 'ads';
       }
+    },
+    showAds() {
+      this.dropdown = 'ads';
+
     }
   }
 }

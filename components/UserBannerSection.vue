@@ -20,7 +20,7 @@
               <div class="promotion-links">
                 <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray fw-bold">Марка</span>
                 <span v-for="(brand, index) in brandsForMenu" @click="setBrand(brand.id)"  class="promotion-link fw-bold d-md-block d-none" :class="{'promotion-link--active': brand_id.includes(brand.id)}">{{brand.name}}</span>
-                <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray fw-bold">ещё ...</span>
+                <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray promotion-link--gray--more fw-bold">ещё ...</span>
               </div>
               <div v-show="showBrands" class="checkbox-groups mt-2" :style="brandsHeight">
                 <CheckboxGroup v-for="(group, letter) in brands" :key="letter" :title="letter">
@@ -36,7 +36,7 @@
               <div class="promotion-links">
                 <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray fw-bold">Категория</span>
                 <span v-for="category in categoriesForMenu" @click="setCategory(category.id)" class="promotion-link fw-bold d-md-block d-none" :class="{'promotion-link--active': category_id.includes(category.id)}">{{category.name}}</span>
-                <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray fw-bold">ещё ...</span>
+                <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray promotion-link--gray--more fw-bold">ещё ...</span>
               </div>
               <div v-show="showCategories" class="checkbox-groups mt-2" :style="categoriesHeight">
                 <CheckboxGroup v-for="(group, letter) in categories" :key="letter" :title="letter">
@@ -347,6 +347,12 @@
     &--gray {
       color: #8C8C8C;
       border-bottom-color: #8C8C8C;
+      &--more {
+        @media (max-width:768px) {
+          color:#274985;
+          border-bottom-color: #274985;
+        }
+      }
     }
     &--active {
       border-style: solid;

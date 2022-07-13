@@ -67,9 +67,70 @@
             <span v-if="user.role_id !== 1 && item.user.company" class="widget-ub__content__footer__info"><Icon name="shop"/> {{ item.user.company}}</span>
           </div>
           <div class="widget-ub__content__footer__id">ID: {{ item.id }}</div>
+          <div @click="showButtons = true" class="widget-ub__content__footer__more d-md-none d-block">Подробнее ...</div>
         </div>
       </div>
       <UserBannerComment v-if="item.status === 20" :comment="item.comment" :show="showComment" @close="showComment = false" />
+      <div v-if="showButtons" :key="'wur'+item.id" class="modal-global">
+        <div class="modal-content-global">
+          <div class="modal-content-header-close" @click=" showButtons= false"></div>
+          <div class="modal-content-header">{{item.title}}</div>
+            <div class="modal-body d-flex flex-column gap-1">
+              <div>
+                <div class="widget-ub__content__header__status" :style="color">
+                  <span class="widget-ub__content__header__status__description--modal">{{ statuses[item.status] }}</span>
+                  <Icon v-if="[10,15].includes(item.status)" :key="item.id+'y'" name="loading_yellow"/>
+                  <Icon v-else-if="item.status === 20" :key="item.id+'r'" name="rework_red"/>
+                  <Icon v-else-if="item.status === 30" :key="item.id+'u'" name="unpublish"/>
+                  <Icon v-else-if="item.status === 31" :key="item.id+'p'" name="publish"/>
+                  <Icon v-else-if="item.status === 40" :key="item.id+'u'" name="unpublish"/>
+                </div>
+              </div>
+              <div v-if="item.reviews" class="widget-ub__content__rating d-flex flex-row gap-2 align-items-center">
+                <star-rating :padding="4" :increment="0.1" :show-rating="false" :star-size="14" :rating="Number(item.reviews.rating)" :read-only="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" />
+                {{ item.reviews.count }} отзывов
+              </div>
+              <div  v-if="item.view_count || item.phone_view_count || item.reviews" class="d-flex flex-wrap flex-row gap-2">
+                <span v-if="item.view_count" class="widget-ub__content__footer__info"><Icon name="views"/> {{ item.view_count }}</span>
+                <span v-if="item.phone_view_count" class="widget-ub__content__footer__info"><Icon name="calls"/> {{ item.phone_view_count }}</span>
+                <span v-if="item.reviews" class="widget-ub__content__footer__info"><Icon name="reviews"/> {{ item.reviews.count }}</span>
+              </div>
+              <div v-if="user.role_id !== 1 && item.user.company" class="d-flex flex-wrap flex-row gap-2">
+                <span class="widget-ub__content__footer__info"><Icon name="shop"/> {{ item.user.company}}</span>
+              </div>
+            </div>
+          <div  v-if="(user.role_id === 1  && [20,30,31,40].includes(item.status)) || (user.role_id !== 1 && [10, 15].includes(item.status))" class="modal-footer justify-content-start">
+            <div class="widget-ub__content__buttons widget-ub__content__buttons--modal">
+              <template v-if="user.role_id === 1">
+                <template v-if="item.status === 20">
+                  <span @click="$store.commit('localStorage/setEditableBanner', item)" class="widget-ub__content__button"><Icon name="rework_blue" key="rework"/> Доработать</span>
+                  <span @click="showComment = true" class="widget-ub__content__button"><Icon name="info" key="info"/> Причина отказа</span>
+                  <span @click="del()" class="widget-ub__content__button red"><Icon name="delete" key="delete"/> Удалить</span>
+                </template>
+                <template v-else-if="[30, 31].includes(item.status)">
+                  <template v-if="item.up !== 1 && item.status === 31">
+                    <span @click="up()" class="widget-ub__content__button"><Icon name="top" key="view"/> Поднять</span>
+                  </template>
+                  <template v-if="item.status !== 31">
+                    <span @click="publish()" class="widget-ub__content__button"><Icon name="publish" key="publish"/> Опубликовать</span>
+                  </template>
+                  <span @click="$store.commit('localStorage/setEditableBanner', item)" class="widget-ub__content__button"><Icon name="edit" key="edit"/> Редактировать</span>
+                  <NuxtLink :to="['/ads',item.id, 'view'].join('/')" class="widget-ub__content__button"><Icon name="view" key="view"/> Перейти в объявление</NuxtLink>
+                  <span @click="archive()" class="widget-ub__content__button red"><Icon name="close"/> Деактивировать</span>
+                </template>
+                <template v-else-if="item.status === 40">
+                  <span @click="activate()" class="widget-ub__content__button"><Icon name="rework_blue" key="activate"/> Активировать</span>
+                </template>
+              </template>
+              <template v-else>
+                <template v-if="[10, 15].includes(item.status)">
+                  <NuxtLink :to="['/ads',item.id, 'confirm'].join('/')" class="widget-ub__content__button"><Icon name="confirm" key="confirm"/> Согласовать</NuxtLink>
+                </template>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 </template>
 
@@ -131,7 +192,8 @@
       data(){
         return {
           loading:false,
-          showComment: false
+          showComment: false,
+          showButtons: false
         }
       },
       methods:{
@@ -308,6 +370,9 @@
             align-items: flex-start;
             &__description {
               display: none;
+              &--modal {
+                display: block;
+              }
             }
           }
         }
@@ -362,6 +427,11 @@
         color: #274985;
         @media (max-width:768px) {
           display:none;
+          &--modal {
+            display: flex;
+            grid-gap: 8px;
+            flex-direction: column;
+          }
         }
       }
 
@@ -390,6 +460,11 @@
           flex-direction: column;
         }
 
+        &__more {
+          color: #274985;
+          font-weight: 600;
+        }
+
         &__infos {
           display: flex;
           flex-direction: row;
@@ -402,6 +477,7 @@
         }
 
         &__info {
+          color: #8C8C8C!important;
           display: flex;
           align-items: center;
           line-height: 20px;
