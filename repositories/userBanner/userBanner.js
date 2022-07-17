@@ -15,6 +15,14 @@ export default ($axios) => ({
         return [];
       });
   },
+  rooms(payload) {
+    return $axios.post('/api/userBanner/rooms', payload)
+      .then(response => {
+        return response.data;
+      }).catch(error => {
+        return [];
+      });
+  },
   create(payload) {
     return $axios.post('/api/userBanner/create', payload)
       .then(response => {

@@ -494,6 +494,9 @@ export const actions = {
   async getUserBanners({commit},payload) {
     return await this.$repository.userBanner.all(payload);
   },
+  async getUserBannerRooms({commit},payload) {
+    return await this.$repository.userBanner.rooms(payload);
+  },
   async getUserBannerById({commit}, payload) {
     let res = this.$repository.userBanner.getById(payload);
     return res;

@@ -49,29 +49,62 @@
               </div>
             </div>
             <div class="text-center d-flex flex-md-row flex-column align-items-center justify-content-center gap-3 mt-md-3 mt-2 pt-2">
-              <div class="form-check">
+              <div v-show="!isRooms" class="form-check">
                 <input v-model="withImage" class="form-check-input" type="checkbox" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
                   С фото
                 </label>
               </div>
-              <button @click="getItems(1)" class="btn btn-primary">Показать объявления</button>
+              <NuxtLink v-if="!isPage" to="/promotions?showRooms=true" class="btn btn-outline-primary">Показать бутики</NuxtLink>
+              <button v-else @click="getRooms()" class="btn" :class="!isRooms ? 'btn-outline-primary' : 'btn-primary'" v-text="!isRooms ? 'Показать бутики' : 'Искать бутики'"></button>
+              <button @click="getItems(1)" class="btn" :class="isRooms ? 'btn-outline-primary' : 'btn-primary'" v-text="isRooms ? 'Показать объявления' : 'Искать объявления'"></button>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-xl-12 mb-lg-5 mb-3">
-      <h4 v-if="isPage" class="fw-bold mb-3 pb-1">Все объявления</h4>
-      <div class="items-sort" v-if="isPage">Сортировка по: <div @click="nextOrderBy">{{orderBy.name}}</div><div @click="changeSort"><Icon class="d-block m-0" :class="{'icon--rotate': sort === 'ASC'}" name="filter_list" size="26"/></div></div>
-      <div class="promotion-items">
-        <WidgetUserBannerFront v-for="item in items" :item="item" :key="item.id"/>
+    <template v-if="!isRooms">
+      <div class="col-xl-12 mb-lg-5 mb-3">
+        <h4 v-if="isPage" class="fw-bold mb-3 pb-1">Все объявления</h4>
+        <div class="items-sort" v-if="isPage">Сортировка по: <div @click="nextOrderBy">{{orderBy.name}}</div><div @click="changeSort"><Icon class="d-block m-0" :class="{'icon--rotate': sort === 'ASC'}" name="filter_list" size="26"/></div></div>
+        <div class="promotion-items">
+          <WidgetUserBannerFront v-for="item in items" :item="item" :key="item.id"/>
+        </div>
       </div>
-    </div>
-    <div v-if="!isPage" class="col-xl-12 text-center mb-lg-5 mb-0">
-      <NuxtLink to="/promotions" class="btn btn-outline-primary">Показать все объявления</NuxtLink>
-    </div>
-    <UserBannerSectionPagination :paginate="paginate" :pages="pages" :take="take" :range="range" @up="up" @down="down" @setRange="setRange" @setPaginate="setPaginate" @setTake="setTake"/>
+      <div v-if="!isPage" class="col-xl-12 text-center mb-lg-5 mb-0">
+        <NuxtLink to="/promotions" class="btn btn-outline-primary">Показать все объявления</NuxtLink>
+      </div>
+      <UserBannerSectionPagination :paginate="paginate" :pages="pages" :take="take" :range="range" @up="up" @down="down" @setRange="setRange" @setPaginate="setPaginate" @setTake="setTake"/>
+    </template>
+    <template v-else>
+      <div class="map-all">
+        <div class="map-left order-md-first order-last">
+          <div class="map-left-list">
+            <vue-custom-scrollbar class="scroll-area" style="height: 350px" :settings="{ suppressScrollX: false }">
+              <div class="map-left-list-main">
+                <div v-for="(room,key) in list" @click="getRoomItems(room.id)" :key="key" class="map-left-list-item">
+                  <div class="map-left-list-item-description">
+                    <div class="map-left-list-item-description-title">{{room.tier.title}}</div>
+                  </div>
+                  <div class="map-left-list-item-id">{{room.roomType.title}} {{room.title}}</div>
+                </div>
+              </div>
+            </vue-custom-scrollbar>
+          </div>
+        </div>
+        <div class="map-right">
+          <map-main :selected="selectedTier" :room-ids="roomIds" :key="'room'+roomId"></map-main>
+          <div class="map-right-footer d-flex flex-row" onselectstart="return false">
+            <div class="map-right-footer-item" :class="{'map-right-footer-item-sel':(selectedTier === key)}" v-for="(tier,key) in tiers" :key="key" v-show="tier.id !== 6 && tier.id !== 1" @click="selectedTier = key">{{tier.title}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 mb-lg-5 mt-3 mb-3">
+        <div class="promotion-items">
+          <WidgetUserBannerFront v-for="item in items" :item="item" :key="item.id"/>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -81,17 +114,20 @@
   import CheckboxGroup from "./uploader/CheckboxGroup";
   import UserBannerSectionPagination from "./UserBannerSectionPagination";
   import Icon from "./icons/Icon";
+  import vueCustomScrollbar from 'vue-custom-scrollbar';
+  import "vue-custom-scrollbar/dist/vueScrollbar.css";
   const AD_TYPE_SPARE_PART = 1;
   const AD_TYPE_SERVICE = 2;
 
   export default {
     name: "UserBannerSection",
-    components: {Icon, UserBannerSectionPagination, CheckboxGroup, WidgetUserBannerFront},
+    components: {Icon, UserBannerSectionPagination, CheckboxGroup, WidgetUserBannerFront, vueCustomScrollbar},
     props: {
       isPage: Boolean
     },
     data(){
       return {
+        isRooms:false,
         sort: 'DESC',
         orderBy: {name: 'Дате', value: 'updated'},
         orderByIndex: 0,
@@ -100,6 +136,8 @@
           {name: 'Рейтингу', value: 'rating'},
           {name: 'Количеству отзывов', value: 'review'}
         ],
+        roomId:null,
+        roomIds:[],
         term:'',
         showCategories:false,
         showBrands: false,
@@ -118,6 +156,7 @@
         paginate: 1,
         range: 1,
         pages: 0,
+        selectedTier:1
       }
     },
     computed:{
@@ -160,6 +199,17 @@
       },
       brandsHeight(){
         return {maxHeight: (this.brandsCount/this.columns * 30) + 'px' }
+      },
+      tiers() {
+        return this.$store.state.localStorage.tiers;
+      },
+      rooms() {
+        return this.$store.state.localStorage.rooms;
+      },
+      list() {
+        let rooms = this.rooms.filter(room => (room.tier.id - 1) === this.selectedTier);
+
+        return rooms.filter(room => this.roomIds.includes(room.id));
       }
     },
     async created() {
@@ -167,10 +217,11 @@
       let cats = [],
         brs = [];
 
-      if (this.isPage) {
-        this.pages = await this.$store.dispatch('localStorage/getUserBannerPages', this.dataForRequest);
+      if (this.$route.query.showRooms) {
+        await this.getRooms();
+      } else {
+        await this.getItems();
       }
-      this.items = await this.$store.dispatch('localStorage/getUserBanners', this.dataForRequest);
 
       cats = await this.$store.dispatch('localStorage/listDictionarySpareParts')
       this.categories = this.group(cats);
@@ -181,6 +232,9 @@
       this.brands = this.group(brs);
       this.brandsForMenu = this.filterForMenu(brs);
       this.brandsCount = brs.length;
+
+      await this.$store.dispatch('localStorage/tiersGet');
+      await this.$store.dispatch('localStorage/roomGet');
     },
     methods:{
       async changeSort(){
@@ -202,7 +256,13 @@
       filterForMenu(list){
         return list.filter((item) => { return item.for_menu === 1})
       },
+      async getRoomItems(room_id){
+        let data = this.dataForRequest;
+        data.data.room_id = room_id;
+        this.items = await this.$store.dispatch('localStorage/getUserBanners', data);
+      },
       async getItems(page = null){
+        this.isRooms = false;
         if (this.isPage) {
           if (page) {
             this.paginate = page;
@@ -210,6 +270,12 @@
           this.pages = await this.$store.dispatch('localStorage/getUserBannerPages', this.dataForRequest);
         }
         this.items = await this.$store.dispatch('localStorage/getUserBanners', this.dataForRequest);
+      },
+      async getRooms(){
+        this.isRooms = true;
+        this.items = [];
+        this.roomIds = await this.$store.dispatch('localStorage/getUserBannerRooms', this.dataForRequest);
+
       },
       setCategory(id){
         if (this.category_id.includes(id)) {
@@ -361,6 +427,6 @@
     }
   }
 
-
+  @import '/assets/Map.scss';
 
 </style>

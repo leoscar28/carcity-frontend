@@ -51,11 +51,9 @@
               <input type="text" placeholder="Поиск">
             </div>
             <div class="map-left-list">
-              <vue-custom-scrollbar class="scroll-area" :settings="{
-        suppressScrollX: false,
-      }">
+              <vue-custom-scrollbar class="scroll-area" style="height: 350px" :settings="{ suppressScrollX: false }">
                 <div class="map-left-list-main">
-                  <div class="map-left-list-item" v-for="(room,key) in list" :key="key">
+                  <div @click="roomId = room.id" class="map-left-list-item" v-for="(room,key) in list" :key="key">
                     <div class="map-left-list-item-description">
                       <div class="map-left-list-item-description-title">Помещение: {{room.title}}</div>
                       <div class="map-left-list-item-description-status" v-if="room.status === 2">Сдан в аренду</div>
@@ -69,9 +67,9 @@
             </div>
           </div>
           <div class="map-right">
-            <map-main :selected="selected"></map-main>
+            <map-main :selected="selected" :room-ids="roomIds" :key="'room'+roomId"></map-main>
             <div class="map-right-footer" onselectstart="return false">
-              <div class="map-right-footer-item" :class="{'map-right-footer-item-sel':(selected === key)}" v-for="(tier,key) in tiers" :key="key" v-show="tier.id !== 6" @click="selected = key">{{tier.title}}</div>
+              <div class="map-right-footer-item" :class="{'map-right-footer-item-sel':(selected === key)}" v-for="(tier,key) in tiers" :key="key" v-show="tier.id !== 6 && tier.id !== 1" @click="selected = key">{{tier.title}}</div>
             </div>
           </div>
         </div>
@@ -91,6 +89,9 @@ export default {
   name: "mapview",
   components: {vueCustomScrollbar,MapMain,TheHeader,TheFooter},
   computed: {
+    roomIds() {
+      return [this.roomId];
+    },
     current() {
       return this.$store.state.localStorage.current;
     },
@@ -110,7 +111,8 @@ export default {
   },
   data() {
     return {
-      selected: 0,
+      roomId:null,
+      selected: 1,
       language: [
         ['Личный кабинет','Главная','Карта','У нас предусмотрены гибкие условия для аренды, индивидуальный подход к каждому арендатору','Заявка на аренду','С нами сотрудничают','Все необходимые условия для размещения вашего бизнеса','Наименование TOO/ИП','Введите наименование','Введите свои данные','БИН/ИИН','Введите БИН/ИИН','Категория товара или услуги','Введите категория товара или услугу','Требуемая площадь помещения','Минимальная','Максимальная','Другие условия для работы/комментарии','Введите комментарий','Контактное лицо','Введите контактное лицо','Телефон для связи','Введите телефон','Email','Введите email','Я принимаю условия','пользовательского соглашения','политики конфиденциальности','Отмена','Отправить','Отправляем данные...'],
         ['Жеке кабинет','Басты бет','Карта','Бізде жалға алу бойынша икемді жағдай, әр жалға алушымен жеке тіл табысу қарастырылған','Жалға алу туралы өтініш','Бізбен бірге қызмет жасайды','Сіздің бизнесіңіздің орналасуына барлық керекті шарттар','TOO/ИП атауы','Атын енгізіңіз','Мәліметтеріңізді енгізіңіз','БСН/ЖСН','БСН/ЖСН енгізіңіз','Өнім немесе қызмет санаты','Өнім немесе қызмет санатын енгізіңіз','Қажетті бөлме ауданы','Ең аз','Максималды','Басқа жұмыс шарттары/түсініктемелері','Пікір енгізіңіз','Байланыстағы адам','Байланыстағы адамды енгізіңіз','Байланыс телефоны','Телефонды енгізіңіз','Email','Электрондық поштаны енгізіңіз','Мен шарттарды қабылдаймын','пайдаланушы келісімі','құпиялылық саясаты','Модалды жабу','Жіберу','Деректерди жиберу...']

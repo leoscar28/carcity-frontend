@@ -40,7 +40,7 @@
             </div>
           </div>
         </template>
-        <div class="profile-section-main-right-fields" v-else>
+        <div v-else class="profile-section-main-right-fields" >
           <div class="profile-section-main-right-field" v-if="user.positions">
             <div class="profile-section-main-right-field-title">Должность</div>
             <input type="text" :value="user.positions.title" readonly>
@@ -57,23 +57,51 @@
         <div class="profile-section-main-right-fields">
           <button class="profile-section-main-right-btn" @click="save">Сохранить</button>
         </div>
-        <div class="profile-section-main-right-title"v-show="rooms.length > 0">Арендованные помещения</div>
-        <div class="profile-section-rooms" v-show="rooms.length > 0">
-          <div class="profile-section-rooms-item" v-for="(room,key) in rooms" :key="key">
-            <div class="profile-section-rooms-item-field">
-              <div class="profile-section-rooms-item-field-title">Ярус</div>
-              <div class="profile-section-rooms-item-field-value">{{room.tier.title}}</div>
-            </div>
-            <div class="profile-section-rooms-item-field">
-              <div class="profile-section-rooms-item-field-title">Тип помощения</div>
-              <div class="profile-section-rooms-item-field-value">{{room.roomType.title}}</div>
-            </div>
-            <div class="profile-section-rooms-item-field">
-              <div class="profile-section-rooms-item-field-title">Название</div>
-              <div class="profile-section-rooms-item-field-value">{{room.title}}</div>
+        <template v-if="user.role_id === 1">
+          <div class="profile-section-main-right-title">Главные категории товаров и услуг</div>
+          <div class="profile-section-main-right-fields">
+              <div class="profile-section-main-right-field">
+                <div class="profile-section-main-right-field-title">Категория</div>
+                <select v-model="spare_part_id">
+                  <option value="">Выберите категорию запчастей</option>
+                  <option v-for="sparePart in spareParts" :value="sparePart.id" :selected="sparePart.id === user.spare_part_id">{{sparePart.name}}</option>
+                </select>
+              </div>
+            <div class="profile-section-main-right-field">
+                <div class="profile-section-main-right-field-title">Марка</div>
+                <select v-model="brand_id">
+                  <option value="">Выберите марку запчастей</option>
+                  <option v-for="brand in brands" :value="brand.id" :selected="brand.id === user.brand_id">{{brand.name}}</option>
+                </select>
+              </div>
+            <div class="profile-section-main-right-field">
+                <div class="profile-section-main-right-field-title">Услуга</div>
+                <select v-model="service_id">
+                  <option value="">Выберите категорию услуг</option>
+                  <option v-for="service in services" :value="service.id" :selected="service.id === user.service_id">{{service.name}}</option>
+                </select>
+              </div>
+          </div>
+
+          <div class="profile-section-main-right-title" v-show="rooms.length > 0">Арендованные помещения</div>
+          <div class="profile-section-rooms" v-show="rooms.length > 0">
+            <div class="profile-section-rooms-item" v-for="(room,key) in rooms" :key="key">
+              <div class="profile-section-rooms-item-field">
+                <div class="profile-section-rooms-item-field-title">Ярус</div>
+                <div class="profile-section-rooms-item-field-value">{{room.tier.title}}</div>
+              </div>
+              <div class="profile-section-rooms-item-field">
+                <div class="profile-section-rooms-item-field-title">Тип помощения</div>
+                <div class="profile-section-rooms-item-field-value">{{room.roomType.title}}</div>
+              </div>
+              <div class="profile-section-rooms-item-field">
+                <div class="profile-section-rooms-item-field-title">Название</div>
+                <div class="profile-section-rooms-item-field-value">{{room.title}}</div>
+              </div>
             </div>
           </div>
-        </div>
+        </template>
+
       </div>
 
     </div>
@@ -100,12 +128,24 @@ export default {
       last_name: '',
       bin: '',
       company: '',
-      rooms: []
+      spare_part_id: '',
+      service_id: '',
+      brand_id: '',
+      rooms: [],
+      spareParts:[],
+      brands:[],
+      services:[]
     }
   },
   async created() {
-    if (this.user.role_id === 5) {
+    if (this.user.role_id === 1) {
       this.rooms  = await this.$store.dispatch('localStorage/roomGetByUserId',this.user.id);
+      this.spareParts = await this.$store.dispatch('localStorage/listDictionarySpareParts');
+      this.brands = await this.$store.dispatch('localStorage/listDictionaryBrands');
+      this.services = await this.$store.dispatch('localStorage/listDictionaryServices');
+      this.spare_part_id = this.user.spare_part_id;
+      this.service_id = this.user.service_id;
+      this.brand_id = this.user.brand_id;
     } else {
       this.rooms  = [];
     }
@@ -134,7 +174,10 @@ export default {
           name: this.name.trim(),
           last_name: this.last_name,
           bin: this.bin,
-          company: this.company
+          company: this.company,
+          spare_part_id: this.spare_part_id,
+          brand_id: this.brand_id,
+          service_id: this.service_id
         }
       };
       let update  = this.$toast.show('Сохранение данных');

@@ -67,12 +67,15 @@
             <span v-if="user.role_id !== 1 && item.user.company" class="widget-ub__content__footer__info"><Icon name="shop"/> {{ item.user.company}}</span>
           </div>
           <div class="widget-ub__content__footer__id">ID: {{ item.id }}</div>
-          <div @click="showButtons = true" class="widget-ub__content__footer__more d-md-none d-block">Подробнее ...</div>
+          <template v-if="user.role_id === 1 && item.status === 40">
+              <span @click="activate()" class="widget-ub__content__button"><Icon name="rework_blue" key="activate"/> Активировать</span>
+          </template>
+          <div v-else @click="showButtons = true" class="widget-ub__content__footer__more d-md-none d-block">Подробнее ...</div>
         </div>
       </div>
       <UserBannerComment v-if="item.status === 20" :comment="item.comment" :show="showComment" @close="showComment = false" />
       <div v-if="showButtons" :key="'wur'+item.id" class="modal-global">
-        <div class="modal-content-global">
+        <div class="modal-content-global modal-content-global-80">
           <div class="modal-content-header-close" @click=" showButtons= false"></div>
           <div class="modal-content-header">{{item.title}}</div>
             <div class="modal-body d-flex flex-column gap-1">
@@ -117,9 +120,6 @@
                   <span @click="$store.commit('localStorage/setEditableBanner', item)" class="widget-ub__content__button"><Icon name="edit" key="edit"/> Редактировать</span>
                   <NuxtLink :to="['/ads',item.id, 'view'].join('/')" class="widget-ub__content__button"><Icon name="view" key="view"/> Перейти в объявление</NuxtLink>
                   <span @click="archive()" class="widget-ub__content__button red"><Icon name="close"/> Деактивировать</span>
-                </template>
-                <template v-else-if="item.status === 40">
-                  <span @click="activate()" class="widget-ub__content__button"><Icon name="rework_blue" key="activate"/> Активировать</span>
                 </template>
               </template>
               <template v-else>
@@ -499,6 +499,10 @@
         }
       }
     }
+  }
+
+  .modal-content-global-80 {
+    width:calc(100%  - 20px)!important;
   }
 
 </style>
