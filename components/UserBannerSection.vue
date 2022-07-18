@@ -80,9 +80,9 @@
       <div class="map-all">
         <div class="map-left order-md-first order-last">
           <div class="map-left-list">
-            <vue-custom-scrollbar class="scroll-area" style="height: 350px" :settings="{ suppressScrollX: false }">
+            <vue-custom-scrollbar class="scroll-area" ref="scrollArea" style="height: 350px" :settings="{ suppressScrollX: false }">
               <div class="map-left-list-main">
-                <div v-for="(room,key) in list" @click="getRoomItems(room.id)" :key="key" class="map-left-list-item">
+                <div v-for="(room,key) in list" @click="roomId = room.id" :key="'roomId'+room.id" :ref="'roomId'+room.id" class="map-left-list-item" :class="{'map-left-list-item--active':roomId === room.id}">
                   <div class="map-left-list-item-description">
                     <div class="map-left-list-item-description-title">{{room.tier.title}}</div>
                   </div>
@@ -93,13 +93,14 @@
           </div>
         </div>
         <div class="map-right">
-          <map-main :selected="selectedTier" :room-ids="roomIds" :key="'room'+roomId"></map-main>
+          <map-main :selected="selectedTier" :room-ids="roomIds" :key="'room'+roomId" @room-select="setRoomId"></map-main>
           <div class="map-right-footer d-flex flex-row" onselectstart="return false">
             <div class="map-right-footer-item" :class="{'map-right-footer-item-sel':(selectedTier === key)}" v-for="(tier,key) in tiers" :key="key" v-show="tier.id !== 6 && tier.id !== 1" @click="selectedTier = key">{{tier.title}}</div>
           </div>
         </div>
       </div>
       <div class="col-xl-12 mb-lg-5 mt-3 mb-3">
+        <h4 v-if="isPage && items.length" class="fw-bold mb-3 pb-1">Объявления выбранного продавца</h4>
         <div class="promotion-items">
           <WidgetUserBannerFront v-for="item in items" :item="item" :key="item.id"/>
         </div>
@@ -237,6 +238,13 @@
       await this.$store.dispatch('localStorage/roomGet');
     },
     methods:{
+      setRoomId(room_id){
+        this.roomId = room_id;
+        const [el] = this.$refs['roomId'+this.roomId];
+        if (el) {
+          this.$refs.scrollArea.$el.scrollTop = el.offsetTop;
+        }
+      },
       async changeSort(){
         this.sort = this.sort === 'ASC' ? 'DESC' : 'ASC';
         await this.getItems()
@@ -257,7 +265,7 @@
         return list.filter((item) => { return item.for_menu === 1})
       },
       async getRoomItems(room_id){
-        let data = this.dataForRequest;
+        const data = this.dataForRequest;
         data.data.room_id = room_id;
         this.items = await this.$store.dispatch('localStorage/getUserBanners', data);
       },
@@ -312,6 +320,9 @@
       }
     },
     watch:{
+      roomId: async function(val){
+        await this.getRoomItems(val);
+      },
       type: async function(val) {
         let cats = [];
         this.category_id = [];

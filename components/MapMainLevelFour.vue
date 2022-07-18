@@ -3,268 +3,269 @@
     <g clip-path="url(#clip0_9681_56663)">
       <rect width="1236" height="1003" fill="white"/>
       <path opacity="0.4" d="M927 293H854H487V260H435V293H127V463H82V524H127V899H927V695.33C956.73 679.6 976 648.25 976 612.14C976 576.05 956.72 544.73 927 529V293Z" fill="#E8B350"/>
-      <rect :class="{'active-room':roomIds.includes(661)}" x="900" y="333" width="38" height="25" transform="rotate(-90 900 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(662)}" x="873" y="333" width="38" height="27" transform="rotate(-90 873 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(663)||roomIds.includes(664)}" x="819" y="333" width="38" height="54" transform="rotate(-90 819 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(665)}" x="792" y="333" width="38" height="27" transform="rotate(-90 792 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(666)}" x="765" y="333" width="38" height="27" transform="rotate(-90 765 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(667)}" x="736" y="333" width="38" height="29" transform="rotate(-90 736 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(668)}" x="706" y="333" width="38" height="30" transform="rotate(-90 706 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(669)}" x="677" y="333" width="38" height="29" transform="rotate(-90 677 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(670)}" x="647" y="333" width="38" height="30" transform="rotate(-90 647 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(671)}" x="618" y="333" width="38" height="29" transform="rotate(-90 618 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(672)}" x="588" y="333" width="38" height="30" transform="rotate(-90 588 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(673)}" x="562" y="333" width="38" height="26" transform="rotate(-90 562 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(674)}" x="533" y="333" width="38" height="29" transform="rotate(-90 533 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(675)}" x="436" y="333" width="38" height="28" transform="rotate(-90 436 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(676)}" x="408" y="333" width="38" height="28" transform="rotate(-90 408 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(677)}" x="383" y="333" width="38" height="25" transform="rotate(-90 383 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(678)}" x="358" y="333" width="38" height="25" transform="rotate(-90 358 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(679)||roomIds.includes(680)}" x="307" y="333" width="38" height="51" transform="rotate(-90 307 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(681)}" x="282" y="333" width="38" height="25" transform="rotate(-90 282 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(682)}" x="256" y="333" width="38" height="26" transform="rotate(-90 256 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(683)||roomIds.includes(684)||roomIds.includes(685)}" x="182" y="333" width="38" height="74" transform="rotate(-90 182 333)" fill="white" stroke="#274985" stroke-width="2"/>
-      <path :class="{'active-room':roomIds.includes(686)||roomIds.includes(687)}" d="M129 354L129 355L130 355L157 355L158 355L158 354L158 333L181 333L182 333L182 332L182 296L182 295L181 295L130 295L129 295L129 296L129 354Z" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(688)}" x="129" y="388" width="33" height="29" transform="rotate(-90 129 388)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(689)}" x="179" y="393" width="32" height="26" transform="rotate(-90 179 393)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(690)}" x="205" y="393" width="32" height="26" transform="rotate(-90 205 393)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(691)}" x="231" y="393" width="32" height="30" transform="rotate(-90 231 393)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(693)}" x="291" y="393" width="32" height="30" transform="rotate(-90 291 393)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(694)}" x="321" y="393" width="32" height="30" transform="rotate(-90 321 393)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(696)}" x="381" y="393" width="32" height="27" transform="rotate(-90 381 393)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(697)}" x="408" y="393" width="32" height="27" transform="rotate(-90 408 393)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(698)}" x="435" y="393" width="32" height="25" transform="rotate(-90 435 393)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(699)}" x="482" y="389" width="32" height="27" transform="rotate(-90 482 389)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(700)}" x="509" y="389" width="32" height="25" transform="rotate(-90 509 389)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(701)}" x="534" y="389" width="32" height="29" transform="rotate(-90 534 389)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(702)}" x="563" y="389" width="32" height="30" transform="rotate(-90 563 389)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(703)||roomIds.includes(704)}" x="593" y="389" width="32" height="59" transform="rotate(-90 593 389)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(706)}" x="682" y="389" width="32" height="30" transform="rotate(-90 682 389)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(707)||roomIds.includes(708)}" x="712" y="389" width="32" height="55" transform="rotate(-90 712 389)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(709)}" x="767" y="389" width="32" height="25" transform="rotate(-90 767 389)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(710)}" x="810" y="389" width="32" height="25" transform="rotate(-90 810 389)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(711)}" x="835" y="389" width="32" height="26" transform="rotate(-90 835 389)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(713)}" x="885" y="389" width="32" height="25" transform="rotate(-90 885 389)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(714)}" x="885" y="423" width="34" height="25" transform="rotate(-90 885 423)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(712)||roomIds.includes(715)}" x="861" y="423" width="66" height="24" transform="rotate(-90 861 423)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(716)}" x="835" y="423" width="34" height="26" transform="rotate(-90 835 423)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(717)}" x="810" y="423" width="34" height="25" transform="rotate(-90 810 423)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(718)}" x="767" y="423" width="34" height="25" transform="rotate(-90 767 423)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(719)}" x="740" y="423" width="34" height="27" transform="rotate(-90 740 423)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(720)}" x="712" y="423" width="34" height="28" transform="rotate(-90 712 423)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(721)}" x="682" y="423" width="34" height="30" transform="rotate(-90 682 423)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(705)||roomIds.includes(722)}" x="652" y="423" width="66" height="30" transform="rotate(-90 652 423)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(723)}" x="623" y="423" width="34" height="29" transform="rotate(-90 623 423)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(724)}" x="593" y="423" width="34" height="30" transform="rotate(-90 593 423)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(725)}" x="563" y="423" width="34" height="30" transform="rotate(-90 563 423)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(726)}" x="534" y="423" width="34" height="29" transform="rotate(-90 534 423)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(727)||roomIds.includes(728)}" x="482" y="423" width="34" height="52" transform="rotate(-90 482 423)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(729)||roomIds.includes(730)||roomIds.includes(731)}" x="381" y="393" width="79" height="34" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(732)||roomIds.includes(695)}" x="351" y="427" width="66" height="30" transform="rotate(-90 351 427)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(733)}" x="321" y="427" width="34" height="30" transform="rotate(-90 321 427)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(734)}" x="291" y="427" width="34" height="30" transform="rotate(-90 291 427)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(735)||roomIds.includes(692)}" x="261" y="427" width="66" height="30" transform="rotate(-90 261 427)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(736)}" x="231" y="427" width="34" height="30" transform="rotate(-90 231 427)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(737)}" x="205" y="427" width="34" height="26" transform="rotate(-90 205 427)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(738)}" x="179" y="427" width="34" height="26" transform="rotate(-90 179 427)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(739)||roomIds.includes(740)}" x="129" y="484" width="96" height="29" transform="rotate(-90 129 484)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(741)}" x="179" y="481" width="32" height="26" transform="rotate(-90 179 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(742)}" x="205" y="481" width="32" height="26" transform="rotate(-90 205 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(743)}" x="231" y="481" width="32" height="28" transform="rotate(-90 231 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(744)}" x="259" y="481" width="32" height="29" transform="rotate(-90 259 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(745)}" x="288" y="481" width="32" height="30" transform="rotate(-90 288 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(746)}" x="318" y="481" width="32" height="30" transform="rotate(-90 318 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(747)}" x="348" y="481" width="32" height="33" transform="rotate(-90 348 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(748)}" x="381" y="481" width="32" height="26" transform="rotate(-90 381 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(749)}" x="407" y="481" width="32" height="27" transform="rotate(-90 407 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(750)}" x="434" y="481" width="32" height="25" transform="rotate(-90 434 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(752)}" x="510" y="481" width="32" height="26" transform="rotate(-90 510 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(753)}" x="536" y="481" width="32" height="31" transform="rotate(-90 536 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(754)}" x="567" y="481" width="32" height="28" transform="rotate(-90 567 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(755)}" x="595" y="481" width="32" height="30" transform="rotate(-90 595 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(756)}" x="625" y="481" width="32" height="30" transform="rotate(-90 625 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(757)}" x="655" y="481" width="32" height="29" transform="rotate(-90 655 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(758)||roomIds.includes(759)}" x="684" y="481" width="32" height="57" transform="rotate(-90 684 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(760)}" x="741" y="481" width="32" height="25" transform="rotate(-90 741 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(761)}" x="766" y="481" width="32" height="25" transform="rotate(-90 766 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(762)}" x="809" y="481" width="32" height="26" transform="rotate(-90 809 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(763)}" x="835" y="481" width="32" height="26" transform="rotate(-90 835 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(764)}" x="861" y="481" width="32" height="23" transform="rotate(-90 861 481)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(765)||roomIds.includes(766)}" x="884" y="513" width="64" height="25" transform="rotate(-90 884 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(767)}" x="861" y="513" width="32" height="23" transform="rotate(-90 861 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(768)}" x="835" y="513" width="32" height="26" transform="rotate(-90 835 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(769)}" x="809" y="513" width="32" height="26" transform="rotate(-90 809 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(770)}" x="766" y="513" width="32" height="25" transform="rotate(-90 766 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(771)}" x="741" y="513" width="32" height="25" transform="rotate(-90 741 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(772)}" x="714" y="513" width="32" height="27" transform="rotate(-90 714 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(773)}" x="684" y="513" width="32" height="30" transform="rotate(-90 684 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(774)}" x="655" y="513" width="32" height="29" transform="rotate(-90 655 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(775)}" x="625" y="513" width="32" height="30" transform="rotate(-90 625 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(776)}" x="595" y="513" width="32" height="30" transform="rotate(-90 595 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(777)}" x="567" y="513" width="32" height="28" transform="rotate(-90 567 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(778)}" x="536" y="513" width="32" height="31" transform="rotate(-90 536 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(779)}" x="510" y="513" width="32" height="26" transform="rotate(-90 510 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(780)||roomIds.includes(751)}" x="483" y="513" width="64" height="27" transform="rotate(-90 483 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(781)}" x="434" y="513" width="32" height="25" transform="rotate(-90 434 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(782)}" x="407" y="513" width="32" height="27" transform="rotate(-90 407 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(783)}" x="381" y="513" width="32" height="26" transform="rotate(-90 381 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(784)}" x="348" y="513" width="32" height="33" transform="rotate(-90 348 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(785)}" x="318" y="513" width="32" height="30" transform="rotate(-90 318 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(786)}" x="288" y="513" width="32" height="30" transform="rotate(-90 288 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(787)}" x="259" y="513" width="32" height="29" transform="rotate(-90 259 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(788)}" x="231" y="513" width="32" height="28" transform="rotate(-90 231 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(789)}" x="205" y="513" width="32" height="26" transform="rotate(-90 205 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(790)}" x="179" y="513" width="32" height="26" transform="rotate(-90 179 513)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(791)}" x="129" y="559" width="37" height="27" transform="rotate(-90 129 559)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(792)}" x="129" y="595" width="36" height="27" transform="rotate(-90 129 595)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(793)}" x="177" y="569" width="32" height="24" transform="rotate(-90 177 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(794)}" x="201" y="569" width="32" height="30" transform="rotate(-90 201 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(795)}" x="231" y="569" width="32" height="30" transform="rotate(-90 231 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(796)}" x="261" y="569" width="32" height="29" transform="rotate(-90 261 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(797)}" x="290" y="569" width="32" height="30" transform="rotate(-90 290 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(798)}" x="320" y="569" width="32" height="30" transform="rotate(-90 320 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(799)}" x="350" y="569" width="32" height="30" transform="rotate(-90 350 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(800)||roomIds.includes(801)}" x="380" y="569" width="32" height="54" transform="rotate(-90 380 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(803)}" x="483" y="569" width="32" height="26" transform="rotate(-90 483 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(804)}" x="509" y="569" width="32" height="28" transform="rotate(-90 509 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(805)}" x="537" y="569" width="32" height="30" transform="rotate(-90 537 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(806)}" x="567" y="569" width="32" height="29" transform="rotate(-90 567 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(807)}" x="596" y="569" width="32" height="30" transform="rotate(-90 596 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(808)}" x="626" y="569" width="32" height="29" transform="rotate(-90 626 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(809)}" x="655" y="569" width="32" height="29" transform="rotate(-90 655 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(810)}" x="684" y="569" width="32" height="30" transform="rotate(-90 684 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(811)}" x="714" y="569" width="32" height="28" transform="rotate(-90 714 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(812)}" x="742" y="569" width="32" height="24" transform="rotate(-90 742 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(813)}" x="766" y="569" width="32" height="24" transform="rotate(-90 766 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(814)}" x="809" y="569" width="32" height="26" transform="rotate(-90 809 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(815)}" x="835" y="569" width="32" height="26" transform="rotate(-90 835 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(816)}" x="861" y="569" width="32" height="26" transform="rotate(-90 861 569)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(817)||roomIds.includes(818)}" x="887" y="601" width="64" height="22" transform="rotate(-90 887 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(819)}" x="861" y="601" width="32" height="26" transform="rotate(-90 861 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(820)}" x="835" y="601" width="32" height="26" transform="rotate(-90 835 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(821)}" x="809" y="601" width="32" height="26" transform="rotate(-90 809 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(822)}" x="729" y="610" width="26" height="38" transform="rotate(-90 729 610)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(823)}" x="626" y="601" width="32" height="29" transform="rotate(-90 626 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(824)}" x="596" y="601" width="32" height="30" transform="rotate(-90 596 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(825)}" x="567" y="601" width="32" height="29" transform="rotate(-90 567 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(826)}" x="537" y="601" width="32" height="30" transform="rotate(-90 537 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(827)}" x="509" y="601" width="32" height="28" transform="rotate(-90 509 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(828)}" x="483" y="601" width="32" height="26" transform="rotate(-90 483 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(829)}" x="434" y="601" width="64" height="25" transform="rotate(-90 434 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(830)}" x="409" y="601" width="32" height="25" transform="rotate(-90 409 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(831)}" x="380" y="601" width="32" height="29" transform="rotate(-90 380 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(832)}" x="350" y="601" width="32" height="30" transform="rotate(-90 350 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(833)}" x="320" y="601" width="32" height="30" transform="rotate(-90 320 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(834)}" x="290" y="601" width="32" height="30" transform="rotate(-90 290 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(835)}" x="261" y="601" width="32" height="29" transform="rotate(-90 261 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(836)}" x="231" y="601" width="32" height="30" transform="rotate(-90 231 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(837)}" x="201" y="601" width="32" height="30" transform="rotate(-90 201 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(838)}" x="177" y="601" width="32" height="24" transform="rotate(-90 177 601)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(839)}" x="129" y="625" width="30" height="27" transform="rotate(-90 129 625)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(840)}" x="129" y="658" width="33" height="27" transform="rotate(-90 129 658)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(841)}" x="180" y="655" width="28" height="26" transform="rotate(-90 180 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(842)}" x="206" y="655" width="28" height="23" transform="rotate(-90 206 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(843)}" x="229" y="655" width="28" height="28" transform="rotate(-90 229 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(844)}" x="257" y="655" width="28" height="31" transform="rotate(-90 257 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(845)}" x="288" y="655" width="28" height="28" transform="rotate(-90 288 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(847)}" x="346" y="655" width="28" height="30" transform="rotate(-90 346 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(848)}" x="376" y="655" width="28" height="29" transform="rotate(-90 376 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(849)}" x="405" y="655" width="28" height="29" transform="rotate(-90 405 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(851)}" x="483" y="655" width="28" height="29" transform="rotate(-90 483 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(852)}" x="512" y="655" width="28" height="26" transform="rotate(-90 512 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(853)}" x="538" y="655" width="28" height="26" transform="rotate(-90 538 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(854)}" x="564" y="655" width="28" height="28" transform="rotate(-90 564 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(855)}" x="592" y="655" width="28" height="29" transform="rotate(-90 592 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(856)}" x="621" y="655" width="28" height="30" transform="rotate(-90 621 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(857)}" x="651" y="655" width="28" height="30" transform="rotate(-90 651 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(858)}" x="681" y="655" width="28" height="29" transform="rotate(-90 681 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(859)}" x="710" y="655" width="28" height="29" transform="rotate(-90 710 655)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(860)}" x="739" y="648" width="21" height="48" transform="rotate(-90 739 648)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(862)}" x="809" y="660" width="33" height="27" transform="rotate(-90 809 660)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(863)||roomIds.includes(864)}" x="836" y="660" width="33" height="51" transform="rotate(-90 836 660)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(865)}" x="887" y="660" width="33" height="22" transform="rotate(-90 887 660)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(866)}" x="887" y="692" width="32" height="22" transform="rotate(-90 887 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(867)||roomIds.includes(868)}" x="836" y="692" width="32" height="51" transform="rotate(-90 836 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(869)}" x="809" y="692" width="32" height="27" transform="rotate(-90 809 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(870)||roomIds.includes(861)}" x="739" y="688" width="40" height="48" transform="rotate(-90 739 688)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(871)}" x="710" y="692" width="37" height="29" transform="rotate(-90 710 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(872)}" x="681" y="692" width="37" height="29" transform="rotate(-90 681 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(873)}" x="651" y="692" width="37" height="30" transform="rotate(-90 651 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(874)}" x="621" y="692" width="37" height="30" transform="rotate(-90 621 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(875)}" x="592" y="692" width="37" height="29" transform="rotate(-90 592 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(876)}" x="564" y="692" width="37" height="28" transform="rotate(-90 564 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(877)}" x="538" y="692" width="37" height="26" transform="rotate(-90 538 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(878)}" x="512" y="692" width="37" height="26" transform="rotate(-90 512 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(879)}" x="483" y="692" width="37" height="29" transform="rotate(-90 483 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(880)||roomIds.includes(850)}" x="434" y="692" width="65" height="25" transform="rotate(-90 434 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(881)}" x="405" y="692" width="37" height="29" transform="rotate(-90 405 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(882)}" x="376" y="692" width="37" height="29" transform="rotate(-90 376 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(883)}" x="346" y="692" width="37" height="30" transform="rotate(-90 346 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(884)||roomIds.includes(846)}" x="316" y="692" width="65" height="30" transform="rotate(-90 316 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(885)}" x="288" y="692" width="37" height="28" transform="rotate(-90 288 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(886)}" x="257" y="692" width="37" height="31" transform="rotate(-90 257 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(887)}" x="229" y="692" width="37" height="28" transform="rotate(-90 229 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(888)}" x="180" y="682" width="27" height="49" transform="rotate(-90 180 682)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(889)}" x="129" y="692" width="34" height="27" transform="rotate(-90 129 692)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(890)}" x="129" y="725" width="33" height="27" transform="rotate(-90 129 725)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(891)||roomIds.includes(940)}" x="129" y="791" width="66" height="27" transform="rotate(-90 129 791)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(892)||roomIds.includes(939)}" x="180" y="785" width="52" height="28" transform="rotate(-90 180 785)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(893)}" x="208" y="753" width="35" height="29" transform="rotate(-90 208 753)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(894)}" x="237" y="753" width="35" height="30" transform="rotate(-90 237 753)" fill="white" stroke="#274985" stroke-width="2"/>
-      <path :class="{'active-room':roomIds.includes(895)||roomIds.includes(896)||roomIds.includes(936)}" d="M327 719L327 718L326 718L268 718L267 718L267 719L267 784L267 785L268 785L296 785L297 785L297 784L297 753L326 753L327 753L327 752L327 719Z" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(897)}" x="327" y="753" width="35" height="30" transform="rotate(-90 327 753)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(898)}" x="357" y="753" width="35" height="30" transform="rotate(-90 357 753)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(899)||roomIds.includes(900)}" x="387" y="753" width="35" height="47" transform="rotate(-90 387 753)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(901)}" x="434" y="753" width="35" height="25" transform="rotate(-90 434 753)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(902)}" x="483" y="753" width="35" height="28" transform="rotate(-90 483 753)" fill="white" stroke="#274985" stroke-width="2"/>
-      <path :class="{'active-room':roomIds.includes(903)||roomIds.includes(928)||roomIds.includes(929)}" d="M483 785L483 786L484 786L537 786L538 786L538 785L538 719L538 718L537 718L512 718L511 718L511 719L511 753L484 753L483 753L483 754L483 785Z" fill="white" stroke="#274985" stroke-width="2"></path>
-      <rect :class="{'active-room':roomIds.includes(904)}" x="538" y="753" width="35" height="27" transform="rotate(-90 538 753)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(905)}" x="565" y="753" width="35" height="27" transform="rotate(-90 565 753)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(906)||roomIds.includes(907)||roomIds.includes(924)||roomIds.includes(925)}" x="592" y="786" width="68" height="58" transform="rotate(-90 592 786)" fill="white" stroke="#274985" stroke-width="2"/>
-      <path :class="{'active-room':roomIds.includes(908)||roomIds.includes(909)||roomIds.includes(922)||roomIds.includes(923)}" d="M650 785L650 786L651 786L717 786L718 786L718 785L718 727L718 726.519L717.625 726.219L707.625 718.219L707.351 718L707 718L651 718L650 718L650 719L650 785Z" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(910)||roomIds.includes(911)||roomIds.includes(920)||roomIds.includes(921)}" x="718" y="786" width="50" height="59" transform="rotate(-90 718 786)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(912)||roomIds.includes(913)||roomIds.includes(918)||roomIds.includes(919)}" x="809" y="786" width="68" height="52" transform="rotate(-90 809 786)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(914)}" x="861" y="754" width="36" height="26" transform="rotate(-90 861 754)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(915)}" x="887" y="754" width="36" height="22" transform="rotate(-90 887 754)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(916)}" x="887" y="786" width="32" height="22" transform="rotate(-90 887 786)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(917)}" x="861" y="786" width="32" height="26" transform="rotate(-90 861 786)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(926)}" x="565" y="786" width="33" height="27" transform="rotate(-90 565 786)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(927)}" x="538" y="786" width="33" height="27" transform="rotate(-90 538 786)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(930)}" x="434" y="785" width="32" height="25" transform="rotate(-90 434 785)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(931)}" x="411" y="785" width="32" height="23" transform="rotate(-90 411 785)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(932)}" x="387" y="785" width="32" height="24" transform="rotate(-90 387 785)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(933)}" x="357" y="785" width="32" height="30" transform="rotate(-90 357 785)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(934)}" x="327" y="785" width="32" height="30" transform="rotate(-90 327 785)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(935)}" x="297" y="785" width="32" height="30" transform="rotate(-90 297 785)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(937)}" x="237" y="785" width="32" height="30" transform="rotate(-90 237 785)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(938)}" x="208" y="785" width="32" height="29" transform="rotate(-90 208 785)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(941)}" x="155" y="843" width="32" height="77" transform="rotate(-90 155 843)" fill="white" stroke="#274985" stroke-width="2"/>
-      <path :class="{'active-room':roomIds.includes(942)}" x="267" y="843" width="32" height="29" transform="rotate(-90 267 843)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(943)}" x="296" y="843" width="32" height="28" transform="rotate(-90 296 843)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(944)||roomIds.includes(945)||roomIds.includes(946)}"  x="324" y="843" width="32" height="89" transform="rotate(-90 324 843)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(947)||roomIds.includes(948)||roomIds.includes(949)}" x="413" y="843" width="32" height="86" transform="rotate(-90 413 843)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(950)}" x="522" y="869" width="24" height="52" transform="rotate(-90 522 869)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(951)}"  x="524" y="845" width="34" height="28" transform="rotate(-90 524 845)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(952)}" x="552" y="845" width="34" height="26" transform="rotate(-90 552 845)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(953)}" x="593" y="841" width="30" height="21" transform="rotate(-90 593 841)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(954)}" x="614" y="841" width="30" height="37" transform="rotate(-90 614 841)" fill="white" stroke="#274985" stroke-width="2"/>
-      <path :class="{'active-room':roomIds.includes(955)||roomIds.includes(956)||roomIds.includes(957)||roomIds.includes(958)||roomIds.includes(968)||roomIds.includes(969)||roomIds.includes(970)||roomIds.includes(971)||roomIds.includes(972)}" d="M677 896V897H678H776H777V896V812V811H776L673 811H672V812V842V843H673H677V866L677 896Z" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(959)}" x="809" y="843" width="32" height="25" transform="rotate(-90 809 843)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(960)}" x="834" y="843" width="32" height="26" transform="rotate(-90 834 843)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(961)}" x="860" y="843" width="32" height="27" transform="rotate(-90 860 843)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(962)}" x="887" y="843" width="32" height="22" transform="rotate(-90 887 843)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(963)||roomIds.includes(964)}" x="869" y="897" width="32" height="56" transform="rotate(-90 869 897)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(965)}" x="840" y="897" width="32" height="29" transform="rotate(-90 840 897)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(966)}" x="811" y="897" width="32" height="29" transform="rotate(-90 811 897)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(967)}" x="777" y="897" width="32" height="34" transform="rotate(-90 777 897)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(661)" :class="{'active-room':roomIds.includes(661)}" x="900" y="333" width="38" height="25" transform="rotate(-90 900 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(662)" :class="{'active-room':roomIds.includes(662)}" x="873" y="333" width="38" height="27" transform="rotate(-90 873 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(663)" :class="{'active-room':roomIds.includes(663)||roomIds.includes(664)}" x="819" y="333" width="38" height="54" transform="rotate(-90 819 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(665)" :class="{'active-room':roomIds.includes(665)}" x="792" y="333" width="38" height="27" transform="rotate(-90 792 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(666)" :class="{'active-room':roomIds.includes(666)}" x="765" y="333" width="38" height="27" transform="rotate(-90 765 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(667)" :class="{'active-room':roomIds.includes(667)}" x="736" y="333" width="38" height="29" transform="rotate(-90 736 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(668)" :class="{'active-room':roomIds.includes(668)}" x="706" y="333" width="38" height="30" transform="rotate(-90 706 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(669)" :class="{'active-room':roomIds.includes(669)}" x="677" y="333" width="38" height="29" transform="rotate(-90 677 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(670)" :class="{'active-room':roomIds.includes(670)}" x="647" y="333" width="38" height="30" transform="rotate(-90 647 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(671)" :class="{'active-room':roomIds.includes(671)}" x="618" y="333" width="38" height="29" transform="rotate(-90 618 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(672)" :class="{'active-room':roomIds.includes(672)}" x="588" y="333" width="38" height="30" transform="rotate(-90 588 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(673)" :class="{'active-room':roomIds.includes(673)}" x="562" y="333" width="38" height="26" transform="rotate(-90 562 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(674)" :class="{'active-room':roomIds.includes(674)}" x="533" y="333" width="38" height="29" transform="rotate(-90 533 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(675)" :class="{'active-room':roomIds.includes(675)}" x="436" y="333" width="38" height="28" transform="rotate(-90 436 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(676)" :class="{'active-room':roomIds.includes(676)}" x="408" y="333" width="38" height="28" transform="rotate(-90 408 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(677)" :class="{'active-room':roomIds.includes(677)}" x="383" y="333" width="38" height="25" transform="rotate(-90 383 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(678)" :class="{'active-room':roomIds.includes(678)}" x="358" y="333" width="38" height="25" transform="rotate(-90 358 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(679)" :class="{'active-room':roomIds.includes(679)||roomIds.includes(680)}" x="307" y="333" width="38" height="51" transform="rotate(-90 307 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(681)" :class="{'active-room':roomIds.includes(681)}" x="282" y="333" width="38" height="25" transform="rotate(-90 282 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(682)" :class="{'active-room':roomIds.includes(682)}" x="256" y="333" width="38" height="26" transform="rotate(-90 256 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(683)" :class="{'active-room':roomIds.includes(683)||roomIds.includes(684)||roomIds.includes(685)}" x="182" y="333" width="38" height="74" transform="rotate(-90 182 333)" fill="white" stroke="#274985" stroke-width="2"/>
+      <path @click="roomSelect(686)" :class="{'active-room':roomIds.includes(686)||roomIds.includes(687)}" d="M129 354L129 355L130 355L157 355L158 355L158 354L158 333L181 333L182 333L182 332L182 296L182 295L181 295L130 295L129 295L129 296L129 354Z" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(688)" :class="{'active-room':roomIds.includes(688)}" x="129" y="388" width="33" height="29" transform="rotate(-90 129 388)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(689)" :class="{'active-room':roomIds.includes(689)}" x="179" y="393" width="32" height="26" transform="rotate(-90 179 393)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(698)" :class="{'active-room':roomIds.includes(690)}" x="205" y="393" width="32" height="26" transform="rotate(-90 205 393)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(691)" :class="{'active-room':roomIds.includes(691)}" x="231" y="393" width="32" height="30" transform="rotate(-90 231 393)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(693)" :class="{'active-room':roomIds.includes(693)}" x="291" y="393" width="32" height="30" transform="rotate(-90 291 393)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(694)" :class="{'active-room':roomIds.includes(694)}" x="321" y="393" width="32" height="30" transform="rotate(-90 321 393)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(696)" :class="{'active-room':roomIds.includes(696)}" x="381" y="393" width="32" height="27" transform="rotate(-90 381 393)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(697)" :class="{'active-room':roomIds.includes(697)}" x="408" y="393" width="32" height="27" transform="rotate(-90 408 393)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(698)" :class="{'active-room':roomIds.includes(698)}" x="435" y="393" width="32" height="25" transform="rotate(-90 435 393)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(699)" :class="{'active-room':roomIds.includes(699)}" x="482" y="389" width="32" height="27" transform="rotate(-90 482 389)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(700)" :class="{'active-room':roomIds.includes(700)}" x="509" y="389" width="32" height="25" transform="rotate(-90 509 389)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(701)" :class="{'active-room':roomIds.includes(701)}" x="534" y="389" width="32" height="29" transform="rotate(-90 534 389)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(702)" :class="{'active-room':roomIds.includes(702)}" x="563" y="389" width="32" height="30" transform="rotate(-90 563 389)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(703)" :class="{'active-room':roomIds.includes(703)||roomIds.includes(704)}" x="593" y="389" width="32" height="59" transform="rotate(-90 593 389)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(706)" :class="{'active-room':roomIds.includes(706)}" x="682" y="389" width="32" height="30" transform="rotate(-90 682 389)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(707)" :class="{'active-room':roomIds.includes(707)||roomIds.includes(708)}" x="712" y="389" width="32" height="55" transform="rotate(-90 712 389)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(709)" :class="{'active-room':roomIds.includes(709)}" x="767" y="389" width="32" height="25" transform="rotate(-90 767 389)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(710)" :class="{'active-room':roomIds.includes(710)}" x="810" y="389" width="32" height="25" transform="rotate(-90 810 389)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(711)" :class="{'active-room':roomIds.includes(711)}" x="835" y="389" width="32" height="26" transform="rotate(-90 835 389)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(713)" :class="{'active-room':roomIds.includes(713)}" x="885" y="389" width="32" height="25" transform="rotate(-90 885 389)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(714)" :class="{'active-room':roomIds.includes(714)}" x="885" y="423" width="34" height="25" transform="rotate(-90 885 423)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(712)" :class="{'active-room':roomIds.includes(712)||roomIds.includes(715)}" x="861" y="423" width="66" height="24" transform="rotate(-90 861 423)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(716)" :class="{'active-room':roomIds.includes(716)}" x="835" y="423" width="34" height="26" transform="rotate(-90 835 423)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(717)" :class="{'active-room':roomIds.includes(717)}" x="810" y="423" width="34" height="25" transform="rotate(-90 810 423)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(718)" :class="{'active-room':roomIds.includes(718)}" x="767" y="423" width="34" height="25" transform="rotate(-90 767 423)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(719)" :class="{'active-room':roomIds.includes(719)}" x="740" y="423" width="34" height="27" transform="rotate(-90 740 423)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(720)" :class="{'active-room':roomIds.includes(720)}" x="712" y="423" width="34" height="28" transform="rotate(-90 712 423)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(721)" :class="{'active-room':roomIds.includes(721)}" x="682" y="423" width="34" height="30" transform="rotate(-90 682 423)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(705)" :class="{'active-room':roomIds.includes(705)||roomIds.includes(722)}" x="652" y="423" width="66" height="30" transform="rotate(-90 652 423)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(723)" :class="{'active-room':roomIds.includes(723)}" x="623" y="423" width="34" height="29" transform="rotate(-90 623 423)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(724)" :class="{'active-room':roomIds.includes(724)}" x="593" y="423" width="34" height="30" transform="rotate(-90 593 423)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(725)" :class="{'active-room':roomIds.includes(725)}" x="563" y="423" width="34" height="30" transform="rotate(-90 563 423)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(726)" :class="{'active-room':roomIds.includes(726)}" x="534" y="423" width="34" height="29" transform="rotate(-90 534 423)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(727)" :class="{'active-room':roomIds.includes(727)||roomIds.includes(728)}" x="482" y="423" width="34" height="52" transform="rotate(-90 482 423)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(729)" :class="{'active-room':roomIds.includes(729)||roomIds.includes(730)||roomIds.includes(731)}" x="381" y="393" width="79" height="34" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(732)" :class="{'active-room':roomIds.includes(732)||roomIds.includes(695)}" x="351" y="427" width="66" height="30" transform="rotate(-90 351 427)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(733)" :class="{'active-room':roomIds.includes(733)}" x="321" y="427" width="34" height="30" transform="rotate(-90 321 427)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(734)" :class="{'active-room':roomIds.includes(734)}" x="291" y="427" width="34" height="30" transform="rotate(-90 291 427)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(735)" :class="{'active-room':roomIds.includes(735)||roomIds.includes(692)}" x="261" y="427" width="66" height="30" transform="rotate(-90 261 427)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(736)" :class="{'active-room':roomIds.includes(736)}" x="231" y="427" width="34" height="30" transform="rotate(-90 231 427)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(737)" :class="{'active-room':roomIds.includes(737)}" x="205" y="427" width="34" height="26" transform="rotate(-90 205 427)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(738)" :class="{'active-room':roomIds.includes(738)}" x="179" y="427" width="34" height="26" transform="rotate(-90 179 427)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(739)" :class="{'active-room':roomIds.includes(739)||roomIds.includes(740)}" x="129" y="484" width="96" height="29" transform="rotate(-90 129 484)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(741)" :class="{'active-room':roomIds.includes(741)}" x="179" y="481" width="32" height="26" transform="rotate(-90 179 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(742)" :class="{'active-room':roomIds.includes(742)}" x="205" y="481" width="32" height="26" transform="rotate(-90 205 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(743)" :class="{'active-room':roomIds.includes(743)}" x="231" y="481" width="32" height="28" transform="rotate(-90 231 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(744)" :class="{'active-room':roomIds.includes(744)}" x="259" y="481" width="32" height="29" transform="rotate(-90 259 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(745)" :class="{'active-room':roomIds.includes(745)}" x="288" y="481" width="32" height="30" transform="rotate(-90 288 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(746)" :class="{'active-room':roomIds.includes(746)}" x="318" y="481" width="32" height="30" transform="rotate(-90 318 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(747)" :class="{'active-room':roomIds.includes(747)}" x="348" y="481" width="32" height="33" transform="rotate(-90 348 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(748)" :class="{'active-room':roomIds.includes(748)}" x="381" y="481" width="32" height="26" transform="rotate(-90 381 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(749)" :class="{'active-room':roomIds.includes(749)}" x="407" y="481" width="32" height="27" transform="rotate(-90 407 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(750)" :class="{'active-room':roomIds.includes(750)}" x="434" y="481" width="32" height="25" transform="rotate(-90 434 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(752)" :class="{'active-room':roomIds.includes(752)}" x="510" y="481" width="32" height="26" transform="rotate(-90 510 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(753)" :class="{'active-room':roomIds.includes(753)}" x="536" y="481" width="32" height="31" transform="rotate(-90 536 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(754)" :class="{'active-room':roomIds.includes(754)}" x="567" y="481" width="32" height="28" transform="rotate(-90 567 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(755)" :class="{'active-room':roomIds.includes(755)}" x="595" y="481" width="32" height="30" transform="rotate(-90 595 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(756)" :class="{'active-room':roomIds.includes(756)}" x="625" y="481" width="32" height="30" transform="rotate(-90 625 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(757)" :class="{'active-room':roomIds.includes(757)}" x="655" y="481" width="32" height="29" transform="rotate(-90 655 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(758)" :class="{'active-room':roomIds.includes(758)||roomIds.includes(759)}" x="684" y="481" width="32" height="57" transform="rotate(-90 684 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(760)" :class="{'active-room':roomIds.includes(760)}" x="741" y="481" width="32" height="25" transform="rotate(-90 741 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(761)" :class="{'active-room':roomIds.includes(761)}" x="766" y="481" width="32" height="25" transform="rotate(-90 766 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(762)" :class="{'active-room':roomIds.includes(762)}" x="809" y="481" width="32" height="26" transform="rotate(-90 809 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(763)" :class="{'active-room':roomIds.includes(763)}" x="835" y="481" width="32" height="26" transform="rotate(-90 835 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(764)" :class="{'active-room':roomIds.includes(764)}" x="861" y="481" width="32" height="23" transform="rotate(-90 861 481)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(765)" :class="{'active-room':roomIds.includes(765)||roomIds.includes(766)}" x="884" y="513" width="64" height="25" transform="rotate(-90 884 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(767)" :class="{'active-room':roomIds.includes(767)}" x="861" y="513" width="32" height="23" transform="rotate(-90 861 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(768)" :class="{'active-room':roomIds.includes(768)}" x="835" y="513" width="32" height="26" transform="rotate(-90 835 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(769)" :class="{'active-room':roomIds.includes(769)}" x="809" y="513" width="32" height="26" transform="rotate(-90 809 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(770)" :class="{'active-room':roomIds.includes(770)}" x="766" y="513" width="32" height="25" transform="rotate(-90 766 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(771)" :class="{'active-room':roomIds.includes(771)}" x="741" y="513" width="32" height="25" transform="rotate(-90 741 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(772)" :class="{'active-room':roomIds.includes(772)}" x="714" y="513" width="32" height="27" transform="rotate(-90 714 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(773)" :class="{'active-room':roomIds.includes(773)}" x="684" y="513" width="32" height="30" transform="rotate(-90 684 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(774)" :class="{'active-room':roomIds.includes(774)}" x="655" y="513" width="32" height="29" transform="rotate(-90 655 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(775)" :class="{'active-room':roomIds.includes(775)}" x="625" y="513" width="32" height="30" transform="rotate(-90 625 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(776)" :class="{'active-room':roomIds.includes(776)}" x="595" y="513" width="32" height="30" transform="rotate(-90 595 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(777)" :class="{'active-room':roomIds.includes(777)}" x="567" y="513" width="32" height="28" transform="rotate(-90 567 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(778)" :class="{'active-room':roomIds.includes(778)}" x="536" y="513" width="32" height="31" transform="rotate(-90 536 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(779)" :class="{'active-room':roomIds.includes(779)}" x="510" y="513" width="32" height="26" transform="rotate(-90 510 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(780)" :class="{'active-room':roomIds.includes(780)||roomIds.includes(751)}" x="483" y="513" width="64" height="27" transform="rotate(-90 483 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(781)" :class="{'active-room':roomIds.includes(781)}" x="434" y="513" width="32" height="25" transform="rotate(-90 434 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(782)" :class="{'active-room':roomIds.includes(782)}" x="407" y="513" width="32" height="27" transform="rotate(-90 407 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(783)" :class="{'active-room':roomIds.includes(783)}" x="381" y="513" width="32" height="26" transform="rotate(-90 381 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(784)" :class="{'active-room':roomIds.includes(784)}" x="348" y="513" width="32" height="33" transform="rotate(-90 348 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(785)" :class="{'active-room':roomIds.includes(785)}" x="318" y="513" width="32" height="30" transform="rotate(-90 318 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(786)" :class="{'active-room':roomIds.includes(786)}" x="288" y="513" width="32" height="30" transform="rotate(-90 288 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(787)" :class="{'active-room':roomIds.includes(787)}" x="259" y="513" width="32" height="29" transform="rotate(-90 259 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(788)" :class="{'active-room':roomIds.includes(788)}" x="231" y="513" width="32" height="28" transform="rotate(-90 231 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(789)" :class="{'active-room':roomIds.includes(789)}" x="205" y="513" width="32" height="26" transform="rotate(-90 205 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(790)" :class="{'active-room':roomIds.includes(790)}" x="179" y="513" width="32" height="26" transform="rotate(-90 179 513)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(791)" :class="{'active-room':roomIds.includes(791)}" x="129" y="559" width="37" height="27" transform="rotate(-90 129 559)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(792)" :class="{'active-room':roomIds.includes(792)}" x="129" y="595" width="36" height="27" transform="rotate(-90 129 595)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(793)" :class="{'active-room':roomIds.includes(793)}" x="177" y="569" width="32" height="24" transform="rotate(-90 177 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(794)" :class="{'active-room':roomIds.includes(794)}" x="201" y="569" width="32" height="30" transform="rotate(-90 201 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(795)" :class="{'active-room':roomIds.includes(795)}" x="231" y="569" width="32" height="30" transform="rotate(-90 231 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(796)" :class="{'active-room':roomIds.includes(796)}" x="261" y="569" width="32" height="29" transform="rotate(-90 261 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(797)" :class="{'active-room':roomIds.includes(797)}" x="290" y="569" width="32" height="30" transform="rotate(-90 290 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(798)" :class="{'active-room':roomIds.includes(798)}" x="320" y="569" width="32" height="30" transform="rotate(-90 320 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(799)" :class="{'active-room':roomIds.includes(799)}" x="350" y="569" width="32" height="30" transform="rotate(-90 350 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(800)" :class="{'active-room':roomIds.includes(800)||roomIds.includes(801)}" x="380" y="569" width="32" height="54" transform="rotate(-90 380 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(803)" :class="{'active-room':roomIds.includes(803)}" x="483" y="569" width="32" height="26" transform="rotate(-90 483 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(804)" :class="{'active-room':roomIds.includes(804)}" x="509" y="569" width="32" height="28" transform="rotate(-90 509 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(805)" :class="{'active-room':roomIds.includes(805)}" x="537" y="569" width="32" height="30" transform="rotate(-90 537 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(806)" :class="{'active-room':roomIds.includes(806)}" x="567" y="569" width="32" height="29" transform="rotate(-90 567 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(807)" :class="{'active-room':roomIds.includes(807)}" x="596" y="569" width="32" height="30" transform="rotate(-90 596 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(808)" :class="{'active-room':roomIds.includes(808)}" x="626" y="569" width="32" height="29" transform="rotate(-90 626 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(809)" :class="{'active-room':roomIds.includes(809)}" x="655" y="569" width="32" height="29" transform="rotate(-90 655 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(810)" :class="{'active-room':roomIds.includes(810)}" x="684" y="569" width="32" height="30" transform="rotate(-90 684 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(811)" :class="{'active-room':roomIds.includes(811)}" x="714" y="569" width="32" height="28" transform="rotate(-90 714 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(812)" :class="{'active-room':roomIds.includes(812)}" x="742" y="569" width="32" height="24" transform="rotate(-90 742 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(813)" :class="{'active-room':roomIds.includes(813)}" x="766" y="569" width="32" height="24" transform="rotate(-90 766 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(814)" :class="{'active-room':roomIds.includes(814)}" x="809" y="569" width="32" height="26" transform="rotate(-90 809 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(815)" :class="{'active-room':roomIds.includes(815)}" x="835" y="569" width="32" height="26" transform="rotate(-90 835 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(816)" :class="{'active-room':roomIds.includes(816)}" x="861" y="569" width="32" height="26" transform="rotate(-90 861 569)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(817)" :class="{'active-room':roomIds.includes(817)||roomIds.includes(818)}" x="887" y="601" width="64" height="22" transform="rotate(-90 887 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(819)" :class="{'active-room':roomIds.includes(819)}" x="861" y="601" width="32" height="26" transform="rotate(-90 861 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(820)" :class="{'active-room':roomIds.includes(820)}" x="835" y="601" width="32" height="26" transform="rotate(-90 835 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(821)" :class="{'active-room':roomIds.includes(821)}" x="809" y="601" width="32" height="26" transform="rotate(-90 809 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(822)" :class="{'active-room':roomIds.includes(822)}" x="729" y="610" width="26" height="38" transform="rotate(-90 729 610)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(823)" :class="{'active-room':roomIds.includes(823)}" x="626" y="601" width="32" height="29" transform="rotate(-90 626 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(824)" :class="{'active-room':roomIds.includes(824)}" x="596" y="601" width="32" height="30" transform="rotate(-90 596 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(825)" :class="{'active-room':roomIds.includes(825)}" x="567" y="601" width="32" height="29" transform="rotate(-90 567 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(826)" :class="{'active-room':roomIds.includes(826)}" x="537" y="601" width="32" height="30" transform="rotate(-90 537 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(827)" :class="{'active-room':roomIds.includes(827)}" x="509" y="601" width="32" height="28" transform="rotate(-90 509 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(828)" :class="{'active-room':roomIds.includes(828)}" x="483" y="601" width="32" height="26" transform="rotate(-90 483 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(829)" :class="{'active-room':roomIds.includes(829)}" x="434" y="601" width="64" height="25" transform="rotate(-90 434 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(830)" :class="{'active-room':roomIds.includes(830)}" x="409" y="601" width="32" height="25" transform="rotate(-90 409 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(831)" :class="{'active-room':roomIds.includes(831)}" x="380" y="601" width="32" height="29" transform="rotate(-90 380 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(832)" :class="{'active-room':roomIds.includes(832)}" x="350" y="601" width="32" height="30" transform="rotate(-90 350 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(833)" :class="{'active-room':roomIds.includes(833)}" x="320" y="601" width="32" height="30" transform="rotate(-90 320 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(834)" :class="{'active-room':roomIds.includes(834)}" x="290" y="601" width="32" height="30" transform="rotate(-90 290 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(835)" :class="{'active-room':roomIds.includes(835)}" x="261" y="601" width="32" height="29" transform="rotate(-90 261 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(836)" :class="{'active-room':roomIds.includes(836)}" x="231" y="601" width="32" height="30" transform="rotate(-90 231 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(837)" :class="{'active-room':roomIds.includes(837)}" x="201" y="601" width="32" height="30" transform="rotate(-90 201 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(838)" :class="{'active-room':roomIds.includes(838)}" x="177" y="601" width="32" height="24" transform="rotate(-90 177 601)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(839)" :class="{'active-room':roomIds.includes(839)}" x="129" y="625" width="30" height="27" transform="rotate(-90 129 625)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(840)" :class="{'active-room':roomIds.includes(840)}" x="129" y="658" width="33" height="27" transform="rotate(-90 129 658)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(841)" :class="{'active-room':roomIds.includes(841)}" x="180" y="655" width="28" height="26" transform="rotate(-90 180 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(842)" :class="{'active-room':roomIds.includes(842)}" x="206" y="655" width="28" height="23" transform="rotate(-90 206 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(843)" :class="{'active-room':roomIds.includes(843)}" x="229" y="655" width="28" height="28" transform="rotate(-90 229 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(844)" :class="{'active-room':roomIds.includes(844)}" x="257" y="655" width="28" height="31" transform="rotate(-90 257 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(845)" :class="{'active-room':roomIds.includes(845)}" x="288" y="655" width="28" height="28" transform="rotate(-90 288 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(847)" :class="{'active-room':roomIds.includes(847)}" x="346" y="655" width="28" height="30" transform="rotate(-90 346 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(848)" :class="{'active-room':roomIds.includes(848)}" x="376" y="655" width="28" height="29" transform="rotate(-90 376 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(849)" :class="{'active-room':roomIds.includes(849)}" x="405" y="655" width="28" height="29" transform="rotate(-90 405 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(851)" :class="{'active-room':roomIds.includes(851)}" x="483" y="655" width="28" height="29" transform="rotate(-90 483 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(852)" :class="{'active-room':roomIds.includes(852)}" x="512" y="655" width="28" height="26" transform="rotate(-90 512 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(853)" :class="{'active-room':roomIds.includes(853)}" x="538" y="655" width="28" height="26" transform="rotate(-90 538 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(854)" :class="{'active-room':roomIds.includes(854)}" x="564" y="655" width="28" height="28" transform="rotate(-90 564 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(855)" :class="{'active-room':roomIds.includes(855)}" x="592" y="655" width="28" height="29" transform="rotate(-90 592 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(856)" :class="{'active-room':roomIds.includes(856)}" x="621" y="655" width="28" height="30" transform="rotate(-90 621 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(857)" :class="{'active-room':roomIds.includes(857)}" x="651" y="655" width="28" height="30" transform="rotate(-90 651 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(858)" :class="{'active-room':roomIds.includes(858)}" x="681" y="655" width="28" height="29" transform="rotate(-90 681 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(859)" :class="{'active-room':roomIds.includes(859)}" x="710" y="655" width="28" height="29" transform="rotate(-90 710 655)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(860)" :class="{'active-room':roomIds.includes(860)}" x="739" y="648" width="21" height="48" transform="rotate(-90 739 648)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(862)" :class="{'active-room':roomIds.includes(862)}" x="809" y="660" width="33" height="27" transform="rotate(-90 809 660)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(863)" :class="{'active-room':roomIds.includes(863)||roomIds.includes(864)}" x="836" y="660" width="33" height="51" transform="rotate(-90 836 660)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(865)" :class="{'active-room':roomIds.includes(865)}" x="887" y="660" width="33" height="22" transform="rotate(-90 887 660)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(866)" :class="{'active-room':roomIds.includes(866)}" x="887" y="692" width="32" height="22" transform="rotate(-90 887 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(867)" :class="{'active-room':roomIds.includes(867)||roomIds.includes(868)}" x="836" y="692" width="32" height="51" transform="rotate(-90 836 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(869)" :class="{'active-room':roomIds.includes(869)}" x="809" y="692" width="32" height="27" transform="rotate(-90 809 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(870)" :class="{'active-room':roomIds.includes(870)||roomIds.includes(861)}" x="739" y="688" width="40" height="48" transform="rotate(-90 739 688)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(871)" :class="{'active-room':roomIds.includes(871)}" x="710" y="692" width="37" height="29" transform="rotate(-90 710 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(872)" :class="{'active-room':roomIds.includes(872)}" x="681" y="692" width="37" height="29" transform="rotate(-90 681 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(873)" :class="{'active-room':roomIds.includes(873)}" x="651" y="692" width="37" height="30" transform="rotate(-90 651 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(874)" :class="{'active-room':roomIds.includes(874)}" x="621" y="692" width="37" height="30" transform="rotate(-90 621 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(875)" :class="{'active-room':roomIds.includes(875)}" x="592" y="692" width="37" height="29" transform="rotate(-90 592 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(876)" :class="{'active-room':roomIds.includes(876)}" x="564" y="692" width="37" height="28" transform="rotate(-90 564 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(877)" :class="{'active-room':roomIds.includes(877)}" x="538" y="692" width="37" height="26" transform="rotate(-90 538 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(878)" :class="{'active-room':roomIds.includes(878)}" x="512" y="692" width="37" height="26" transform="rotate(-90 512 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(879)" :class="{'active-room':roomIds.includes(879)}" x="483" y="692" width="37" height="29" transform="rotate(-90 483 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(880)" :class="{'active-room':roomIds.includes(880)||roomIds.includes(850)}" x="434" y="692" width="65" height="25" transform="rotate(-90 434 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(881)" :class="{'active-room':roomIds.includes(881)}" x="405" y="692" width="37" height="29" transform="rotate(-90 405 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(882)" :class="{'active-room':roomIds.includes(882)}" x="376" y="692" width="37" height="29" transform="rotate(-90 376 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(883)" :class="{'active-room':roomIds.includes(883)}" x="346" y="692" width="37" height="30" transform="rotate(-90 346 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(884)" :class="{'active-room':roomIds.includes(884)||roomIds.includes(846)}" x="316" y="692" width="65" height="30" transform="rotate(-90 316 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(885)" :class="{'active-room':roomIds.includes(885)}" x="288" y="692" width="37" height="28" transform="rotate(-90 288 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(886)" :class="{'active-room':roomIds.includes(886)}" x="257" y="692" width="37" height="31" transform="rotate(-90 257 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(887)" :class="{'active-room':roomIds.includes(887)}" x="229" y="692" width="37" height="28" transform="rotate(-90 229 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(888)" :class="{'active-room':roomIds.includes(888)}" x="180" y="682" width="27" height="49" transform="rotate(-90 180 682)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(889)" :class="{'active-room':roomIds.includes(889)}" x="129" y="692" width="34" height="27" transform="rotate(-90 129 692)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(890)" :class="{'active-room':roomIds.includes(890)}" x="129" y="725" width="33" height="27" transform="rotate(-90 129 725)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(891)" :class="{'active-room':roomIds.includes(891)||roomIds.includes(940)}" x="129" y="791" width="66" height="27" transform="rotate(-90 129 791)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(892)" :class="{'active-room':roomIds.includes(892)||roomIds.includes(939)}" x="180" y="785" width="52" height="28" transform="rotate(-90 180 785)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(893)" :class="{'active-room':roomIds.includes(893)}" x="208" y="753" width="35" height="29" transform="rotate(-90 208 753)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(894)" :class="{'active-room':roomIds.includes(894)}" x="237" y="753" width="35" height="30" transform="rotate(-90 237 753)" fill="white" stroke="#274985" stroke-width="2"/>
+      <path @click="roomSelect(895)" :class="{'active-room':roomIds.includes(895)||roomIds.includes(896)||roomIds.includes(936)}" d="M327 719L327 718L326 718L268 718L267 718L267 719L267 784L267 785L268 785L296 785L297 785L297 784L297 753L326 753L327 753L327 752L327 719Z" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(897)" :class="{'active-room':roomIds.includes(897)}" x="327" y="753" width="35" height="30" transform="rotate(-90 327 753)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(898)" :class="{'active-room':roomIds.includes(898)}" x="357" y="753" width="35" height="30" transform="rotate(-90 357 753)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(899)" :class="{'active-room':roomIds.includes(899)||roomIds.includes(900)}" x="387" y="753" width="35" height="47" transform="rotate(-90 387 753)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(901)" :class="{'active-room':roomIds.includes(901)}" x="434" y="753" width="35" height="25" transform="rotate(-90 434 753)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(902)" :class="{'active-room':roomIds.includes(902)}" x="483" y="753" width="35" height="28" transform="rotate(-90 483 753)" fill="white" stroke="#274985" stroke-width="2"/>
+      <path @click="roomSelect(903)" :class="{'active-room':roomIds.includes(903)||roomIds.includes(928)||roomIds.includes(929)}" d="M483 785L483 786L484 786L537 786L538 786L538 785L538 719L538 718L537 718L512 718L511 718L511 719L511 753L484 753L483 753L483 754L483 785Z" fill="white" stroke="#274985" stroke-width="2"/>
 
-      <rect :class="{'active-room':roomIds.includes(973)}" x="651" y="897" width="32" height="26" transform="rotate(-90 651 897)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(974)}" x="554" y="897" width="28" height="25" transform="rotate(-90 554 897)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(975)}" x="522" y="897" width="28" height="32" transform="rotate(-90 522 897)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(976)}" x="490" y="897" width="32" height="32" transform="rotate(-90 490 897)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(977)}" x="461" y="897" width="32" height="29" transform="rotate(-90 461 897)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(978)}" x="433" y="897" width="32" height="28" transform="rotate(-90 433 897)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect :class="{'active-room':roomIds.includes(980)}" x="376" y="897" width="32" height="28" transform="rotate(-90 376 897)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(904)" :class="{'active-room':roomIds.includes(904)}" x="538" y="753" width="35" height="27" transform="rotate(-90 538 753)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(905)" :class="{'active-room':roomIds.includes(905)}" x="565" y="753" width="35" height="27" transform="rotate(-90 565 753)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(906)" :class="{'active-room':roomIds.includes(906)||roomIds.includes(907)||roomIds.includes(924)||roomIds.includes(925)}" x="592" y="786" width="68" height="58" transform="rotate(-90 592 786)" fill="white" stroke="#274985" stroke-width="2"/>
+      <path @click="roomSelect(908)" :class="{'active-room':roomIds.includes(908)||roomIds.includes(909)||roomIds.includes(922)||roomIds.includes(923)}" d="M650 785L650 786L651 786L717 786L718 786L718 785L718 727L718 726.519L717.625 726.219L707.625 718.219L707.351 718L707 718L651 718L650 718L650 719L650 785Z" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(910)" :class="{'active-room':roomIds.includes(910)||roomIds.includes(911)||roomIds.includes(920)||roomIds.includes(921)}" x="718" y="786" width="50" height="59" transform="rotate(-90 718 786)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(912)" :class="{'active-room':roomIds.includes(912)||roomIds.includes(913)||roomIds.includes(918)||roomIds.includes(919)}" x="809" y="786" width="68" height="52" transform="rotate(-90 809 786)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(914)" :class="{'active-room':roomIds.includes(914)}" x="861" y="754" width="36" height="26" transform="rotate(-90 861 754)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(915)" :class="{'active-room':roomIds.includes(915)}" x="887" y="754" width="36" height="22" transform="rotate(-90 887 754)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(916)" :class="{'active-room':roomIds.includes(916)}" x="887" y="786" width="32" height="22" transform="rotate(-90 887 786)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(917)" :class="{'active-room':roomIds.includes(917)}" x="861" y="786" width="32" height="26" transform="rotate(-90 861 786)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(926)" :class="{'active-room':roomIds.includes(926)}" x="565" y="786" width="33" height="27" transform="rotate(-90 565 786)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(927)" :class="{'active-room':roomIds.includes(927)}" x="538" y="786" width="33" height="27" transform="rotate(-90 538 786)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(930)" :class="{'active-room':roomIds.includes(930)}" x="434" y="785" width="32" height="25" transform="rotate(-90 434 785)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(931)" :class="{'active-room':roomIds.includes(931)}" x="411" y="785" width="32" height="23" transform="rotate(-90 411 785)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(932)" :class="{'active-room':roomIds.includes(932)}" x="387" y="785" width="32" height="24" transform="rotate(-90 387 785)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(933)" :class="{'active-room':roomIds.includes(933)}" x="357" y="785" width="32" height="30" transform="rotate(-90 357 785)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(934)" :class="{'active-room':roomIds.includes(934)}" x="327" y="785" width="32" height="30" transform="rotate(-90 327 785)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(935)" :class="{'active-room':roomIds.includes(935)}" x="297" y="785" width="32" height="30" transform="rotate(-90 297 785)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(937)" :class="{'active-room':roomIds.includes(937)}" x="237" y="785" width="32" height="30" transform="rotate(-90 237 785)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(938)" :class="{'active-room':roomIds.includes(938)}" x="208" y="785" width="32" height="29" transform="rotate(-90 208 785)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(941)" :class="{'active-room':roomIds.includes(941)}" x="155" y="843" width="32" height="77" transform="rotate(-90 155 843)" fill="white" stroke="#274985" stroke-width="2"/>
+      <path @click="roomSelect(942)" :class="{'active-room':roomIds.includes(942)}" x="267" y="843" width="32" height="29" transform="rotate(-90 267 843)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(943)" :class="{'active-room':roomIds.includes(943)}" x="296" y="843" width="32" height="28" transform="rotate(-90 296 843)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(944)" :class="{'active-room':roomIds.includes(944)||roomIds.includes(945)||roomIds.includes(946)}"  x="324" y="843" width="32" height="89" transform="rotate(-90 324 843)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(947)" :class="{'active-room':roomIds.includes(947)||roomIds.includes(948)||roomIds.includes(949)}" x="413" y="843" width="32" height="86" transform="rotate(-90 413 843)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(950)" :class="{'active-room':roomIds.includes(950)}" x="522" y="869" width="24" height="52" transform="rotate(-90 522 869)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(951)" :class="{'active-room':roomIds.includes(951)}"  x="524" y="845" width="34" height="28" transform="rotate(-90 524 845)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(952)" :class="{'active-room':roomIds.includes(952)}" x="552" y="845" width="34" height="26" transform="rotate(-90 552 845)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(953)" :class="{'active-room':roomIds.includes(953)}" x="593" y="841" width="30" height="21" transform="rotate(-90 593 841)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(954)" :class="{'active-room':roomIds.includes(954)}" x="614" y="841" width="30" height="37" transform="rotate(-90 614 841)" fill="white" stroke="#274985" stroke-width="2"/>
+      <path @click="roomSelect(955)" :class="{'active-room':roomIds.includes(955)||roomIds.includes(956)||roomIds.includes(957)||roomIds.includes(958)||roomIds.includes(968)||roomIds.includes(969)||roomIds.includes(970)||roomIds.includes(971)||roomIds.includes(972)}" d="M677 896V897H678H776H777V896V812V811H776L673 811H672V812V842V843H673H677V866L677 896Z" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(959)" :class="{'active-room':roomIds.includes(959)}" x="809" y="843" width="32" height="25" transform="rotate(-90 809 843)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(960)" :class="{'active-room':roomIds.includes(960)}" x="834" y="843" width="32" height="26" transform="rotate(-90 834 843)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(961)" :class="{'active-room':roomIds.includes(961)}" x="860" y="843" width="32" height="27" transform="rotate(-90 860 843)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(962)" :class="{'active-room':roomIds.includes(962)}" x="887" y="843" width="32" height="22" transform="rotate(-90 887 843)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(963)" :class="{'active-room':roomIds.includes(963)||roomIds.includes(964)}" x="869" y="897" width="32" height="56" transform="rotate(-90 869 897)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(965)" :class="{'active-room':roomIds.includes(965)}" x="840" y="897" width="32" height="29" transform="rotate(-90 840 897)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(966)" :class="{'active-room':roomIds.includes(966)}" x="811" y="897" width="32" height="29" transform="rotate(-90 811 897)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(967)" :class="{'active-room':roomIds.includes(967)}" x="777" y="897" width="32" height="34" transform="rotate(-90 777 897)" fill="white" stroke="#274985" stroke-width="2"/>
+
+      <rect @click="roomSelect(901)" :class="{'active-room':roomIds.includes(973)}" x="651" y="897" width="32" height="26" transform="rotate(-90 651 897)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(901)" :class="{'active-room':roomIds.includes(974)}" x="554" y="897" width="28" height="25" transform="rotate(-90 554 897)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(901)" :class="{'active-room':roomIds.includes(975)}" x="522" y="897" width="28" height="32" transform="rotate(-90 522 897)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(901)" :class="{'active-room':roomIds.includes(976)}" x="490" y="897" width="32" height="32" transform="rotate(-90 490 897)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(901)" :class="{'active-room':roomIds.includes(977)}" x="461" y="897" width="32" height="29" transform="rotate(-90 461 897)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(901)" :class="{'active-room':roomIds.includes(978)}" x="433" y="897" width="32" height="28" transform="rotate(-90 433 897)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(901)" :class="{'active-room':roomIds.includes(980)}" x="376" y="897" width="32" height="28" transform="rotate(-90 376 897)" fill="white" stroke="#274985" stroke-width="2"/>
 
 
       <rect x="161" y="481" width="35" height="10" rx="1" transform="rotate(-90 161 481)" fill="#F5222D"/>
@@ -275,8 +276,6 @@
       <path d="M146.152 507.855V512.141H145.23V509.676C145.23 509.619 145.232 509.558 145.234 509.491C145.238 509.424 145.244 509.357 145.252 509.288L144.056 511.491C144.019 511.56 143.968 511.612 143.905 511.647C143.843 511.682 143.772 511.7 143.691 511.7H143.549C143.469 511.7 143.397 511.682 143.333 511.647C143.271 511.612 143.221 511.56 143.184 511.491L141.988 509.282C141.994 509.353 142 509.422 142.004 509.491C142.008 509.558 142.01 509.619 142.01 509.676V512.141H141.089V507.855H141.886C141.932 507.855 141.971 507.856 142.004 507.858C142.039 507.86 142.07 507.866 142.096 507.876C142.123 507.886 142.147 507.902 142.167 507.923C142.19 507.943 142.212 507.971 142.232 508.008L143.391 510.182C143.433 510.257 143.472 510.334 143.509 510.415C143.548 510.495 143.585 510.577 143.62 510.662C143.655 510.575 143.691 510.491 143.728 510.409C143.768 510.326 143.809 510.248 143.852 510.173L145.008 508.008C145.029 507.971 145.049 507.943 145.07 507.923C145.092 507.902 145.117 507.886 145.144 507.876C145.171 507.866 145.201 507.86 145.234 507.858C145.269 507.856 145.309 507.855 145.354 507.855H146.152Z" fill="white"/>
       <path d="M976 612.14C976 576.05 956.72 544.73 927 529V695.33C956.73 679.6 976 648.25 976 612.14Z" fill="white" stroke="#274985" stroke-width="6" stroke-miterlimit="10"/>
       <rect x="84" y="522" width="57" height="32" transform="rotate(-90 84 522)" fill="white" stroke="#274985" stroke-width="2"/>
-      <path d="M483 785L483 786L484 786L537 786L538 786L538 785L538 719L538 718L537 718L512 718L511 718L511 719L511 753L484 753L483 753L483 754L483 785Z" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect x="381" y="393" width="79" height="34" fill="white" stroke="#274985" stroke-width="2"/>
       <path d="M915.19 316.32V317H911.35V316.32H912.885V311.435C912.885 311.288 912.89 311.14 912.9 310.99L911.625 312.085C911.581 312.122 911.538 312.145 911.495 312.155C911.451 312.162 911.411 312.162 911.375 312.155C911.338 312.148 911.303 312.135 911.27 312.115C911.24 312.095 911.216 312.073 911.2 312.05L910.92 311.665L913.055 309.82H913.78V316.32H915.19Z" fill="#274985"/>
       <path d="M889.035 316.155C889.131 316.155 889.208 316.183 889.265 316.24C889.321 316.297 889.35 316.37 889.35 316.46V317H884.57V316.695C884.57 316.632 884.583 316.567 884.61 316.5C884.636 316.433 884.678 316.372 884.735 316.315L887.03 314.01C887.22 313.817 887.393 313.632 887.55 313.455C887.706 313.275 887.84 313.095 887.95 312.915C888.06 312.735 888.145 312.553 888.205 312.37C888.265 312.183 888.295 311.985 888.295 311.775C888.295 311.565 888.261 311.382 888.195 311.225C888.128 311.065 888.036 310.933 887.92 310.83C887.806 310.727 887.671 310.65 887.515 310.6C887.358 310.547 887.19 310.52 887.01 310.52C886.826 310.52 886.658 310.547 886.505 310.6C886.351 310.653 886.215 310.728 886.095 310.825C885.978 310.918 885.88 311.03 885.8 311.16C885.72 311.29 885.663 311.433 885.63 311.59C885.59 311.707 885.535 311.785 885.465 311.825C885.398 311.862 885.303 311.872 885.18 311.855L884.715 311.775C884.761 311.448 884.851 311.16 884.985 310.91C885.121 310.657 885.291 310.445 885.495 310.275C885.701 310.105 885.936 309.977 886.2 309.89C886.463 309.8 886.748 309.755 887.055 309.755C887.358 309.755 887.641 309.8 887.905 309.89C888.168 309.98 888.396 310.112 888.59 310.285C888.783 310.455 888.935 310.663 889.045 310.91C889.155 311.157 889.21 311.437 889.21 311.75C889.21 312.017 889.17 312.265 889.09 312.495C889.01 312.722 888.901 312.938 888.765 313.145C888.628 313.352 888.47 313.553 888.29 313.75C888.113 313.947 887.925 314.145 887.725 314.345L885.835 316.275C885.968 316.238 886.103 316.21 886.24 316.19C886.376 316.167 886.508 316.155 886.635 316.155H889.035Z" fill="#274985"/>
       <path d="M855.75 311.775C855.796 311.448 855.886 311.16 856.02 310.91C856.153 310.657 856.321 310.445 856.525 310.275C856.731 310.105 856.966 309.977 857.23 309.89C857.496 309.8 857.783 309.755 858.09 309.755C858.393 309.755 858.673 309.798 858.93 309.885C859.186 309.972 859.406 310.095 859.59 310.255C859.776 310.415 859.921 310.608 860.025 310.835C860.128 311.062 860.18 311.313 860.18 311.59C860.18 311.817 860.15 312.02 860.09 312.2C860.033 312.377 859.95 312.532 859.84 312.665C859.733 312.798 859.603 312.912 859.45 313.005C859.296 313.098 859.125 313.175 858.935 313.235C859.401 313.355 859.751 313.562 859.985 313.855C860.221 314.145 860.34 314.508 860.34 314.945C860.34 315.275 860.276 315.572 860.15 315.835C860.026 316.098 859.856 316.323 859.64 316.51C859.423 316.693 859.17 316.835 858.88 316.935C858.593 317.032 858.285 317.08 857.955 317.08C857.575 317.08 857.25 317.033 856.98 316.94C856.71 316.843 856.481 316.712 856.295 316.545C856.108 316.378 855.955 316.182 855.835 315.955C855.715 315.725 855.613 315.477 855.53 315.21L855.915 315.05C856.015 315.007 856.111 314.995 856.205 315.015C856.301 315.035 856.371 315.09 856.415 315.18C856.458 315.273 856.511 315.385 856.575 315.515C856.641 315.645 856.731 315.77 856.845 315.89C856.958 316.01 857.101 316.112 857.275 316.195C857.451 316.278 857.675 316.32 857.945 316.32C858.195 316.32 858.413 316.28 858.6 316.2C858.79 316.117 858.946 316.01 859.07 315.88C859.196 315.75 859.291 315.605 859.355 315.445C859.418 315.285 859.45 315.127 859.45 314.97C859.45 314.777 859.425 314.6 859.375 314.44C859.325 314.28 859.231 314.142 859.095 314.025C858.958 313.908 858.77 313.817 858.53 313.75C858.293 313.683 857.988 313.65 857.615 313.65V313.005C857.921 313.002 858.181 312.968 858.395 312.905C858.611 312.842 858.786 312.755 858.92 312.645C859.056 312.535 859.155 312.403 859.215 312.25C859.278 312.097 859.31 311.927 859.31 311.74C859.31 311.533 859.276 311.353 859.21 311.2C859.146 311.047 859.058 310.92 858.945 310.82C858.831 310.72 858.696 310.645 858.54 310.595C858.386 310.545 858.22 310.52 858.04 310.52C857.86 310.52 857.691 310.547 857.535 310.6C857.381 310.653 857.245 310.728 857.125 310.825C857.008 310.918 856.91 311.03 856.83 311.16C856.75 311.29 856.693 311.433 856.66 311.59C856.616 311.707 856.561 311.785 856.495 311.825C856.431 311.862 856.338 311.872 856.215 311.855L855.75 311.775Z" fill="#274985"/>
@@ -806,6 +805,14 @@
       roomIds:{
         type: Array,
         default:[]
+      }
+    },
+    emits:['room-select'],
+    methods:{
+      roomSelect(room_id) {
+        if (this.roomIds.includes(room_id)){
+          this.$emit('room-select', room_id);
+        }
       }
     }
   }
