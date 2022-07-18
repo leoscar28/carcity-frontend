@@ -271,13 +271,17 @@
       },
       async getItems(page = null){
         this.isRooms = false;
-        if (this.isPage) {
-          if (page) {
-            this.paginate = page;
-          }
-          this.pages = await this.$store.dispatch('localStorage/getUserBannerPages', this.dataForRequest);
+        if (this.isPage && page) {
+          this.paginate = page;
         }
-        this.items = await this.$store.dispatch('localStorage/getUserBanners', this.dataForRequest);
+        let data = this.dataForRequest;
+        if (data.data.room_id) {
+          delete data.data.room_id;
+        }
+        if (this.isPage) {
+          this.pages = await this.$store.dispatch('localStorage/getUserBannerPages', data);
+        }
+        this.items = await this.$store.dispatch('localStorage/getUserBanners', data);
       },
       async getRooms(){
         this.isRooms = true;
