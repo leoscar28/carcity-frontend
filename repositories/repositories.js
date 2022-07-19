@@ -54,6 +54,7 @@ import Instruction from "@/repositories/instruction/instruction";
 import Mailing from "/repositories/mailing/mailing";
 
 import Tier from "@/repositories/tier/tier";
+import Awards from "@/repositories/awards/awards";
 
 export const repository = ($axios) => ({
   user: User($axios),
@@ -113,4 +114,5 @@ export const repository = ($axios) => ({
   mailing: Mailing($axios),
 
   tier: Tier($axios),
+  awards: Awards($axios),
 })

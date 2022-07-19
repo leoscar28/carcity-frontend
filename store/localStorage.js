@@ -16,6 +16,7 @@ export const state = () => ({
   contact: [],
   tiers: [],
   rooms: [],
+  awards: [],
   notificationViewCount: 0,
   notificationTenantCount: 0,
   notificationsTenant: [],
@@ -45,6 +46,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setAwards(state,value) {
+    state.awards  = value;
+  },
   setRooms(state,value) {
     state.rooms = value;
   },
@@ -170,6 +174,10 @@ export const mutations = {
 }
 
 export const actions = {
+  async awardsGet({commit}) {
+    let res = await this.$repository.awards.get();
+    commit('setAwards',res);
+  },
   async roomGet({commit}) {
     let res = await this.$repository.room.get();
     commit('setRooms',res);
