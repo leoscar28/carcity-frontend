@@ -150,7 +150,7 @@
       <template v-if="notification.type === 40">
           <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green"></div>
           <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
-            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title" >Объявление дективировано</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title" >Объявление деактивировано</div>
             <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">{{notification.user_banner_id.id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
           </div>
       </template>
