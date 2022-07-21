@@ -31,7 +31,6 @@
           </nav>
         </div>
         <div class="container">
-          {{item}}
           <UserBanner :ubid="id" :is-front="true" @title="setTitle"/>
         </div>
       </section>
@@ -52,8 +51,8 @@
     export default {
       name: "_id",
       components: {TheHeader, TheFooter, UserBanner},
-      async asyncData({ params, redirect, store }) {
-          return {id: params.id, title: '', item:await store.dispatch('localStorage/getUserBannerById', params.id)}
+      asyncData({ params, redirect }) {
+          return {id: params.id, title: ''}
         },
       methods: {
         setTitle(title) {

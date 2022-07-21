@@ -128,10 +128,6 @@
   import Favorite from "./Favorite";
   export default {
     name: "UserBanner",
-    components: {
-      Favorite,
-      WidgetReview,
-      UserBannerReworkModal, WidgetTextInBubble, WidgetBannerSectionWithIcon, Icon, IconArrow, StarRating},
     props:['ubid', 'isFront'],
     emits:['title'],
     data(){
