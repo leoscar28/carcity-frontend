@@ -499,7 +499,7 @@ export default {
         }
       });
       this.$echo.channel("userBannerDate").on("userBannerDate", async (res) => {
-        if (this.type === 4 && res.hasOwnProperty('userBanner') && [10,15].includes(res.userBanner.status)) {
+        if ([4,5,6].includes(this.type) && res.hasOwnProperty('userBanner')) {
           await this.getDataRequests();
         }
       });
