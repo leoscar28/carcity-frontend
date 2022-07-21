@@ -25,17 +25,17 @@
 <!--            </div>-->
 <!--            <UserBannerReworkModal :show="showReworkModal" @cancel="showReworkModal = false" @success="needEdits" />-->
 <!--          </div>-->
-<!--          <div class="banner-section-block">-->
-<!--            <div v-if="bannerItem.room" class="banner-section-block-title text-gray-900">{{ bannerItem.room['room_type'].title }} {{ bannerItem.room.title }}, {{ bannerItem.room['tier'].title }}</div>-->
-<!--            <hr/>-->
-<!--            <template v-if="isFront && !phoneVisible">-->
-<!--              <button @click="showPhone" class="btn btn-outline-primary w-100">Показать номер</button>-->
-<!--            </template>-->
-<!--            <template v-if="!isFront || phoneVisible">-->
-<!--              <WidgetBannerSectionWithIcon icon="phone_blue" :title="bannerItem.employee_name" :subtitle="bannerItem.employee_phone" />-->
-<!--              <WidgetBannerSectionWithIcon v-if="bannerItem.employee_name_additional && bannerItem.employee_phone_additional" icon="phone_blue" :title="bannerItem.employee_name_additional" :subtitle="bannerItem.employee_phone_additional" />-->
-<!--            </template>-->
-<!--          </div>-->
+          <div class="banner-section-block">
+            <div v-if="bannerItem.room" class="banner-section-block-title text-gray-900">{{ bannerItem.room['room_type'].title }} {{ bannerItem.room.title }}, {{ bannerItem.room['tier'].title }}</div>
+            <hr/>
+            <template v-if="isFront && !phoneVisible">
+              <button @click="showPhone" class="btn btn-outline-primary w-100">Показать номер</button>
+            </template>
+            <template v-if="!isFront || phoneVisible">
+              <WidgetBannerSectionWithIcon icon="phone_blue" :title="bannerItem.employee_name" :subtitle="bannerItem.employee_phone" />
+              <WidgetBannerSectionWithIcon v-if="bannerItem.employee_name_additional && bannerItem.employee_phone_additional" icon="phone_blue" :title="bannerItem.employee_name_additional" :subtitle="bannerItem.employee_phone_additional" />
+            </template>
+          </div>
 <!--          <div v-if="bannerItem.reviews" class="banner-section-block banner-section-block__reviews">-->
 <!--            <div class="text-gray-600">Рейтинг продавца</div>-->
 <!--            <div> <star-rating :padding="8" :increment="0.1" :star-size="18" :show-rating="!!bannerItem.reviews.rating" :rating="Number(bannerItem.reviews.rating)" :read-only="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" /></div>-->
