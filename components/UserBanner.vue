@@ -7,14 +7,14 @@
 
       <div class="banner-section-main">
         {{bannerItem.images}}
-<!--        <div v-if="bannerItem.images && bannerItem.images.length && imageView" class="banner-section-block banner-section-block-images">-->
-<!--          <div class="image-view" :style="{backgroundImage: 'url('+ imageView+')'}"></div>-->
-<!--          <div class="image-previews">-->
-<!--            <div v-for="image in bannerItem.images" :key="image.title" @click="imageView = image.path" class="image-preview">-->
-<!--              <img :src="image.path" />-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
+        <div v-if="bannerItem.images && bannerItem.images.length && imageView" class="banner-section-block banner-section-block-images">
+          <div class="image-view" :style="{backgroundImage: 'url('+ imageView+')'}"></div>
+          <div class="image-previews">
+            <div v-for="image in bannerItem.images" :key="image.title" @click="imageView = image.path" class="image-preview">
+              <img :src="image.path" />
+            </div>
+          </div>
+        </div>
 
 <!--        <div class="banner-section-sidebar">-->
 <!--          <div v-if="isModeration" class="banner-section-block">-->
