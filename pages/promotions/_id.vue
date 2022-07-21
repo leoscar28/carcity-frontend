@@ -31,7 +31,7 @@
           </nav>
         </div>
         <div class="container">
-          <UserBanner :ubid="id" :is-front="true" @title="setTitle"/>
+          <UserBanner :banner="id" :is-front="true" @title="setTitle" :key="'b'+id"/>
         </div>
       </section>
     </main>
