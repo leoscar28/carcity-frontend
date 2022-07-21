@@ -51,9 +51,9 @@
 
         <div class="banner-section-block  banner-section-block-data">
           <div class="banner-section-block-data-subheader">
-<!--            <div class="text-gray-600">-->
-<!--              Опубликовано {{ makeDate(bannerItem.published_at) }}-->
-<!--            </div>-->
+            <div class="text-gray-600">
+              Опубликовано {{ makeDate(bannerItem.published_at) }}
+            </div>
             <div v-if="!isFront" :style="color">
               {{ statuses[bannerItem.status] }}
             </div>
@@ -264,6 +264,7 @@
       makeDate(date){
         if (date) {
           date = new Date(date);
+          return date;
           let day = String(date.getDate()).padStart(2,'0');
           let month = this.monthsShort[date.getMonth()].toLowerCase();
           let year = String(date.getFullYear());
