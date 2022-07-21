@@ -6,7 +6,6 @@
       </div>
 
       <div class="banner-section-main">
-        {{bannerItem.images}}
         <div v-if="bannerItem.images && bannerItem.images.length && imageView" class="banner-section-block banner-section-block-images">
           <div class="image-view" :style="{backgroundImage: 'url('+ imageView+')'}"></div>
           <div class="image-previews">
@@ -16,7 +15,7 @@
           </div>
         </div>
 
-<!--        <div class="banner-section-sidebar">-->
+        <div class="banner-section-sidebar">
 <!--          <div v-if="isModeration" class="banner-section-block">-->
 <!--            <div class="banner-section-block-title">Модерация</div>-->
 <!--            <p class="banner-section-block-text">Внимательно ознакомьтесь с объявлением арендатора</p>-->
@@ -42,13 +41,13 @@
 <!--            <div> <star-rating :padding="8" :increment="0.1" :star-size="18" :show-rating="!!bannerItem.reviews.rating" :rating="Number(bannerItem.reviews.rating)" :read-only="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" /></div>-->
 <!--            <div class="banner-section-block__reviews__count"> {{ bannerItem.reviews.count}} отзывов</div>-->
 <!--          </div>-->
-<!--          <div class="banner-section-block">-->
-<!--            <WidgetBannerSectionWithIcon icon="clock_blue" title="Время работы магазина" :subtitle="workTime" />-->
-<!--          </div>-->
-<!--          <div class="banner-section-block">-->
-<!--            <WidgetBannerSectionWithIcon icon="calendar_blue" title="График" :subtitle="workDays" />-->
-<!--          </div>-->
-<!--        </div>-->
+          <div class="banner-section-block">
+            <WidgetBannerSectionWithIcon icon="clock_blue" title="Время работы магазина" :subtitle="workTime" />
+          </div>
+          <div class="banner-section-block">
+            <WidgetBannerSectionWithIcon icon="calendar_blue" title="График" :subtitle="workDays" />
+          </div>
+        </div>
 
 <!--        <div class="banner-section-block  banner-section-block-data">-->
 <!--          <div class="banner-section-block-data-subheader">-->
