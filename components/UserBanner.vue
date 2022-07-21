@@ -318,11 +318,11 @@
 </script>
 
 <style lang="scss">
-  .parent_div>*+* { margin-left: 8rem;}
   .work-days {
     display: flex;
     flex-direction: row;
     justify-content: left;
+    grid-gap: 4px;
     gap: 4px;
     color:#389e0d;
     font-size: 16px;
@@ -335,12 +335,14 @@
   .text-in-bubbles {
     display: flex;
     flex-direction: row;
+    grid-gap: 8px;
     gap: 8px;
     flex-wrap: wrap;
   }
 
   .banner-section {
     margin: 20px;
+    grid-gap: 16px;
     gap:16px;
     display: flex;
     flex-direction: column;
@@ -371,6 +373,7 @@
     &-main {
       display: flex;
       flex-wrap: wrap;
+      grid-gap: 16px;
       gap: 16px;
     }
 
@@ -379,6 +382,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      grid-gap: 8px;
       padding: 0 10px;
       font-weight: 700;
 
@@ -393,6 +397,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+      grid-gap: 16px;
       flex-grow: 1;
     }
 
@@ -445,6 +450,7 @@
 
       &-buttons {
         display:flex;
+        grid-gap: 4px;
         gap: 4px;
       }
 
@@ -465,6 +471,7 @@
       }
 
       &-images {
+        grid-gap: 16px;
         gap: 16px;
         display: flex;
         flex-direction: column;
@@ -482,9 +489,11 @@
         .image-previews {
           display: flex;
           gap: 16px;
+          grid-gap: 16px;
 
           @media (max-width:960px) {
             gap: 8px;
+            grid-gap: 8px;
           }
 
           .image-preview {
@@ -521,6 +530,7 @@
       }
 
       &-data {
+        grid-gap: 12px;
         gap: 12px;
         display: flex;
         flex-direction: column;
@@ -534,6 +544,7 @@
         &-rating {
           display: flex;
           gap: 16px;
+          grid-gap: 16px;
           flex-wrap: wrap;
         }
 
