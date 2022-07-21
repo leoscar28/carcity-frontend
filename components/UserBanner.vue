@@ -154,6 +154,7 @@
         }
       }
     },
+    fetchOnServer: true,
     async fetch() {
       this.bannerItem = await this.$store.dispatch('localStorage/getPromotion', this.banner);
       if (this.bannerItem.type === 1) {
