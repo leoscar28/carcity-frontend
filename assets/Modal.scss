@@ -24,6 +24,9 @@
       box-shadow: 0 0 2px 1px rgb(0 0 0 / 5%);
       border-radius: 5px;
       overflow: hidden;
+      @media (max-width: 425px) {
+        width:calc(100%  - 20px)!important;
+      }
       &-xl {
         width: 800px;
         max-width: 95%;

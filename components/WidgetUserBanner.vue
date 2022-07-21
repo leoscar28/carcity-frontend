@@ -75,7 +75,7 @@
       </div>
       <UserBannerComment v-if="item.status === 20" :comment="item.comment" :show="showComment" @close="showComment = false" />
       <div v-if="showButtons" :key="'wur'+item.id" class="modal-global">
-        <div class="modal-content-global modal-content-global-80">
+        <div class="modal-content-global">
           <div class="modal-content-header-close" @click=" showButtons= false"></div>
           <div class="modal-content-header">{{item.title}}</div>
             <div class="modal-body d-flex flex-column gap-1">
@@ -500,9 +500,4 @@
       }
     }
   }
-
-  .modal-content-global-80 {
-    width:calc(100%  - 20px)!important;
-  }
-
 </style>
