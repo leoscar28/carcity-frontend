@@ -52,8 +52,8 @@
     export default {
       name: "_id",
       components: {TheHeader, TheFooter, UserBanner},
-      async asyncData({ params, redirect }) {
-          return {id: params.id, title: '', item:await this.$store.dispatch('localStorage/getUserBannerById', params.id)}
+      async asyncData({ params, redirect, store }) {
+          return {id: params.id, title: '', item:await store.dispatch('localStorage/getUserBannerById', params.id)}
         },
       methods: {
         setTitle(title) {
