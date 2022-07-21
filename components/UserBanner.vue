@@ -1,6 +1,6 @@
 <template>
   <div class="body-section-content">
-    <div :key="bannerItem.id" class="banner-section" :class="{'banner-section--is-front':isFront}">
+    <div class="banner-section" :class="{'banner-section--is-front':isFront}">
       <div v-if="!isFront" class="banner-section-header">
         <div class="banner-section-title"><NuxtLink :to="backUrl" class="banner-section-title-link"><IconArrow rotate /></NuxtLink> Объявления</div>
       </div>
@@ -26,7 +26,7 @@
             <UserBannerReworkModal :show="showReworkModal" @cancel="showReworkModal = false" @success="needEdits" />
           </div>
           <div class="banner-section-block">
-            <div v-if="bannerItem.room" class="banner-section-block-title text-gray-900">{{ bannerItem.room['room_type'].title }} {{ bannerItem.room.title }}, {{ bannerItem.room['tier'].title }}</div>
+            <div class="banner-section-block-title text-gray-900">{{ bannerItem.room['room_type'].title }} {{ bannerItem.room.title }}, {{ bannerItem.room['tier'].title }}</div>
             <hr/>
             <template v-if="isFront && !phoneVisible">
               <button @click="showPhone" class="btn btn-outline-primary w-100">Показать номер</button>
