@@ -505,6 +505,10 @@ export const actions = {
   async getUserBannerRooms({commit},payload) {
     return await this.$repository.userBanner.rooms(payload);
   },
+  async getRoomUserInfo({commit}, id) {
+    let res = await this.$repository.room.getUserInfo(id);
+    return res;
+  },
   async getUserBannerById({commit}, payload) {
     let res = this.$repository.userBanner.getById(payload);
     return res;

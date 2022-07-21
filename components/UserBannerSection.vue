@@ -87,6 +87,11 @@
                     <div class="map-left-list-item-description-title">{{room.tier.title}}</div>
                   </div>
                   <div class="map-left-list-item-id">{{room.roomType.title}} {{room.title}}</div>
+                  <div v-if="roomId === room.id && roomUser && (roomSpareParts.length || roomBrands.length || roomServices.length)" class="map-left-list-item-room">
+                    <div v-for="sparePart in roomSpareParts" :key="'sp'+sparePart.id">{{sparePart.name}}</div>
+                    <div v-for="brand in roomBrands" :key="'br'+brand.id">{{brand.name}}</div>
+                    <div v-for="service in roomServices" :key="'ss'+service.id">{{service.name}}</div>
+                  </div>
                 </div>
               </div>
             </vue-custom-scrollbar>
@@ -138,6 +143,7 @@
           {name: 'Количеству отзывов', value: 'review'}
         ],
         roomId:null,
+        roomUser: null,
         roomIds:[],
         term:'',
         showCategories:false,
@@ -211,7 +217,26 @@
         let rooms = this.rooms.filter(room => (room.tier.id - 1) === this.selectedTier);
 
         return rooms.filter(room => this.roomIds.includes(room.id));
+      },
+      roomSpareParts(){
+        if (this.roomUser.spare_parts && this.type === AD_TYPE_SPARE_PART){
+          return this.roomUser.spare_parts.filter(sparePart => this.category_id.includes(sparePart.id));
+        }
+        return [];
+      },
+      roomBrands(){
+        if (this.roomUser.brands && this.type === AD_TYPE_SPARE_PART){
+          return this.roomUser.brands.filter(brand => this.brand_id.includes(brand.id));
+        }
+        return [];
+      },
+      roomServices(){
+        if (this.roomUser.services && this.type === AD_TYPE_SERVICE){
+          return this.roomUser.services.filter(service => this.service_id.includes(service.id));
+        }
+        return [];
       }
+
     },
     async created() {
 
@@ -240,10 +265,6 @@
     methods:{
       setRoomId(room_id){
         this.roomId = room_id;
-        const [el] = this.$refs['roomId'+this.roomId];
-        if (el) {
-          this.$refs.scrollArea.$el.scrollTop = el.offsetTop;
-        }
       },
       async changeSort(){
         this.sort = this.sort === 'ASC' ? 'DESC' : 'ASC';
@@ -268,6 +289,7 @@
         const data = this.dataForRequest;
         data.data.room_id = room_id;
         this.items = await this.$store.dispatch('localStorage/getUserBanners', data);
+        this.roomUser = await this.$store.dispatch('localStorage/getRoomUserInfo', room_id);
       },
       async getItems(page = null){
         this.isRooms = false;
@@ -326,6 +348,10 @@
     watch:{
       roomId: async function(val){
         await this.getRoomItems(val);
+        const [el] = this.$refs['roomId'+this.roomId];
+        if (el) {
+          this.$refs.scrollArea.$el.scrollTop = el.offsetTop;
+        }
       },
       type: async function(val) {
         let cats = [];
