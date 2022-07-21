@@ -82,9 +82,9 @@ export default {
   },
   mounted() {
     if (this.user.role_id !== 1) {
-      this.$echo.channel("notification."+this.user.id).on("notification", (res) => {
-        this.newNotification(res);
-        this.$store.commit('localStorage/setUserBannerCount', this.$store.dispatch('localStorage/getUserBannerCount', 'new'));
+      this.$echo.channel("notification."+this.user.id).on("notification", async (res) => {
+        await this.newNotification(res);
+        this.$store.commit('localStorage/setUserBannerCount', await this.$store.dispatch('localStorage/getUserBannerCount', 'new'));
       });
     } else {
       this.$echo.channel("notificationTenant."+this.user.id).on("notificationTenant", (res) => {
