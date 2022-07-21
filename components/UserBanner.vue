@@ -52,7 +52,7 @@
         <div class="banner-section-block  banner-section-block-data">
           <div class="banner-section-block-data-subheader">
             <div class="text-gray-600">
-              Опубликовано {{ bannerItem.published_at }}
+              Опубликовано {{ makeDate(bannerItem.published_at) }}
             </div>
             <div v-if="!isFront" :style="color">
               {{ statuses[bannerItem.status] }}
