@@ -318,6 +318,7 @@
 </script>
 
 <style lang="scss">
+  .parent_div>*+* { margin-left: 8rem;}
   .work-days {
     display: flex;
     flex-direction: row;
