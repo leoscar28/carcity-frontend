@@ -516,7 +516,7 @@ export const actions = {
     let res = await this.$repository.room.getUserInfo(id);
     return res;
   },
-  async getUserBannerById({commit}, payload) {
+  async getPromotion({commit}, payload) {
     let res = this.$repository.userBanner.getById(payload);
     return res;
   },
