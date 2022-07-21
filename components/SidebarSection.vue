@@ -39,7 +39,7 @@
           <NuxtLink v-if="user.role_id !== 1" to="/ads/new">
             <div class="sidebar-section-menu-list-item" :class="{'sidebar-section-menu-list-item-active':($nuxt.$route.name === 'ads-new')}">
               <div class="sidebar-section-menu-list-item-icon"></div>
-              <div class="sidebar-section-menu-list-item-title">Новые</div>
+              <div class="sidebar-section-menu-list-item-title">Новые<div v-if="count" class="sidebar-section-badge">{{count}}</div></div>
             </div>
           </NuxtLink>
           <NuxtLink to="/ads/active">
@@ -112,13 +112,17 @@ export default {
       dropdown: ''
     }
   },
-  created() {
+  async created() {
     this.check();
+    this.$store.commit('localStorage/setUserBannerCount', await this.$store.dispatch('localStorage/getUserBannerCount', 'new'));
   },
   computed:{
     user() {
       return this.$store.state.localStorage.user;
     },
+   count(){
+      return this.$store.state.localStorage.userBannerCount;
+    }
   },
   methods: {
     check() {

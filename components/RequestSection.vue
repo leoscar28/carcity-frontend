@@ -498,6 +498,11 @@ export default {
           this.newRequest(res.invoiceDate);
         }
       });
+      this.$echo.channel("userBannerDate").on("userBannerDate", (res) => {
+        if (this.type === 4 && res.hasOwnProperty('userBanner') && [10,15].includes(res.userBanner.status)) {
+          this.newRequest(res.userBanner);
+        }
+      });
     } else {
       this.$echo.channel("application."+this.user.bin).on("application", (res) => {
         if (this.type === 2 && res.hasOwnProperty('application')) {

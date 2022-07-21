@@ -110,5 +110,13 @@ export default ($axios) => ({
       }).catch(error => {
         return error.response.data;
       });
+  },
+  count(type) {
+    return $axios.get('/api/userBanner/count/'+type)
+      .then(response => {
+        return response.data;
+      }).catch(error => {
+        return error.response.data;
+      });
   }
 });

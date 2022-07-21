@@ -34,6 +34,7 @@ export const state = () => ({
   signatureLoading: false,
   current: 0,
   languages: ['RU','KZ'],
+  userBannerCount: 0,
   lang: {
     formatLocale: {
       months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
@@ -46,6 +47,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setUserBannerCount(state,value) {
+    state.userBannerCount  = value;
+  },
   setAwards(state,value) {
     state.awards  = value;
   },
@@ -498,6 +502,9 @@ export const actions = {
   },
   async getUserBannerPages({commit},payload) {
     return await this.$repository.userBanner.pages(payload);
+  },
+  async getUserBannerCount({commit}, type) {
+    return await this.$repository.userBanner.count(type);
   },
   async getUserBanners({commit},payload) {
     return await this.$repository.userBanner.all(payload);
