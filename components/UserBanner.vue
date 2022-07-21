@@ -1,8 +1,8 @@
 <template>
   <div class="body-section-content">
-    {{categories}}
+    {{item}}
 
-    <div class="banner-section" :class="{'banner-section--is-front':isFront}">
+    <div v-if="false" class="banner-section" :class="{'banner-section--is-front':isFront}">
       <div v-if="!isFront" class="banner-section-header">
         <div class="banner-section-title"><NuxtLink :to="backUrl" class="banner-section-title-link"><IconArrow rotate /></NuxtLink> Объявления</div>
       </div>
@@ -156,23 +156,23 @@
       }
     },
     async fetch() {
-
+this.item = this.banner;
       // this.item = await this.$store.dispatch('localStorage/getUserBannerById', this.banner);
-      if (this.item.type === 1) {
-        this.categories = await this.$store.dispatch('localStorage/listDictionarySpareParts');
-        this.brands = await this.$store.dispatch('localStorage/listDictionaryBrands');
-      } else {
-        this.categories = await this.$store.dispatch('localStorage/listDictionaryServices');
-      }
-
-      if (this.item.images && this.item.images.length) {
-        this.imageView = this.item.images[0].path;
-      }
-      if (this.item.review_items && this.item.review_items.length){
-        this.reviewCount = this.item.review_items.length < 5 ? this.item.review_items.length : 5;
-      }
-      await this.getStatuses();
-      this.$emit('title',this.item.title);
+      // if (this.item.type === 1) {
+      //   this.categories = await this.$store.dispatch('localStorage/listDictionarySpareParts');
+      //   this.brands = await this.$store.dispatch('localStorage/listDictionaryBrands');
+      // } else {
+      //   this.categories = await this.$store.dispatch('localStorage/listDictionaryServices');
+      // }
+      //
+      // if (this.item.images && this.item.images.length) {
+      //   this.imageView = this.item.images[0].path;
+      // }
+      // if (this.item.review_items && this.item.review_items.length){
+      //   this.reviewCount = this.item.review_items.length < 5 ? this.item.review_items.length : 5;
+      // }
+      // await this.getStatuses();
+      // this.$emit('title',this.item.title);
 
     },
     computed:{
