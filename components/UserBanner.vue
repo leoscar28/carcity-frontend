@@ -155,14 +155,15 @@
       }
     },
     async fetch() {
-      this.item = await this.$store.dispatch('localStorage/getUserBannerById', this.ubid);
 
+      this.item = await this.$store.dispatch('localStorage/getUserBannerById', this.ubid);
       if (this.item.type === 1) {
         this.categories = await this.$store.dispatch('localStorage/listDictionarySpareParts');
         this.brands = await this.$store.dispatch('localStorage/listDictionaryBrands');
       } else {
         this.categories = await this.$store.dispatch('localStorage/listDictionaryServices');
       }
+
       if (this.item.images && this.item.images.length) {
         this.imageView = this.item.images[0].path;
       }
