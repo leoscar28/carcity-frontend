@@ -167,8 +167,8 @@
         }
       }
     },
-    async fetch() {
-      await this.getStatuses();
+    async mounted() {
+
       this.item = await this.$store.dispatch('localStorage/getUserBannerById', this.ubid);
       if (this.item.type === 1) {
         this.categories = await this.$store.dispatch('localStorage/listDictionarySpareParts');
@@ -183,6 +183,7 @@
       if (this.item.review_items && this.item.review_items.length){
         this.reviewCount = this.item.review_items.length < 5 ? this.item.review_items.length : 5;
       }
+      await this.getStatuses();
       this.$emit('title',this.item.title);
 
     },
