@@ -36,11 +36,11 @@
               <WidgetBannerSectionWithIcon v-if="bannerItem.employee_name_additional && bannerItem.employee_phone_additional" icon="phone_blue" :title="bannerItem.employee_name_additional" :subtitle="bannerItem.employee_phone_additional" />
             </template>
           </div>
-<!--          <div v-if="bannerItem.reviews" class="banner-section-block banner-section-block__reviews">-->
-<!--            <div class="text-gray-600">Рейтинг продавца</div>-->
-<!--            <div> <star-rating :padding="8" :increment="0.1" :star-size="18" :show-rating="!!bannerItem.reviews.rating" :rating="Number(bannerItem.reviews.rating)" :read-only="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" /></div>-->
-<!--            <div class="banner-section-block__reviews__count"> {{ bannerItem.reviews.count}} отзывов</div>-->
-<!--          </div>-->
+          <div v-if="bannerItem.reviews" class="banner-section-block banner-section-block__reviews">
+            <div class="text-gray-600">Рейтинг продавца</div>
+            <div> <star-rating :padding="8" :increment="0.1" :star-size="18" :show-rating="!!bannerItem.reviews.rating" :rating="Number(bannerItem.reviews.rating)" :read-only="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" /></div>
+            <div class="banner-section-block__reviews__count"> {{ bannerItem.reviews.count}} отзывов</div>
+          </div>
           <div class="banner-section-block">
             <WidgetBannerSectionWithIcon icon="clock_blue" title="Время работы магазина" :subtitle="workTime" />
           </div>
@@ -49,39 +49,39 @@
           </div>
         </div>
 
-<!--        <div class="banner-section-block  banner-section-block-data">-->
-<!--          <div class="banner-section-block-data-subheader">-->
-<!--            <div class="text-gray-600">-->
-<!--              Опубликовано {{ makeDate(bannerItem.published_at) }}-->
-<!--            </div>-->
-<!--            <div v-if="!isFront" :style="color">-->
-<!--              {{ statuses[bannerItem.status] }}-->
-<!--            </div>-->
-<!--            <div v-else-if="user" class="widget-ubf__content__header__like">-->
-<!--              <Favorite :id="bannerItem.id"/>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="banner-section-block-data-main_header">-->
-<!--            {{ bannerItem.title }}-->
-<!--          </div>-->
-<!--          <div v-if="hasCategories" class="banner-section-block-data-content">-->
-<!--            <div class="banner-section-block-data-content-header">Категории <div @click="showCategories = !showCategories" v-text="showCategories ? 'скрыть' : 'показать'" class="show-toggle"></div></div>-->
-<!--            <div v-if="showCategories" class="text-in-bubbles">-->
-<!--              <WidgetTextInBubble v-for="(i, index) in availCats" :text="i.name" :key="index"/>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div v-if="hasBrands"  class="banner-section-block-data-content">-->
-<!--            <div class="banner-section-block-data-content-header">Марки <div @click="showBrands = !showBrands" v-text="showBrands ? 'скрыть' : 'показать'" class="show-toggle"></div></div>-->
-<!--            <div v-if="showBrands" class="text-in-bubbles">-->
-<!--              <WidgetTextInBubble v-for="(i, index) in availBrands" :text="i.name" :key="index"/>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="banner-section-block-data-content">-->
-<!--            <div class="banner-section-block-data-content-header">Описание</div>-->
-<!--            <div class="banner-section-block-data-content-description">{{ bannerItem.description }}</div>-->
-<!--          </div>-->
-<!--          <div class="text-gray-600">ID: {{ bannerItem.id }}</div>-->
-<!--        </div>-->
+        <div class="banner-section-block  banner-section-block-data">
+          <div class="banner-section-block-data-subheader">
+            <div class="text-gray-600">
+              Опубликовано {{ makeDate(bannerItem.published_at) }}
+            </div>
+            <div v-if="!isFront" :style="color">
+              {{ statuses[bannerItem.status] }}
+            </div>
+            <div v-else-if="user" class="widget-ubf__content__header__like">
+              <Favorite :id="bannerItem.id"/>
+            </div>
+          </div>
+          <div class="banner-section-block-data-main_header">
+            {{ bannerItem.title }}
+          </div>
+          <div v-if="hasCategories" class="banner-section-block-data-content">
+            <div class="banner-section-block-data-content-header">Категории <div @click="showCategories = !showCategories" v-text="showCategories ? 'скрыть' : 'показать'" class="show-toggle"></div></div>
+            <div v-if="showCategories" class="text-in-bubbles">
+              <WidgetTextInBubble v-for="(i, index) in availCats" :text="i.name" :key="index"/>
+            </div>
+          </div>
+          <div v-if="hasBrands"  class="banner-section-block-data-content">
+            <div class="banner-section-block-data-content-header">Марки <div @click="showBrands = !showBrands" v-text="showBrands ? 'скрыть' : 'показать'" class="show-toggle"></div></div>
+            <div v-if="showBrands" class="text-in-bubbles">
+              <WidgetTextInBubble v-for="(i, index) in availBrands" :text="i.name" :key="index"/>
+            </div>
+          </div>
+          <div class="banner-section-block-data-content">
+            <div class="banner-section-block-data-content-header">Описание</div>
+            <div class="banner-section-block-data-content-description">{{ bannerItem.description }}</div>
+          </div>
+          <div class="text-gray-600">ID: {{ bannerItem.id }}</div>
+        </div>
 
 <!--        <div v-if="!user.id" class="banner-section-block  banner-section-block-data text-center">-->
 <!--          <div><img src="/cone.png" width="130" height="130" alt=""/></div>-->
