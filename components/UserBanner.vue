@@ -1,5 +1,6 @@
 <template>
   <div class="body-section-content">
+    {{categories}}
     <div class="banner-section" :class="{'banner-section--is-front':isFront}">
       <div v-if="!isFront" class="banner-section-header">
         <div class="banner-section-title"><NuxtLink :to="backUrl" class="banner-section-title-link"><IconArrow rotate /></NuxtLink> Объявления</div>
@@ -117,15 +118,6 @@
 </template>
 
 <script>
-
-  import IconArrow from "./icons/IconArrow";
-  import Icon from "./icons/Icon";
-  import WidgetBannerSectionWithIcon from "./WidgetBannerSectionWithIcon";
-  import WidgetTextInBubble from "./WidgetTextInBubble";
-  import UserBannerReworkModal from "./modal/UserBannerReworkModal";
-  import StarRating from 'vue-star-rating'
-  import WidgetReview from "./WidgetReview";
-  import Favorite from "./Favorite";
   export default {
     name: "UserBanner",
     props:['ubid', 'isFront'],
@@ -162,24 +154,24 @@
         }
       }
     },
-    async mounted() {
-
-      this.item = await this.$store.dispatch('localStorage/getUserBannerById', this.ubid);
-      if (this.item.type === 1) {
-        this.categories = await this.$store.dispatch('localStorage/listDictionarySpareParts');
-        this.brands = await this.$store.dispatch('localStorage/listDictionaryBrands');
-      } else {
-        this.categories = await this.$store.dispatch('localStorage/listDictionaryServices');
-      }
-
-      if (this.item.images && this.item.images.length) {
-        this.imageView = this.item.images[0].path;
-      }
-      if (this.item.review_items && this.item.review_items.length){
-        this.reviewCount = this.item.review_items.length < 5 ? this.item.review_items.length : 5;
-      }
-      await this.getStatuses();
-      this.$emit('title',this.item.title);
+    async fetch() {
+      this.categories = await this.$store.dispatch('localStorage/listDictionarySpareParts');
+      // this.item = await this.$store.dispatch('localStorage/getUserBannerById', this.ubid);
+      //
+      // if (this.item.type === 1) {
+      //   this.categories = await this.$store.dispatch('localStorage/listDictionarySpareParts');
+      //   this.brands = await this.$store.dispatch('localStorage/listDictionaryBrands');
+      // } else {
+      //   this.categories = await this.$store.dispatch('localStorage/listDictionaryServices');
+      // }
+      // if (this.item.images && this.item.images.length) {
+      //   this.imageView = this.item.images[0].path;
+      // }
+      // if (this.item.review_items && this.item.review_items.length){
+      //   this.reviewCount = this.item.review_items.length < 5 ? this.item.review_items.length : 5;
+      // }
+      // await this.getStatuses();
+      // this.$emit('title',this.item.title);
 
     },
     computed:{
