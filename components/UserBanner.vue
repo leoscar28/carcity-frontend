@@ -263,7 +263,7 @@
       },
       makeDate(date){
         if (date) {
-          return date;
+          date = new Date(date);
           let day = String(date.getDate()).padStart(2,'0');
           let month = this.monthsShort[date.getMonth()].toLowerCase();
           let year = String(date.getFullYear());
