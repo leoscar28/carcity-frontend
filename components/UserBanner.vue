@@ -1,6 +1,8 @@
 <template>
   <div class="body-section-content">
-    <div class="banner-section" :class="{'banner-section--is-front':isFront}">
+    <p v-if="$fetchState.pending">Loading....</p>
+    <p v-else-if="$fetchState.error">{{$fetchState.error}}</p>
+    <div v-else class="banner-section" :class="{'banner-section--is-front':isFront}">
       <div v-if="!isFront" class="banner-section-header">
         <div class="banner-section-title"><NuxtLink :to="backUrl" class="banner-section-title-link"><IconArrow rotate /></NuxtLink> Объявления</div>
       </div>
