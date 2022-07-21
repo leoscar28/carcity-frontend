@@ -498,9 +498,9 @@ export default {
           this.newRequest(res.invoiceDate);
         }
       });
-      this.$echo.channel("userBannerDate").on("userBannerDate", (res) => {
+      this.$echo.channel("userBannerDate").on("userBannerDate", async (res) => {
         if (this.type === 4 && res.hasOwnProperty('userBanner') && [10,15].includes(res.userBanner.status)) {
-          this.newRequest(res.userBanner);
+          await this.getDataRequests();
         }
       });
     } else {
