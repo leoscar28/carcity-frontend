@@ -5,7 +5,114 @@
         <div class="banner-section-title"><NuxtLink :to="backUrl" class="banner-section-title-link"><IconArrow rotate /></NuxtLink> Объявления</div>
       </div>
 
-      {{bannerItem}}
+      <div class="banner-section-main">
+        {{bannerItem.images}}
+<!--        <div v-if="bannerItem.images && bannerItem.images.length && imageView" class="banner-section-block banner-section-block-images">-->
+<!--          <div class="image-view" :style="{backgroundImage: 'url('+ imageView+')'}"></div>-->
+<!--          <div class="image-previews">-->
+<!--            <div v-for="image in bannerItem.images" :key="image.title" @click="imageView = image.path" class="image-preview">-->
+<!--              <img :src="image.path" />-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="banner-section-sidebar">-->
+<!--          <div v-if="isModeration" class="banner-section-block">-->
+<!--            <div class="banner-section-block-title">Модерация</div>-->
+<!--            <p class="banner-section-block-text">Внимательно ознакомьтесь с объявлением арендатора</p>-->
+<!--            <div class="banner-section-block-buttons">-->
+<!--              <button @click="showReworkModal = true" class="btn banner-section-block-button-cancel" :disabled="loading">Отклонить</button>-->
+<!--              <button @click="activate()" class="btn banner-section-block-button-confirm" :disabled="loading">Принять</button>-->
+<!--            </div>-->
+<!--            <UserBannerReworkModal :show="showReworkModal" @cancel="showReworkModal = false" @success="needEdits" />-->
+<!--          </div>-->
+<!--          <div class="banner-section-block">-->
+<!--            <div v-if="bannerItem.room" class="banner-section-block-title text-gray-900">{{ bannerItem.room['room_type'].title }} {{ bannerItem.room.title }}, {{ bannerItem.room['tier'].title }}</div>-->
+<!--            <hr/>-->
+<!--            <template v-if="isFront && !phoneVisible">-->
+<!--              <button @click="showPhone" class="btn btn-outline-primary w-100">Показать номер</button>-->
+<!--            </template>-->
+<!--            <template v-if="!isFront || phoneVisible">-->
+<!--              <WidgetBannerSectionWithIcon icon="phone_blue" :title="bannerItem.employee_name" :subtitle="bannerItem.employee_phone" />-->
+<!--              <WidgetBannerSectionWithIcon v-if="bannerItem.employee_name_additional && bannerItem.employee_phone_additional" icon="phone_blue" :title="bannerItem.employee_name_additional" :subtitle="bannerItem.employee_phone_additional" />-->
+<!--            </template>-->
+<!--          </div>-->
+<!--          <div v-if="bannerItem.reviews" class="banner-section-block banner-section-block__reviews">-->
+<!--            <div class="text-gray-600">Рейтинг продавца</div>-->
+<!--            <div> <star-rating :padding="8" :increment="0.1" :star-size="18" :show-rating="!!bannerItem.reviews.rating" :rating="Number(bannerItem.reviews.rating)" :read-only="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" /></div>-->
+<!--            <div class="banner-section-block__reviews__count"> {{ bannerItem.reviews.count}} отзывов</div>-->
+<!--          </div>-->
+<!--          <div class="banner-section-block">-->
+<!--            <WidgetBannerSectionWithIcon icon="clock_blue" title="Время работы магазина" :subtitle="workTime" />-->
+<!--          </div>-->
+<!--          <div class="banner-section-block">-->
+<!--            <WidgetBannerSectionWithIcon icon="calendar_blue" title="График" :subtitle="workDays" />-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="banner-section-block  banner-section-block-data">-->
+<!--          <div class="banner-section-block-data-subheader">-->
+<!--            <div class="text-gray-600">-->
+<!--              Опубликовано {{ makeDate(bannerItem.published_at) }}-->
+<!--            </div>-->
+<!--            <div v-if="!isFront" :style="color">-->
+<!--              {{ statuses[bannerItem.status] }}-->
+<!--            </div>-->
+<!--            <div v-else-if="user" class="widget-ubf__content__header__like">-->
+<!--              <Favorite :id="bannerItem.id"/>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="banner-section-block-data-main_header">-->
+<!--            {{ bannerItem.title }}-->
+<!--          </div>-->
+<!--          <div v-if="hasCategories" class="banner-section-block-data-content">-->
+<!--            <div class="banner-section-block-data-content-header">Категории <div @click="showCategories = !showCategories" v-text="showCategories ? 'скрыть' : 'показать'" class="show-toggle"></div></div>-->
+<!--            <div v-if="showCategories" class="text-in-bubbles">-->
+<!--              <WidgetTextInBubble v-for="(i, index) in availCats" :text="i.name" :key="index"/>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div v-if="hasBrands"  class="banner-section-block-data-content">-->
+<!--            <div class="banner-section-block-data-content-header">Марки <div @click="showBrands = !showBrands" v-text="showBrands ? 'скрыть' : 'показать'" class="show-toggle"></div></div>-->
+<!--            <div v-if="showBrands" class="text-in-bubbles">-->
+<!--              <WidgetTextInBubble v-for="(i, index) in availBrands" :text="i.name" :key="index"/>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="banner-section-block-data-content">-->
+<!--            <div class="banner-section-block-data-content-header">Описание</div>-->
+<!--            <div class="banner-section-block-data-content-description">{{ bannerItem.description }}</div>-->
+<!--          </div>-->
+<!--          <div class="text-gray-600">ID: {{ bannerItem.id }}</div>-->
+<!--        </div>-->
+
+<!--        <div v-if="!user.id" class="banner-section-block  banner-section-block-data text-center">-->
+<!--          <div><img src="/cone.png" width="130" height="130" alt=""/></div>-->
+<!--          <div class="banner-section-block-data-header">-->
+<!--            Чтобы написать отзыв <NuxtLink to="/login">войдите в систему</NuxtLink><br class="d-lg-block d-none"/> или <NuxtLink to="/registration">зарегистрируйтесь</NuxtLink>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div v-else-if="userCanWriteReview" class="banner-section-block  banner-section-block-data">-->
+<!--          <div class="banner-section-block-data-header">-->
+<!--            Поделитесь своим мнением о данном магазине-->
+<!--          </div>-->
+<!--          <div class="banner-section-block-data-rating">-->
+<!--            Поставьте оценку <star-rating :padding="8" :show-rating="false" :star-size="18" v-model="form.rating" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" />-->
+<!--          </div>-->
+<!--          <textarea v-model="form.description" class="form-control banner-section-block-data-textarea" placeholder="Напишите отзыв"></textarea>-->
+<!--          <div class="banner-section-block-buttons">-->
+<!--            <button @click="sendReview" class="btn btn-outline-primary" :disabled="loading||!form.rating || !form.description.length">Отправить</button>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div v-if="bannerItem.review_items && bannerItem.review_items.length && reviewCount" class="banner-section-block  banner-section-block-data">-->
+<!--          <div class="banner-section-block-data-header">-->
+<!--            Отзывы-->
+<!--          </div>-->
+<!--          <WidgetReview v-for="i in reviewCount" :item="bannerItem.review_items[i-1]" :date="makeDate(bannerItem.review_items[i-1].created_at)" :key="'r' + bannerItem.review_items[i-1].id" />-->
+<!--          <div v-if="reviewCount < bannerItem.review_items.length" class="text-center mt-3">-->
+<!--            <button @click="showMore" class="btn btn-outline-primary">Показать еще</button>-->
+<!--          </div>-->
+<!--        </div>-->
+      </div>
     </div>
   </div>
 </template>
