@@ -16,15 +16,15 @@
         </div>
 
         <div class="banner-section-sidebar">
-<!--          <div v-if="isModeration" class="banner-section-block">-->
-<!--            <div class="banner-section-block-title">Модерация</div>-->
-<!--            <p class="banner-section-block-text">Внимательно ознакомьтесь с объявлением арендатора</p>-->
-<!--            <div class="banner-section-block-buttons">-->
-<!--              <button @click="showReworkModal = true" class="btn banner-section-block-button-cancel" :disabled="loading">Отклонить</button>-->
-<!--              <button @click="activate()" class="btn banner-section-block-button-confirm" :disabled="loading">Принять</button>-->
-<!--            </div>-->
-<!--            <UserBannerReworkModal :show="showReworkModal" @cancel="showReworkModal = false" @success="needEdits" />-->
-<!--          </div>-->
+          <div v-if="isModeration" class="banner-section-block">
+            <div class="banner-section-block-title">Модерация</div>
+            <p class="banner-section-block-text">Внимательно ознакомьтесь с объявлением арендатора</p>
+            <div class="banner-section-block-buttons">
+              <button @click="showReworkModal = true" class="btn banner-section-block-button-cancel" :disabled="loading">Отклонить</button>
+              <button @click="activate()" class="btn banner-section-block-button-confirm" :disabled="loading">Принять</button>
+            </div>
+            <UserBannerReworkModal :show="showReworkModal" @cancel="showReworkModal = false" @success="needEdits" />
+          </div>
           <div class="banner-section-block">
             <div v-if="bannerItem.room" class="banner-section-block-title text-gray-900">{{ bannerItem.room['room_type'].title }} {{ bannerItem.room.title }}, {{ bannerItem.room['tier'].title }}</div>
             <hr/>
@@ -51,8 +51,8 @@
 
         <div class="banner-section-block  banner-section-block-data">
           <div class="banner-section-block-data-subheader">
-            <div class="text-gray-600">
-<!--              Опубликовано {{ makeDate(bannerItem.published_at) }}-->
+            <div v-if="bannerItem.published_at" class="text-gray-600">
+              Опубликовано {{ makeDate(bannerItem.published_at) }}
             </div>
             <div v-if="!isFront" :style="color">
               {{ statuses[bannerItem.status] }}
@@ -322,7 +322,7 @@
     display: flex;
     flex-direction: row;
     justify-content: left;
-    grid-gap: 4px;
+    gap: 4px;
     color:#389e0d;
     font-size: 16px;
 
@@ -334,13 +334,13 @@
   .text-in-bubbles {
     display: flex;
     flex-direction: row;
-    grid-gap: 8px;
+    gap: 8px;
     flex-wrap: wrap;
   }
 
   .banner-section {
     margin: 20px;
-    grid-gap:16px;
+    gap:16px;
     display: flex;
     flex-direction: column;
     font-size: 16px;
@@ -370,14 +370,14 @@
     &-main {
       display: flex;
       flex-wrap: wrap;
-      grid-gap: 16px;
+      gap: 16px;
     }
 
     &-title {
       height: 54px;
       display: flex;
       align-items: center;
-      grid-gap: 8px;
+      gap: 8px;
       padding: 0 10px;
       font-weight: 700;
 
@@ -391,7 +391,7 @@
       width: calc(30% - 16px);
       display: flex;
       flex-direction: column;
-      grid-gap: 16px;
+      gap: 16px;
       flex-grow: 1;
     }
 
@@ -444,7 +444,7 @@
 
       &-buttons {
         display:flex;
-        grid-gap: 4px;
+        gap: 4px;
       }
 
       &-title {
@@ -464,7 +464,7 @@
       }
 
       &-images {
-        grid-gap: 16px;
+        gap: 16px;
         display: flex;
         flex-direction: column;
 
@@ -480,10 +480,10 @@
 
         .image-previews {
           display: flex;
-          grid-gap: 16px;
+          gap: 16px;
 
           @media (max-width:960px) {
-            grid-gap: 8px;
+            gap: 8px;
           }
 
           .image-preview {
@@ -520,7 +520,7 @@
       }
 
       &-data {
-        grid-gap: 12px;
+        gap: 12px;
         display: flex;
         flex-direction: column;
 
@@ -532,7 +532,7 @@
 
         &-rating {
           display: flex;
-          grid-gap: 16px;
+          gap: 16px;
           flex-wrap: wrap;
         }
 
