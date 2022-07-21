@@ -1,7 +1,7 @@
 <template>
   <div class="body-section-content">
     {{bannerItem}}
-    <div class="banner-section" :class="{'banner-section--is-front':isFront}">
+    <div v-if="false" class="banner-section" :class="{'banner-section--is-front':isFront}">
       <div v-if="!isFront" class="banner-section-header">
         <div class="banner-section-title"><NuxtLink :to="backUrl" class="banner-section-title-link"><IconArrow rotate /></NuxtLink> Объявления</div>
       </div>
