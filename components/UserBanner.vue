@@ -58,24 +58,24 @@
               {{ statuses[bannerItem.status] }}
             </div>
             <div v-else-if="user" class="widget-ubf__content__header__like">
-              <Favorite :id="bannerItem.id"/>
+<!--              <Favorite :id="bannerItem.id"/>-->
             </div>
           </div>
           <div class="banner-section-block-data-main_header">
             {{ bannerItem.title }}
           </div>
-          <div v-if="hasCategories" class="banner-section-block-data-content">
-            <div class="banner-section-block-data-content-header">Категории <div @click="showCategories = !showCategories" v-text="showCategories ? 'скрыть' : 'показать'" class="show-toggle"></div></div>
-            <div v-if="showCategories" class="text-in-bubbles">
-              <WidgetTextInBubble v-for="(i, index) in availCats" :text="i.name" :key="index"/>
-            </div>
-          </div>
-          <div v-if="hasBrands"  class="banner-section-block-data-content">
-            <div class="banner-section-block-data-content-header">Марки <div @click="showBrands = !showBrands" v-text="showBrands ? 'скрыть' : 'показать'" class="show-toggle"></div></div>
-            <div v-if="showBrands" class="text-in-bubbles">
-              <WidgetTextInBubble v-for="(i, index) in availBrands" :text="i.name" :key="index"/>
-            </div>
-          </div>
+<!--          <div v-if="hasCategories" class="banner-section-block-data-content">-->
+<!--            <div class="banner-section-block-data-content-header">Категории <div @click="showCategories = !showCategories" v-text="showCategories ? 'скрыть' : 'показать'" class="show-toggle"></div></div>-->
+<!--            <div v-if="showCategories" class="text-in-bubbles">-->
+<!--              <WidgetTextInBubble v-for="(i, index) in availCats" :text="i.name" :key="index"/>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div v-if="hasBrands"  class="banner-section-block-data-content">-->
+<!--            <div class="banner-section-block-data-content-header">Марки <div @click="showBrands = !showBrands" v-text="showBrands ? 'скрыть' : 'показать'" class="show-toggle"></div></div>-->
+<!--            <div v-if="showBrands" class="text-in-bubbles">-->
+<!--              <WidgetTextInBubble v-for="(i, index) in availBrands" :text="i.name" :key="index"/>-->
+<!--            </div>-->
+<!--          </div>-->
           <div class="banner-section-block-data-content">
             <div class="banner-section-block-data-content-header">Описание</div>
             <div class="banner-section-block-data-content-description">{{ bannerItem.description }}</div>
