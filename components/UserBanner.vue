@@ -1,7 +1,6 @@
 <template>
   <div class="body-section-content">
-    {{bannerItem}}
-    <div v-if="false" class="banner-section" :class="{'banner-section--is-front':isFront}">
+    <div v-if="bannerItem" class="banner-section" :class="{'banner-section--is-front':isFront}">
       <div v-if="!isFront" class="banner-section-header">
         <div class="banner-section-title"><NuxtLink :to="backUrl" class="banner-section-title-link"><IconArrow rotate /></NuxtLink> Объявления</div>
       </div>
@@ -157,21 +156,21 @@
     },
     async fetch() {
       this.bannerItem = await this.$store.dispatch('localStorage/getPromotion', this.banner);
-      // if (this.bannerItem.type === 1) {
-      //   this.categories = await this.$store.dispatch('localStorage/listDictionarySpareParts');
-      //   this.brands = await this.$store.dispatch('localStorage/listDictionaryBrands');
-      // } else {
-      //   this.categories = await this.$store.dispatch('localStorage/listDictionaryServices');
-      // }
-      //
-      // if (this.bannerItem.images && this.bannerItem.images.length) {
-      //   this.imageView = this.bannerItem.images[0].path;
-      // }
-      // if (this.bannerItem.review_items && this.bannerItem.review_items.length){
-      //   this.reviewCount = this.bannerItem.review_items.length < 5 ? this.bannerItem.review_items.length : 5;
-      // }
-      // await this.getStatuses();
-      // this.$emit('title',this.bannerItem.title);
+      if (this.bannerItem.type === 1) {
+        this.categories = await this.$store.dispatch('localStorage/listDictionarySpareParts');
+        this.brands = await this.$store.dispatch('localStorage/listDictionaryBrands');
+      } else {
+        this.categories = await this.$store.dispatch('localStorage/listDictionaryServices');
+      }
+
+      if (this.bannerItem.images && this.bannerItem.images.length) {
+        this.imageView = this.bannerItem.images[0].path;
+      }
+      if (this.bannerItem.review_items && this.bannerItem.review_items.length){
+        this.reviewCount = this.bannerItem.review_items.length < 5 ? this.bannerItem.review_items.length : 5;
+      }
+      await this.getStatuses();
+      this.$emit('title',this.bannerItem.title);
 
     },
     computed:{
