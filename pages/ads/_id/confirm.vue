@@ -4,7 +4,7 @@
       <HeaderSection/>
       <div class="body-section">
         <SidebarSection/>
-        <UserBanner :ubid="id"/>
+        <UserBanner :banner="id"/>
       </div>
     </vue-custom-scrollbar>
   </div>
