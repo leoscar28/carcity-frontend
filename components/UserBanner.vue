@@ -20,7 +20,7 @@
             <div class="banner-section-block-title">Модерация</div>
             <p class="banner-section-block-text">Внимательно ознакомьтесь с объявлением арендатора</p>
             <div class="banner-section-block-buttons">
-              <button @click="showReworkModal = true" class="btn banner-section-block-button-cancel" :disabled="loading">Отклонить</button>
+              <button @click="showReworkModal = true" class="btn banner-section-block-button-cancel" :disabled="loading">Отклонить {{showReworkModal}}</button>
               <button @click="activate()" class="btn banner-section-block-button-confirm" :disabled="loading">Принять</button>
             </div>
             <UserBannerReworkModal :show="showReworkModal" @cancel="showReworkModal = false" @success="needEdits" />
@@ -120,8 +120,10 @@
 </template>
 
 <script>
+  import UserBannerReworkModal from "./modal/UserBannerReworkModal";
   export default {
     name: "UserBanner",
+    components: {UserBannerReworkModal},
     props:['banner', 'isFront'],
     emits:['title'],
     data(){
