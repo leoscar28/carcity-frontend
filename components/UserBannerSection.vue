@@ -159,7 +159,7 @@
         withImage: false,
         categoriesForMenu: [],
         brandsForMenu: [],
-        take: this.isPage ? 15 : 10,
+        take: this.isPage ? 50 : 10,
         paginate: 1,
         range: 1,
         pages: 0,

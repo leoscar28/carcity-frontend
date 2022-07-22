@@ -268,9 +268,16 @@
       <path @click="roomSelect(505)" :class="{'active-room':roomIds.includes(505)}" d="M710 586H759V592L753.357 597L718 596.987L710 586Z" fill="white"/>
       <rect @click="roomSelect(506)" :class="{'active-room':roomIds.includes(506)}" x="731" y="671" width="27" height="30" fill="white" stroke="#274985" stroke-width="2"/>
       <path @click="roomSelect(507)" :class="{'active-room':roomIds.includes(507)}" d="M731 672V671H730H709H708V672V704V705H709H722.5H723.5V704V701H730H731V700V672Z" fill="white" stroke="#274985" stroke-width="2"/>
+      <mask id="path-169-outside-3_9581_58235" maskUnits="userSpaceOnUse" x="723" y="700" width="15" height="23" fill="black">
+        <rect fill="white" x="723" y="700" width="15" height="23"/>
+        <path d="M725 702H736V721L725 717V702Z"/>
+      </mask>
+      <path @click="roomSelect(508)" :class="{'active-room':roomIds.includes(508)}" d="M725 702H736V721L725 717V702Z" fill="white"/>
+      <path d="M725 702V700H723V702H725ZM736 702H738V700H736V702ZM736 721L735.317 722.88C735.93 723.103 736.613 723.012 737.147 722.638C737.682 722.264 738 721.652 738 721H736ZM725 717H723V718.401L724.317 718.88L725 717ZM725 704H736V700H725V704ZM734 702V721H738V702H734ZM736.683 719.12L725.683 715.12L724.317 718.88L735.317 722.88L736.683 719.12ZM727 717V702H723V717H727Z" fill="#274985" mask="url(#path-169-outside-3_9581_58235)"/>
 
-      <rect @click="roomSelect(508)" :class="{'active-room':roomIds.includes(508)}" x="679" y="671" width="29" height="34" fill="white" stroke="#274985" stroke-width="2"/>
-      <path @click="roomSelect(509)" :class="{'active-room':roomIds.includes(509)}" d="M725 702V700H723V702H725ZM736 702H738V700H736V702ZM736 721L735.317 722.88C735.93 723.103 736.613 723.012 737.147 722.638C737.682 722.264 738 721.652 738 721H736ZM725 717H723V718.401L724.317 718.88L725 717ZM725 704H736V700H725V704ZM734 702V721H738V702H734ZM736.683 719.12L725.683 715.12L724.317 718.88L735.317 722.88L736.683 719.12ZM727 717V702H723V717H727Z" fill="#274985" mask="url(#path-169-outside-3_9581_58235)"/>
+      <rect @click="roomSelect(509)" :class="{'active-room':roomIds.includes(509)}" x="679" y="671" width="29" height="34" fill="white" stroke="#274985" stroke-width="2"/>
+
+
       <rect @click="roomSelect(510)" :class="{'active-room':roomIds.includes(510)}" x="650" y="671" width="29" height="34" fill="white" stroke="#274985" stroke-width="2"/>
       <rect @click="roomSelect(511)" :class="{'active-room':roomIds.includes(511)}" x="621" y="671" width="29" height="34" fill="white" stroke="#274985" stroke-width="2"/>
       <rect @click="roomSelect(512)" :class="{'active-room':roomIds.includes(512)}" x="590" y="671" width="31" height="34" fill="white" stroke="#274985" stroke-width="2"/>
@@ -411,11 +418,7 @@
       <path d="M825 880H826V881V896V897H825H817H816V896V881V880H817H825Z" fill="white" stroke="#274985" stroke-width="2"/>
       <rect x="909" y="682" width="16" height="19" fill="white" stroke="#274985" stroke-width="2"/>
       <path d="M704 727L704.673 725.117C704.06 724.898 703.38 724.991 702.848 725.365C702.316 725.74 702 726.35 702 727H704ZM732 737H734V735.591L732.673 735.117L732 737ZM732 758V760H734V758H732ZM704 758H702V760H704V758ZM703.327 728.883L731.327 738.883L732.673 735.117L704.673 725.117L703.327 728.883ZM730 737V758H734V737H730ZM732 756H704V760H732V756ZM706 758V727H702V758H706Z" fill="#274985" mask="url(#path-132-outside-2_9581_58235)"/>
-      <mask id="path-169-outside-3_9581_58235" maskUnits="userSpaceOnUse" x="723" y="700" width="15" height="23" fill="black">
-        <rect fill="white" x="723" y="700" width="15" height="23"/>
-        <path d="M725 702H736V721L725 717V702Z"/>
-      </mask>
-      <path d="M725 702H736V721L725 717V702Z" fill="white"/>
+
       <rect x="804" y="639" width="11" height="25" fill="white" stroke="#274985" stroke-width="2"/>
       <rect x="772" y="767" width="11" height="25" fill="white" stroke="#274985" stroke-width="2"/>
       <rect x="864" y="576" width="10" height="17" fill="white" stroke="#274985" stroke-width="2"/>
