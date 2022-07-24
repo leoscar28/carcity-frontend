@@ -1275,7 +1275,7 @@
               <path fill-rule="evenodd" clip-rule="evenodd" d="M147 304H205V321H147V304ZM149 306V319H203V306H149Z" fill="#274985"/>
               <path d="M186 321H232V358H186V321Z" fill="#D9D9D9" ref="tier_3_room_330"/>
               <path fill-rule="evenodd" clip-rule="evenodd" d="M184 319H234V360H184V319ZM186 321V358H232V321H186Z" fill="#274985"/>
-              <path d="M155 321H184V358H152V340.5H155V321Z" fill="#000"/>
+              <path d="M155 321H184V358H152V340.5H155V321Z" fill="#D9D9D9" id="here"/>
               <path fill-rule="evenodd" clip-rule="evenodd" d="M153 319H186V360H150V338.5H153V319ZM155 340.5H152V358H184V321H155V340.5Z" fill="#274985"/>
               <path d="M85 306H136V322H85V306Z" fill="#D9D9D9"/>
               <path fill-rule="evenodd" clip-rule="evenodd" d="M83 304H138V324H83V304ZM85 306V322H136V306H85Z" fill="#274985"/>
@@ -3091,7 +3091,7 @@ export default {
         console.log(item.title+" - "+item.id);
         if (this.$refs['tier_3_room_'+item.id]) {
           if (item.status === 2) {
-            this.$refs['tier_3_room_'+item.id].style.fill = '#ff0000';
+            this.$refs['tier_3_room_'+item.id].style.fill = '#D9D9D9';
           } else if (item.status === 1) {
             this.$refs['tier_3_room_'+item.id].style.fill = '#E8B350';
           } else {
