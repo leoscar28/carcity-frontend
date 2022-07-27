@@ -32,15 +32,13 @@
 import Glide from '@glidejs/glide'
 
 export default {
-  mounted () {
-    this.mainSlider = new Glide('#main-slider', {
-      animationTimingFunc: 'ease-in-out',
-      animationDuration: 800,
-      autoplay: 4000,
-      perView: 1,
-      gap: 0,
-      type: 'carousel'
-    }).mount()
+  data() {
+    return {
+      language: []
+    }
+  },
+  created() {
+    this.$store.dispatch('localStorage/sliderGet')
   },
   computed: {
     current() {
@@ -50,12 +48,21 @@ export default {
       return this.$store.state.localStorage.slider;
     }
   },
-  created() {
-    this.$store.dispatch('localStorage/sliderGet');
-  },
-  data() {
-    return {
-      language: []
+  watch:{
+    slider: function (val) {
+      if (this.slider.length) {
+        this.$nextTick(() => {
+          new Glide('#main-slider', {
+            animationTimingFunc: 'ease-in-out',
+            animationDuration: 800,
+            autoplay: 4000,
+            perView: 1,
+            gap: 0,
+            type: 'carousel'
+          }).mount()
+        })
+      }
+
     }
   }
 }
