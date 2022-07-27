@@ -225,6 +225,7 @@ export default {
     }
   },
   created() {
+    this.$store.dispatch('localStorage/sliderGet')
     this.$store.dispatch('localStorage/sliderDetailGet');
     this.$store.dispatch('localStorage/aboutGet');
     this.$store.dispatch('localStorage/aboutOptionGet');

@@ -37,9 +37,6 @@ export default {
       language: []
     }
   },
-  created() {
-    this.$store.dispatch('localStorage/sliderGet')
-  },
   computed: {
     current() {
       return this.$store.state.localStorage.current;
