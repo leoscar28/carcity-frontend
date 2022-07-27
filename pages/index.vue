@@ -35,8 +35,9 @@
 
       <section class="hero">
         <div class="container">
-          <MainSlider class="mb-4" />
-
+          <client-only>
+            <MainSlider class="mb-4" />
+          </client-only>
           <UserBannerSection />
 
           <div class="row">

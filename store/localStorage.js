@@ -247,6 +247,7 @@ export const actions = {
   async sliderGet({commit}) {
     let res = await this.$repository.slider.get();
     commit('setSlider',res);
+    return res;
   },
 
   async roomGetByUserId({commit},payload) {
