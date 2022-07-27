@@ -85,6 +85,7 @@ export default {
       this.$echo.channel("notification."+this.user.id).on("notification", async (res) => {
         await this.newNotification(res);
         this.$store.commit('localStorage/setUserBannerCount', await this.$store.dispatch('localStorage/getUserBannerCount', 'new'));
+        this.$store.commit('localStorage/setUserRequestCount', await this.$store.dispatch('localStorage/getUserRequestCount', 'new'));
       });
     } else {
       this.$echo.channel("notificationTenant."+this.user.id).on("notificationTenant", (res) => {

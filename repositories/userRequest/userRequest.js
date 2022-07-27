@@ -30,5 +30,13 @@ export default ($axios) => ({
       }).catch(error => {
         return error.response;
       });
+  },
+  count(type) {
+    return $axios.get('/api/userRequest/count/'+type)
+      .then(response => {
+        return response.data;
+      }).catch(error => {
+        return error.response.data;
+      });
   }
 });

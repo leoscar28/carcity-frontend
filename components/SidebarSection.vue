@@ -57,7 +57,7 @@
           <NuxtLink to="/ads/requests" v-if="[2,3,4].includes(user.role_id) || user.role_id === 1 && user.can_create_banner === 1">
             <div class="sidebar-section-menu-list-item" :class="{'sidebar-section-menu-list-item-active':($nuxt.$route.name === 'ads-requests')}">
               <div class="sidebar-section-menu-list-item-icon"></div>
-              <div class="sidebar-section-menu-list-item-title">Заявки покупателей</div>
+              <div class="sidebar-section-menu-list-item-title">Заявки покупателей<div v-if="requestCount" class="sidebar-section-badge">{{requestCount}}</div></div>
             </div>
           </NuxtLink>
           <NuxtLink v-if="user.role_id !== 1" to="/ads/reviews">
@@ -115,6 +115,7 @@ export default {
   async created() {
     this.check();
     this.$store.commit('localStorage/setUserBannerCount', await this.$store.dispatch('localStorage/getUserBannerCount', 'new'));
+    this.$store.commit('localStorage/setUserRequestCount', await this.$store.dispatch('localStorage/getUserRequestCount', '24h'));
   },
   computed:{
     user() {
@@ -122,6 +123,9 @@ export default {
     },
    count(){
       return this.$store.state.localStorage.userBannerCount;
+    },
+    requestCount(){
+      return this.$store.state.localStorage.userRequestCount;
     }
   },
   methods: {

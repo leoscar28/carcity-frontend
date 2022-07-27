@@ -35,6 +35,7 @@ export const state = () => ({
   current: 0,
   languages: ['RU','KZ'],
   userBannerCount: 0,
+  userRequestCount: 0,
   lang: {
     formatLocale: {
       months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
@@ -49,6 +50,9 @@ export const state = () => ({
 export const mutations = {
   setUserBannerCount(state,value) {
     state.userBannerCount  = value;
+  },
+  setUserRequestCount(state,value) {
+    state.userRequestCount  = value;
   },
   setAwards(state,value) {
     state.awards  = value;
@@ -574,6 +578,9 @@ export const actions = {
   async deleteUserReview({commit}, payload) {
     let res = await this.$repository.userReview.delete(payload);
     return res;
+  },
+  async getUserRequestCount({commit}, type) {
+    return await this.$repository.userRequest.count(type);
   },
   async getUserRequestPages({commit},payload) {
     return await this.$repository.userRequest.pages(payload);
