@@ -54,23 +54,6 @@ export default {
       gap: 0,
       type: 'carousel'
     }).mount()
-  },
-  // watch:{
-  //   slider: function (val) {
-  //     if (this.slider.length) {
-  //       this.$nextTick(() => {
-  //         new Glide('#main-slider', {
-  //           animationTimingFunc: 'ease-in-out',
-  //           animationDuration: 800,
-  //           autoplay: 4000,
-  //           perView: 1,
-  //           gap: 0,
-  //           type: 'carousel'
-  //         }).mount()
-  //       })
-  //     }
-  //
-  //   }
-  // }
+  }
 }
 </script>
