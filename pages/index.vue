@@ -36,7 +36,7 @@
       <section class="hero">
         <div class="container">
           <client-only>
-            <MainSlider v-if="$store.state.localStorage.slider" class="mb-4" />
+            <MainSlider v-if="$store.state.localStorage.slider.length" class="mb-4" />
           </client-only>
           <UserBannerSection />
 
