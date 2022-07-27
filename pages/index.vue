@@ -35,9 +35,9 @@
 
       <section class="hero">
         <div class="container">
-          <client-only>
-            <MainSlider v-if="$store.state.localStorage.slider.length" class="mb-4" />
-          </client-only>
+
+          <MainSlider v-if="slider.length" class="mb-4" />
+
           <UserBannerSection />
 
           <div class="row">
@@ -199,6 +199,9 @@ export default {
     vueCustomScrollbar,LinkScrollTo,TheHeader,MainSlider,AboutPanel,InfrastructurePanel,ServicePanel,TheFooter
   },
   computed: {
+    slider() {
+      return this.$store.state.localStorage.slider;
+    },
     current() {
       return this.$store.state.localStorage.current;
     },
