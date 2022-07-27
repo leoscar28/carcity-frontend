@@ -66,10 +66,18 @@
     <template v-if="!isRooms">
       <div class="col-xl-12 mb-lg-5 mb-3">
         <h4 v-if="isPage" class="fw-bold mb-3 pb-1">Все объявления</h4>
-        <div class="items-sort" v-if="isPage">Сортировка по: <div @click="nextOrderBy">{{orderBy.name}}</div><div @click="changeSort"><Icon class="d-block m-0" :class="{'icon--rotate': sort === 'ASC'}" name="filter_list" size="26"/></div></div>
-        <div class="promotion-items">
-          <WidgetUserBannerFront v-for="item in items" :item="item" :key="item.id"/>
-        </div>
+        <template v-if="items.length" >
+          <div class="items-sort" v-if="isPage">Сортировка по: <div @click="nextOrderBy">{{orderBy.name}}</div><div @click="changeSort"><Icon class="d-block m-0" :class="{'icon--rotate': sort === 'ASC'}" name="filter_list" size="26"/></div></div>
+          <div class="promotion-items">
+            <WidgetUserBannerFront v-for="item in items" :item="item" :key="item.id"/>
+          </div>
+        </template>
+        <template v-else-if="!loading">
+          <div class="promotion-items__empty">По вашему запросу ничего не найдено</div>
+        </template>
+        <template v-else>
+          <div class="promotion-items__empty">Ищем объявления ...</div>
+        </template>
       </div>
       <div v-if="!isPage" class="col-xl-12 text-center mb-lg-5 mb-0">
         <NuxtLink to="/promotions" class="btn btn-outline-primary">Показать все объявления</NuxtLink>
@@ -163,7 +171,8 @@
         paginate: 1,
         range: 1,
         pages: 0,
-        selectedTier:1
+        selectedTier:1,
+        loading: false
       }
     },
     computed:{
@@ -292,6 +301,7 @@
         this.roomUser = await this.$store.dispatch('localStorage/getRoomUserInfo', room_id);
       },
       async getItems(page = null){
+        this.loading = true;
         this.isRooms = false;
         if (this.isPage && page) {
           this.paginate = page;
@@ -304,6 +314,7 @@
           this.pages = await this.$store.dispatch('localStorage/getUserBannerPages', data);
         }
         this.items = await this.$store.dispatch('localStorage/getUserBanners', data);
+        this.loading = false;
       },
       async getRooms(){
         this.isRooms = true;
@@ -432,6 +443,13 @@
     flex-wrap: wrap;
     grid-gap: 20px;
     min-height: 300px;
+
+    &__empty {
+      padding: 12px 24px;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 16px;
+    }
 
     @media (max-width:768px) {
       grid-gap: 16px;
