@@ -115,7 +115,7 @@ export default {
   async created() {
     this.check();
     this.$store.commit('localStorage/setUserBannerCount', await this.$store.dispatch('localStorage/getUserBannerCount', 'new'));
-    this.$store.commit('localStorage/setUserRequestCount', await this.$store.dispatch('localStorage/getUserRequestCount', '24h'));
+    this.$store.commit('localStorage/setUserRequestCount', await this.$store.dispatch('localStorage/getUserRequestCount', '7d'));
   },
   computed:{
     user() {
