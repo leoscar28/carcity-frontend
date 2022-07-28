@@ -529,6 +529,10 @@ export const actions = {
     let res = this.$repository.userBanner.create(payload);
     return res;
   },
+  async removeUserBannerImage({commit}, payload) {
+    let res = this.$repository.userBanner.removeImage(payload);
+    return res;
+  },
   async archiveUserBanner({commit}, id) {
     let res = await this.$repository.userBanner.archive(id);
     return res;

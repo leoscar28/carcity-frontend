@@ -134,7 +134,9 @@
                     <EmptyDropZone />
                     <input type="file" id="file-input" accept=".jpg,.png"  class="d-none" multiple @change="onInputChange" />
                   </label>
+                  <ImageListUploaded :files="images" @remove-file="removeUploadedFile"/>
                   <ImageList :files="files" @remove-file="removeFile"/>
+
                 </DropZone>
                 <p class="mb-1"><IconCheck/> Добавляйте только фотографии</p>
                 <p class="mb-1"><IconCheck/> Вы можете добавить до 5 фотографий</p>
@@ -173,6 +175,7 @@
     DatePicker.locale('ru');
     import 'vue2-datepicker/index.css';
     import IconArrow from "../icons/IconArrow";
+    import ImageListUploaded from "../uploader/ImageListUploaded";
 
     const AD_TYPE_SPARE_PART = 1;
     const AD_TYPE_SERVICE = 2;
@@ -191,10 +194,12 @@
         name: "UserBannerModal",
       emits:['saved'],
       components: {
+        ImageListUploaded,
         IconArrow,
         WeekdaySelector, IconClose, IconCheck, EmptyDropZone, ImageList, FilePreview, DropZone, CheckboxGroup, DatePicker},
       data(){
             return {
+              images:[],
               files: [],
               tabIndex: 0,
               brandIds:[],
@@ -302,6 +307,7 @@
           }
           this.tabIndex = 0;
           this.files = [];
+          this.images = [];
           this.form = {
             user_id: this.user.id,
             type: AD_TYPE_SPARE_PART,
@@ -324,7 +330,7 @@
         },
         addFiles(newFiles) {
           let newUploadableFiles = [...newFiles].map((file) => new UploadableFile(file)).filter((file) => !this.fileExists(file.id));
-          let count = this.files.length + newUploadableFiles.length;
+          let count = this.images.length + this.files.length + newUploadableFiles.length;
           if (count <= 5) {
             this.files = this.files.concat(newUploadableFiles);
           } else {
@@ -334,6 +340,11 @@
         removeFile(file) {
           const index = this.files.indexOf(file);
           if (index > -1) this.files.splice(index, 1);
+        },
+        async removeUploadedFile(file) {
+          await this.$store.dispatch('localStorage/removeUserBannerImage', file);
+          const index = this.images.indexOf(file);
+          if (index > -1) this.images.splice(index, 1);
         },
         fileExists(otherId) {
           return this.files.some(({ id }) => id === otherId)
@@ -397,6 +408,8 @@
       },
       watch:{
           editable(){
+            this.files = [];
+            this.images = [];
             if (this.editable){
                 this.form.type = this.editable.type;
                 this.form.title = this.editable.title;
@@ -410,6 +423,7 @@
                 this.form.employee_name = this.editable.employee_name;
                 this.form.employee_phone_additional = this.editable.employee_phone_additional;
                 this.form.employee_name_additional = this.editable.employee_name_additional;
+                this.images = this.editable.images;
             } else {
               this.form = {
                 user_id: this.user.id,

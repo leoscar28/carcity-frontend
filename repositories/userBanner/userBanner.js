@@ -118,5 +118,13 @@ export default ($axios) => ({
       }).catch(error => {
         return error.response.data;
       });
-  }
+  },
+  removeImage(payload) {
+    return $axios.post('/api/userBanner/removeImage', payload)
+      .then(response => {
+        return response.data;
+      }).catch(error => {
+        return error.response.data;
+      });
+  },
 });

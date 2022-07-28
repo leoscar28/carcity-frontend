@@ -1,21 +1,21 @@
 <template>
   <div class="image-list" v-show="files.length">
-    <FilePreview v-for="file of files" :key="file.id" :file="file" @remove="removeFile" />
+    <FilePreviewUploaded v-for="file of files" :key="file.id" :file="file" @remove="removeFile" />
   </div>
 </template>
 
 <script>
-    import FilePreview from "./FilePreview";
+    import FilePreviewUploaded from "./FilePreviewUploaded";
 
     export default {
-      name: "ImageList",
+      name: "ImageListUploaded",
       emits:['remove-file'],
       props: {
           files: {
             type: Array
           }
       },
-      components: {FilePreview},
+      components: {FilePreviewUploaded},
       methods: {
         removeFile(file){
           this.$emit('remove-file', file)
