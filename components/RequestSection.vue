@@ -13,6 +13,16 @@
           <div class="request-section-main-filter-item-input-icon matrix"></div>
           <input type="text" placeholder="Сумма" v-model="sum">
         </div>
+        <template v-if="[4,5,6].includes(type) && user.role_id !== 1">
+          <div class="request-section-main-filter-item-input">
+            <div class="request-section-main-filter-item-input-icon matrix"></div>
+            <input type="text" placeholder="ID" v-model="id">
+          </div>
+          <div class="request-section-main-filter-item-input">
+            <div class="request-section-main-filter-item-input-icon matrix"></div>
+            <input type="text" placeholder="По названию компани" v-model="company_term">
+          </div>
+        </template>
         <div v-if="![4,5,6,'review', 'request'].includes(type)" class="request-section-main-filter-item-input">
           <select class="request-section-main-filter-item-input-select" v-model="upload_status_id">
             <option :value="null">Все статусы</option>
@@ -478,7 +488,9 @@ export default {
       category_id: null,
       brand_id: null,
       brands:[],
-      categories:[]
+      categories:[],
+      id: null,
+      company_term: ''
     }
   },
   mounted() {
@@ -879,6 +891,14 @@ export default {
         } else if (this.type === 5 && this.user.role_id !== 1) {
           data.type = 'active';
         }
+
+        if (this.id) {
+          data.id = Number(this.id);
+        }
+
+        if (this.company_term) {
+          data.company = this.company_term;
+        }
       }
 
       if (this.user.role_id !== 1) {
@@ -947,6 +967,8 @@ export default {
       this.range  = 1;
       this.number = '';
       this.company  = '';
+      this.id = null;
+      this.company_term  = '';
       await this.find();
     },
     setPage() {
