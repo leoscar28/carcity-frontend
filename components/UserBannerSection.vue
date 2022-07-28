@@ -19,7 +19,7 @@
             <div v-if="type == 1" class="brands  mb-md-3 mb-2">
               <div class="promotion-links">
                 <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray fw-bold">Марка</span>
-                <span v-for="(brand, index) in brandsForMenu" @click="setBrand(brand.id)"  class="promotion-link fw-bold d-md-block d-none" :class="{'promotion-link--active': brand_id.includes(brand.id)}">{{brand.name}}</span>
+                <span v-for="(brand, index) in brandsForMenu" @click="setBrand(brand.id)"  class="promotion-link fw-bold d-md-block d-none" :class="{'promotion-link--active': brandCheck(brand.id)}">{{brand.name}}</span>
                 <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray promotion-link--gray--more fw-bold">ещё ...</span>
               </div>
               <div v-show="showBrands" class="checkbox-groups mt-2" :style="brandsHeight">
@@ -35,7 +35,7 @@
             <div class="categories">
               <div class="promotion-links">
                 <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray fw-bold">Категория</span>
-                <span v-for="category in categoriesForMenu" @click="setCategory(category.id)" class="promotion-link fw-bold d-md-block d-none" :class="{'promotion-link--active': category_id.includes(category.id)}">{{category.name}}</span>
+                <span v-for="category in categoriesForMenu" @click="setCategory(category.id)" class="promotion-link fw-bold d-md-block d-none" :class="{'promotion-link--active': categoryCheck(category.id)}">{{category.name}}</span>
                 <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray promotion-link--gray--more fw-bold">ещё ...</span>
               </div>
               <div v-show="showCategories" class="checkbox-groups mt-2" :style="categoriesHeight">
@@ -80,7 +80,7 @@
         </template>
       </div>
       <div v-if="!isPage" class="col-xl-12 text-center mb-lg-5 mb-0">
-        <NuxtLink to="/promotions" class="btn btn-outline-primary">Показать все объявления</NuxtLink>
+        <NuxtLink :to="{ path: 'promotions', query: $route.query}" class="btn btn-outline-primary">Показать все объявления</NuxtLink>
       </div>
       <UserBannerSectionPagination :paginate="paginate" :pages="pages" :take="take" :range="range" @up="up" @down="down" @setRange="setRange" @setPaginate="setPaginate" @setTake="setTake"/>
     </template>
@@ -140,7 +140,7 @@
       isPage: Boolean
     },
     data(){
-      return {
+      let data = {
         isRooms:false,
         sort: 'DESC',
         orderBy: {name: 'Дате', value: 'updated'},
@@ -174,6 +174,38 @@
         selectedTier:1,
         loading: false
       }
+
+      const query = this.$route.query;
+
+      if (query.category_id) {
+        data.category_id = Array.isArray(query.category_id) ? query.category_id.map(Number) : [Number(query.category_id)];
+      }
+
+      if (query.brand_id) {
+        data.brand_id = Array.isArray(query.brand_id) ? query.brand_id.map(Number) : [Number(query.brand_id)];
+      }
+
+      if (query.type) {
+        data.type = query.type;
+      }
+
+      if (query.term) {
+        data.term = query.term;
+      }
+
+      if (query.with_image) {
+        data.withImage = query.with_image;
+      }
+
+      if (query.order_by) {
+        data.orderBy = data.orderByArr.find((item) => item.value === query.order_by);
+      }
+
+      if (query.sort) {
+        data.sort = query.sort;
+      }
+
+      return data;
     },
     computed:{
       dataForRequest(){
@@ -244,7 +276,13 @@
           return this.roomUser.services.filter(service => this.service_id.includes(service.id));
         }
         return [];
-      }
+      },
+      brandCheck() {
+        return id => this.brand_id.includes(id);
+      },
+      categoryCheck() {
+        return id => this.category_id.includes(id);
+      },
 
     },
     async created() {
@@ -252,7 +290,9 @@
       let cats = [],
         brs = [];
 
-      if (this.$route.query.showRooms) {
+      const query = this.$route.query;
+
+      if (query.showRooms) {
         await this.getRooms();
       } else {
         await this.getItems();
@@ -272,6 +312,7 @@
       await this.$store.dispatch('localStorage/roomGet');
     },
     methods:{
+
       setRoomId(room_id){
         this.roomId = room_id;
       },
@@ -314,6 +355,41 @@
           this.pages = await this.$store.dispatch('localStorage/getUserBannerPages', data);
         }
         this.items = await this.$store.dispatch('localStorage/getUserBanners', data);
+
+        let query = {};
+
+        if (data.category_id.length) {
+          query['category_id'] = data.category_id;
+        }
+
+        if (data.brand_id.length) {
+          query['brand_id'] = data.brand_id;
+        }
+
+        if (data.data.type) {
+          query['type'] = data.data.type;
+        }
+
+        if (data.term) {
+          query['term'] = data.term;
+        }
+
+        if (data.with_image) {
+          query['with_image'] = data.with_image;
+        }
+
+        if (data.order_by) {
+          query['order_by'] = data.order_by;
+        }
+
+        if (data.sort) {
+          query['sort'] = data.sort;
+        }
+
+        if (query !== this.$router.query) {
+          await this.$router.push({path: this.$route.path, query: query});
+        }
+
         this.loading = false;
       },
       async getRooms(){
