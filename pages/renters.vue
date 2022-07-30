@@ -78,7 +78,7 @@
             <h2 class="section-title">
               Выберите помещение
             </h2>
-            <map-renters></map-renters>
+            <map-renters @selectRoom="selectRoom"></map-renters>
           </div>
         </div>
       </main>
@@ -220,6 +220,10 @@ export default {
     ]
   },
   methods: {
+    selectRoom(title) {
+      this.form.comment = title;
+      this.contactUsModalVisible = true
+    },
     showContactUsModal () {
       this.contactUsModalVisible = true
     },

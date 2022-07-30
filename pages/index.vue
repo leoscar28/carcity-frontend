@@ -97,11 +97,11 @@
           </div>
         </div>
       </section>
-      <section id="infrastructure" class="infrastructure section">
-        <div class="container mb-5">
+      <section id="awards">
+        <div class="container mb-5 mt-5 ">
           <div class="row">
             <div class="col-lg-8">
-              <h2 class="section-title text-white">
+              <h2 class="section-title mb-3">
                 {{language[current][14]}}
               </h2>
             </div>
@@ -119,6 +119,8 @@
             </div>
           </div>
         </div>
+      </section>
+      <section id="infrastructure" class="infrastructure section">
         <div class="container">
           <div class="row">
             <div class="col-lg-5 text-white mb-3 mb-lg-0">
