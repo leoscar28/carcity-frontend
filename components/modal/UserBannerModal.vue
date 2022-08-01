@@ -230,6 +230,8 @@
             }
         },
       async created(){
+        await this.$store.commit('localStorage/setUserBannerModalOne',false)
+        await this.$store.commit('localStorage/setUserBannerModalTwo',false)
         let sps = await this.$store.dispatch('localStorage/listDictionarySpareParts');
         this.sparePartsIds = sps.map(a => a.id);
         this.sparePartsCount = sps.length;
@@ -242,7 +244,7 @@
         this.brandIds = brs.map(a => a.id);
         this.brandsCount = brs.length;
         this.brands = this.group(brs)
-        this.rooms = await this.$store.dispatch('localStorage/roomGetByUserId', this.user.id)
+        this.rooms = await this.$store.dispatch('localStorage/roomGetByUserId', this.user.id);
       },
       directives: {mask},
       computed: {

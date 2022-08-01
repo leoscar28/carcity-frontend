@@ -857,10 +857,10 @@ export default {
 
       if (this.type === 'request') {
         if (this.brand_id) {
-          data['brand_id'] = this.brand_id;
+          data['brand_id'] = [this.brand_id];
         }
         if (this.category_id) {
-          data['category_id'] = this.category_id;
+          data['category_id'] = [this.category_id];
         }
       }
 
@@ -967,6 +967,8 @@ export default {
       this.range  = 1;
       this.number = '';
       this.company  = '';
+      this.brand_id = null;
+      this.category_id = null;
       this.id = null;
       this.company_term  = '';
       await this.find();

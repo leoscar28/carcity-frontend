@@ -5,7 +5,7 @@
       <div class="modal-content-header">Причина отказа</div>
       <div class="user-banner-comment text-center pt-3 pb-4">
         <div><img src="/alert.svg" /></div>
-        <div class="user-banner-comment-title">Уважаемые арендатор торгового центра!</div>
+        <div class="user-banner-comment-title">Уважаемый арендатор торгового центра!</div>
         <div>Обращаем ваше внимание на то, что у вас...</div>
         <div>{{comment}}</div>
       </div>

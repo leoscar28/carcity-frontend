@@ -34,7 +34,7 @@
             <template v-if="item.status === 20">
               <span @click="$store.commit('localStorage/setEditableBanner', item)" class="widget-ub__content__button"><Icon name="rework_blue" key="rework"/> Доработать</span>
               <span @click="showComment = true" class="widget-ub__content__button"><Icon name="info" key="info"/> Причина отказа</span>
-              <span @click="del()" class="widget-ub__content__button red"><Icon name="delete" key="delete"/> Удалить</span>
+<!--              <span @click="del()" class="widget-ub__content__button red"><Icon name="delete" key="delete"/> Удалить</span>-->
             </template>
             <template v-else-if="[30, 31].includes(item.status)">
               <template v-if="item.up !== 1 && item.status === 31">
