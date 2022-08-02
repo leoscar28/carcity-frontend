@@ -76,7 +76,8 @@
               <option :value="5">возрастанию количества отзывов</option>
               <option :value="6">убыванию количества отзывов</option>
             </select>
-<!--            <div @click="nextOrderBy">{{orderBy.name}}</div><div @click="changeSort"><Icon class="d-block m-0" :class="{'icon&#45;&#45;rotate': sort === 'ASC'}" name="filter_list" size="26"/></div></div>-->
+            <!--            <div @click="nextOrderBy">{{orderBy.name}}</div><div @click="changeSort"><Icon class="d-block m-0" :class="{'icon&#45;&#45;rotate': sort === 'ASC'}" name="filter_list" size="26"/></div>-->
+          </div>
           <div class="promotion-items">
             <WidgetUserBannerFront v-for="item in items" :item="item" :key="item.id"/>
           </div>
