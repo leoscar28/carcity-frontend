@@ -5,10 +5,10 @@
         <div class="request-section-main-header-title">{{ title }}</div>
         <div class="request-section-main-header-sub-buttons">
           <button v-if="type === 5 && user.role_id === 1 && user.can_create_banner === 1" @click="$store.commit('localStorage/setUserBannerModalOne', true)" class="request-section-main-header-sub-buttons-ad">Подать объявление</button>
-          <button class="request-section-main-header-sub-buttons-filter" @click="$store.commit('localStorage/toggleFilter')"><i class="request-section-main-header-sub-buttons-filter-icon"></i>Фильтр</button>
+          <button v-if="user.role_id !== 1 || (user.role_id === 1 && type === 'request')" class="request-section-main-header-sub-buttons-filter" @click="$store.commit('localStorage/toggleFilter')"><i class="request-section-main-header-sub-buttons-filter-icon"></i>Фильтр</button>
         </div>
       </div>
-      <div class="request-section-main-filter" v-show="filter">
+      <div class="request-section-main-filter" v-show="filter && (user.role_id !== 1 || user.role_id === 1 && [5,6].includes(type))">
         <div class="request-section-main-filter-item-input" v-if="user.role_id === 1 && [1,3].includes(type)">
           <div class="request-section-main-filter-item-input-icon matrix"></div>
           <input type="text" placeholder="Сумма" v-model="sum">
