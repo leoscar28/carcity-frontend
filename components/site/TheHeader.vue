@@ -77,7 +77,7 @@
                   <NuxtLink to="/profile/favorites" class="mob__nav-link">Избранное</NuxtLink>
                   <NuxtLink to="/profile/reviews" class="mob__nav-link">Мои отзывы</NuxtLink>
                 </template>
-                <NuxtLink v-else to="/dashboard" class="mob__nav-link">Личный кабинет</NuxtLink>
+                <NuxtLink v-else to="/invoice" class="mob__nav-link">Личный кабинет</NuxtLink>
                 <NuxtLink to="/profile" class="mob__nav-link">Настройки</NuxtLink>
                 <div @click="logout" class="mob__nav-link">Выход</div>
               </template>

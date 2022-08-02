@@ -12,7 +12,7 @@
           <NuxtLink to="/profile/favorites" class="user-menu__dropdown__main__item"><Icon name="star"/> Избранное</NuxtLink>
           <NuxtLink to="/profile/reviews" class="user-menu__dropdown__main__item"><Icon name="chat"/> Мои отзывы</NuxtLink>
         </template>
-        <NuxtLink v-else to="/dashboard" class="user-menu__dropdown__main__item"><Icon name="keys"/> Личный кабинет</NuxtLink>
+        <NuxtLink v-else to="/invoice" class="user-menu__dropdown__main__item"><Icon name="keys"/> Личный кабинет</NuxtLink>
         <NuxtLink to="/profile" class="user-menu__dropdown__main__item"><Icon name="gear"/> Настройки</NuxtLink>
         <div @click="logout" class="user-menu__dropdown__main__item"><Icon name="login"/> Выход</div>
       </div>
