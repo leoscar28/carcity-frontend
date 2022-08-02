@@ -95,12 +95,22 @@ export default {
     async moreNotifications() {
       if (this.status) {
         this.status = false;
-        await this.$store.dispatch('localStorage/getViewNotificationCount', this.user.id);
-        await this.$store.dispatch('localStorage/getNotificationCount', this.user.id);
-        let res = await this.$store.dispatch('localStorage/getNotifications', {
-          user_id: this.user.id,
-          skip: this.skip
-        });
+        let res;
+        if (this.user.role_id !== 1) {
+          await this.$store.dispatch('localStorage/getViewNotificationCount', this.user.id);
+          await this.$store.dispatch('localStorage/getNotificationCount', this.user.id);
+          res = await this.$store.dispatch('localStorage/getNotifications', {
+            user_id: this.user.id,
+            skip: this.skip
+          });
+        } else {
+          await this.$store.dispatch('localStorage/getViewNotificationTenantCount', this.user.id);
+          await this.$store.dispatch('localStorage/getNotificationTenantCount', this.user.id);
+          res = await this.$store.dispatch('localStorage/getNotificationsTenant', {
+            user_id: this.user.id,
+            skip: this.skip
+          });
+        }
         this.skip += res.length;
         res.forEach(item => {
           this.notifications.push(item);
