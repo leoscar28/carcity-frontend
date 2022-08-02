@@ -3,7 +3,8 @@
     <div class="widget-ubf__sub">
       <div class="widget-ubf__sub__image">
         <img v-if="item.images.length" :src="item.images[0].path" :alt="item.title" />
-        <img v-else src="/default.jpg" alt="" />
+        <img v-else-if="item.type === 2" src="/default.jpg" alt=""/>
+        <img v-else src="/default2.jpg" alt=""/>
       </div>
       <div class="widget-ubf__sub__room">
         <div class="widget-ubf__sub__room__id">{{ item.room.title}}</div>
