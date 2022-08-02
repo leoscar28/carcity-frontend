@@ -41,7 +41,7 @@
 
 <style lang="scss">
   .weekday-selector {
-    display: flex;
+    display: flex!important;
     grid-gap: 6px;
 
     .weekday {
