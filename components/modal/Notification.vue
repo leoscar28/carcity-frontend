@@ -86,10 +86,17 @@ export default {
         }
       });
       if (view.length > 0) {
+        if (this.user.role_id !== 1) {
         await this.$store.dispatch('localStorage/setNotificationView', {
           user_id: this.user.id,
           ids: view
         });
+        } else {
+          await this.$store.dispatch('localStorage/setNotificationTenantView', {
+            user_id: this.user.id,
+            ids: view
+          });
+        }
       }
     },
     async moreNotifications() {
