@@ -8,7 +8,7 @@
           <button v-if="user.role_id !== 1 || (user.role_id === 1 && type === 'request')" class="request-section-main-header-sub-buttons-filter" @click="$store.commit('localStorage/toggleFilter')"><i class="request-section-main-header-sub-buttons-filter-icon"></i>Фильтр</button>
         </div>
       </div>
-      <div class="request-section-main-filter" v-show="filter && (user.role_id !== 1 || user.role_id === 1 && [5,6].includes(type))">
+      <div class="request-section-main-filter" v-show="filter && (user.role_id !== 1 || user.role_id === 1 && [1,2,3,'request'].includes(type))">
         <div class="request-section-main-filter-item-input" v-if="user.role_id === 1 && [1,3].includes(type)">
           <div class="request-section-main-filter-item-input-icon matrix"></div>
           <input type="text" placeholder="Сумма" v-model="sum">
