@@ -67,7 +67,16 @@
       <div class="col-xl-12 mb-lg-5 mb-3">
         <h4 v-if="isPage" class="fw-bold mb-3 pb-1">Все объявления</h4>
         <template v-if="items.length" >
-          <div class="items-sort" v-if="isPage">Сортировка по: <div @click="nextOrderBy">{{orderBy.name}}</div><div @click="changeSort"><Icon class="d-block m-0" :class="{'icon--rotate': sort === 'ASC'}" name="filter_list" size="26"/></div></div>
+          <div class="items-sort" v-if="isPage">Сортировка по:
+            <select v-model="sortSelector">
+              <option :value="1">сначала новые</option>
+              <option :value="2">сначала старые</option>
+              <option :value="3">возрастанию рейтинга</option>
+              <option :value="4">убыванию рейтинга</option>
+              <option :value="5">возрастанию количества отзывов</option>
+              <option :value="6">убыванию количества отзывов</option>
+            </select>
+<!--            <div @click="nextOrderBy">{{orderBy.name}}</div><div @click="changeSort"><Icon class="d-block m-0" :class="{'icon&#45;&#45;rotate': sort === 'ASC'}" name="filter_list" size="26"/></div></div>-->
           <div class="promotion-items">
             <WidgetUserBannerFront v-for="item in items" :item="item" :key="item.id"/>
           </div>
@@ -143,6 +152,7 @@
       let data = {
         isRooms:false,
         sort: 'DESC',
+        sortSelector: 1,
         orderBy: {name: 'Дате', value: 'updated'},
         orderByIndex: 0,
         orderByArr: [
@@ -433,6 +443,35 @@
       }
     },
     watch:{
+      sortSelector: async function(val) {
+        switch (val) {
+          case 1:
+            this.orderBy = {name: 'Дате', value: 'updated'};
+            this.sort = 'DESC';
+            break;
+          case 2:
+            this.orderBy = {name: 'Дате', value: 'updated'};
+            this.sort = 'ASC';
+            break;
+          case 3:
+            this.orderBy = {name: 'Рейтингу', value: 'rating'};
+            this.sort = 'DESC';
+            break;
+          case 4:
+            this.orderBy = {name: 'Рейтингу', value: 'rating'};
+            this.sort = 'ASC';
+            break;
+          case 5:
+            this.orderBy = {name: 'Количеству отзывов', value: 'review'};
+            this.sort = 'DESC';
+            break;
+          case 6:
+            this.orderBy = {name: 'Количеству отзывов', value: 'review'};
+            this.sort = 'ASC';
+            break;
+        }
+        await this.getItems()
+      },
       roomId: async function(val){
         await this.getRoomItems(val);
         const [el] = this.$refs['roomId'+this.roomId];
