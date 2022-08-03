@@ -2,6 +2,22 @@
   <div class="map-all">
     <div class="map-right">
       <div class="map-right-main" @click="(event) => modal(event)">
+        <div class="map-right-detail" :class="{'map-right-detail-hide':detailHide}">
+          <div class="map-right-detail-main">
+            <div class="map-right-info">
+              <div class="map-right-info-main" v-if="detail">
+                <div class="map-right-info-main-title">Бутик {{detail.room}}, {{detail.tier}}</div>
+                <div class="map-right-info-main-description" v-if="detail.status === 0">Сдано в аренду</div>
+                <div class="map-right-info-main-description" v-else>Свободно</div>
+              </div>
+              <div class="map-right-info-icon"></div>
+            </div>
+            <div class="map-right-buttons">
+              <div class="map-right-buttons-request"  v-if="detail && detail.status === 1" @click="startModal()">Оставить заявку</div>
+              <div class="map-right-buttons-return" @click="detailHide = true; detail = false;">Вернуться к карте</div>
+            </div>
+          </div>
+        </div>
         <div class="map-right-layer" :class="{'map-right-layer-show':(selected === 0)}" >
           <svg width="100%" viewBox="0 0 1236 1003" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_10209_77449)">
@@ -3055,6 +3071,8 @@ export default {
   data() {
     return {
       selected: 0,
+      detailHide: true,
+      detail: false
     }
   },
   async created() {
@@ -3067,28 +3085,52 @@ export default {
     this.setTier5();
   },
   methods: {
+    startModal() {
+      let text  = this.detail.tier+'\r\nНазвание помещении: '+this.detail.room;
+      this.$emit('selectRoom',text);
+      this.detailHide = true;
+      this.detail = false;
+    },
     modal(event) {
       let d = event.target.getAttribute('d');
       let data  = false;
       Object.keys(this.$refs).forEach(el => {
         if (this.$refs[el].getAttribute('d') === d) {
           let title = el.split('_');
+          data  = {
+            tier: title[1],
+            room: title[3],
+            status: 0
+          };
           if (this.$refs[el].style.fill === 'rgb(232, 179, 80)') {
-            data  = {
-              tier: title[1],
-              room: title[3]
-            };
+            data.status = 1;
           }
         }
       });
       if (data) {
-        let text = '';
+        this.detail = {
+          tier: this.tiers[data.tier - 1].title,
+          room: '',
+          status: data.status
+        };
         if (parseInt(data.tier) === 1) {
-          text  = this.tiers[data.tier - 1].title+'\r\nНазвание помещении: '+data.room;
+          this.detail.room  = data.room;
         } else {
-          text  = this.tiers[data.tier - 1].title+'\r\nID: '+data.room;
+          let title = [];
+          if (parseInt(data.tier) === 2) {
+            title = this.tier2.filter(room => (room.id === parseInt(data.room)));
+          } else if (parseInt(data.tier) === 3) {
+            title = this.tier3.filter(room => (room.id === parseInt(data.room)));
+          } else if (parseInt(data.tier) === 4) {
+            title = this.tier4.filter(room => (room.id === parseInt(data.room)));
+          } else if (parseInt(data.tier) === 5) {
+            title = this.tier5.filter(room => (room.id === parseInt(data.room)));
+          }
+          if (title.length > 0) {
+            this.detail.room  = title[0].title;
+          }
         }
-        this.$emit('selectRoom',text);
+        this.detailHide = false;
       }
     },
     setTier1() {
