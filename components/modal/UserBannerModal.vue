@@ -132,7 +132,7 @@
                 <DropZone @files-dropped="addFiles" v-slot="slotProps" class="mb-3">
                   <label for="file-input" class="d-block">
                     <EmptyDropZone />
-                    <input type="file" id="file-input" accept=".jpg,.png"  class="d-none" multiple @change="onInputChange" />
+                    <input type="file" id="file-input" accept=".jpg,.png,.jpeg,.bmp"  class="d-none" multiple @change="onInputChange" />
                   </label>
                   <ImageListUploaded :files="images" @remove-file="removeUploadedFile"/>
                   <ImageList :files="files" @remove-file="removeFile"/>
