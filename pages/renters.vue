@@ -74,7 +74,7 @@
               </div>
             </div>
           </div>
-          <div class="mb-5 pb-4">
+          <div class="mb-1">
             <h2 class="section-title">
               Выберите помещение
             </h2>
@@ -144,7 +144,7 @@
           </button>
         </template>
       </AppModal>
-      <TheFooter :dark="$route.name !== 'index'" />
+      <TheFooter :dark="$route.name !== 'index'" :comm="comm"/>
     </vue-custom-scrollbar>
   </div>
 </template>
@@ -174,6 +174,7 @@ export default {
   data () {
     return {
       contactUsModalVisible: false,
+      comm: '',
       form: {
         company: '',
         bin: '',
@@ -221,8 +222,7 @@ export default {
   },
   methods: {
     selectRoom(title) {
-      this.form.comment = title;
-      this.contactUsModalVisible = true
+      this.comm = title;
     },
     showContactUsModal () {
       this.contactUsModalVisible = true

@@ -6,7 +6,7 @@
           <div class="map-right-detail-main">
             <div class="map-right-info">
               <div class="map-right-info-main" v-if="detail">
-                <div class="map-right-info-main-title">Бутик {{detail.room}}, {{detail.tier}}</div>
+                <div class="map-right-info-main-title">{{detail.type}} {{detail.room}}, {{detail.tier}}</div>
                 <div class="map-right-info-main-description" v-if="detail.status === 0">Сдано в аренду</div>
                 <div class="map-right-info-main-description" v-else>Свободно</div>
               </div>
@@ -3111,24 +3111,24 @@ export default {
         this.detail = {
           tier: this.tiers[data.tier - 1].title,
           room: '',
-          status: data.status
+          status: data.status,
+          type: ''
         };
+        let title = [];
         if (parseInt(data.tier) === 1) {
-          this.detail.room  = data.room;
-        } else {
-          let title = [];
-          if (parseInt(data.tier) === 2) {
-            title = this.tier2.filter(room => (room.id === parseInt(data.room)));
-          } else if (parseInt(data.tier) === 3) {
-            title = this.tier3.filter(room => (room.id === parseInt(data.room)));
-          } else if (parseInt(data.tier) === 4) {
-            title = this.tier4.filter(room => (room.id === parseInt(data.room)));
-          } else if (parseInt(data.tier) === 5) {
-            title = this.tier5.filter(room => (room.id === parseInt(data.room)));
-          }
-          if (title.length > 0) {
-            this.detail.room  = title[0].title;
-          }
+          title = this.tier1.filter(room => (room.title === data.room));
+        } else if (parseInt(data.tier) === 2) {
+          title = this.tier2.filter(room => (room.id === parseInt(data.room)));
+        } else if (parseInt(data.tier) === 3) {
+          title = this.tier3.filter(room => (room.id === parseInt(data.room)));
+        } else if (parseInt(data.tier) === 4) {
+          title = this.tier4.filter(room => (room.id === parseInt(data.room)));
+        } else if (parseInt(data.tier) === 5) {
+          title = this.tier5.filter(room => (room.id === parseInt(data.room)));
+        }
+        if (title.length > 0) {
+          this.detail.room  = title[0].title;
+          this.detail.type  = title[0].roomType.title;
         }
         this.detailHide = false;
       }
