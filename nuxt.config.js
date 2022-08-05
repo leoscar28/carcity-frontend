@@ -68,9 +68,12 @@ export default {
   },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    'nuxt-vuex-localstorage','@nuxtjs/toast','@nuxtjs/axios'
+    'nuxt-vuex-localstorage','@nuxtjs/toast','@nuxtjs/axios', '@nuxtjs/gtm'
   ],
-
+  gtm: {
+    id: 'GTM-53VHVX4',
+    enabled: true
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
