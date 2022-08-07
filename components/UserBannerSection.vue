@@ -9,14 +9,12 @@
               <div class="col-md-6 mb-md-3 mb-2">
                 <input v-model="term" type="text" class="form-control" placeholder="Поиск по названию запчасти"/>
               </div>
-              <div class="col-md-6 mb-md-3 mb-2">
-                <select v-model="type" class="form-control">
-                  <option value="1">Запчасти</option>
-                  <option value="2">Услуги</option>
-                </select>
+              <div class="col-md-6 mb-md-3 mb-2 d-flex gap-md-3 gap-2">
+                <button @click="type = 1" class="btn promotion-form__btn-selector" :class="type != 1 ? 'btn-outline-primary' : 'btn-primary'">Запчасти</button>
+                <button @click="type = 2" class="btn promotion-form__btn-selector" :class="type != 2 ? 'btn-outline-primary' : 'btn-primary'">Услуги</button>
               </div>
             </div>
-            <div v-if="type == 1" class="brands  mb-md-3 mb-2">
+            <div v-if="type == 1" class="brands  mb-md-3 mb-2 d-md-block d-none">
               <div class="promotion-links">
                 <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray fw-bold">Марка</span>
                 <span v-for="(brand, index) in brandsForMenu" @click="setBrand(brand.id)"  class="promotion-link fw-bold d-md-block d-none" :class="{'promotion-link--active': brandCheck(brand.id)}">{{brand.name}}</span>
@@ -32,7 +30,7 @@
                 </CheckboxGroup>
               </div>
             </div>
-            <div class="categories">
+            <div class="categories d-md-block d-none">
               <div class="promotion-links">
                 <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray fw-bold">Категория</span>
                 <span v-for="category in categoriesForMenu" @click="setCategory(category.id)" class="promotion-link fw-bold d-md-block d-none" :class="{'promotion-link--active': categoryCheck(category.id)}">{{category.name}}</span>
@@ -48,16 +46,50 @@
                 </CheckboxGroup>
               </div>
             </div>
-            <div class="text-center d-flex flex-md-row flex-column align-items-center justify-content-center gap-3 mt-md-3 mt-2 pt-2">
-              <div v-show="!isRooms" class="form-check">
-                <input v-model="withImage" class="form-check-input" type="checkbox" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                  С фото
-                </label>
+            <div class="d-md-none mobile-checkbox-groups mb-2">
+              <div @click="showBrands = !showBrands" class="promotion-form__modal-btn">
+                <span v-text="brand_id.length ? 'Марки' : 'Выберите марку'"></span>
+                <Icon v-if="!brand_id.length" name="arrow" size="18"/>
+                <span v-else class="badge rounded-pill">{{brand_id.length}}</span>
               </div>
-              <NuxtLink v-if="!isPage" to="/promotions?showRooms=true" class="btn btn-outline-primary">Показать бутики</NuxtLink>
-              <button v-else @click="getRooms()" class="btn" :class="!isRooms ? 'btn-outline-primary' : 'btn-primary'" v-text="!isRooms ? 'Показать бутики' : 'Искать бутики'"></button>
-              <button @click="getItems(1)" class="btn" :class="isRooms ? 'btn-outline-primary' : 'btn-primary'" v-text="isRooms ? 'Показать объявления' : 'Искать объявления'"></button>
+              <div v-show="showBrands" class="mobile-checkbox-groups__checkboxes">
+                <template v-for="(group, letter) in brands" :key="letter" :title="letter">
+                  <label  v-for="(item, index) in group" :key="index">
+                    {{ item.name }}
+                    <input type="checkbox" v-model="brand_id" :value="item.id">
+                    <span class="checkmark"></span>
+                  </label >
+                </template>
+              </div>
+            </div>
+            <div class="d-md-none mobile-checkbox-groups">
+              <div @click="showCategories = !showCategories" class="promotion-form__modal-btn">
+                <span v-text="category_id.length ? 'Категории' : 'Выберите категорию'"></span>
+                <Icon v-if="!category_id.length" name="arrow" size="18"/>
+                <span v-else class="badge rounded-pill">{{category_id.length}}</span>
+              </div>
+              <div v-show="showCategories" class="mobile-checkbox-groups__checkboxes">
+                <template v-for="(group, letter) in categories" :key="letter" :title="letter">
+                  <label  v-for="(item, index) in group" :key="index">
+                    {{ item.name }}
+                    <input type="checkbox" v-model="category_id" :value="item.id">
+                    <span class="checkmark"></span>
+                  </label >
+                </template>
+              </div>
+            </div>
+            <div class="text-center d-flex flex-md-row flex-column align-items-center justify-content-center gap-3 mt-md-3 mt-2 pt-md-2">
+                <div v-show="!isRooms" class="form-check">
+                  <input v-model="withImage" class="form-check-input" type="checkbox" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    С фото
+                  </label>
+                </div>
+              <div class="promotion-form__buttons d-flex flex-md-row flex-column gap-md-3 gap-2 pt-md-0 pt-3">
+                <NuxtLink v-if="!isPage" to="/promotions?showRooms=true" class="btn btn-outline-primary">Показать бутики</NuxtLink>
+                <button v-else @click="getRooms()" class="btn" :class="!isRooms ? 'btn-outline-primary' : 'btn-primary'" v-text="!isRooms ? 'Показать бутики' : 'Искать бутики'"></button>
+                <button @click="getItems(1)" class="btn" :class="isRooms ? 'btn-outline-primary' : 'btn-primary'" v-text="isRooms ? 'Показать объявления' : 'Искать объявления'"></button>
+              </div>
             </div>
           </div>
         </div>
@@ -505,10 +537,61 @@
     border-radius: 16px;
     background: #FFFFFF;
 
+    &__btn-selector {
+      width :50%;
+    }
+
+
 
     @media (max-width:768px) {
       border-radius: 0;
       padding:16px;
+
+      * {
+        font-size: 14px!important;
+      }
+
+      &__modal-btn, .form-check {
+
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        border: 1px solid #F5F5F5;
+        background: #F5F5F5;
+        padding: 0.5rem 1rem;
+        border-radius: 50rem;
+
+        .badge {
+          display: inline-block;
+          padding: 0 0.65em;
+          font-weight: 700;
+          text-align: center;
+          white-space: nowrap;
+          vertical-align: baseline;
+          background: #274985;
+          color: #fff;
+        }
+      }
+
+      .form-check {
+        label {
+          text-align: left;
+          width:100%;
+          order: 1!important;
+        }
+
+        input {
+          order: 2!important;
+        }
+      }
+
+      &__buttons {
+        width: 100%;
+        border-top: 1px solid #F0F0F0;
+        .btn {
+          width: 100%;
+        }
+      }
     }
 
     .checkbox-groups {
@@ -599,6 +682,67 @@
       border-style: solid;
       background: #274985;
       color: #FFFFFF;
+    }
+  }
+
+  .mobile-checkbox-groups {
+    border: 1px solid #f5f5f5;
+    border-radius: 1.5rem;
+
+    &__checkboxes {
+      height: 250px;
+      width: 100%;
+      flex-wrap: wrap;
+      overflow-y: scroll;
+      padding: 0.5rem 1rem;
+
+      label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .25rem 0;
+        position: relative;
+
+        .checkmark {
+          position: relative;
+          top: 2px;
+          left: 0;
+          height: 16px;
+          width: 16px;
+          border: 1px solid #bfbfbf;
+          border-radius: 0.2rem;
+          &:before {
+            display: block;
+            content: '';
+            height: 1px;
+            width:1px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background: transparent;
+            border-radius: 2px;
+            transition: all .2s ease-in-out;
+          }
+        }
+
+        input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+          &:checked ~ .checkmark {
+            border-color: #274985;
+
+            &:before {
+              background: #274985;
+              width: 11px;
+              height: 11px;
+            }
+          }
+        }
+      }
     }
   }
 
