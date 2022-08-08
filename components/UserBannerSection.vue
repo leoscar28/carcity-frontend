@@ -46,20 +46,20 @@
                 </CheckboxGroup>
               </div>
             </div>
-            <!--div class="d-md-none mobile-checkbox-groups mb-2">
+            <div v-if="type == 1"  class="d-md-none mobile-checkbox-groups mb-2">
               <div @click="showBrands = !showBrands" class="promotion-form__modal-btn">
                 <span v-text="brand_id.length ? 'Марки' : 'Выберите марку'"></span>
                 <Icon v-if="!brand_id.length" name="arrow" size="18"/>
                 <span v-else class="badge rounded-pill">{{brand_id.length}}</span>
               </div>
               <div v-show="showBrands" class="mobile-checkbox-groups__checkboxes">
-                <template v-for="(group, letter) in brands" :key="'mcgb'+letter" :title="letter">
+                <div v-for="(group, letter) in brands" :key="'mcgb'+letter" :title="letter">
                   <label  v-for="(item, index) in group" :key="'mcgbl'+index">
                     {{ item.name }}
                     <input type="checkbox" v-model="brand_id" :value="item.id">
                     <span class="checkmark"></span>
                   </label >
-                </template>
+                </div>
               </div>
             </div>
             <div class="d-md-none mobile-checkbox-groups">
@@ -69,15 +69,15 @@
                 <span v-else class="badge rounded-pill">{{category_id.length}}</span>
               </div>
               <div v-show="showCategories" class="mobile-checkbox-groups__checkboxes">
-                <template v-for="(group, letter) in categories" :key="'mcgc'+letter" :title="letter">
+                <div v-for="(group, letter) in categories" :key="'mcgc'+letter" :title="letter">
                   <label  v-for="(item, index) in group" :key="'mcgcl'+index">
                     {{ item.name }}
                     <input type="checkbox" v-model="category_id" :value="item.id">
                     <span class="checkmark"></span>
                   </label >
-                </template>
+                </div>
               </div>
-            </div-->
+            </div>
             <div class="text-center d-flex flex-md-row flex-column align-items-center justify-content-center gap-3 mt-md-3 mt-2 pt-md-2">
                 <div v-show="!isRooms" class="form-check">
                   <input v-model="withImage" class="form-check-input" type="checkbox" id="flexCheckDefault">
@@ -200,6 +200,8 @@
         showCategories:false,
         showBrands: false,
         items:[],
+        serviceCategories:[],
+        sparePartCategories:[],
         categories:[],
         categoriesCount: null,
         brands:[],
@@ -341,7 +343,10 @@
         await this.getItems();
       }
 
-      cats = query.type && query.type === AD_TYPE_SERVICE ? await this.$store.dispatch('localStorage/listDictionaryServices') : await this.$store.dispatch('localStorage/listDictionarySpareParts')
+      this.serviceCategories = await this.$store.dispatch('localStorage/listDictionaryServices');
+      this.sparePartCategories = await this.$store.dispatch('localStorage/listDictionarySpareParts');
+
+      cats = query.type && query.type == AD_TYPE_SERVICE ? this.serviceCategories : this.sparePartCategories;
       this.categories = this.group(cats);
       this.categoriesForMenu = this.filterForMenu(cats);
       this.categoriesCount = cats.length;
@@ -520,8 +525,8 @@
         this.showCategories = false;
 
         cats = (val == AD_TYPE_SPARE_PART) ?
-          await this.$store.dispatch('localStorage/listDictionarySpareParts') :
-          await this.$store.dispatch('localStorage/listDictionaryServices');
+          this.sparePartCategories :
+          this.serviceCategories;
 
         this.categories = this.group(cats);
         this.categoriesForMenu = this.filterForMenu(cats);
@@ -634,6 +639,10 @@
       &:hover {
         background: #b8c6dd;
       }
+    }
+
+    @media (max-width: 768px) {
+      font-size: 12px;
     }
   }
 
