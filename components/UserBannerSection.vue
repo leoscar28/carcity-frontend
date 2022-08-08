@@ -46,7 +46,7 @@
                 </CheckboxGroup>
               </div>
             </div>
-            <div class="d-md-none mobile-checkbox-groups mb-2">
+            <!--div class="d-md-none mobile-checkbox-groups mb-2">
               <div @click="showBrands = !showBrands" class="promotion-form__modal-btn">
                 <span v-text="brand_id.length ? 'Марки' : 'Выберите марку'"></span>
                 <Icon v-if="!brand_id.length" name="arrow" size="18"/>
@@ -77,7 +77,7 @@
                   </label >
                 </template>
               </div>
-            </div>
+            </div-->
             <div class="text-center d-flex flex-md-row flex-column align-items-center justify-content-center gap-3 mt-md-3 mt-2 pt-md-2">
                 <div v-show="!isRooms" class="form-check">
                   <input v-model="withImage" class="form-check-input" type="checkbox" id="flexCheckDefault">
