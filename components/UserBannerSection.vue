@@ -341,7 +341,7 @@
         await this.getItems();
       }
 
-      cats = await this.$store.dispatch('localStorage/listDictionarySpareParts')
+      cats = query.type && query.type === AD_TYPE_SERVICE ? await this.$store.dispatch('localStorage/listDictionaryServices') : await this.$store.dispatch('localStorage/listDictionarySpareParts')
       this.categories = this.group(cats);
       this.categoriesForMenu = this.filterForMenu(cats);
       this.categoriesCount = cats.length;
