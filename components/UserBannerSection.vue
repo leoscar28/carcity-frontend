@@ -21,8 +21,8 @@
                 <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray promotion-link--gray--more fw-bold">ещё ...</span>
               </div>
               <div v-show="showBrands" class="checkbox-groups mt-2" :style="brandsHeight">
-                <CheckboxGroup v-for="(group, letter) in brands" :key="letter" :title="letter">
-                  <label  v-for="(item, index) in group" :key="index">
+                <CheckboxGroup v-for="(group, letter) in brands" :key="'cggb'+letter" :title="letter">
+                  <label  v-for="(item, index) in group" :key="'cggbl' + index">
                     {{ item.name }}
                     <input type="checkbox" v-model="brand_id" :value="item.id">
                     <span class="checkmark"></span>
@@ -37,8 +37,8 @@
                 <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray promotion-link--gray--more fw-bold">ещё ...</span>
               </div>
               <div v-show="showCategories" class="checkbox-groups mt-2" :style="categoriesHeight">
-                <CheckboxGroup v-for="(group, letter) in categories" :key="letter" :title="letter">
-                  <label  v-for="(item, index) in group" :key="index">
+                <CheckboxGroup v-for="(group, letter) in categories" :key="'cggc' + letter" :title="letter">
+                  <label  v-for="(item, index) in group" :key="'cggcl' + index">
                     {{ item.name }}
                     <input type="checkbox" v-model="category_id" :value="item.id">
                     <span class="checkmark"></span>
@@ -53,8 +53,8 @@
                 <span v-else class="badge rounded-pill">{{brand_id.length}}</span>
               </div>
               <div v-show="showBrands" class="mobile-checkbox-groups__checkboxes">
-                <template v-for="(group, letter) in brands" :key="letter" :title="letter">
-                  <label  v-for="(item, index) in group" :key="index">
+                <template v-for="(group, letter) in brands" :key="'mcgb'+letter" :title="letter">
+                  <label  v-for="(item, index) in group" :key="'mcgbl'+index">
                     {{ item.name }}
                     <input type="checkbox" v-model="brand_id" :value="item.id">
                     <span class="checkmark"></span>
@@ -69,8 +69,8 @@
                 <span v-else class="badge rounded-pill">{{category_id.length}}</span>
               </div>
               <div v-show="showCategories" class="mobile-checkbox-groups__checkboxes">
-                <template v-for="(group, letter) in categories" :key="letter" :title="letter">
-                  <label  v-for="(item, index) in group" :key="index">
+                <template v-for="(group, letter) in categories" :key="'mcgc'+letter" :title="letter">
+                  <label  v-for="(item, index) in group" :key="'mcgcl'+index">
                     {{ item.name }}
                     <input type="checkbox" v-model="category_id" :value="item.id">
                     <span class="checkmark"></span>
