@@ -359,6 +359,10 @@
 
           this.form.user_id = this.user.id;
 
+          if (this.form.employee_phone_additional === '+7 (') {
+            this.form.employee_phone_additional = '';
+          }
+
           for ( let key in this.form ) {
             formData.append(key, this.form[key]);
           }
