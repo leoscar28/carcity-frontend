@@ -224,7 +224,7 @@
                 weekdays: [0,1,2,3,4,5,6],
                 employee_phone: '+7 (',
                 employee_name: '',
-                employee_phone_additional: '',
+                employee_phone_additional: '+7 (',
                 employee_name_additional: '',
               }
             }
@@ -319,10 +319,10 @@
             category_id: [],
             brand_id: [],
             time: ['09:00:00', '18:00:00'],
-            weekdays: [],
-            employee_phone:'',
+            weekdays: [0,1,2,3,4,5,6],
+            employee_phone: '+7 (',
             employee_name:'',
-            employee_phone_additional: '',
+            employee_phone_additional: '+7 (',
             employee_name_additional: '',
           }
         },
@@ -436,10 +436,10 @@
                 category_id: [],
                 brand_id: [],
                 time: ['09:00:00', '18:00:00'],
-                weekdays: [],
-                employee_phone:'',
+                weekdays: [0,1,2,3,4,5,6],
+                employee_phone: '+7 (',
                 employee_name:'',
-                employee_phone_additional: '',
+                employee_phone_additional: '+7 (',
                 employee_name_additional: '',
               }
             }
