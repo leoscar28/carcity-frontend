@@ -122,7 +122,7 @@
         </template>
       </div>
       <div v-if="!isPage" class="col-xl-12 text-center mb-lg-5 mb-0">
-        <NuxtLink :to="{ path: 'promotions', query: $route.query}" class="btn btn-outline-primary">Показать все объявления</NuxtLink>
+        <NuxtLink :to="{ path: 'promotions', query: subQuery}" class="btn btn-outline-primary">Показать все объявления</NuxtLink>
       </div>
       <UserBannerSectionPagination :paginate="paginate" :pages="pages" :take="take" :range="range" @up="up" @down="down" @setRange="setRange" @setPaginate="setPaginate" @setTake="setTake"/>
     </template>
@@ -217,7 +217,8 @@
         range: 1,
         pages: 0,
         selectedTier:1,
-        loading: false
+        loading: false,
+        query: {}
       }
 
       const query = this.$route.query;
@@ -253,6 +254,9 @@
       return data;
     },
     computed:{
+      subQuery() {
+        return this.query;
+      },
       dataForRequest(){
         let data =  {
           type: 'published',
@@ -458,6 +462,7 @@
             null,
             this.$route.path + '?' + str
           )
+          this.query = query;
         }
 
         this.loading = false;
