@@ -435,7 +435,7 @@
         }
 
         if (query !== this.$router.query) {
-          await this.$router.push({path: this.$route.path, query: query});
+          await this.$router.push({path: this.$route.path, query: query, replace: true});
         }
 
         this.loading = false;
