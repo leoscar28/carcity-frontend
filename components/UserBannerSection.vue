@@ -435,7 +435,29 @@
         }
 
         if (query !== this.$router.query) {
-          await this.$router.push({path: this.$route.path, query: query, replace: true});
+          let str = "";
+          for (let key in query) {
+
+            if (Array.isArray(query[key])) {
+              query[key].forEach((val) => {
+                if (str !== "") {
+                  str += "&";
+                }
+                str += key + "=" + encodeURIComponent(val);
+              })
+            } else {
+              if (str !== "") {
+                str += "&";
+              }
+              str += key + "=" + encodeURIComponent(query[key]);
+            }
+
+          }
+          history.pushState(
+            {},
+            null,
+            this.$route.path + '?' + str
+          )
         }
 
         this.loading = false;
