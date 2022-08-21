@@ -1,6 +1,6 @@
 <template>
   <footer class="footer" :class="{'footer--dark': dark}">
-    <div class="container" v-if="$route.name === 'index'">
+    <div class="container" v-if="$route.name !== 'renters'">
       <div class="row">
         <div class="col-lg-4 mb-3 mb-lg-0">
           <a class="footer__logo" href="#">
@@ -43,7 +43,7 @@
             </li>
           </ul>
         </div>
-        <div v-if="$route.name === 'index'" class="col-lg-4 col-md-6">
+        <div class="col-lg-4 col-md-6">
           <ul class="footer__nav">
             <li>
               <NuxtLink class="footer__nav-link" :to="{ name: 'index', hash: '#about' }">
