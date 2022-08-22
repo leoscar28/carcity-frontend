@@ -1,6 +1,6 @@
 export default ($axios) => ({
   multipleStart(payload) {
-    return $axios.get('/api/applicationSignature/multipleStart/'+payload.rid+'/'+payload.user_id)
+    return $axios.get('/api/applicationSignature/multipleStart/'+payload.rid+'/'+payload.user_id, {timeout: 600000})
       .then(response => {
         return response.data.data;
       }).catch(error => {
