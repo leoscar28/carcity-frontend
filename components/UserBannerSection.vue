@@ -497,6 +497,7 @@
       async setPaginate(value) {
         this.paginate = value;
         await this.getItems();
+        window.scrollTo(0,0);
       },
       setRange(value) {
         this.range  = value;
