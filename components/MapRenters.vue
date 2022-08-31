@@ -3086,10 +3086,12 @@ export default {
   },
   methods: {
     startModal() {
-      let text  = this.detail.tier+'\r\nНазвание помещении: '+this.detail.room;
+      let text  = this.detail.tier+'\r\nНазвание помещения: '+this.detail.room;
       this.$emit('selectRoom',text);
       this.detailHide = true;
       this.detail = false;
+
+      document.getElementById('footer').scrollIntoView();
     },
     modal(event) {
       let d = event.target.getAttribute('d');
