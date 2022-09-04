@@ -54,7 +54,7 @@
               <div class="sidebar-section-menu-list-item-title">Неактивные</div>
             </div>
           </NuxtLink>
-          <NuxtLink to="/ads/requests" v-if="[2,3,4].includes(user.role_id) || user.role_id === 1 && user.can_create_banner === 1">
+          <NuxtLink to="/ads/requests" v-if="[2].includes(user.role_id) || user.role_id === 1 && user.can_create_banner === 1">
             <div class="sidebar-section-menu-list-item" :class="{'sidebar-section-menu-list-item-active':($nuxt.$route.name === 'ads-requests')}">
               <div class="sidebar-section-menu-list-item-icon"></div>
               <div class="sidebar-section-menu-list-item-title">Заявки покупателей<div v-if="requestCount" class="sidebar-section-badge">{{requestCount}}</div></div>
@@ -92,7 +92,7 @@
           </div>
         </div>
       </NuxtLink>
-      <NuxtLink v-if="[2,3,4].includes(user.role_id)" to="/mailing">
+      <NuxtLink v-if="[2,3].includes(user.role_id)" to="/mailing">
         <div class="sidebar-section-menu-item" :class="{'sidebar-section-menu-item-active':($nuxt.$route.name === 'mailing')}">
           <div>
             <div class="sidebar-section-menu-item-icon sidebar-section-menu-item-icon-folder"></div>

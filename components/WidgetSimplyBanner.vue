@@ -48,7 +48,7 @@
         return this.$store.state.localStorage.user;
       },
       isAdmin(){
-        return [2,3,4].includes(this.user.id)
+        return [2].includes(this.user.id)
       },
       createdDate(){
         let date = new Date(this.item.created_at);
@@ -78,6 +78,7 @@
     }
 
     &__content {
+      width:100%;
       &__header {
         display: flex;
         align-items: center;

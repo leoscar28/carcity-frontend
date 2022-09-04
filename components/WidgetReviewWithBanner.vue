@@ -35,7 +35,7 @@
           return this.$store.state.localStorage.user;
         },
         isAdmin(){
-          return [1,2,3,4].includes(this.user.id)
+          return [2].includes(this.user.id)
         }
       },
       methods:{
