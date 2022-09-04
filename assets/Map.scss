@@ -32,11 +32,9 @@
       }
     }
     &-list {
-      height: 350px;
+      height: 660px;
       overflow: hidden;
-      @media (min-width: 1280px) {
-        height: 660px;
-      }
+      
       &-main {
         display: flex;
         flex-direction: column;
