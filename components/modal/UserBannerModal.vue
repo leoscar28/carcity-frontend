@@ -129,7 +129,7 @@
                 </div>
               </div>
               <div class="col-md-12">
-                <DropZone @files-dropped="addFiles" v-slot="slotProps" class="mb-3">
+                <DropZone @files-dropped="addFiles" v-slot="slotProps" class="mb-3" :count="images.length+files.length">
                   <label for="file-input" class="d-block">
                     <EmptyDropZone />
                     <input type="file" id="file-input" accept=".jpg,.png,.jpeg,.bmp"  class="d-none" multiple @change="onInputChange" />
@@ -286,7 +286,7 @@
         },
         formDataValid() {
           let f = this.form;
-          return f.title && f.room_id && f.description && f.description.length > 80 && f.time && f.weekdays && f.employee_name && f.employee_phone && f.employee_phone.length === 17;
+          return f.title && f.room_id && f.description && f.description.length > 80 && f.time && f.weekdays && f.employee_name && f.employee_phone && f.employee_phone.length === 17 && ((this.images.length + this.files.length) > 0);
         },
         categoriesHeight(){
           let count =  this.form.type === AD_TYPE_SPARE_PART ? this.sparePartsCount : this.servicesCount;

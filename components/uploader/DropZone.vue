@@ -1,5 +1,5 @@
 <template>
-  <div :data-active="active" @dragenter.prevent="setActive" @dragover.prevent="setActive" @dragleave.prevent="setInactive" @drop.prevent="onDrop" class="drop-area">
+  <div :data-active="active" @dragenter.prevent="setActive" @dragover.prevent="setActive" @dragleave.prevent="setInactive" @drop.prevent="onDrop" class="drop-area" :class="{'drop-area--empty':!count}">
     <slot :dropZoneActive="active"></slot>
   </div>
 </template>
@@ -9,6 +9,7 @@
 
   export default {
     name: "DropZone",
+    props:['count'],
     emits: ['files-dropped'],
     data(){
       return {active:false, inActiveTimeout: null};
@@ -58,6 +59,10 @@
     display: flex;
     flex-direction: column;
     grid-gap: 20px;
+
+    &--empty {
+      border-color: #ff4d5a;
+    }
 
     @media (max-width: 768px) {
       padding: 0.5rem;
