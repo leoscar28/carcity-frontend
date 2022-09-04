@@ -212,7 +212,7 @@
         return this.isModeration ? '/ads/new' : '/ads/active';
       },
       isModeration(){
-        return [10, 15].includes(this.bannerItem.status) && this.user.role_id !== 1;
+        return [10, 15].includes(this.bannerItem.status) && this.user.role_id == 2;
       },
       workTime(){
         if (this.bannerItem.time) {

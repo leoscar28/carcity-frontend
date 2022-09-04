@@ -103,7 +103,7 @@
                 <span class="widget-ub__content__footer__info"><Icon name="shop"/> {{ item.user.company}}</span>
               </div>
             </div>
-          <div  v-if="(user.role_id === 1  && [20,30,31,40].includes(item.status)) || (user.role_id !== 1 && [10, 15].includes(item.status))" class="modal-footer justify-content-start">
+          <div  v-if="(user.role_id === 1  && [20,30,31,40].includes(item.status)) || (user.role_id === 2 && [10, 15, 20,30,31,40].includes(item.status))" class="modal-footer justify-content-start">
             <div class="widget-ub__content__buttons widget-ub__content__buttons--modal">
               <template v-if="user.role_id === 1">
                 <template v-if="item.status === 20">
@@ -124,9 +124,8 @@
                 </template>
               </template>
               <template v-else>
-                <template v-if="[10, 15].includes(item.status)">
-                  <NuxtLink :to="['/ads',item.id, 'confirm'].join('/')" class="widget-ub__content__button"><Icon name="confirm" key="confirm"/> Согласовать</NuxtLink>
-                </template>
+                  <NuxtLink v-if="[10, 15].includes(item.status)" :to="['/ads',item.id, 'confirm'].join('/')" class="widget-ub__content__button"><Icon name="confirm" key="confirm"/> Согласовать</NuxtLink>
+                  <NuxtLink v-else :to="['/ads',item.id, 'view'].join('/')" class="widget-ub__content__button"><Icon name="view" key="view"/> Перейти в объявление</NuxtLink>
               </template>
             </div>
           </div>
