@@ -97,7 +97,7 @@
     </div>
     <template v-if="!isRooms">
       <div class="col-xl-12 mb-lg-5 mb-3">
-        <h4 v-if="isPage" class="fw-bold mb-3 pb-1">Все объявления</h4>
+        <h4 v-if="isPage" class="fw-bold mb-3 pb-1">Все объявления: <template v-if="pages > 0" >найдено {{pages}}</template></h4>
         <template v-if="items.length" >
           <div class="items-sort" v-if="isPage">Сортировка по:
             <select v-model="sortSelector">
