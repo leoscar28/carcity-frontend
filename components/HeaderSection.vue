@@ -15,6 +15,7 @@
           <input type="text" placeholder="Поиск">
         </div>
         <div class="header-section-main-right-menu">
+          <button v-if="user.role_id === 1 && user.can_create_banner === 1" @click="$store.commit('localStorage/setUserBannerModalOne', true)" class="request-section-main-header-sub-buttons-ad">Подать объявление</button>
           <div class="header-section-main-right-menu-notification" @click.stop="notificationShow = !notificationShow" onselectstart="return false;">
             <div class="header-section-main-right-menu-notification-count" v-show="notificationViewCount> 0">{{notificationViewCountTitle}}</div>
             <div class="header-section-main-right-menu-dropdown-notification" :class="{'header-section-main-right-menu-dropdown-notification-show':notificationShow}" @click.stop>
@@ -60,14 +61,17 @@
       </div>
     </div>
     <audio src="/sound/sound.mp3" preload="auto" ref="audio"></audio>
+
+    <UserBannerModal v-if="user.role_id ===1 && user.can_create_banner === 1"/>
   </header>
 </template>
 
 <script>
 import Notification from "@/components/modal/Notification";
+import UserBannerModal from "~/components/modal/UserBannerModal";
 export default {
   name: "HeaderSection",
-  components: {Notification},
+  components: {Notification, UserBannerModal},
   data() {
     return {
       notificationShow: false
