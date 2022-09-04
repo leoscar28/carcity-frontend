@@ -51,7 +51,7 @@
               <input type="text" placeholder="Поиск">
             </div>
             <div class="map-left-list">
-              <vue-custom-scrollbar class="scroll-area" style="height: 350px" :settings="{ suppressScrollX: false }">
+              <vue-custom-scrollbar class="scroll-area" style="height: 660px" :settings="{ suppressScrollX: false }">
                 <div class="map-left-list-main">
                   <div @click="roomId = room.id" class="map-left-list-item" v-for="(room,key) in list" :key="key">
                     <div class="map-left-list-item-description">
