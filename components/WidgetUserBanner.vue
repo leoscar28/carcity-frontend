@@ -52,10 +52,9 @@
               <span @click="activate()" class="widget-ub__content__button"><Icon name="rework_blue" key="activate"/> Активировать</span>
             </template>
           </template>
-          <template v-else>
-            <template v-if="[10, 15].includes(item.status)">
-              <NuxtLink :to="['/ads',item.id, 'confirm'].join('/')" class="widget-ub__content__button"><Icon name="confirm" key="confirm"/> Согласовать</NuxtLink>
-            </template>
+          <template v-else-if="user.role_id === 2">
+              <NuxtLink  v-if="[10, 15].includes(item.status)" :to="['/ads',item.id, 'confirm'].join('/')" class="widget-ub__content__button"><Icon name="confirm" key="confirm"/> Согласовать</NuxtLink>
+              <NuxtLink v-else :to="['/ads',item.id, 'view'].join('/')" class="widget-ub__content__button"><Icon name="view" key="view"/> Перейти в объявление</NuxtLink>
           </template>
 
         </div>
