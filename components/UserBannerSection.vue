@@ -99,7 +99,7 @@
       <div class="col-xl-12 mb-lg-5 mb-3">
         <h4 v-if="isPage" class="fw-bold mb-3 pb-1">Все объявления: </h4>
         <template v-if="items.length" >
-          <div class="items-sort">найдено объявлений {{Number(pages)}}</div>
+          <div class="items-sort">Найдено объявлений: {{Number(pages)}}</div>
           <div class="items-sort" v-if="isPage">Сортировка по:
             <select v-model="sortSelector">
               <option :value="1">сначала новые</option>
