@@ -130,7 +130,7 @@
       <div class="map-all">
         <div class="map-left order-md-first order-last">
           <div class="map-left-list">
-            <vue-custom-scrollbar class="scroll-area" ref="scrollArea" style="height: 350px" :settings="{ suppressScrollX: false }">
+            <vue-custom-scrollbar class="scroll-area" ref="scrollArea" style="height: 660px" :settings="{ suppressScrollX: false }">
               <div class="map-left-list-main">
                 <div v-for="(room,key) in list" @click="roomId = room.id" :key="'roomId'+room.id" :ref="'roomId'+room.id" class="map-left-list-item" :class="{'map-left-list-item--active':roomId === room.id}">
                   <div class="map-left-list-item-description">
