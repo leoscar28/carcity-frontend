@@ -103,8 +103,8 @@ export default ($axios) => ({
         return error.response;
       });
   },
-  getById(id) {
-    return $axios.get('/api/userBanner/getById/'+id)
+  getById(payload) {
+    return $axios.post(`/api/userBanner/getById/${payload.id}`, payload)
       .then(response => {
         return response.data.data;
       }).catch(error => {

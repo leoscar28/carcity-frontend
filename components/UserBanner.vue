@@ -161,7 +161,7 @@
     },
     fetchOnServer: true,
     async fetch() {
-      this.bannerItem = await this.$store.dispatch('localStorage/getPromotion', this.banner);
+      this.bannerItem = await this.$store.dispatch('localStorage/getPromotion', {id: this.banner, role_id: user.role_id});
       if (this.bannerItem.type === 1) {
         this.categories = await this.$store.dispatch('localStorage/listDictionarySpareParts');
         this.brands = await this.$store.dispatch('localStorage/listDictionaryBrands');
