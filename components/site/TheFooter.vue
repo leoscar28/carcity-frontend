@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer" :class="{'footer--dark': dark}">
+  <footer class="footer" :class="{'footer--dark': dark}" id="footer">
     <div class="container" v-if="$route.name !== 'renters'">
       <div class="row">
         <div class="col-lg-4 mb-3 mb-lg-0">
@@ -92,7 +92,7 @@
                 </div>
                 <div class="col-6">
                   <div class="mb-3">
-                    <label for="form-max-input" class="form-label bg-transparent">-</label>
+                    <label for="form-max-input" class="form-label bg-transparent" style="opacity: 0">-</label>
                     <input id="form-max-input" type="text" class="form-control bg-transparent" ref="form_max" name="max" v-model="form.max" :placeholder="language[current][10]">
                   </div>
                 </div>

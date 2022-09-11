@@ -62,6 +62,13 @@
             <PartnersSlider />
           </div>
 
+          <div class="mb-1">
+            <h2 class="section-title">
+              Выберите помещение
+            </h2>
+            <map-renters @selectRoom="selectRoom"></map-renters>
+          </div>
+
           <div>
             <h2 class="section-title mb-4">
               {{language[current][6]}}
@@ -74,78 +81,72 @@
               </div>
             </div>
           </div>
-          <div class="mb-1">
-            <h2 class="section-title">
-              Выберите помещение
-            </h2>
-            <map-renters @selectRoom="selectRoom"></map-renters>
-          </div>
         </div>
       </main>
-      <AppModal v-model="contactUsModalVisible" :title="language[current][9]" @scroll.stop>
-        <form ref="form" @submit.prevent>
-          <div class="mb-3">
-            <label for="name-input" class="form-label"><span class="text-danger">*</span> {{language[current][7]}}</label>
-            <input id="name-input" :placeholder="language[current][8]" type="text" class="form-control" v-model="form.company" ref="company" name="company">
-          </div>
-          <div class="mb-3">
-            <label for="bin-input" class="form-label"><span class="text-danger">*</span> {{language[current][10]}}</label>
-            <input id="bin-input" :placeholder="language[current][11]" type="text" class="form-control" v-model="form.bin" ref="bin" name="bin" max="15">
-          </div>
-          <div class="mb-3">
-            <label for="category-input" class="form-label"><span class="text-danger">*</span> {{language[current][12]}}</label>
-            <input id="category-input" :placeholder="language[current][13]" type="text" class="form-control" v-model="form.category" ref="category" name="category" max="250">
-          </div>
-          <div>
-            <label for="min-square-input" class="form-label"><span class="text-danger">*</span> {{language[current][14]}}</label>
-            <div class="row">
-              <div class="col-sm-6 mb-3">
-                <input id="min-square-input" :placeholder="language[current][15]" type="text" class="form-control" v-model="form.min" ref="min" name="min" max="10">
-              </div>
-              <div class="col-sm-6 mb-3">
-                <input id="max-square-input" :placeholder="language[current][16]" type="text" class="form-control" v-model="form.max" ref="max" name="max" max="10">
-              </div>
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="comment-input" class="form-label"><span class="text-danger">*</span> {{language[current][17]}}</label>
-            <textarea id="comment-input" :placeholder="language[current][18]" type="text" class="form-control" v-model="form.comment" ref="comment" name="comment"/>
-          </div>
-          <div class="mb-3">
-            <label for="user-input" class="form-label"><span class="text-danger">*</span> {{language[current][19]}}</label>
-            <input id="user-input" :placeholder="language[current][20]" type="text" class="form-control" v-model="form.fullName" ref="fullName" name="fullName" max="250">
-          </div>
-          <div class="mb-3">
-            <label for="tel-input" class="form-label"><span class="text-danger">*</span> {{language[current][21]}}</label>
-            <input id="tel-input" :placeholder="language[current][22]" type="text" class="form-control" v-model="form.phone" ref="phone" name="phone" max="20" autocomplete="off">
-          </div>
-          <div class="mb-3">
-            <label for="email-input" class="form-label">{{language[current][23]}}</label>
-            <input id="email-input" :placeholder="language[current][24]" type="text" class="form-control" v-model="form.email" ref="email" name="email" max="100" autocomplete="off">
-          </div>
-          <div class="mb-3">
-            <div class="form-check">
-              <input id="accept-privacy-policy" class="form-check-input" type="checkbox" v-model="form.agree">
-              <label class="form-check-label" for="accept-privacy-policy">
-                {{language[current][25]}} <a href="/terms-of-use" target="_blank" class="text-decoration-none">{{language[current][26]}}</a> и <a href="/privacy-policy" target="_blank" class="text-decoration-none">{{language[current][27]}}</a>
-              </label>
-            </div>
-          </div>
-        </form>
-        <template #footer>
-          <button class="btn btn-secondary" @click="contactUsModalVisible = false" v-if="!email">
-            {{language[current][28]}}
-          </button>
-          <button class="btn btn-primary" :style="[!form.agree?{'opacity':'.2'}:{}]" @click="send" v-if="!email">
-            {{language[current][29]}}
-          </button>
-          <button class="btn btn-primary" v-else>
-            {{language[current][30]}}
-          </button>
-        </template>
-      </AppModal>
       <TheFooter :dark="$route.name !== 'index'" :comm="comm"/>
     </vue-custom-scrollbar>
+    <AppModal v-model="contactUsModalVisible" :title="language[current][9]" @scroll.stop>
+      <form ref="form" @submit.prevent>
+        <div class="mb-3">
+          <label for="name-input" class="form-label"><span class="text-danger">*</span> {{language[current][7]}}</label>
+          <input id="name-input" :placeholder="language[current][8]" type="text" class="form-control" v-model="form.company" ref="company" name="company">
+        </div>
+        <div class="mb-3">
+          <label for="bin-input" class="form-label"><span class="text-danger">*</span> {{language[current][10]}}</label>
+          <input id="bin-input" :placeholder="language[current][11]" type="text" class="form-control" v-model="form.bin" ref="bin" name="bin" max="15">
+        </div>
+        <div class="mb-3">
+          <label for="category-input" class="form-label"><span class="text-danger">*</span> {{language[current][12]}}</label>
+          <input id="category-input" :placeholder="language[current][13]" type="text" class="form-control" v-model="form.category" ref="category" name="category" max="250">
+        </div>
+        <div>
+          <label for="min-square-input" class="form-label"><span class="text-danger">*</span> {{language[current][14]}}</label>
+          <div class="row">
+            <div class="col-sm-6 mb-3">
+              <input id="min-square-input" :placeholder="language[current][15]" type="text" class="form-control" v-model="form.min" ref="min" name="min" max="10">
+            </div>
+            <div class="col-sm-6 mb-3">
+              <input id="max-square-input" :placeholder="language[current][16]" type="text" class="form-control" v-model="form.max" ref="max" name="max" max="10">
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="comment-input" class="form-label"><span class="text-danger">*</span> {{language[current][17]}}</label>
+          <textarea id="comment-input" :placeholder="language[current][18]" type="text" class="form-control" v-model="form.comment" ref="comment" name="comment"/>
+        </div>
+        <div class="mb-3">
+          <label for="user-input" class="form-label"><span class="text-danger">*</span> {{language[current][19]}}</label>
+          <input id="user-input" :placeholder="language[current][20]" type="text" class="form-control" v-model="form.fullName" ref="fullName" name="fullName" max="250">
+        </div>
+        <div class="mb-3">
+          <label for="tel-input" class="form-label"><span class="text-danger">*</span> {{language[current][21]}}</label>
+          <input id="tel-input" :placeholder="language[current][22]" type="text" class="form-control" v-model="form.phone" ref="phone" name="phone" max="20" autocomplete="off">
+        </div>
+        <div class="mb-3">
+          <label for="email-input" class="form-label">{{language[current][23]}}</label>
+          <input id="email-input" :placeholder="language[current][24]" type="text" class="form-control" v-model="form.email" ref="email" name="email" max="100" autocomplete="off">
+        </div>
+        <div class="mb-3">
+          <div class="form-check">
+            <input id="accept-privacy-policy" class="form-check-input" type="checkbox" v-model="form.agree">
+            <label class="form-check-label" for="accept-privacy-policy">
+              {{language[current][25]}} <a href="/terms-of-use" target="_blank" class="text-decoration-none">{{language[current][26]}}</a> и <a href="/privacy-policy" target="_blank" class="text-decoration-none">{{language[current][27]}}</a>
+            </label>
+          </div>
+        </div>
+      </form>
+      <template #footer>
+        <button class="btn btn-secondary" @click="contactUsModalVisible = false" v-if="!email">
+          {{language[current][28]}}
+        </button>
+        <button class="btn btn-primary" :style="[!form.agree?{'opacity':'.2'}:{}]" @click="send" v-if="!email">
+          {{language[current][29]}}
+        </button>
+        <button class="btn btn-primary" v-else>
+          {{language[current][30]}}
+        </button>
+      </template>
+    </AppModal>
   </div>
 </template>
 <script>
