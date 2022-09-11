@@ -91,11 +91,11 @@
       <rect @click="roomSelect(78)" :class="{'active-room':roomIds.includes(78)}" x="546" y="513" width="24" height="30" transform="rotate(-90 546 513)" fill="white" stroke="#274985" stroke-width="2"/>
       <rect @click="roomSelect(79)" :class="{'active-room':roomIds.includes(79)}" x="522" y="513" width="44" height="24" transform="rotate(-90 522 513)" fill="white" stroke="#274985" stroke-width="2"/>
       <path @click="roomSelect(80)" :class="{'active-room':roomIds.includes(80)}" d="M521 518L522 518L522 517L522 462L522 461L521 461L509 461L508 461L508 462L508 490L482 490L481 490L481 491L481 517L481 518L482 518L498 518L521 518Z" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect @click="roomSelect(81)" :class="{'active-room':roomIds.includes(81)}" x="461" y="434" width="28" height="61" transform="rotate(-90 461 434)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(84)" :class="{'active-room':roomIds.includes(84)}" x="461" y="434" width="28" height="61" transform="rotate(-90 461 434)" fill="white" stroke="#274985" stroke-width="2"/>
       <rect x="450" y="518" width="28" height="11" transform="rotate(-90 450 518)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect @click="roomSelect(82)" :class="{'active-room':roomIds.includes(82)}" x="461" y="461" width="27" height="61" transform="rotate(-90 461 461)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect @click="roomSelect(83)" :class="{'active-room':roomIds.includes(83)}" x="461" y="490" width="29" height="47" transform="rotate(-90 461 490)" fill="white" stroke="#274985" stroke-width="2"/>
-      <rect @click="roomSelect(84)" :class="{'active-room':roomIds.includes(84)}" x="461" y="518" width="28" height="20" transform="rotate(-90 461 518)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(83)" :class="{'active-room':roomIds.includes(83)}" x="461" y="461" width="27" height="61" transform="rotate(-90 461 461)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(82)" :class="{'active-room':roomIds.includes(82)}" x="461" y="490" width="29" height="47" transform="rotate(-90 461 490)" fill="white" stroke="#274985" stroke-width="2"/>
+      <rect @click="roomSelect(81)" :class="{'active-room':roomIds.includes(81)}" x="461" y="518" width="28" height="20" transform="rotate(-90 461 518)" fill="white" stroke="#274985" stroke-width="2"/>
       <rect @click="roomSelect(85)" :class="{'active-room':roomIds.includes(85)}" x="461" y="406" width="28" height="28" transform="rotate(-90 461 406)" fill="white" stroke="#274985" stroke-width="2"/>
       <rect x="452" y="406" width="28" height="9" transform="rotate(-90 452 406)" fill="white" stroke="#274985" stroke-width="2"/>
       <rect @click="roomSelect(86)" :class="{'active-room':roomIds.includes(86)}" x="489" y="406" width="28" height="33" transform="rotate(-90 489 406)" fill="white" stroke="#274985" stroke-width="2"/>
