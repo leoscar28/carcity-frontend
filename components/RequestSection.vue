@@ -913,10 +913,11 @@ export default {
           this.pages  = await this.$store.dispatch('localStorage/getUserBannerPages', data);
           this.requests = await this.$store.dispatch('localStorage/getUserBanners', data);
         } else if (this.type === 'request') {
-          this.pages  = await this.$store.dispatch('localStorage/getUserRequestsPages', data);
+          this.pages  = await this.$store.dispatch('localStorage/getUserRequestPages', data);
           this.requests = await this.$store.dispatch('localStorage/getUserRequests', data);
+          console.log(this.pages, this.requests)
         } else if (this.type === 'review') {
-          this.pages  = await this.$store.dispatch('localStorage/getUserReviewsPages', data);
+          this.pages  = await this.$store.dispatch('localStorage/getUserReviewPages', data);
           this.requests = await this.$store.dispatch('localStorage/getUserReviews', data);
         }
 
@@ -935,7 +936,7 @@ export default {
           this.requests = await this.$store.dispatch('localStorage/getUserBanners', data);
         } else if (this.type === 'request') {
           if (this.user.can_create_banner) {
-            this.pages  = await this.$store.dispatch('localStorage/getUserRequestsPages', data);
+            this.pages  = await this.$store.dispatch('localStorage/getUserRequestPages', data);
             this.requests = await this.$store.dispatch('localStorage/getUserRequests', data);
           } else {
             this.pages = 0;
@@ -943,7 +944,7 @@ export default {
           }
 
         } else if (this.type === 'review') {
-          this.pages  = await this.$store.dispatch('localStorage/getUserReviewsPages', data);
+          this.pages  = await this.$store.dispatch('localStorage/getUserReviewPages', data);
           this.requests = await this.$store.dispatch('localStorage/getUserReviews', data);
         }
       }
