@@ -36,6 +36,12 @@
           <div class="sidebar-section-menu-item-title">Объявления</div>
         </div>
         <div class="sidebar-section-menu-list" v-show="dropdown === 'ads'">
+          <NuxtLink v-if="user.role_id === 2" to="/ads">
+            <div class="sidebar-section-menu-list-item" :class="{'sidebar-section-menu-list-item-active':($nuxt.$route.name === 'ads')}">
+              <div class="sidebar-section-menu-list-item-icon"></div>
+              <div class="sidebar-section-menu-list-item-title">Отчет</div>
+            </div>
+          </NuxtLink>
           <NuxtLink v-if="user.role_id !== 1" to="/ads/new">
             <div class="sidebar-section-menu-list-item" :class="{'sidebar-section-menu-list-item-active':($nuxt.$route.name === 'ads-new')}">
               <div class="sidebar-section-menu-list-item-icon"></div>
@@ -133,7 +139,7 @@ export default {
       if (['dashboard','application','invoice'].includes(this.$nuxt.$route.name)) {
         this.dropdown = 'docs';
       }
-      if (this.$nuxt.$route.name.includes('ads-')) {
+      if (this.$nuxt.$route.name.includes('ads-') || this.$nuxt.$route.name === 'ads') {
         this.dropdown = 'ads';
       }
     },
