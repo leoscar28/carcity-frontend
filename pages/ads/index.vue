@@ -36,6 +36,7 @@ export default {
   data(){
     return {
       take: 100000,
+      type: 'published',
       date: null,
       statuses: {10: 'Новое объявление', 15:'Изменено', 20: 'На доработку', 30: 'Не опубликовано', 31: 'Опубликовано', 40: 'В архиве'}
     }
@@ -63,7 +64,8 @@ export default {
   methods: {
     async download() {
         let data = {
-          take: this.take
+          take: this.take,
+          type: this.type,
         };
         let statuses = this.statuses;
         if (this.date) {
