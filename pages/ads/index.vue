@@ -86,6 +86,8 @@ export default {
               'Опубликовано': val.status === 31 ? val.published_at : '',
               'Просмотров объявления': val.view_count,
               'Просмотров телефона': val.phone_view_count,
+              'Заголовок':val.title,
+              'Текст объявления':val.description
             });
 
           return filtered;
