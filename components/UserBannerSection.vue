@@ -88,18 +88,19 @@
               <div class="promotion-form__buttons d-flex flex-md-row flex-column gap-md-3 gap-2 pt-md-0 pt-3">
                 <NuxtLink v-if="!isPage" to="/promotions?showRooms=true" class="btn btn-outline-primary">Показать бутики</NuxtLink>
                 <button v-else @click="getRooms()" class="btn" :class="!isRooms ? 'btn-outline-primary' : 'btn-primary'" v-text="!isRooms ? 'Показать бутики' : 'Искать бутики'"></button>
-                <button @click="getItems(1)" class="btn" :class="isRooms ? 'btn-outline-primary' : 'btn-primary'" v-text="isRooms ? 'Показать объявления' : 'Искать объявления'"></button>
+                <button @click="getItems(1, true)" class="btn" :class="isRooms ? 'btn-outline-primary' : 'btn-primary'" v-text="isRooms ? 'Показать объявления' : 'Искать объявления'"></button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div style="position: relative;"><div ref="hiddenElement" style="height: 50px; position: absolute; top: -100px; pointer-events: none;"></div></div>
     <template v-if="!isRooms">
-      <div class="col-xl-12 mb-lg-5 mb-3">
+      <div ref="foundedPromotions" class="col-xl-12 mb-lg-5 mb-3">
         <h4 v-if="isPage" class="fw-bold mb-3 pb-1">Все объявления: </h4>
         <template v-if="items.length" >
-          <div class="items-sort">Найдено объявлений: {{Number(pages)}}</div>
+          <div v-if="isPage" class="items-sort">Найдено объявлений: {{Number(pages)}}</div>
           <div class="items-sort" v-if="isPage">Сортировка по:
             <select v-model="sortSelector">
               <option :value="1">сначала новые</option>
@@ -365,7 +366,11 @@
       await this.$store.dispatch('localStorage/roomGet');
     },
     methods:{
-
+      scrollToFoundedItems(){
+        if (this.$refs["hiddenElement"] && !this.isRooms) {
+          this.$refs["hiddenElement"].scrollIntoView({behavior: "smooth"});
+        }
+      },
       setRoomId(room_id){
         this.roomId = room_id;
       },
@@ -394,7 +399,7 @@
         this.items = await this.$store.dispatch('localStorage/getUserBanners', data);
         this.roomUser = await this.$store.dispatch('localStorage/getRoomUserInfo', room_id);
       },
-      async getItems(page = null){
+      async getItems(page = null, scroll = false){
         this.loading = true;
         this.isRooms = false;
         if (this.isPage && page) {
@@ -408,6 +413,10 @@
           this.pages = await this.$store.dispatch('localStorage/getUserBannerPages', data);
         }
         this.items = await this.$store.dispatch('localStorage/getUserBanners', data);
+
+        if (scroll) {
+          this.scrollToFoundedItems();
+        }
 
         let query = {};
 
