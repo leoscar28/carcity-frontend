@@ -55,8 +55,12 @@
           &-title {
             font-weight: bold;
           }
-          &-status {
-
+          &-button {
+            font-size: 10px;
+            border-radius: 10px;
+            background: #D9D9D9;
+            color: #8C8C8C;
+            padding: 1px 8px 1px 8px;
           }
         }
         &-id {

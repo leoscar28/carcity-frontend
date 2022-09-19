@@ -97,7 +97,7 @@
     </div>
     <div style="position: relative;"><div ref="hiddenElement" style="height: 50px; position: absolute; top: -100px; pointer-events: none;"></div></div>
     <template v-if="!isRooms">
-      <div ref="foundedPromotions" class="col-xl-12 mb-lg-5 mb-3">
+      <div class="col-xl-12 mb-lg-5 mb-3">
         <h4 v-if="isPage" class="fw-bold mb-3 pb-1">Все объявления: </h4>
         <template v-if="items.length" >
           <div v-if="isPage" class="items-sort">Найдено объявлений: {{Number(pages)}}</div>
@@ -143,6 +143,9 @@
                     <div v-for="sparePart in roomSpareParts" :key="'sp'+sparePart.id">{{sparePart.name}}</div>
                     <div v-for="brand in roomBrands" :key="'br'+brand.id">{{brand.name}}</div>
                     <div v-for="service in roomServices" :key="'ss'+service.id">{{service.name}}</div>
+                    <div v-if="items.length" @click="scrollToFoundedItems" class="map-left-list-item-description-button">
+                      Перейти к объявлениям
+                    </div>
                   </div>
                 </div>
               </div>
@@ -156,6 +159,7 @@
           </div>
         </div>
       </div>
+      <div style="position: relative;"><div ref="hiddenElement2" style="height: 50px; position: absolute; top: -100px; pointer-events: none;"></div></div>
       <div class="col-xl-12 mb-lg-5 mt-3 mb-3">
         <h4 v-if="isPage && items.length" class="fw-bold mb-3 pb-1">Объявления выбранного продавца</h4>
         <div class="promotion-items">
@@ -369,6 +373,8 @@
       scrollToFoundedItems(){
         if (this.$refs["hiddenElement"] && !this.isRooms) {
           this.$refs["hiddenElement"].scrollIntoView({behavior: "smooth"});
+        } else if (this.$refs["hiddenElement2"] && this.isRooms) {
+          this.$refs["hiddenElement2"].scrollIntoView({behavior: "smooth"});
         }
       },
       setRoomId(room_id){
