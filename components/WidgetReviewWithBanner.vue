@@ -57,6 +57,7 @@
 
 <style lang="scss">
   .widget-review-with-banner {
+    width:100%;
     display: flex;
     flex-direction: column;
     padding: 24px;

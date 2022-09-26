@@ -1,6 +1,7 @@
 export const state = () => ({
   editableBanner: false,
   userRequestModal: false,
+  feedbackRequestModal: false,
   userBannerModalOne: false,
   userBannerModalTwo: false,
   notificationModal: false,
@@ -168,6 +169,9 @@ export const mutations = {
   },
   setUserRequestModal(state,value) {
     state.userRequestModal = value;
+  },
+  setFeedbackRequestModal(state,value) {
+    state.feedbackRequestModal = value;
   },
   addFavorite(state, id) {
     const user  = state.user;
@@ -504,6 +508,28 @@ export const actions = {
   async getManagerBannerStatuses({commit}) {
     let res = {10: 'Новое объявление', 15:'Изменено', 20: 'На доработку', 30: 'Не опубликовано', 31: 'Опубликовано', 40: 'В архиве'}
     commit('setStatuses',res);
+  },
+  async getFeedbackRequestPages({commit},payload) {
+    return await this.$repository.feedbackRequest.pages(payload);
+  },
+  async getFeedbackRequests({commit},payload) {
+    return await this.$repository.feedbackRequest.all(payload);
+  },
+  async createFeedbackRequest({commit}, payload) {
+    let res = this.$repository.feedbackRequest.create(payload);
+    return res;
+  },
+  async createFeedbackRequestMessage({commit}, payload) {
+    let res = this.$repository.feedbackRequest.addMessage(payload);
+    return res;
+  },
+  async getFeedbackRequest({commit}, payload) {
+    let res = this.$repository.feedbackRequest.getById(payload);
+    return res;
+  },
+  async closeFeedbackRequest({commit}, id) {
+    let res = await this.$repository.feedbackRequest.close(id);
+    return res;
   },
   async getUserBannerPages({commit},payload) {
     return await this.$repository.userBanner.pages(payload);

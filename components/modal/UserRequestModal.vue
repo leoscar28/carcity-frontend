@@ -116,9 +116,7 @@
 
 <style lang="scss">
   .ur-modal {
-    .modal-body {
-      font-size:14px;
-    }
+
     &__user {
       font-size: 20px;
       font-weight: 700;
@@ -130,10 +128,9 @@
       }
     }
     &__button{
-      border-radius: 5px;
-      font-size: 12px;
+      border-radius: 100px;
       min-width: 75px;
-      padding: 6px 16px;
+      padding: 10px 16px;
       background: #274985;
       color: #FFFFFF;
       border: 1px solid  transparent;

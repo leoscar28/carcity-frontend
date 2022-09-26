@@ -106,6 +106,14 @@
           </div>
         </div>
       </NuxtLink>
+      <NuxtLink v-if="user.role_id === 2" to="/feedback">
+        <div class="sidebar-section-menu-item" :class="{'sidebar-section-menu-item-active':($nuxt.$route.name === 'feedback')}">
+          <div>
+            <div class="sidebar-section-menu-item-icon sidebar-section-menu-item-icon-help"></div>
+            <div class="sidebar-section-menu-item-title">Служба поддержки</div>
+          </div>
+        </div>
+      </NuxtLink>
     </div>
   </div>
 </template>

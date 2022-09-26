@@ -79,6 +79,7 @@
                 </template>
                 <NuxtLink v-else to="/invoice" class="mob__nav-link">Личный кабинет</NuxtLink>
                 <NuxtLink to="/profile" class="mob__nav-link">Настройки</NuxtLink>
+                <NuxtLink v-if="isSimplyUser" to="/profile/feedback" class="mob__nav-link">Служба поддержки</NuxtLink>
                 <div @click="logout" class="mob__nav-link">Выход</div>
               </template>
             </div>
@@ -156,18 +157,20 @@
       </div>
     </template>
     <UserRequestModal/>
+    <FeedbackRequestModal/>
   </header>
 
 </template>
 
 <script>
 import { throttle } from '~/utils/utils'
-import LocaleDropdown from "@/components/site/LocaleDropdown";
+import LocaleDropdown from "../site/LocaleDropdown";
 import Icon from "../icons/Icon";
 import UserMenu from "../UserMenu";
 import UserRequestModal from "../modal/UserRequestModal";
+import FeedbackRequestModal from "../modal/FeedbackRequestModal";
 export default {
-  components: {UserRequestModal, UserMenu, Icon, LocaleDropdown},
+  components: {FeedbackRequestModal, UserRequestModal, UserMenu, Icon, LocaleDropdown},
   data () {
     this.handleScrollThrottled = throttle(this.handleScroll, 100)
     return {

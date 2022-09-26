@@ -14,6 +14,7 @@
         </template>
         <NuxtLink v-else to="/invoice" class="user-menu__dropdown__main__item"><Icon name="keys"/> Личный кабинет</NuxtLink>
         <NuxtLink to="/profile" class="user-menu__dropdown__main__item"><Icon name="gear"/> Настройки</NuxtLink>
+        <NuxtLink v-if="isSimplyUser" to="/profile/feedback" class="user-menu__dropdown__main__item"><Icon name="question"/> Служба поддержки</NuxtLink>
         <div @click="logout" class="user-menu__dropdown__main__item"><Icon name="login"/> Выход</div>
       </div>
     </div>
@@ -71,7 +72,7 @@
     &__dropdown {
       display: none;
       position: absolute;
-      width: 170px;
+      width: 190px;
       background: #fff;
       right: 0;
       top: 60px;

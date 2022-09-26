@@ -22,7 +22,7 @@
             <input type="text" placeholder="По названию компани" v-model="company_term">
           </div>
         </template>
-        <div v-if="![4,5,6,'review', 'request'].includes(type)" class="request-section-main-filter-item-input">
+        <div v-if="![4,5,6,'review', 'request','feedback'].includes(type)" class="request-section-main-filter-item-input">
           <select class="request-section-main-filter-item-input-select" v-model="upload_status_id">
             <option :value="null">Все статусы</option>
             <template v-if="(type === 3 && user.role_id !== 4 && user.role_id !== 1) || user.role_id === 3 || user.role_id === 2">
@@ -70,14 +70,21 @@
             </select>
           </div>
         </template>
-<!--        <div class="request-section-main-filter-item-input">
-          <div class="request-section-main-filter-item-input-icon building"></div>
-          <input type="text" placeholder="Компания" v-model="company">
-        </div>
-        <div class="request-section-main-filter-item-input">
-          <div class="request-section-main-filter-item-input-icon building"></div>
-          <input type="text" placeholder="Номер документа" v-model="number">
-        </div>-->
+        <template v-if="type === 'feedback'">
+          <div class="request-section-main-filter-item-input">
+            <div class="request-section-main-filter-item-input-icon matrix"></div>
+            <input type="text" placeholder="ID" v-model="id">
+          </div>
+          <div class="request-section-main-filter-item-input">
+            <select class="request-section-main-filter-item-input-select" v-model="feedback_status">
+              <option :value="null">Все статусы</option>
+              <option :value="10">Новые</option>
+              <option :value="20">Обработаные</option>
+              <option :value="30">Ответ от клиента</option>
+              <option :value="40">Закрыты</option>
+            </select>
+          </div>
+        </template>
         <div class="request-section-main-filter-item-input">
           <div class="request-section-main-filter-item-input-icon calendar"></div>
           <date-picker v-model="date" range readonly format="YYYY.MM.DD" :lang="lang" :range-separator="' - '" :editable="false" ></date-picker>
@@ -113,6 +120,32 @@
         <div v-else class="request-section-main-table-empty">
           <img src="/empty_box.png" />
           <p>Пока здесь нет заявок</p>
+        </div>
+      </template>
+      <template v-else-if="this.type === 'feedback'">
+        <table class="request-section-main-table" v-if="requests.length">
+          <thead>
+            <tr class="request-section-main-table-tr">
+              <th>Номер запроса</th>
+              <th>Дата создания</th>
+              <th>Пользователь</th>
+              <th>Тема</th>
+              <th>Статус</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr v-for="(request,key) in requests" @click="$router.push(`/feedback/${request.id}`)" class="request-section-main-table-tr">
+            <td>{{ request.id }}</td>
+            <td>{{ request.created_at }}</td>
+            <td>{{ request.user.name }} {{ request.user.surname }}</td>
+            <td>{{ request.title }}</td>
+            <td><WidgetFeedbackRequestStatus :status="request.status"/></td>
+          </tr>
+          </tbody>
+        </table>
+        <div v-else class="request-section-main-table-empty">
+          <img src="/papertray.png" />
+          <p>Пока здесь нет запросов</p>
         </div>
       </template>
       <template v-else>
@@ -357,10 +390,12 @@ import RequestSectionFooter from "./RequestSectionFooter";
 import UserBannerComment from "./modal/UserBannerComment";
 import WidgetReviewWithBanner from "./WidgetReviewWithBanner";
 import WidgetUserRequest from "./WidgetUserRequest";
+import WidgetFeedbackRequestStatus from "./WidgetFeedbackRequestStatus";
 export default {
   name: "RequestSection",
   props: ['type','requestChange'],
   components: {
+    WidgetFeedbackRequestStatus,
     WidgetUserRequest,
     WidgetReviewWithBanner,
     UserBannerComment, RequestSectionFooter, UserBannerModal, WidgetUserBanner, DatePicker},
@@ -383,6 +418,8 @@ export default {
           return 'Отзывы';
         case 'request':
           return 'Заявки';
+        case 'feedback':
+          return 'Служба поддержки';
         default:
           return 'Без заголовка'
       }
@@ -483,6 +520,7 @@ export default {
       editable: false,
       review_status: null,
       request_status: null,
+      feedback_status: null,
       category_id: null,
       brand_id: null,
       brands:[],
@@ -880,6 +918,12 @@ export default {
         if (this.type === 'request' && this.request_status) {
           data.status = [this.request_status]
         }
+        if (this.type === 'feedback' && this.feedback_status) {
+          data.status = [this.feedback_status]
+        }
+        if (this.type === 'feedback' && this.id) {
+          data.id = Number(this.id);
+        }
       }
       if ([4,5,6].includes(this.type)) {
         if (this.type === 4) {
@@ -919,6 +963,9 @@ export default {
         } else if (this.type === 'review') {
           this.pages  = await this.$store.dispatch('localStorage/getUserReviewPages', data);
           this.requests = await this.$store.dispatch('localStorage/getUserReviews', data);
+        } else if (this.type === 'feedback') {
+          this.pages  = await this.$store.dispatch('localStorage/getFeedbackRequestPages', data);
+          this.requests = await this.$store.dispatch('localStorage/getFeedbackRequests', data);
         }
 
       } else {
