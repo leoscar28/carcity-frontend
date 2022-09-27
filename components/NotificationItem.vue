@@ -209,6 +209,29 @@
         </template>
       </template>
     </template>
+    <template v-else-if="notification.feedback_request_id">
+      <template v-if="notification.type === 10">
+          <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-orange header-section-main-right-menu-dropdown-main-list-item-icon-question"></div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Новый запрос: "{{notification.feedback_request_id.title}}"</div>
+            <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">№{{notification.feedback_request_id.id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
+          </div>
+      </template>
+      <template v-if="notification.type === 30">
+        <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-check-2"></div>
+        <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Новое сообщение: "{{notification.feedback_request_id.title}}"</div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">№{{notification.feedback_request_id.id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
+        </div>
+      </template>
+      <template v-if="notification.type === 40">
+        <div class="header-section-main-right-menu-dropdown-main-list-item-icon header-section-main-right-menu-dropdown-main-list-item-icon-green header-section-main-right-menu-dropdown-main-list-item-icon-bubble"></div>
+        <div class="header-section-main-right-menu-dropdown-main-list-item-detail">
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail-title">Запрос закрыт: "{{notification.feedback_request_id.title}}"</div>
+          <div class="header-section-main-right-menu-dropdown-main-list-item-detail-date">№{{notification.feedback_request_id.id}} • <span class="header-section-main-right-menu-dropdown-main-list-item-time">{{ notification.created_at }}</span></div>
+        </div>
+      </template>
+    </template>
   </div>
 </template>
 

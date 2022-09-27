@@ -239,6 +239,15 @@
                   &-check {
                     background-image: url('/ready.png') !important;
                   }
+                  &-check-2 {
+                    background-image: url('/check2.png');
+                  }
+                  &-question {
+                    background-image: url('/question.png');
+                  }
+                  &-bubble {
+                    background-image: url('/bubble.png');
+                  }
                 }
                 &-detail {
                   flex: 1;
