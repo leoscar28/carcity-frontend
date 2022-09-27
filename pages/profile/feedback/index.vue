@@ -36,7 +36,7 @@
           </div>
           <div v-else class="empty-requests">
             <div><img src="/papertray.png" height="120" width="120" alt=""></div>
-            <div class="fw-bold">Пока здесь нет Ваших запросов</div>
+            <div class="fw-bold mb-3">Пока здесь нет Ваших запросов</div>
             <button @click="$store.commit('localStorage/setFeedbackRequestModal', true)" class="btn btn-primary">Отправить запрос</button>
           </div>
         </div>
