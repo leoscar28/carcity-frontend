@@ -92,6 +92,9 @@
         &-help {
           background-image: url('/help-circle.png');
         }
+        &-bell {
+          background-image: url('/notifications_black.png');
+        }
         &-email {
           background-image: url('/email.png');
         }
@@ -113,6 +116,9 @@
         }
         & > .sidebar-section-menu-item-icon-help {
           background-image: url('/help-circle-active.png');
+        }
+        & > .sidebar-section-menu-item-icon-bell {
+          background-image: url('/notifications_black.png');
         }
         & > .sidebar-section-menu-item-icon-email {
           background-image: url('/email-active.png');

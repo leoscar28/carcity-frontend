@@ -63,15 +63,17 @@
     <audio src="/sound/sound.mp3" preload="auto" ref="audio"></audio>
 
     <UserBannerModal v-if="user.role_id ===1 && user.can_create_banner === 1"/>
+    <AnnouncementModal/>
   </header>
 </template>
 
 <script>
 import Notification from "@/components/modal/Notification";
 import UserBannerModal from "~/components/modal/UserBannerModal";
+import AnnouncementModal from "@/components/modal/AnnouncementModal";
 export default {
   name: "HeaderSection",
-  components: {Notification, UserBannerModal},
+  components: {AnnouncementModal, Notification, UserBannerModal},
   data() {
     return {
       notificationShow: false

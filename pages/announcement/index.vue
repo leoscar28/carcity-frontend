@@ -27,14 +27,14 @@ import RequestSectionFooter from "../../components/RequestSectionFooter";
 export default {
   data() {
     return {
-      type: 'feedback',
+      type: 'announcement',
       requestCommentShow: false,
       request: false,
     }
   },
   head(){
     return {
-      title: 'Служба поддержки',
+      title: 'Уведомления',
       meta: [
         /*{
           hid: 'description',
@@ -44,7 +44,7 @@ export default {
       ],
     }
   } ,
-  middleware: ['admin'],
+  middleware: ['announcement'],
   name: "index",
   components: {
     RequestSectionFooter,

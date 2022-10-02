@@ -4,7 +4,7 @@
       <HeaderSection/>
       <div class="body-section">
         <SidebarSection/>
-        <FeedbackRequest :feedback="id"/>
+        <AnnouncementForm/>
       </div>
     </vue-custom-scrollbar>
   </div>
@@ -18,7 +18,7 @@
   import FeedbackRequest from "../../components/FeedbackRequest";
   export default {
     head: {
-      title: 'Просмотр запроса',
+      title: 'Новое уведомление',
       meta: [
         /*{
           hid: 'description',
@@ -29,10 +29,7 @@
     },
     middleware: ['admin'],
     name: "view",
-    components: {FeedbackRequest, HeaderSection, SidebarSection, vueCustomScrollbar},
-    async asyncData({ params, redirect }) {
-      return {id: params.id}
-    }
+    components: {FeedbackRequest, HeaderSection, SidebarSection, vueCustomScrollbar}
   }
 </script>
 

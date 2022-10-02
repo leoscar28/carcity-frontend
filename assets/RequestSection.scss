@@ -832,7 +832,7 @@
           }
 
         }
-        & > button {
+        & > button, & > a {
           cursor: pointer;
           border-radius: 5px;
           font-size: 12px;
@@ -851,6 +851,18 @@
             background: url('/reset.svg') no-repeat center;
             background-size: contain;
             left: 10px;
+          }
+        }
+        &-primary {
+          padding: 0 25px!important;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: none !important;
+          background: #274985 !important;
+          color: #fff;
+          &:hover {
+            color: #ffffff;
           }
         }
         &-find {

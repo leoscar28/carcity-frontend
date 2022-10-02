@@ -37,6 +37,7 @@ export const state = () => ({
   languages: ['RU','KZ'],
   userBannerCount: 0,
   userRequestCount: 0,
+  announcementRecipient: null,
   lang: {
     formatLocale: {
       months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
@@ -49,6 +50,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setAnnouncementRecipient(state,value) {
+    state.announcementRecipient  = value;
+  },
   setUserBannerCount(state,value) {
     state.userBannerCount  = value;
   },
@@ -508,6 +512,32 @@ export const actions = {
   async getManagerBannerStatuses({commit}) {
     let res = {10: 'Новое объявление', 15:'Изменено', 20: 'На доработку', 30: 'Не опубликовано', 31: 'Опубликовано', 40: 'В архиве'}
     commit('setStatuses',res);
+  },
+  async getAnnouncementPages({commit},payload) {
+    return await this.$repository.announcement.pages(payload);
+  },
+  async getAnnouncements({commit},payload) {
+    return await this.$repository.announcement.all(payload);
+  },
+  async createAnnouncement({commit}, payload) {
+    let res = this.$repository.announcement.create(payload);
+    return res;
+  },
+  async getNotViewedAnnouncement({commit}, payload) {
+    let res = this.$repository.announcement.getNotViewed(payload);
+    return res;
+  },
+  async getAnnouncement({commit}, payload) {
+    let res = this.$repository.announcement.getById(payload);
+    return res;
+  },
+  async viewAnnouncement({commit}, id) {
+    let res = await this.$repository.announcement.setView(id);
+    return res;
+  },
+  async getActiveCustomers({commit}) {
+    let res = await this.$repository.announcement.getActiveCustomers();
+    return res;
   },
   async getFeedbackRequestPages({commit},payload) {
     return await this.$repository.feedbackRequest.pages(payload);

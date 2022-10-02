@@ -22,7 +22,7 @@
             <input type="text" placeholder="По названию компани" v-model="company_term">
           </div>
         </template>
-        <div v-if="![4,5,6,'review', 'request','feedback'].includes(type)" class="request-section-main-filter-item-input">
+        <div v-if="![4,5,6,'review', 'request','feedback','announcement'].includes(type)" class="request-section-main-filter-item-input">
           <select class="request-section-main-filter-item-input-select" v-model="upload_status_id">
             <option :value="null">Все статусы</option>
             <template v-if="(type === 3 && user.role_id !== 4 && user.role_id !== 1) || user.role_id === 3 || user.role_id === 2">
@@ -85,6 +85,15 @@
             </select>
           </div>
         </template>
+        <template v-if="type === 'announcement'">
+          <div class="request-section-main-filter-item-input">
+            <select class="request-section-main-filter-item-input-select" v-model="announcement_status">
+              <option :value="null">Все</option>
+              <option :value="0">Не просмотренные</option>
+              <option :value="1">Просмотренные</option>
+            </select>
+          </div>
+        </template>
         <div class="request-section-main-filter-item-input">
           <div class="request-section-main-filter-item-input-icon calendar"></div>
           <date-picker v-model="date" range readonly format="YYYY.MM.DD" :lang="lang" :range-separator="' - '" :editable="false" ></date-picker>
@@ -92,6 +101,7 @@
         <div class="request-section-main-filter-item">
           <button class="request-section-main-filter-item-find" @click="search">Найти</button>
           <button class="request-section-main-filter-item-reset" @click="reset">Сбросить</button>
+          <NuxtLink v-if="user.role_id === 2" to="/announcement/create" class="request-section-main-filter-item-primary">Создать</NuxtLink>
         </div>
       </div>
       <request-section-footer :paginate="paginate" :pages="pages" :take="take" :range="range" @up="up" @down="down" @setRange="setRange" @setPaginate="setPaginate" @setTake="setTake"></request-section-footer>
@@ -136,7 +146,7 @@
           <tbody>
           <tr v-for="(request,key) in requests" @click="$router.push(`/feedback/${request.id}`)" class="request-section-main-table-tr">
             <td>{{ request.id }}</td>
-            <td>{{ request.created_at }}</td>
+            <td>{{ makeDate(request.created_at) }}</td>
             <td>{{ request.user.name }} {{ request.user.surname }}</td>
             <td>{{ request.title }}</td>
             <td><WidgetFeedbackRequestStatus :status="request.status"/></td>
@@ -146,6 +156,30 @@
         <div v-else class="request-section-main-table-empty">
           <img src="/papertray.png" />
           <p>Пока здесь нет запросов</p>
+        </div>
+      </template>
+      <template v-else-if="this.type === 'announcement'">
+        <table class="request-section-main-table" v-if="requests.length">
+          <thead>
+          <tr class="request-section-main-table-tr">
+            <th>Дата создания</th>
+            <th>Арендатор</th>
+            <th>Тема</th>
+            <th>Статус</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="(request,key) in requests" @click="$router.push(`/announcement/${request.id}`)" class="request-section-main-table-tr">
+            <td>{{ makeDate(request.created_at) }}</td>
+            <td>{{ request.user.name }} {{ request.user.surname }}</td>
+            <td><img v-if="request.file" src="/attachment.png" /> {{ request.announcement.title }}</td>
+            <td><WidgetAnnouncementStatus :status="request.view"/></td>
+          </tr>
+          </tbody>
+        </table>
+        <div v-else class="request-section-main-table-empty">
+          <img src="/papertray.png" />
+          <p>Пока здесь нет уведомлений</p>
         </div>
       </template>
       <template v-else>
@@ -391,11 +425,13 @@ import UserBannerComment from "./modal/UserBannerComment";
 import WidgetReviewWithBanner from "./WidgetReviewWithBanner";
 import WidgetUserRequest from "./WidgetUserRequest";
 import WidgetFeedbackRequestStatus from "./WidgetFeedbackRequestStatus";
+import WidgetAnnouncementStatus from "./WidgetAnnouncementStatus";
 export default {
   name: "RequestSection",
   props: ['type','requestChange'],
   components: {
     WidgetFeedbackRequestStatus,
+    WidgetAnnouncementStatus,
     WidgetUserRequest,
     WidgetReviewWithBanner,
     UserBannerComment, RequestSectionFooter, UserBannerModal, WidgetUserBanner, DatePicker},
@@ -420,6 +456,8 @@ export default {
           return 'Заявки';
         case 'feedback':
           return 'Служба поддержки';
+        case 'announcement':
+          return 'Уведомления';
         default:
           return 'Без заголовка'
       }
@@ -438,6 +476,9 @@ export default {
     },
     signatureLoading() {
       return this.$store.state.localStorage.signatureLoading;
+    },
+    monthsShort() {
+      return this.$store.state.localStorage.lang.formatLocale.monthsShort
     },
     statusConverted() {
       let arr = [];
@@ -522,6 +563,7 @@ export default {
       request_status: null,
       feedback_status: null,
       category_id: null,
+      announcement_status: null,
       brand_id: null,
       brands:[],
       categories:[],
@@ -581,6 +623,18 @@ export default {
     }
   },
   methods: {
+    makeDate(date){
+      if (date) {
+        date = new Date(date);
+        let day = String(date.getDate()).padStart(2,'0');
+        let month = this.monthsShort[date.getMonth()].toLowerCase();
+        let year = String(date.getFullYear());
+        let hour = String(date.getHours()).padStart(2,'0');
+        let minutes = String(date.getMinutes()).padStart(2,'0');
+        return [day +' ' + month + ' ' + year, [hour, minutes].join(':')].join(' ');
+      }
+      return '';
+    },
     contains(number, digit) {
       if (number < 0) { // make sure negatives are dealt with properly, alternatively replace this if statement with number = Math.abs(number)
         number *= -1;
@@ -924,6 +978,10 @@ export default {
         if (this.type === 'feedback' && this.id) {
           data.id = Number(this.id);
         }
+        if (this.type === 'announcement' && this.announcement_status !== null) {
+          data.view = this.announcement_status
+        }
+
       }
       if ([4,5,6].includes(this.type)) {
         if (this.type === 4) {
@@ -966,6 +1024,9 @@ export default {
         } else if (this.type === 'feedback') {
           this.pages  = await this.$store.dispatch('localStorage/getFeedbackRequestPages', data);
           this.requests = await this.$store.dispatch('localStorage/getFeedbackRequests', data);
+        } else if (this.type === 'announcement') {
+          this.pages  = await this.$store.dispatch('localStorage/getAnnouncementPages', data);
+          this.requests = await this.$store.dispatch('localStorage/getAnnouncements', data);
         }
 
       } else {
@@ -993,6 +1054,9 @@ export default {
         } else if (this.type === 'review') {
           this.pages  = await this.$store.dispatch('localStorage/getUserReviewPages', data);
           this.requests = await this.$store.dispatch('localStorage/getUserReviews', data);
+        } else if (this.type === 'announcement') {
+          this.pages  = await this.$store.dispatch('localStorage/getAnnouncementPages', data);
+          this.requests = await this.$store.dispatch('localStorage/getAnnouncements', data);
         }
       }
       this.load = true;

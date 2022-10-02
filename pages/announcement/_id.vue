@@ -4,7 +4,7 @@
       <HeaderSection/>
       <div class="body-section">
         <SidebarSection/>
-        <FeedbackRequest :feedback="id"/>
+        <Announcement :id="id" @title="setTitle" />
       </div>
     </vue-custom-scrollbar>
   </div>
@@ -15,23 +15,23 @@
   import "vue-custom-scrollbar/dist/vueScrollbar.css"
   import SidebarSection from "../../components/SidebarSection";
   import HeaderSection from "../../components/HeaderSection";
-  import FeedbackRequest from "../../components/FeedbackRequest";
+  import Announcement from "../../components/Announcement";
   export default {
-    head: {
-      title: 'Просмотр запроса',
-      meta: [
-        /*{
-          hid: 'description',
-          name: 'description',
-          content: 'Home page description'
-        }*/
-      ],
-    },
-    middleware: ['admin'],
+    middleware: ['announcement'],
     name: "view",
-    components: {FeedbackRequest, HeaderSection, SidebarSection, vueCustomScrollbar},
+    components: {Announcement, HeaderSection, SidebarSection, vueCustomScrollbar},
     async asyncData({ params, redirect }) {
       return {id: params.id}
+    },
+    methods: {
+      setTitle(title) {
+        this.title = title;
+      }
+    },
+    head() {
+      return {
+        title: this.title,
+      }
     }
   }
 </script>

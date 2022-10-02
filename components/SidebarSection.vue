@@ -98,14 +98,22 @@
           </div>
         </div>
       </NuxtLink>
-      <NuxtLink v-if="[2,3].includes(user.role_id)" to="/mailing">
+      <NuxtLink v-if="[1,2].includes(user.role_id)" to="/announcement">
+        <div class="sidebar-section-menu-item" :class="{'sidebar-section-menu-item-active':($nuxt.$route.name === 'announcement')}">
+          <div>
+            <div class="sidebar-section-menu-item-icon sidebar-section-menu-item-icon-bell"></div>
+            <div class="sidebar-section-menu-item-title">Уведомления</div>
+          </div>
+        </div>
+      </NuxtLink>
+      <!--NuxtLink v-if="[2,3].includes(user.role_id)" to="/mailing">
         <div class="sidebar-section-menu-item" :class="{'sidebar-section-menu-item-active':($nuxt.$route.name === 'mailing')}">
           <div>
             <div class="sidebar-section-menu-item-icon sidebar-section-menu-item-icon-folder"></div>
             <div class="sidebar-section-menu-item-title">Рассылка</div>
           </div>
         </div>
-      </NuxtLink>
+      </NuxtLink-->
       <NuxtLink v-if="user.role_id === 2" to="/feedback">
         <div class="sidebar-section-menu-item" :class="{'sidebar-section-menu-item-active':($nuxt.$route.name === 'feedback')}">
           <div>
@@ -130,6 +138,9 @@ export default {
     this.check();
     this.$store.commit('localStorage/setUserBannerCount', await this.$store.dispatch('localStorage/getUserBannerCount', 'new'));
     this.$store.commit('localStorage/setUserRequestCount', await this.$store.dispatch('localStorage/getUserRequestCount', '7d'));
+  },
+  async mounted() {
+    this.$store.commit('localStorage/setAnnouncementRecipient',await this.$store.dispatch('localStorage/getNotViewedAnnouncement', {user_id:this.user.id}));
   },
   computed:{
     user() {
