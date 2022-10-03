@@ -40,7 +40,9 @@
               <div class="feedback-section-block-data-content-description">
                 {{item.description}}
               </div>
-              <a :href="item.file.path" download target="_blank"><img src="/attachment.png" /> {{item.file.title}}</a>
+              <div v-if="item.file" class="feedback-section-block-data-content-description">
+                <a :href="item.file.path" download target="_blank"><img src="/attachment.png" /> {{item.file.title}}</a>
+              </div>
               <div class="text-gray-600">{{makeDate(item.created_at)}}</div>
             </div>
           </div>
