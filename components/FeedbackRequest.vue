@@ -64,7 +64,8 @@
           <div class="feedback-section-block-data-content">
             <div class="feedback-section-block-data-content-header">Ответить</div>
             <div class="feedback-section-block-data-content-description">
-              <textarea v-model="form.description"  rows="5" class="form-control form-control-sm" placeholder="Напишите ваш ответ"></textarea>
+              <textarea v-model="form.description"  rows="5" class="form-control form-control-sm mb-3" placeholder="Напишите ваш ответ"></textarea>
+              <input ref="file" v-on:change="handleFileUpload"  type="file" accept=".jpg,.jpeg,.png,.bmp,.pdf,.txt,.xls,.xlsx,.doc,.docx">
             </div>
             <button @click="addMessage" :disabled="!form.description.length" class="btn btn-primary">Отправить</button>
           </div>
@@ -89,7 +90,8 @@ import IconArrow from "@/components/icons/IconArrow";
           user_id: null,
           feedback_request_id: null,
           type: 'request',
-          description: ''
+          description: '',
+          file: null
         }
       }
     },
@@ -113,6 +115,13 @@ import IconArrow from "@/components/icons/IconArrow";
       },
     },
     methods:{
+      async handleFileUpload(e){
+        if (e.target && e.target.files) {
+          this.form.file = e.target.files[0];
+        } else {
+          this.form.file = null;
+        }
+      },
       makeDate(date){
         if (date) {
           date = new Date(date);
@@ -124,6 +133,15 @@ import IconArrow from "@/components/icons/IconArrow";
           return [day +' ' + month + ' ' + year, [hour, minutes].join(':')].join(' ');
         }
         return '';
+      },
+      clearForm(){
+        this.form = {
+          user_id: null,
+          feedback_request_id: null,
+          type: 'request',
+          description: '',
+          file: null
+        };
       },
       async close(){
         this.loading = true;
@@ -143,10 +161,19 @@ import IconArrow from "@/components/icons/IconArrow";
           this.form.type = 'response';
         }
 
+        let formData = new FormData();
+
+        for ( let key in this.form ) {
+          formData.append(key, this.form[key]);
+        }
+
         let sending  = this.$toast.show('Отправляем ...');
-        let resp = await this.$store.dispatch('localStorage/createFeedbackRequestMessage', this.form);
+
+        let resp = await this.$store.dispatch('localStorage/createFeedbackRequestMessage', formData);
+
         sending.goAway(1);
         this.loading = false;
+        this.clearForm();
         this.$fetch();
       },
     }
