@@ -90,6 +90,16 @@
     flex-direction: row;
     grid-gap: 10px;
 
+    &-item-left {
+      background-image: url('/left.svg');
+    }
+    &-item-right {
+      background-image: url('/right.svg');
+    }
+    &-item-dots {
+      background-image: url('/dots.svg');
+    }
+
     &-item {
       width: 32px;
       height: 32px;

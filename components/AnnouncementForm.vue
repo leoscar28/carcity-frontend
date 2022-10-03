@@ -18,6 +18,13 @@
           <label class="form-label">Кому</label>
           <Select2 v-model="form.ids" :options="customers" :settings="{allowClear:true,multiple:true,placeholder:'Выберите получателей или оставьте пустым для отправки всем..'}" />
         </div>
+        <div class="mb-3">
+          <div class="row">
+            <div v-for="customer in customers" class="col-lg-3 col-md-4">
+              <label class="announcement-label"><input type="checkbox" v-model="form.ids" :value="customer.id"/> {{customer.text}}</label>
+            </div>
+          </div>
+        </div>
         <div class="text-end">
           <button @click="createAnnouncement()" :disabled="!formDataValid || sending" class="announcement-form__button">Отправить</button>
         </div>
@@ -85,6 +92,26 @@ export default {
 </script>
 
 <style lang="scss">
+.announcement-label {
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  padding: 3px 0 3px 20px;
+  position: relative;
+  &:hover {
+    background: #E4E4E4;
+  }
+  input {
+    left: 4px;
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+  }
+}
 .announcement-form {
   margin:20px;
   background: #ffffff;
