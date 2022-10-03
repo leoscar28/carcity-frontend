@@ -90,26 +90,27 @@
     flex-direction: row;
     grid-gap: 10px;
 
-    &-item-left {
-      background-image: url('/left.svg');
-    }
-    &-item-right {
-      background-image: url('/right.svg');
-    }
-    &-item-dots {
-      background-image: url('/dots.svg');
-    }
+
 
     &-item {
+      background: #fff no-repeat center;
       width: 32px;
       height: 32px;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #fff;
       border-radius: 4px;
       border: 1px solid transparent;
       cursor:pointer;
+      &-left {
+        background-image: url('/left.svg');
+      }
+      &-right {
+        background-image: url('/right.svg');
+      }
+      &-dots {
+        background-image: url('/dots.svg');
+      }
       &-sel {
         border: 1px solid #274985;
       }
