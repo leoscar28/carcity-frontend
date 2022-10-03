@@ -106,7 +106,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #fff;
+      background-color: #fff;
       border-radius: 4px;
       border: 1px solid transparent;
       cursor:pointer;
