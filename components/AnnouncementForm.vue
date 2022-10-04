@@ -19,6 +19,10 @@
           <Select2 v-model="form.ids" :options="customers" :settings="{allowClear:true,multiple:true,placeholder:'Выберите получателей или оставьте пустым для отправки всем..'}" />
         </div>
         <div class="mb-3">
+          <div class="announcement-link" v-if="customers.length === form.ids.length" @click="form.ids=[]">Отменить выбор</div>
+          <div class="announcement-link" v-else @click="form.ids = Array.from(customers, (item) => item.id )">Выбрать всех</div>
+        </div>
+        <div class="mb-3">
           <div class="row">
             <div v-for="customer in customers" class="col-lg-3 col-md-4">
               <label class="announcement-label"><input type="checkbox" v-model="form.ids" :value="customer.id"/> {{customer.text}}</label>
@@ -92,6 +96,11 @@ export default {
 </script>
 
 <style lang="scss">
+
+.announcement-link {
+  color: #274985;
+  cursor: pointer;
+}
 .announcement-label {
   cursor: pointer;
   font-size: 12px;
