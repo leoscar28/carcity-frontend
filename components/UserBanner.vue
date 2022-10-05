@@ -120,10 +120,11 @@
 </template>
 
 <script>
+  import StarRating from 'vue-star-rating'
   import UserBannerReworkModal from "./modal/UserBannerReworkModal";
   export default {
     name: "UserBanner",
-    components: {UserBannerReworkModal},
+    components: {UserBannerReworkModal, StarRating},
     props:['banner', 'isFront'],
     emits:['title'],
     data(){
