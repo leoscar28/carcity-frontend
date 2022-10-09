@@ -37,6 +37,7 @@ export const state = () => ({
   languages: ['RU','KZ'],
   userBannerCount: 0,
   userRequestCount: 0,
+  userFeedbackCount: 0,
   announcementRecipient: null,
   lang: {
     formatLocale: {
@@ -58,6 +59,9 @@ export const mutations = {
   },
   setUserRequestCount(state,value) {
     state.userRequestCount  = value;
+  },
+  setUserFeedbackCount(state,value) {
+    state.userFeedbackCount  = value;
   },
   setAwards(state,value) {
     state.awards  = value;
@@ -560,6 +564,9 @@ export const actions = {
   async closeFeedbackRequest({commit}, id) {
     let res = await this.$repository.feedbackRequest.close(id);
     return res;
+  },
+  async getUserFeedbackCount({commit}, type) {
+    return await this.$repository.feedbackRequest.count(type);
   },
   async getUserBannerPages({commit},payload) {
     return await this.$repository.userBanner.pages(payload);

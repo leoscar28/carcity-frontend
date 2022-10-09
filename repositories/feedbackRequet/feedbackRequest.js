@@ -46,5 +46,13 @@ export default ($axios) => ({
       }).catch(error => {
         return error.response.data;
       });
-  }
+  },
+  count(type) {
+    return $axios.get('/api/feedbackRequest/count/'+type)
+      .then(response => {
+        return response.data;
+      }).catch(error => {
+        return error.response.data;
+      });
+  },
 });

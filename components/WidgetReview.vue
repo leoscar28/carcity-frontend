@@ -1,6 +1,6 @@
 <template>
     <div class="widget-review">
-      <div class="widget-review__image">
+      <div v-if="!isAdmin" class="widget-review__image">
         <img v-if="item.user.image" :src="item.user.image.path" alt="" />
         <img v-else src="/defaultUser.png" alt="" />
       </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="widget-simply-banner">
-    <div class="widget-simply-banner__image">
+    <div v-if="!isAdmin" class="widget-simply-banner__image">
       <img v-if="item.images.length" :src="item.images[0].path" alt="" />
       <img v-else src="/default.jpg" alt="" />
     </div>
@@ -20,7 +20,7 @@
         {{ item.description }}
       </div>
       <div v-if="isAdmin" class="widget-simply-banner__content__footer">
-        <div>{{ createdDate }} {{customer.company}}</div><div>ID: {{item.id}}</div>
+        <div><span class="d-flex"><Icon name="calendar"/> {{ createdDate }}</span> <span class="d-flex"><Icon name="shop"/> {{customer.company}}</span></div><div>ID: {{item.id}}</div>
       </div>
     </div>
   </div>
@@ -109,6 +109,10 @@
         color: #8c8c8c;
         display: flex;
         justify-content: space-between;
+        &>div {
+          display: flex;
+          grid-gap:10px;
+        }
       }
     }
   }

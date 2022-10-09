@@ -144,7 +144,7 @@
             </tr>
           </thead>
           <tbody>
-          <tr v-for="(request,key) in requests" @click="$router.push(`/feedback/${request.id}`)" class="request-section-main-table-tr">
+          <tr v-for="(request,key) in requests" @click="$router.push(`/feedback/${request.id}`)" class="request-section-main-table-tr" :class="{'request-section-main-table-tr--success':request.status === 40}">
             <td>{{ request.id }}</td>
             <td>{{ makeDate(request.created_at) }}</td>
             <td>{{ request.user.name }} {{ request.user.surname }}</td>

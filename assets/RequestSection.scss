@@ -927,6 +927,9 @@
         &:only-child {
           background: transparent;
         }
+        &--success {
+          background: #B7EB8F!important;
+        }
       }
       &-head {
         & > tr {

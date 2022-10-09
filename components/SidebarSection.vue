@@ -118,7 +118,7 @@
         <div class="sidebar-section-menu-item" :class="{'sidebar-section-menu-item-active':($nuxt.$route.name === 'feedback')}">
           <div>
             <div class="sidebar-section-menu-item-icon sidebar-section-menu-item-icon-help"></div>
-            <div class="sidebar-section-menu-item-title">Служба поддержки</div>
+            <div class="sidebar-section-menu-item-title">Служба поддержки<div v-if="feedbackCount" class="sidebar-section-badge">{{feedbackCount}}</div></div>
           </div>
         </div>
       </NuxtLink>
@@ -138,6 +138,7 @@ export default {
     this.check();
     this.$store.commit('localStorage/setUserBannerCount', await this.$store.dispatch('localStorage/getUserBannerCount', 'new'));
     this.$store.commit('localStorage/setUserRequestCount', await this.$store.dispatch('localStorage/getUserRequestCount', '7d'));
+    this.$store.commit('localStorage/setUserFeedbackCount', await this.$store.dispatch('localStorage/getUserFeedbackCount', 'new'));
   },
   async mounted() {
     this.$store.commit('localStorage/setAnnouncementRecipient',await this.$store.dispatch('localStorage/getNotViewedAnnouncement', {user_id:this.user.id}));
@@ -151,7 +152,10 @@ export default {
     },
     requestCount(){
       return this.$store.state.localStorage.userRequestCount;
-    }
+    },
+    feedbackCount(){
+      return this.$store.state.localStorage.userFeedbackCount;
+    },
   },
   methods: {
     check() {
