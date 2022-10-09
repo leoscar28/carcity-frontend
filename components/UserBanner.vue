@@ -49,7 +49,7 @@
           </div>
         </div>
 
-        <div class="banner-section-block  banner-section-block-data">
+        <div class="banner-section-block  banner-section-block-data" :class="{'banner-section-block-data--order': bannerItem.images && !bannerItem.images.length}">
           <div class="banner-section-block-data-subheader">
             <div v-if="bannerItem.published_at" class="text-gray-600">
               Опубликовано {{ makeDate(bannerItem.published_at) }}
@@ -86,6 +86,10 @@
           <div class="text-gray-600">ID: {{ bannerItem.id }}</div>
         </div>
 
+        <div v-if="bannerItem.room && [2,3,4,5].includes(bannerItem.room['tier'].id)" class="banner-section-block banner-section-block-data ">
+          <map-main :selected="bannerItem.room['tier'].id - 1" :room-ids="[bannerItem.room.id]" :key="'room'+bannerItem.room.id"/>
+        </div>
+
         <div v-if="!user.id" class="banner-section-block  banner-section-block-data text-center">
           <div><img src="/cone.png" width="130" height="130" alt=""/></div>
           <div class="banner-section-block-data-header">
@@ -114,6 +118,13 @@
             <button @click="showMore" class="btn btn-outline-primary">Показать еще</button>
           </div>
         </div>
+
+        <div class="col-xl-12 mb-lg-5 mt-3 mb-3">
+          <h4 v-if="items.length" class="fw-bold mb-3 pb-1">Ве объявления автора</h4>
+          <div class="promotion-items">
+            <WidgetUserBannerFront v-for="item in items" :item="item" :key="item.id"/>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -129,6 +140,7 @@
     emits:['title'],
     data(){
       return {
+        items:[],
         showCategories: false,
         showBrands: false,
         weekdaysArr:[
@@ -163,6 +175,7 @@
     fetchOnServer: true,
     async fetch() {
       this.bannerItem = await this.$store.dispatch('localStorage/getPromotion', {id: this.banner, role_id: this.user.role_id});
+
       if (this.bannerItem.type === 1) {
         this.categories = await this.$store.dispatch('localStorage/listDictionarySpareParts');
         this.brands = await this.$store.dispatch('localStorage/listDictionaryBrands');
@@ -178,6 +191,23 @@
       }
       await this.getStatuses();
       this.$emit('title',this.bannerItem.title);
+
+      let dataForRequest =  {
+        type: 'published',
+        take: 10,
+        pagination: 1,
+        brand_id: [],
+        category_id: [],
+        order_by: 'updated',
+        sort: 'DESC',
+        pages: null,
+        data: {
+          type: this.bannerItem.type,
+          room_id: this.bannerItem.room_id
+        }
+      }
+
+      this.items = await this.$store.dispatch('localStorage/getUserBanners', dataForRequest);
 
     },
     computed:{
@@ -267,6 +297,7 @@
         await this.$store.dispatch('localStorage/showUserBannerPhone', this.bannerItem.id);
         this.phoneVisible = true;
       },
+
       makeDate(date){
         if (date) {
           date = new Date(date);
@@ -540,6 +571,12 @@
         gap: 12px;
         display: flex;
         flex-direction: column;
+
+        &--order {
+          @media (min-width: 960px) {
+            order: -2;
+          }
+        }
 
         &-textarea {
           padding: 10px 12px;
