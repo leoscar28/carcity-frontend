@@ -2,6 +2,9 @@
     <div class="favorite" v-if="isSimplyUser" @click.prevent.stop="justDoIt">
       <Icon :name="name" :key="name"/>
     </div>
+    <div class="favorite" v-else-if="!user" @click.prevent.stop="$store.commit('localStorage/setFavoriteModal', true)">
+      <Icon :name="name" :key="name"/>
+    </div>
 </template>
 
 <script>

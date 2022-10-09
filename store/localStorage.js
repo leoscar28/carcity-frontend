@@ -5,6 +5,7 @@ export const state = () => ({
   userBannerModalOne: false,
   userBannerModalTwo: false,
   notificationModal: false,
+  favoriteModal: false,
   notificationCount: 0,
   notifications: [],
   slider: [],
@@ -190,7 +191,10 @@ export const mutations = {
     const user  = state.user;
     user.favorites = user.favorites.filter((i) => {return i != id;});
     state.user = user;
-  }
+  },
+  setFavoriteModal(state,value) {
+    state.favoriteModal = value;
+  },
 }
 
 export const actions = {

@@ -158,6 +158,7 @@
     </template>
     <UserRequestModal/>
     <FeedbackRequestModal/>
+    <FavoriteModal/>
   </header>
 
 </template>
@@ -169,8 +170,9 @@ import Icon from "../icons/Icon";
 import UserMenu from "../UserMenu";
 import UserRequestModal from "../modal/UserRequestModal";
 import FeedbackRequestModal from "../modal/FeedbackRequestModal";
+import FavoriteModal from "../modal/FavoriteModal";
 export default {
-  components: {FeedbackRequestModal, UserRequestModal, UserMenu, Icon, LocaleDropdown},
+  components: {FavoriteModal, FeedbackRequestModal, UserRequestModal, UserMenu, Icon, LocaleDropdown},
   data () {
     this.handleScrollThrottled = throttle(this.handleScroll, 100)
     return {
