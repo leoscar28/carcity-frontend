@@ -36,7 +36,7 @@
       </div>
     </div>
     <div v-if="!isSuccess && (item.user_id === user.id)" class="widget-request__footer mt-3 pt-3">
-      <button @click="setFound" class="btn btn-outline-primary">Я нашел что искал</button>
+      <button @click="setFound" class="btn btn-outline-primary" :disabled="loading">Я нашел что искал</button>
     </div>
 
   </div>
@@ -64,10 +64,17 @@
           return this.item.status === 40;
         }
       },
+      data(){
+        return {loading:false};
+      },
       methods:{
         async setFound(){
-          await this.$store.dispatch('localStorage/unpublishUserRequest', this.item.id);
-          this.item.status = 40;
+          if (!this.loading) {
+            this.loading = true;
+            await this.$store.dispatch('localStorage/unpublishUserRequest', this.item.id);
+            this.item.status = 40;
+            this.loading = false;
+          }
         },
         makeDate(date){
           if (date) {

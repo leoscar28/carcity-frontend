@@ -10,9 +10,9 @@
               {{announcementRecipient.announcement.description}}
             </div>
             <div v-if="announcementRecipient.file" class="mb-3">
-              <a :href="announcementRecipient.file.path" download  target="_blank"><img src="/attachment.png" /> {{announcementRecipient.file.title}}</a>
+              <a :href="announcementRecipient.file.path" download @click="clicked = true" target="_blank"><img src="/attachment.png" /> {{announcementRecipient.file.title}}</a>
             </div>
-            <label><input type="checkbox" v-model="form.confirm"/> Ознакомлен</label>
+            <label><input type="checkbox" v-model="form.confirm" :disabled="announcementRecipient.file && !clicked"/> Ознакомлен</label>
           </div>
           <div class="modal-footer">
             <button @click="onSuccess" :disabled="!form.confirm"  class="fr-modal__button" >Закрыть</button>
@@ -30,6 +30,7 @@
     data(){
       return {
         send: false,
+        clicked: false,
         form :{
           confirm: false
         }
