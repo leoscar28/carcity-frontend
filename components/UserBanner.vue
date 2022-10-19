@@ -83,7 +83,7 @@
             <div class="banner-section-block-data-content-header">Описание</div>
             <div class="banner-section-block-data-content-description">{{ bannerItem.description }}</div>
           </div>
-          <div class="text-gray-600">ID: {{ bannerItem.id }}</div>
+          <div class="d-flex text-gray-600">ID: {{ bannerItem.id }} <Icon name="views"/> {{ bannerItem.view_count }}</div>
         </div>
 
         <div v-if="bannerItem.room && [2,3,4,5].includes(bannerItem.room['tier'].id)" class="banner-section-block banner-section-block-data ">
@@ -120,7 +120,7 @@
         </div>
 
         <div class="col-xl-12 mb-lg-5 mt-3 mb-3">
-          <h4 v-if="items.length" class="fw-bold mb-3 pb-1">Ве объявления автора</h4>
+          <h4 v-if="items.length" class="fw-bold mb-3 pb-1">Все объявления автора</h4>
           <div class="promotion-items">
             <WidgetUserBannerFront v-for="item in items" :item="item" :key="item.id"/>
           </div>
@@ -131,11 +131,12 @@
 </template>
 
 <script>
+  import Icon from "./icons/Icon";
   import StarRating from 'vue-star-rating'
   import UserBannerReworkModal from "./modal/UserBannerReworkModal";
   export default {
     name: "UserBanner",
-    components: {UserBannerReworkModal, StarRating},
+    components: {UserBannerReworkModal, Icon, StarRating},
     props:['banner', 'isFront'],
     emits:['title'],
     data(){
