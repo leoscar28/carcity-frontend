@@ -147,7 +147,7 @@
           <tr v-for="(request,key) in requests" @click="$router.push(`/feedback/${request.id}`)" class="request-section-main-table-tr">
             <td>{{ request.id }}</td>
             <td>{{ makeDate(request.created_at) }}</td>
-            <td>{{ request.user.name }} {{ request.user.surname }}</td>
+            <td>{{ request.user.company }}</td>
             <td>{{ request.title }}</td>
             <td><WidgetFeedbackRequestStatus :status="request.status"/></td>
           </tr>
