@@ -83,7 +83,7 @@
             <div class="banner-section-block-data-content-header">Описание</div>
             <div class="banner-section-block-data-content-description">{{ bannerItem.description }}</div>
           </div>
-          <div class="d-flex text-gray-600">ID: {{ bannerItem.id }} <Icon name="views"/> {{ bannerItem.view_count }}</div>
+          <div class="d-flex justify-content-between text-gray-600"><div>ID: {{ bannerItem.id }}</div><div class="d-flex align-items-center"><Icon name="views"/> {{ bannerItem.view_count }}</div></div>
         </div>
 
         <div v-if="bannerItem.room && [2,3,4,5].includes(bannerItem.room['tier'].id)" class="banner-section-block banner-section-block-data ">
