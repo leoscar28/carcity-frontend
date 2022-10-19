@@ -138,7 +138,6 @@
         color: #8c8c8c;
         display: flex;
         flex-direction: row;
-        grid-gap: 8px;
         justify-content: flex-end;
         align-items: center;
       }
