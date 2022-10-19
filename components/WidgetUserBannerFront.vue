@@ -12,6 +12,9 @@
       </div>
     </div>
     <div class="widget-ubf__content">
+      <div class="widget-ubf__content__views">
+        <Icon name="views"/> {{ item.view_count }}
+      </div>
       <div class="widget-ubf__content__header">
         <div class="widget-ubf__content__header__title">{{item.title}}</div>
         <div class="widget-ubf__content__header__like">
@@ -129,6 +132,14 @@
 
       @media (max-width: 768px) {
         width: 50%;
+      }
+
+      &__view {
+        display: flex;
+        flex-direction: row;
+        grid-gap: 8px;
+        justify-content: flex-end;
+        align-items: center;
       }
 
       &__header {
