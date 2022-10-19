@@ -26,7 +26,7 @@ export default {
         case 30:
           return 'widget-feedback-status--yellow';
         case 40:
-          return 'widget-feedback-status--gray';
+          return 'widget-feedback-status--green';
       }
     }
   },
