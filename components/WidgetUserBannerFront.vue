@@ -134,7 +134,8 @@
         width: 50%;
       }
 
-      &__view {
+      &__views {
+        color: #8c8c8c;
         display: flex;
         flex-direction: row;
         grid-gap: 8px;
