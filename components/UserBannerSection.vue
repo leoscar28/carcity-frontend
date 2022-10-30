@@ -603,7 +603,7 @@
         this.categoriesCount = cats.length;
       },
       current: function () {
-        let cats = (val == AD_TYPE_SPARE_PART) ?
+        let cats = (this.type == AD_TYPE_SPARE_PART) ?
           this.sparePartCategories :
           this.serviceCategories;
 
