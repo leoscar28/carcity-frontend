@@ -418,7 +418,7 @@
         await this.getItems()
       },
       group(list){
-        let groups = list.reduce((groups, item) => ({ ...groups, [this.current === 1? item.name_kz[0] : item.name[0]]: [...(groups[this.current === 1? item.name_kz[0] : item.name[0]] || []), item] }), {})
+        let groups = list.reduce((groups, item) => ({ ...groups, [this.current === 1 && item.name_kz ? item.name_kz[0] : item.name[0]]: [...(groups[this.current === 1 && item.name_kz ? item.name_kz[0] : item.name[0]] || []), item] }), {})
         return Object.keys(groups).sort().reduce((obj, key) => { obj[key] = groups[key]; return obj; }, {});
       },
       filterForMenu(list){
