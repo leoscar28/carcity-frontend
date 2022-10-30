@@ -4,21 +4,25 @@
       <div class="row">
         <div class="col-lg-12 px-md-2 px-0">
           <div class="promotion-form">
-            <div>Что вы ищите?</div>
+            <div>{{ language[current][2] }}</div>
             <div class="row">
               <div class="col-md-6 mb-md-3 mb-2">
-                <input v-model="term" type="text" class="form-control" placeholder="Поиск по названию запчасти"/>
+                <input v-model="term" type="text" class="form-control" :placeholder="language[current][3]"/>
               </div>
               <div class="col-md-6 mb-md-3 mb-2 d-flex gap-md-3 gap-2">
-                <button @click="type = 1" class="btn promotion-form__btn-selector" :class="type != 1 ? 'btn-outline-primary' : 'btn-primary'">Запчасти</button>
-                <button @click="type = 2" class="btn promotion-form__btn-selector" :class="type != 2 ? 'btn-outline-primary' : 'btn-primary'">Услуги</button>
+                <button @click="type = 1" class="btn promotion-form__btn-selector" :class="type != 1 ? 'btn-outline-primary' : 'btn-primary'">
+                  {{ language[current][0] }}
+                </button>
+                <button @click="type = 2" class="btn promotion-form__btn-selector" :class="type != 2 ? 'btn-outline-primary' : 'btn-primary'">
+                  {{ language[current][1] }}
+                </button>
               </div>
             </div>
             <div v-if="type == 1" class="brands  mb-md-3 mb-2 d-md-block d-none">
               <div class="promotion-links">
-                <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray fw-bold">Марка</span>
+                <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray fw-bold">{{ language[current][4] }}</span>
                 <span v-for="(brand, index) in brandsForMenu" @click="setBrand(brand.id)"  class="promotion-link fw-bold d-md-block d-none" :class="{'promotion-link--active': brandCheck(brand.id)}">{{brand.name}}</span>
-                <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray promotion-link--gray--more fw-bold">ещё ...</span>
+                <span @click="showBrands = !showBrands" class="promotion-link promotion-link--gray promotion-link--gray--more fw-bold">{{ language[current][6] }} ...</span>
               </div>
               <div v-show="showBrands" class="checkbox-groups mt-2" :style="brandsHeight">
                 <CheckboxGroup v-for="(group, letter) in brands" :key="'cggb'+letter" :title="letter">
@@ -32,14 +36,14 @@
             </div>
             <div class="categories d-md-block d-none">
               <div class="promotion-links">
-                <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray fw-bold">Категория</span>
-                <span v-for="category in categoriesForMenu" @click="setCategory(category.id)" class="promotion-link fw-bold d-md-block d-none" :class="{'promotion-link--active': categoryCheck(category.id)}">{{category.name}}</span>
-                <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray promotion-link--gray--more fw-bold">ещё ...</span>
+                <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray fw-bold">{{ language[current][5] }}</span>
+                <span v-for="category in categoriesForMenu" @click="setCategory(category.id)" class="promotion-link fw-bold d-md-block d-none" :class="{'promotion-link--active': categoryCheck(category.id)}">{{current === 1 ? category.name_kz : category.name}}</span>
+                <span @click="showCategories = !showCategories" class="promotion-link promotion-link--gray promotion-link--gray--more fw-bold">{{ language[current][6] }} ...</span>
               </div>
               <div v-show="showCategories" class="checkbox-groups mt-2" :style="categoriesHeight">
                 <CheckboxGroup v-for="(group, letter) in categories" :key="'cggc' + letter" :title="letter">
                   <label  v-for="(item, index) in group" :key="'cggcl' + index">
-                    {{ item.name }}
+                    {{ current === 1 ? item.name_kz : item.name }}
                     <input type="checkbox" v-model="category_id" :value="item.id">
                     <span class="checkmark"></span>
                   </label >
@@ -71,7 +75,7 @@
               <div v-show="showCategories" class="mobile-checkbox-groups__checkboxes">
                 <div v-for="(group, letter) in categories" :key="'mcgc'+letter" :title="letter">
                   <label  v-for="(item, index) in group" :key="'mcgcl'+index">
-                    {{ item.name }}
+                    {{ current === 1 ? item.name_kz : item.name }}
                     <input type="checkbox" v-model="category_id" :value="item.id">
                     <span class="checkmark"></span>
                   </label >
@@ -82,13 +86,13 @@
                 <div v-show="!isRooms" class="form-check">
                   <input v-model="withImage" class="form-check-input" type="checkbox" id="flexCheckDefault">
                   <label class="form-check-label" for="flexCheckDefault">
-                    С фото
+                    {{ language[current][7] }}
                   </label>
                 </div>
               <div class="promotion-form__buttons d-flex flex-md-row flex-column gap-md-3 gap-2 pt-md-0 pt-3">
-                <NuxtLink v-if="!isPage" to="/promotions?showRooms=true" class="btn btn-outline-primary">Показать бутики</NuxtLink>
-                <button v-else @click="getRooms()" class="btn" :class="!isRooms ? 'btn-outline-primary' : 'btn-primary'" v-text="!isRooms ? 'Показать бутики' : 'Искать бутики'"></button>
-                <button @click="getItems(1, true)" class="btn" :class="isRooms ? 'btn-outline-primary' : 'btn-primary'" v-text="isRooms ? 'Показать объявления' : 'Искать объявления'"></button>
+                <NuxtLink v-if="!isPage" to="/promotions?showRooms=true" class="btn btn-outline-primary">{{ language[current][8]}}</NuxtLink>
+                <button v-else @click="getRooms()" class="btn" :class="!isRooms ? 'btn-outline-primary' : 'btn-primary'" v-text="!isRooms ? language[current][8] : language[current][24]"></button>
+                <button @click="getItems(1, true)" class="btn" :class="isRooms ? 'btn-outline-primary' : 'btn-primary'" v-text="isRooms ? language[current][25] : language[current][9]"></button>
               </div>
             </div>
           </div>
@@ -98,17 +102,17 @@
     <div style="position: relative;"><div ref="hiddenElement" style="height: 50px; position: absolute; top: -100px; pointer-events: none;"></div></div>
     <template v-if="!isRooms">
       <div class="col-xl-12 mb-lg-5 mb-3">
-        <h4 v-if="isPage" class="fw-bold mb-3 pb-1">Все объявления: </h4>
+        <h4 v-if="isPage" class="fw-bold mb-3 pb-1">{{ language[current][11] }}: </h4>
         <template v-if="items.length" >
-          <div v-if="isPage" class="items-sort">Найдено объявлений: {{Number(pages)}}</div>
-          <div class="items-sort" v-if="isPage">Сортировка по:
+          <div v-if="isPage" class="items-sort">{{ language[current][12] }}: {{Number(pages)}}</div>
+          <div class="items-sort" v-if="isPage">{{ language[current][13] }}:
             <select v-model="sortSelector">
-              <option :value="1">сначала новые</option>
-              <option :value="2">сначала старые</option>
-              <option :value="3">возрастанию рейтинга</option>
-              <option :value="4">убыванию рейтинга</option>
-              <option :value="5">возрастанию количества отзывов</option>
-              <option :value="6">убыванию количества отзывов</option>
+              <option :value="1">{{ language[current][14] }}</option>
+              <option :value="2">{{ language[current][15] }}</option>
+              <option :value="3">{{ language[current][16] }}</option>
+              <option :value="4">{{ language[current][17] }}</option>
+              <option :value="5">{{ language[current][18] }}</option>
+              <option :value="6">{{ language[current][19] }}</option>
             </select>
             <!--            <div @click="nextOrderBy">{{orderBy.name}}</div><div @click="changeSort"><Icon class="d-block m-0" :class="{'icon&#45;&#45;rotate': sort === 'ASC'}" name="filter_list" size="26"/></div>-->
           </div>
@@ -117,14 +121,14 @@
           </div>
         </template>
         <template v-else-if="!loading">
-          <div class="promotion-items__empty">По вашему запросу ничего не найдено</div>
+          <div class="promotion-items__empty">{{ language[current][20] }}</div>
         </template>
         <template v-else>
-          <div class="promotion-items__empty">Ищем объявления ...</div>
+          <div class="promotion-items__empty">{{ language[current][21] }} ...</div>
         </template>
       </div>
       <div v-if="!isPage" class="col-xl-12 text-center mb-lg-5 mb-0">
-        <NuxtLink :to="{ path: 'promotions', query: subQuery}" class="btn btn-outline-primary">Показать все объявления</NuxtLink>
+        <NuxtLink :to="{ path: 'promotions', query: subQuery}" class="btn btn-outline-primary">{{ language[current][10] }}</NuxtLink>
       </div>
       <UserBannerSectionPagination :paginate="paginate" :pages="pages" :take="take" :range="range" @up="up" @down="down" @setRange="setRange" @setPaginate="setPaginate" @setTake="setTake"/>
     </template>
@@ -136,15 +140,15 @@
               <div class="map-left-list-main">
                 <div v-for="(room,key) in list" @click="roomId = room.id" :key="'roomId'+room.id" :ref="'roomId'+room.id" class="map-left-list-item" :class="{'map-left-list-item--active':roomId === room.id}">
                   <div class="map-left-list-item-description">
-                    <div class="map-left-list-item-description-title">{{room.tier.title}}</div>
+                    <div class="map-left-list-item-description-title">{{ current === 1 ? room.tier.title_kz : room.tier.title}}</div>
                   </div>
-                  <div class="map-left-list-item-id">{{room.roomType.title}} {{room.title}}</div>
+                  <div class="map-left-list-item-id">{{current === 1 ? room.roomType.title.title_kz : room.roomType.title}} {{room.title}}</div>
                   <div v-if="roomId === room.id && roomUser && (roomSpareParts.length || roomBrands.length || roomServices.length)" class="map-left-list-item-room">
                     <div v-for="sparePart in roomSpareParts" :key="'sp'+sparePart.id">{{sparePart.name}}</div>
                     <div v-for="brand in roomBrands" :key="'br'+brand.id">{{brand.name}}</div>
                     <div v-for="service in roomServices" :key="'ss'+service.id">{{service.name}}</div>
                     <div v-if="items.length" @click="scrollToFoundedItems" class="map-left-list-item-description-button">
-                      Перейти к объявлениям
+                      {{ language[current][22] }}
                     </div>
                   </div>
                 </div>
@@ -155,13 +159,13 @@
         <div class="map-right">
           <map-main :selected="selectedTier" :room-ids="roomIds" :key="'room'+roomId" @room-select="setRoomId"></map-main>
           <div class="map-right-footer d-flex flex-row" onselectstart="return false">
-            <div class="map-right-footer-item" :class="{'map-right-footer-item-sel':(selectedTier === key)}" v-for="(tier,key) in tiers" :key="key" v-show="tier.id !== 6 && tier.id !== 1" @click="selectedTier = key">{{tier.title}}</div>
+            <div class="map-right-footer-item" :class="{'map-right-footer-item-sel':(selectedTier === key)}" v-for="(tier,key) in tiers" :key="key" v-show="tier.id !== 6 && tier.id !== 1" @click="selectedTier = key">{{ current === 1 ? tier.title_kz : tier.title}}</div>
           </div>
         </div>
       </div>
       <div style="position: relative;"><div ref="hiddenElement2" style="height: 50px; position: absolute; top: -100px; pointer-events: none;"></div></div>
       <div class="col-xl-12 mb-lg-5 mt-3 mb-3">
-        <h4 v-if="isPage && items.length" class="fw-bold mb-3 pb-1">Объявления выбранного продавца</h4>
+        <h4 v-if="isPage && items.length" class="fw-bold mb-3 pb-1"> {{ language[current][23] }}</h4>
         <div class="promotion-items">
           <WidgetUserBannerFront v-for="item in items" :item="item" :key="item.id"/>
         </div>
@@ -224,7 +228,25 @@
         pages: 0,
         selectedTier:1,
         loading: false,
-        query: {}
+        query: {},
+        language: [
+          [
+            'Запчасти', 'Услуги', 'Что вы ищите?', 'Поиск по названию запчасти', 'Марка',
+            'Категория', 'Еще', 'С фото', 'Показать бутики', 'Искать объявления',
+            'Показать все объявления', 'Все объявления', 'Найдено объявлений:', 'Сортировка по', 'Сначала новые',
+            'Сначала старые', 'Возрастанию рейтинга', 'Убыванию рейтинга', 'Возрастанию количества отзывов','Убыванию количества отзывов',
+            'По вашему запросу ничего не найдено', 'Ищем объявления', 'Перейти к объявлениям', 'Объявления выбранного продавца', 'Искать бутики',
+            'Показать объявления'
+          ],
+          [
+            'Авто бөлшек', 'Қызметтер', 'Не іздейсіз?', 'Авто бөлшек атауы бойынша іздеу', 'Маркасы',
+            'Санат', 'тағы', 'Фотосуретімен', 'Бутиктерді көрсету', 'Хабарландыруларды іздеу',
+            'Барлық хабарландыруларды көрсету', 'Барлық хабарландырулар', 'Хабарландыру табылды', 'Сұрыптау', 'Алдымен жаңалары',
+            'Алдымен ескілер', 'Рейтингтің өсуі', 'Рейтингтің төмендеуі', 'Пікірлер санының артуы', 'Пікірлер санының азаюы',
+            'Сұрауыңыз бойынша ештеңе табылмады', 'Біз жарнамаларды іздейміз', 'Жарнамаларға өтіңіз', 'Таңдалған сатушының тізімдері', 'Бутиктерді іздеу',
+            'Хабарландыруларды көрсету'
+          ]
+        ]
       }
 
       const query = this.$route.query;
@@ -338,6 +360,9 @@
       categoryCheck() {
         return id => this.category_id.includes(id);
       },
+      current() {
+        return this.$store.state.localStorage.current;
+      }
 
     },
     async created() {

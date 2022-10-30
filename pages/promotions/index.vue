@@ -24,8 +24,8 @@
         <div class="container">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><NuxtLink to="/" class="text-gray-600 text-decoration-none">Главная</NuxtLink></li>
-              <li class="breadcrumb-item active" aria-current="page">Поиск услуг и запчастей</li>
+              <li class="breadcrumb-item"><NuxtLink to="/" class="text-gray-600 text-decoration-none">{{ language[current][0] }}</NuxtLink></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ language[current][1] }}</li>
             </ol>
           </nav>
         </div>
@@ -53,6 +53,23 @@
       components: {UserBannerSection, Icon, TheHeader, TheFooter},
       head:{
         title: 'Поиск услуг и запчастей'
+      },
+      data(){
+        return {
+          language:[
+            [
+              'Главная', 'Поиск услуг и запчастей'
+            ],
+            [
+              'Басты', 'Авто болшектермен  қызметті іздеу'
+            ]
+          ]
+        }
+      },
+      computed:{
+        current() {
+          return this.$store.state.localStorage.current;
+        }
       }
     }
 </script>

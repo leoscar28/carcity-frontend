@@ -24,8 +24,8 @@
         <div class="container">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><NuxtLink to="/" class="text-gray-600 text-decoration-none">Главная</NuxtLink></li>
-              <li class="breadcrumb-item"><NuxtLink to="/promotions" class="text-gray-600 text-decoration-none">Поиск услуг и запчастей</NuxtLink></li>
+              <li class="breadcrumb-item"><NuxtLink to="/" class="text-gray-600 text-decoration-none">{{ language[current][0] }}</NuxtLink></li>
+              <li class="breadcrumb-item"><NuxtLink to="/promotions" class="text-gray-600 text-decoration-none">{{ language[current][1] }}</NuxtLink></li>
               <li class="breadcrumb-item active" aria-current="page">{{title}}</li>
             </ol>
           </nav>
@@ -52,7 +52,16 @@
       name: "_id",
       components: {TheHeader, TheFooter, UserBanner},
       asyncData({ params, redirect }) {
-          return {id: params.id, title: ''}
+          return {id: params.id, title: '',
+            language:[
+              [
+                'Главная', 'Поиск услуг и запчастей'
+              ],
+              [
+                'Басты', 'Авто болшектермен  қызметті іздеу'
+              ]
+            ]
+          }
         },
       methods: {
         setTitle(title) {
@@ -62,6 +71,11 @@
       head() {
         return {
           title: this.title,
+        }
+      },
+      computed:{
+        current() {
+          return this.$store.state.localStorage.current;
         }
       }
 

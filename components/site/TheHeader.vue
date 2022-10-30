@@ -66,10 +66,10 @@
               <NuxtLink :to="{ name: 'index', hash: '#infrastructure' }" class="mob__nav-link" @click.native="closeHamburger">
                 {{language[current][1]}}
               </NuxtLink>
-              <div v-if="isSimplyUser || !user" @click="$store.commit('localStorage/setUserRequestModal',true)" class="mob__nav-link">Подать заявку на запчасть</div>
+              <div v-if="isSimplyUser || !user" @click="$store.commit('localStorage/setUserRequestModal',true)" class="mob__nav-link">{{ language[current][7] }}</div>
               <template v-if="!user">
-                <NuxtLink to="/login" class="mob__nav-link">Войти</NuxtLink>
-                <NuxtLink to="/registration" class="mob__nav-link">Регистрация</NuxtLink>
+                <NuxtLink to="/login" class="mob__nav-link">{{ language[current][8] }}</NuxtLink>
+                <NuxtLink to="/registration" class="mob__nav-link">{{ language[current][9] }}</NuxtLink>
               </template>
               <template v-else>
                 <template v-if="isSimplyUser">
@@ -80,7 +80,7 @@
                 <NuxtLink v-else to="/invoice" class="mob__nav-link">Личный кабинет</NuxtLink>
                 <NuxtLink to="/profile" class="mob__nav-link">Настройки</NuxtLink>
                 <NuxtLink v-if="isSimplyUser" to="/profile/feedback" class="mob__nav-link">Служба поддержки</NuxtLink>
-                <div @click="logout" class="mob__nav-link">Выход</div>
+                <div @click="logout" class="mob__nav-link">{{ language[current][10] }}</div>
               </template>
             </div>
 
@@ -135,11 +135,12 @@
           <nav class="header__nav">
             <NuxtLink :to="{ name: 'index', hash: '#about' }" class="header__nav-link">{{language[current][0]}}</NuxtLink>
             <NuxtLink :to="{ name: 'index', hash: '#infrastructure' }" class="header__nav-link">{{language[current][1]}}</NuxtLink>
-            <div v-if="isSimplyUser || !user" @click="$store.commit('localStorage/setUserRequestModal',true)" class="header__nav-link d-flex align-items-center"><Icon name="keys_blue"  class="d-block"/> Подать заявку на запчасть</div>
+            <div v-if="isSimplyUser || !user" @click="$store.commit('localStorage/setUserRequestModal',true)" class="header__nav-link d-flex align-items-center"><Icon name="keys_blue"  class="d-block"/>
+              {{ language[current][7] }}</div>
             <div class="header__nav__buttons">
               <template v-if="!user">
-                <NuxtLink to="/login" class="btn btn-outline-primary">Войти</NuxtLink>
-                <NuxtLink to="/registration" class="btn btn-primary">Регистрация</NuxtLink>
+                <NuxtLink to="/login" class="btn btn-outline-primary">{{ language[current][8] }}</NuxtLink>
+                <NuxtLink to="/registration" class="btn btn-primary">{{ language[current][9] }}</NuxtLink>
               </template>
               <template v-else>
                 <UserMenu/>
@@ -151,7 +152,8 @@
       <div v-if="isSimplyUser || !user" @click="$store.commit('localStorage/setUserRequestModal',true)"  class="header__navbar d-md-none d-block" >
         <div class="container">
           <nav class="header__nav">
-            <div class="header__nav-link d-flex align-items-center"><Icon name="keys_blue"  class="d-block"/> Подать заявку на запчасть</div>
+            <div class="header__nav-link d-flex align-items-center"><Icon name="keys_blue"  class="d-block"/>
+              {{ language[current][7] }}</div>
           </nav>
         </div>
       </div>
@@ -178,8 +180,16 @@ export default {
     return {
       isActive: false,
       language: [
-        ['О нас','Инфраструктура','Арендаторам','Личный кабинет','Как добраться?','Администрация ТЦ','Работаем ежедневно'],
-        ['Бiз туралы','Инфрақұрылым','Жалға алушыларға','Жеке кабинет','Қалай жетуге болады?','СО әкімшілігі','жұмыс кестесі']
+        [
+          'О нас','Инфраструктура','Арендаторам','Личный кабинет','Как добраться?',
+          'Администрация ТЦ','Работаем ежедневно', 'Подать заявку на запчасть', 'Войти', 'Регистрация',
+          'Выход'
+        ],
+        [
+          'Бiз туралы','Инфрақұрылым','Жалға алушыларға','Жеке кабинет','Қалай жетуге болады?',
+          'СО әкімшілігі','жұмыс кестесі', 'Қосалқы бөлікке өтініш беріңіз', 'Кіру', 'Тіркеу',
+          'Шығу'
+        ]
       ]
     }
   },
