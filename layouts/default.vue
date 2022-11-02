@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper" class="page-wrapper">
+  <div id="wrapper" class="page-wrapper" :class = "{'modalOpened':$store.state.localStorage.userBannerModalOne || $store.state.localStorage.userBannerModalTwo}">
     <notification></notification>
     <Nuxt />
   </div>
@@ -17,4 +17,7 @@ export default {
 <style lang="scss">
   @import "assets/scss/main";
   @import "assets/Modal.scss";
+  .modalOpened .ps{
+    overflow: inherit !important;
+  }
 </style>
