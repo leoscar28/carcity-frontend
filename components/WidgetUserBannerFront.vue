@@ -23,7 +23,7 @@
       </div>
       <div v-if="item.reviews" class="widget-ubf__content__reviews">
         <star-rating :padding="4" :increment="0.1" :show-rating="false" :star-size="15" :rating="Number(item.reviews.rating)" :read-only="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" />
-        <span v-if="item.reviews.count" class="widget-ubf__content__reviews__count">{{item.reviews.count}} отзывов</span>
+        <span v-if="item.reviews.count" class="widget-ubf__content__reviews__count">{{ language[current][0] }}: {{item.reviews.count}}</span>
       </div>
       <div class="widget-ubf__content__description">{{item.description}}</div>
     </div>
@@ -38,9 +38,24 @@
         name: "WidgetUserBannerFront",
       components: {Favorite, Icon, StarRating},
       props:['item'],
+      data(){
+        return {
+          language:[
+            [
+              'Отзывов'
+            ],
+            [
+              'Пікір'
+            ]
+          ]
+        }
+      },
       computed: {
         user(){
           return this.$store.state.localStorage.user
+        },
+        current() {
+          return this.$store.state.localStorage.current;
         }
       }
     }

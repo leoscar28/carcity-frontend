@@ -26,10 +26,10 @@
             <UserBannerReworkModal :show="showReworkModal" @cancel="showReworkModal = false" @success="needEdits" />
           </div>
           <div class="banner-section-block">
-            <div v-if="bannerItem.room" class="banner-section-block-title text-gray-900">{{ bannerItem.room['room_type'].title }} {{ bannerItem.room.title }}, {{ bannerItem.room['tier'].title }}</div>
+            <div v-if="bannerItem.room" class="banner-section-block-title text-gray-900">{{ current === 1 ? bannerItem.room['room_type'].title_kz : bannerItem.room['room_type'].title }} {{ bannerItem.room.title }}, {{ current === 1 ? bannerItem.room['tier'].title_kz : bannerItem.room['tier'].title }}</div>
             <hr/>
             <template v-if="isFront && !phoneVisible">
-              <button @click="showPhone" class="btn btn-outline-primary w-100">Показать номер</button>
+              <button @click="showPhone" class="btn btn-outline-primary w-100">{{ language[current][0] }}</button>
             </template>
             <template v-if="!isFront || phoneVisible">
               <WidgetBannerSectionWithIcon icon="phone_blue" :title="bannerItem.employee_name" :subtitle="bannerItem.employee_phone" />
@@ -37,15 +37,15 @@
             </template>
           </div>
           <div v-if="bannerItem.reviews" class="banner-section-block banner-section-block__reviews">
-            <div class="text-gray-600">Рейтинг продавца</div>
+            <div class="text-gray-600">{{ language[current][1] }}</div>
             <div> <star-rating :padding="8" :increment="0.1" :star-size="18" :show-rating="!!bannerItem.reviews.rating" :rating="Number(bannerItem.reviews.rating)" :read-only="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" /></div>
-            <div class="banner-section-block__reviews__count"> {{ bannerItem.reviews.count}} отзывов</div>
+            <div class="banner-section-block__reviews__count"> {{ language[current][2] }}: {{ bannerItem.reviews.count}} </div>
           </div>
           <div class="banner-section-block">
-            <WidgetBannerSectionWithIcon icon="clock_blue" title="Время работы магазина" :subtitle="workTime" />
+            <WidgetBannerSectionWithIcon icon="clock_blue" :title="language[current][3]" :subtitle="workTime" />
           </div>
           <div class="banner-section-block">
-            <WidgetBannerSectionWithIcon icon="calendar_blue" title="График" :subtitle="workDays" />
+            <WidgetBannerSectionWithIcon icon="calendar_blue" :title="language[current][4]" :subtitle="workDays" />
           </div>
         </div>
 
@@ -68,19 +68,19 @@
             {{ bannerItem.title }}
           </div>
           <div v-if="hasCategories" class="banner-section-block-data-content">
-            <div class="banner-section-block-data-content-header">Категории <div @click="showCategories = !showCategories" v-text="showCategories ? 'скрыть' : 'показать'" class="show-toggle"></div></div>
+            <div class="banner-section-block-data-content-header">{{ language[current][7] }} <div @click="showCategories = !showCategories" v-text="showCategories ? language[current][10] : language[current][11]" class="show-toggle"></div></div>
             <div v-if="showCategories" class="text-in-bubbles">
-              <WidgetTextInBubble v-for="(i, index) in availCats" :text="i.name" :key="index"/>
+              <WidgetTextInBubble v-for="(i, index) in availCats" :text="current === 1 ? i.name_kz : i.name" :key="index"/>
             </div>
           </div>
           <div v-if="hasBrands"  class="banner-section-block-data-content">
-            <div class="banner-section-block-data-content-header">Марки <div @click="showBrands = !showBrands" v-text="showBrands ? 'скрыть' : 'показать'" class="show-toggle"></div></div>
+            <div class="banner-section-block-data-content-header">{{ language[current][8] }} <div @click="showBrands = !showBrands" v-text="showBrands ? language[current][10] : language[current][11]" class="show-toggle"></div></div>
             <div v-if="showBrands" class="text-in-bubbles">
               <WidgetTextInBubble v-for="(i, index) in availBrands" :text="i.name" :key="index"/>
             </div>
           </div>
           <div class="banner-section-block-data-content">
-            <div class="banner-section-block-data-content-header">Описание</div>
+            <div class="banner-section-block-data-content-header">{{ language[current][9] }}</div>
             <div class="banner-section-block-data-content-description">{{ bannerItem.description }}</div>
           </div>
           <div class="d-flex justify-content-between text-gray-600"><div>ID: {{ bannerItem.id }}</div><div class="d-flex align-items-center"><Icon name="views"/> {{ bannerItem.view_count }}</div></div>
@@ -93,7 +93,12 @@
         <div v-if="!user.id" class="banner-section-block  banner-section-block-data text-center">
           <div><img src="/cone.png" width="130" height="130" alt=""/></div>
           <div class="banner-section-block-data-header">
-            Чтобы написать отзыв <NuxtLink to="/login">войдите в систему</NuxtLink><br class="d-lg-block d-none"/> или <NuxtLink to="/registration">зарегистрируйтесь</NuxtLink>
+            <template v-if="current === 1">
+              Пікір жазу үшін <NuxtLink to="/login">кіріңіз</NuxtLink><br class="d-lg-block d-none"/> немесе <NuxtLink to="/registration">тіркеліңіз</NuxtLink>
+            </template>
+            <template v-else>
+              Чтобы написать отзыв <NuxtLink to="/login">войдите в систему</NuxtLink><br class="d-lg-block d-none"/> или <NuxtLink to="/registration">зарегистрируйтесь</NuxtLink>
+            </template>
           </div>
         </div>
         <div v-else-if="userCanWriteReview" class="banner-section-block  banner-section-block-data">
@@ -111,16 +116,16 @@
 
         <div v-if="bannerItem.review_items && bannerItem.review_items.length && reviewCount" class="banner-section-block  banner-section-block-data">
           <div class="banner-section-block-data-header">
-            Отзывы
+            {{ language[current][12] }}
           </div>
           <WidgetReview v-for="i in reviewCount" :item="bannerItem.review_items[i-1]" :date="makeDate(bannerItem.review_items[i-1].created_at)" :key="'r' + bannerItem.review_items[i-1].id" />
           <div v-if="reviewCount < bannerItem.review_items.length" class="text-center mt-3">
-            <button @click="showMore" class="btn btn-outline-primary">Показать еще</button>
+            <button @click="showMore" class="btn btn-outline-primary">{{ language[current][6] }}</button>
           </div>
         </div>
 
         <div class="col-xl-12 mb-lg-5 mt-3 mb-3">
-          <h4 v-if="items.length" class="fw-bold mb-3 pb-1">Все объявления автора</h4>
+          <h4 v-if="items.length" class="fw-bold mb-3 pb-1">{{ language[current][5] }}</h4>
           <div class="promotion-items">
             <WidgetUserBannerFront v-for="item in items" :item="item" :key="item.id"/>
           </div>
@@ -141,6 +146,18 @@
     emits:['title'],
     data(){
       return {
+        language:[
+          [
+            'Показать номер', 'Рейтинг продавца', 'Отзывов', 'Время работы магазина', 'График',
+            'Все объявления автора', 'Показать еще', 'Категории', 'Марки', 'Описание',
+            'скрыть', 'показать', 'Отзывы'
+          ],
+          [
+            'Нөмірді көрсету', 'Сатушы рейтингі', 'Пікір', 'Дүкеннің жұмыс уақыты', 'Кесте',
+            'Автордың барлық жарнамалары', 'Көбірек көрсет', 'Санаттар', 'Маркалар', 'Сипаттама',
+            'жасыру', 'көрсету', 'Пікірлер'
+          ]
+        ],
         items:[],
         showCategories: false,
         showBrands: false,
@@ -291,6 +308,9 @@
           return true;
         }
         return false;
+      },
+      current() {
+        return this.$store.state.localStorage.current;
       }
     },
     methods:{

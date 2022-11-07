@@ -7,14 +7,14 @@
             <div class="map-right-info">
               <div class="map-right-info-main" v-if="detail">
                 <div class="map-right-info-main-title">{{detail.type}} {{detail.room}}, {{detail.tier}}</div>
-                <div class="map-right-info-main-description" v-if="detail.status === 0">Сдано в аренду</div>
-                <div class="map-right-info-main-description" v-else>Свободно</div>
+                <div class="map-right-info-main-description" v-if="detail.status === 0">{{ language[current][0] }}</div>
+                <div class="map-right-info-main-description" v-else>{{ language[current][1] }}</div>
               </div>
               <div class="map-right-info-icon"></div>
             </div>
             <div class="map-right-buttons">
-              <div class="map-right-buttons-request"  v-if="detail && detail.status === 1" @click="startModal()">Оставить заявку</div>
-              <div class="map-right-buttons-return" @click="detailHide = true; detail = false;">Вернуться к карте</div>
+              <div class="map-right-buttons-request"  v-if="detail && detail.status === 1" @click="startModal()">{{ language[current][2] }}</div>
+              <div class="map-right-buttons-return" @click="detailHide = true; detail = false;">{{ language[current][3] }}</div>
             </div>
           </div>
         </div>
@@ -3024,15 +3024,15 @@
         <div class="map-right-footer-detail-main">
           <div class="map-right-footer-detail">
             <div class="map-right-footer-detail-color"></div>
-            <div class="map-right-footer-detail-title">Арендовано</div>
+            <div class="map-right-footer-detail-title">{{ language[current][4] }}</div>
           </div>
           <div class="map-right-footer-detail">
             <div class="map-right-footer-detail-color map-right-footer-detail-color-free"></div>
-            <div class="map-right-footer-detail-title">Свободно</div>
+            <div class="map-right-footer-detail-title">{{ language[current][1] }}</div>
           </div>
         </div>
         <div class="map-right-footer-item-list">
-          <div class="map-right-footer-item" :class="{'map-right-footer-item-sel':(selected === key)}" v-for="(tier,key) in tiers" :key="key" v-show="tier.id !== 6" @click="selected = key">{{tier.title}}</div>
+          <div class="map-right-footer-item" :class="{'map-right-footer-item-sel':(selected === key)}" v-for="(tier,key) in tiers" :key="key" v-show="tier.id !== 6" @click="selected = key">{{current === 1 ? tier.title_kz : tier.title}}</div>
         </div>
       </div>
     </div>
@@ -3072,7 +3072,15 @@ export default {
     return {
       selected: 0,
       detailHide: true,
-      detail: false
+      detail: false,
+      language: [
+        [
+          'Сдано в аренду', 'Свободно', 'Оставить заявку', 'Вернуться к карте', 'Арендовано',
+        ],
+        [
+          'Жалға берілген', 'Бос орын', 'Өтініш қалдырыңыз', 'Картаға оралу', 'Жалға берілген'
+        ]
+      ]
     }
   },
   async created() {
@@ -3111,7 +3119,7 @@ export default {
       });
       if (data) {
         this.detail = {
-          tier: this.tiers[data.tier - 1].title,
+          tier: this.current === 1 ? this.tiers[data.tier - 1].title_kz : this.tiers[data.tier - 1].title,
           room: '',
           status: data.status,
           type: ''
@@ -3130,7 +3138,7 @@ export default {
         }
         if (title.length > 0) {
           this.detail.room  = title[0].title;
-          this.detail.type  = title[0].roomType.title;
+          this.detail.type  = this.current === 1 ? title[0].roomType.title_kz : title[0].roomType.title;
         }
         this.detailHide = false;
       }

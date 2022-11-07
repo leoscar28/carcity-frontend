@@ -16,7 +16,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label">Кому</label>
-          <Select2 v-model="form.ids" :options="customers" :settings="{allowClear:true,multiple:true,placeholder:'Выберите получателей или оставьте пустым для отправки всем..'}" />
+          <Select2 v-show="customers.length !== form.ids.length" v-model="form.ids" :options="customers" :settings="{allowClear:true,multiple:true,placeholder:'Выберите получателей или оставьте пустым для отправки всем..'}" />
         </div>
         <div class="mb-3">
           <div class="announcement-link" v-if="customers.length === form.ids.length" @click="form.ids=[]">Отменить выбор</div>
