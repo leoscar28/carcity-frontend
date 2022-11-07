@@ -52,7 +52,7 @@
             </div>
             <div v-if="type == 1"  class="d-md-none mobile-checkbox-groups mb-2">
               <div @click="showBrands = !showBrands" class="promotion-form__modal-btn">
-                <span v-text="brand_id.length ? 'Марки' : 'Выберите марку'"></span>
+                <span v-text="brand_id.length ? language[current][26] : language[current][28]"></span>
                 <Icon v-if="!brand_id.length" name="arrow" size="18"/>
                 <span v-else class="badge rounded-pill">{{brand_id.length}}</span>
               </div>
@@ -68,7 +68,7 @@
             </div>
             <div class="d-md-none mobile-checkbox-groups">
               <div @click="showCategories = !showCategories" class="promotion-form__modal-btn">
-                <span v-text="category_id.length ? 'Категории' : 'Выберите категорию'"></span>
+                <span v-text="category_id.length ? language[current][27] : language[current][29]"></span>
                 <Icon v-if="!category_id.length" name="arrow" size="18"/>
                 <span v-else class="badge rounded-pill">{{category_id.length}}</span>
               </div>
