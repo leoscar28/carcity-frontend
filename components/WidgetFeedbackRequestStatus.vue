@@ -22,9 +22,9 @@ export default {
         case 10:
           return 'widget-feedback-status--blue';
         case 20:
-          return 'widget-feedback-status--green';
-        case 30:
           return 'widget-feedback-status--yellow';
+        case 30:
+          return 'widget-feedback-status--orange';
         case 40:
           return 'widget-feedback-status--green';
       }
@@ -51,6 +51,12 @@ export default {
     color: #52C41A;
     background: #F6FFED;
     border-color: #B7EB8F;
+  }
+
+  &--orange {
+    color: #ffa500;
+    background: #F5F5F5;
+    border-color:  #FAAD14;
   }
 
   &--yellow {
