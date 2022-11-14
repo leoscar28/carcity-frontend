@@ -3,29 +3,29 @@
     <div class="profile-section-main">
       <LeftProfile/>
       <div class="profile-section-main-right">
-        <div class="profile-section-main-right-title">Профиль</div>
+        <div class="profile-section-main-right-title">{{ language[current][0] }}</div>
         <div class="profile-section-main-right-fields">
           <div class="profile-section-main-right-field">
-            <div class="profile-section-main-right-field-title">Фамилия</div>
+            <div class="profile-section-main-right-field-title">{{ language[current][1] }}</div>
             <input type="text" v-model="surname" ref="surname" maxlength="150">
           </div>
           <div class="profile-section-main-right-field">
-            <div class="profile-section-main-right-field-title">Имя</div>
+            <div class="profile-section-main-right-field-title">{{ language[current][2] }}</div>
             <input type="text" v-model="name" ref="name" maxlength="150">
           </div>
           <div class="profile-section-main-right-field">
-            <div class="profile-section-main-right-field-title">Отчество</div>
+            <div class="profile-section-main-right-field-title">{{ language[current][3] }}</div>
             <input type="text" v-model="last_name" maxlength="150">
           </div>
         </div>
         <template v-if="[1,5].includes(user.role_id)">
           <div class="profile-section-main-right-fields">
             <div class="profile-section-main-right-field">
-              <div class="profile-section-main-right-field-title">Телефон</div>
+              <div class="profile-section-main-right-field-title">{{ language[current][4] }}</div>
               <input type="text" v-model="user.phone" readonly>
             </div>
             <div class="profile-section-main-right-field">
-              <div class="profile-section-main-right-field-title">Эл.почта</div>
+              <div class="profile-section-main-right-field-title">{{ language[current][5] }}</div>
               <input type="text" v-model="user.email" readonly>
             </div>
           </div>
@@ -55,7 +55,7 @@
           </div>
         </div>
         <div class="profile-section-main-right-fields">
-          <button class="profile-section-main-right-btn" @click="save">Сохранить</button>
+          <button class="profile-section-main-right-btn" @click="save">{{ language[current][6] }}</button>
         </div>
         <template v-if="user.role_id === 1">
           <div class="profile-section-main-right-title">Главные категории товаров и услуг</div>
@@ -120,6 +120,9 @@ export default {
     user() {
       return this.$store.state.localStorage.user;
     },
+    current() {
+      return this.$store.state.localStorage.current;
+    },
   },
   data() {
     return {
@@ -134,7 +137,27 @@ export default {
       rooms: [],
       spareParts:[],
       brands:[],
-      services:[]
+      services:[],
+      language: [
+        [
+          'Профиль',
+          'Фамилия',
+          'Имя',
+          'Отчество',
+          'Телефон',
+          'Эл. почта',
+          'Сохранить',
+        ],
+        [
+          'Профиль',
+          'Тегі',
+          'Аты',
+          'Әкесінің аты',
+          'Телефон',
+          'Эл. пошта',
+          'Сақтау'
+        ]
+      ]
     }
   },
   async created() {
@@ -192,7 +215,7 @@ export default {
         this.$toast.show('Сохранено').goAway(2000);
       }
     },
-  }
+  },
 }
 </script>
 

@@ -73,13 +73,13 @@
               </template>
               <template v-else>
                 <template v-if="isSimplyUser">
-                  <NuxtLink to="/profile/requests" class="mob__nav-link">Мои заявки</NuxtLink>
-                  <NuxtLink to="/profile/favorites" class="mob__nav-link">Избранное</NuxtLink>
-                  <NuxtLink to="/profile/reviews" class="mob__nav-link">Мои отзывы</NuxtLink>
+                  <NuxtLink to="/profile/requests" class="mob__nav-link">{{ language[current][11] }}</NuxtLink>
+                  <NuxtLink to="/profile/favorites" class="mob__nav-link">{{ language[current][12] }}</NuxtLink>
+                  <NuxtLink to="/profile/reviews" class="mob__nav-link">{{ language[current][13] }}</NuxtLink>
                 </template>
-                <NuxtLink v-else to="/invoice" class="mob__nav-link">Личный кабинет</NuxtLink>
-                <NuxtLink to="/profile" class="mob__nav-link">Настройки</NuxtLink>
-                <NuxtLink v-if="isSimplyUser" to="/profile/feedback" class="mob__nav-link">Служба поддержки</NuxtLink>
+                <NuxtLink v-else to="/invoice" class="mob__nav-link">{{ language[current][14] }}</NuxtLink>
+                <NuxtLink to="/profile" class="mob__nav-link">{{ language[current][15] }}</NuxtLink>
+                <NuxtLink v-if="isSimplyUser" to="/profile/feedback" class="mob__nav-link">{{ language[current][16] }}</NuxtLink>
                 <div @click="logout" class="mob__nav-link">{{ language[current][10] }}</div>
               </template>
             </div>
@@ -183,12 +183,12 @@ export default {
         [
           'О нас','Инфраструктура','Арендаторам','Личный кабинет','Как добраться?',
           'Администрация ТЦ','Работаем ежедневно', 'Подать заявку на запчасть', 'Войти', 'Регистрация',
-          'Выход'
+          'Выход', 'Мои заявки', 'Избранное', 'Мои отзывы', 'Личный кабинет', 'Настройки', 'Служба поддержки'
         ],
         [
           'Бiз туралы','Инфрақұрылым','Жалға алушыларға','Жеке кабинет','Қалай жетуге болады?',
           'СО әкімшілігі','жұмыс кестесі', 'Қосалқы бөлікке өтініш беріңіз', 'Кіру', 'Тіркеу',
-          'Шығу'
+          'Шығу', 'Менің өтініштерім', 'Таңдаулылар', 'Менің пікірлерім', 'Жеке кабинет', 'Баптаулар', 'Қолдау қызметі',
         ]
       ]
     }

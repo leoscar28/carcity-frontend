@@ -3,22 +3,22 @@
     <div class="profile-section-main">
       <LeftProfile></LeftProfile>
       <div class="profile-section-main-right">
-        <div class="profile-section-main-right-title">Сменить пароль</div>
+        <div class="profile-section-main-right-title">{{ language[current][0] }}</div>
         <div class="profile-section-main-right-fields">
           <div class="profile-section-main-right-field">
-            <div class="profile-section-main-right-field-title">Старый пароль</div>
-            <input type="password" v-model="old" maxlength="50" ref="old" :readonly="!status" placeholder="Введите старый пароль">
+            <div class="profile-section-main-right-field-title">{{ language[current][1] }}</div>
+            <input type="password" v-model="old" maxlength="50" ref="old" :readonly="!status" :placeholder="language[current][2] ">
           </div>
         </div>
         <div class="profile-section-main-right-fields">
           <div class="profile-section-main-right-field">
-            <div class="profile-section-main-right-field-title">Новый пароль</div>
-            <input type="password" v-model="password" maxlength="50" ref="password" :readonly="!status" placeholder="Введите новый пароль">
+            <div class="profile-section-main-right-field-title">{{ language[current][3] }}</div>
+            <input type="password" v-model="password" maxlength="50" ref="password" :readonly="!status" :placeholder="language[current][4] ">
           </div>
         </div>
         <div class="profile-section-main-right-fields">
           <button class="profile-section-main-right-btn" @click="save">
-            <span v-if="status">Сохранить</span>
+            <span v-if="status">{{ language[current][5] }}</span>
             <div v-else></div>
           </button>
         </div>
@@ -34,6 +34,9 @@ export default {
     user() {
       return this.$store.state.localStorage.user;
     },
+    current() {
+      return this.$store.state.localStorage.current;
+    },
   },
   data() {
     return {
@@ -41,6 +44,24 @@ export default {
       password: '',
       confirm: '',
       status: true,
+      language: [
+        [
+          'Сменить пароль',
+          'Старый пароль',
+          'Введите старый пароль',
+          'Новый пароль',
+          'Введите новый пароль',
+          'Сохранить'
+        ],
+        [
+          'Құпия сөзді өзгерту',
+          'Ескі құпия сөз',
+          'Ескі құпия сөзді енгізіңіз',
+          'Жаңа құпия сөз',
+          'Жаңа құпия сөзді енгізіңіз',
+          'Сақтау',
+        ]
+      ]
     }
   },
   methods: {

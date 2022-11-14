@@ -5,23 +5,23 @@
         <NuxtLink to="/"><img src="/logo.svg" width="100%" alt="logo"></NuxtLink>
       </div>
 
-        <div class="login-title">Регистрация</div>
+        <div class="login-title">{{ language[current][0] }}</div>
         <div class="login-input">
-          <input type="text" placeholder="Введите email" v-model="email" ref="login" maxlength="50" @keyup.enter="auth" autocomplete="off" :class="{'is-error':email.length && !validEmail}">
+          <input type="text" :placeholder="language[current][1]" v-model="email" ref="login" maxlength="50" @keyup.enter="auth" autocomplete="off" :class="{'is-error':email.length && !validEmail}">
         </div>
         <div class="login-input">
-          <input type="text" placeholder="Введите телефон" v-model="phone" ref="phone" v-mask="'+7 (###) ###-####'"  maxlength="50" @keyup.enter="auth" autocomplete="off" :class="{'is-error':phone.length && !validPhone}">
+          <input type="text" :placeholder="language[current][2]" v-model="phone" ref="phone" v-mask="'+7 (###) ###-####'"  maxlength="50" @keyup.enter="auth" autocomplete="off" :class="{'is-error':phone.length && !validPhone}">
         </div>
         <div class="login-input-password">
-          <input :type="show ? 'text' : 'password'" placeholder="Введите пароль" v-model="password" ref="password" maxlength="50" @keyup.enter="auth" autocomplete="off">
+          <input :type="show ? 'text' : 'password'" :placeholder="language[current][3]" v-model="password" ref="password" maxlength="50" @keyup.enter="auth" autocomplete="off">
           <div class="login-input-password-option" :class="{'login-input-password-hide':!show}" @click="show = !show"></div>
         </div>
         <div class="login-input-password">
-          <input :type="show ? 'text' : 'password'" placeholder="Введите повтор пароля" v-model="passwordRepeat" ref="passwordRepeat" maxlength="50" @keyup.enter="auth" autocomplete="off">
+          <input :type="show ? 'text' : 'password'" :placeholder="language[current][4]" v-model="passwordRepeat" ref="passwordRepeat" maxlength="50" @keyup.enter="auth" autocomplete="off">
           <div class="login-input-password-option" :class="{'login-input-password-hide':!show}" @click="show = !show"></div>
         </div>
         <div class="login-btn">
-          <button @click="auth" :disabled="!dataIsValid" :style="{opacity:!dataIsValid ? 0.2 : 1}">Зарегистрироваться</button>
+          <button @click="auth" :disabled="!dataIsValid" :style="{opacity:!dataIsValid ? 0.2 : 1}">{{ language[current][5] }}</button>
         </div>
     </div>
   </div>
@@ -39,7 +39,25 @@ export default {
       password: '',
       passwordRepeat: '',
       show: false,
-      enterCode: false
+      enterCode: false,
+      language: [
+        [
+          'Регистрация',
+          'Введите email',
+          'Введите телефон',
+          'Введите пароль',
+          'Ввведите повтор пароля',
+          'Зарегистрироваться'
+        ],
+        [
+          'Тіркеу',
+          'Email енгізіңіз',
+          'Телефонды енгізіңіз',
+          'Құпия сөзді еңгізіңіз',
+          'Қайталанатын құпия сөзді енгізіңіз',
+          'Тіркелу'
+        ],
+      ]
     }
   },
   computed: {
@@ -51,6 +69,9 @@ export default {
     },
     validPhone() {
       return this.phone.length === 17;
+    },
+    current() {
+      return this.$store.state.localStorage.current;
     },
   },
   methods: {

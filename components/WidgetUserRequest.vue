@@ -2,41 +2,41 @@
   <div class="widget-request">
     <div class="widget-request__header mb-3">
       <div class="widget-request__header__title">
-        Заявка <template v-if="user.role_id === 5">№{{index}}</template>
+        {{language[current][1]}} <template v-if="user.role_id === 5">№{{index}}</template>
       </div>
       <div class="widget-request__header__status" :class="{'widget-request__header__status--success':isSuccess}">
         <template v-if="isSuccess">
-          <span class="widget-request__header__status__description">Запчасть найдена</span> <IconCheck class="d-block m-0"/>
+          <span class="widget-request__header__status__description">{{language[current][2]}}</span> <IconCheck class="d-block m-0"/>
         </template>
         <template v-else>
-          <span class="widget-request__header__status__description">Заявка актуальна</span> <Icon name="loading_yellow" class="d-block m-0"/>
+          <span class="widget-request__header__status__description">{{language[current][3]}}</span> <Icon name="loading_yellow" class="d-block m-0"/>
         </template>
       </div>
     </div>
     <div class="widget-request__content row">
       <div class="col-md-3 mb-3">
-        <div class="text-gray-600">Указанный телефон</div>
+        <div class="text-gray-600">{{language[current][4]}}</div>
         <div>{{item.phone}}</div>
       </div>
       <div class="col-md-3 mb-3">
-        <div class="text-gray-600">Категория</div>
+        <div class="text-gray-600">{{language[current][5]}}</div>
         <div v-if="item.category">{{item.category.name}}</div>
       </div>
       <div class="col-md-3 mb-3">
-        <div class="text-gray-600">Марка</div>
+        <div class="text-gray-600">{{language[current][6]}}</div>
         <div v-if="item.brand">{{item.brand.name}}</div>
       </div>
       <div class="col-md-3 mb-3">
-        <div class="text-gray-600">Дата</div>
+        <div class="text-gray-600">{{language[current][7]}}</div>
         <div v-if="item.created_at">{{makeDate(item.created_at)}}</div>
       </div>
       <div class="col-md-12">
-        <div class="text-gray-600">Описание</div>
+        <div class="text-gray-600">{{language[current][8]}}</div>
         <div>{{item.description}}</div>
       </div>
     </div>
     <div v-if="!isSuccess && (item.user_id === user.id)" class="widget-request__footer mt-3 pt-3">
-      <button @click="setFound" class="btn btn-outline-primary" :disabled="loading">Я нашел что искал</button>
+      <button @click="setFound" class="btn btn-outline-primary" :disabled="loading">{{language[current][0]}}</button>
     </div>
 
   </div>
@@ -62,10 +62,40 @@
         },
         isSuccess(){
           return this.item.status === 40;
-        }
+        },
+        current() {
+          return this.$store.state.localStorage.current;
+        },
       },
       data(){
-        return {loading:false};
+        return {
+          loading: false,
+          language: [
+            [
+              'Я нашел что искал',
+              'Заявка',
+              'Запчасть найдена',
+              'Заявка актуальна',
+              'Указанный телефон',
+              'Категория',
+              'Марка',
+              'Дата',
+              'Описание'
+
+            ],
+            [
+              'Iздегенімді таптым',
+              'Өтініш',
+              'Өтінішім табылды',
+              'Өтінішім табылмады',
+              'Көрсетілген телефон',
+              'Санат',
+              'Марка',
+              'Уақыт',
+              'Сипаттама'
+            ],
+          ]
+        };
       },
       methods:{
         async setFound(){

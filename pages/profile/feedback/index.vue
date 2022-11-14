@@ -24,20 +24,20 @@
         <div class="container">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><NuxtLink to="/" class="text-gray-600 text-decoration-none">Главная</NuxtLink></li>
-              <li class="breadcrumb-item active" aria-current="page">Служба поддержки</li>
+              <li class="breadcrumb-item"><NuxtLink to="/" class="text-gray-600 text-decoration-none">{{language[current][1]}}</NuxtLink></li>
+              <li class="breadcrumb-item active" aria-current="page">{{language[current][0]}}</li>
             </ol>
           </nav>
         </div>
         <div class="container">
-          <h4 class="fw-bold mb-3 pb-1">Мои запросы</h4>
+          <h4 class="fw-bold mb-3 pb-1">{{language[current][2]}}</h4>
           <div v-if="items.length" class="request-items">
             <WidgetFeedbackRequest v-for="(item, key) in items" :item="item" :index="items.length - key" :key="'fr'+key"/>
           </div>
           <div v-else class="empty-requests">
             <div><img src="/papertray.png" height="120" width="120" alt=""></div>
-            <div class="fw-bold mb-3">Пока здесь нет Ваших запросов</div>
-            <button @click="$store.commit('localStorage/setFeedbackRequestModal', true)" class="btn btn-primary">Отправить запрос</button>
+            <div class="fw-bold mb-3">{{language[current][3]}}</div>
+            <button @click="$store.commit('localStorage/setFeedbackRequestModal', true)" class="btn btn-primary">{{language[current][4]}}</button>
           </div>
         </div>
       </section>
@@ -59,6 +59,26 @@
     export default {
       name: "requests",
       components: {WidgetFeedbackRequest, Icon, TheHeader, TheFooter},
+      data(){
+        return {
+          language: [
+            [
+              'Служба поддержки',
+              'Главная',
+              'Мои запросы',
+              'Пока здесь нет Ваших запросов',
+              'Отправить запрос'
+            ],
+            [
+              'Қолдау қызметі',
+              'Басты',
+              'Менің өтініштерім',
+              'Әзірге сіздің сұрауларыңыз жоқ',
+              'Сұрау жіберу'
+            ],
+          ]
+        }
+      },
       head:{
         title: 'Служба поддержки'
       },
@@ -72,6 +92,11 @@
         const items = await store.dispatch('localStorage/getFeedbackRequests', dataForRequest);
 
         return {items}
+      },
+      computed: {
+        current() {
+          return this.$store.state.localStorage.current;
+        },
       }
     }
 </script>

@@ -24,20 +24,20 @@
         <div class="container">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><NuxtLink to="/" class="text-gray-600 text-decoration-none">Главная</NuxtLink></li>
-              <li class="breadcrumb-item active" aria-current="page">Мои отзывы</li>
+              <li class="breadcrumb-item"><NuxtLink to="/" class="text-gray-600 text-decoration-none">{{language[current][1]}}</NuxtLink></li>
+              <li class="breadcrumb-item active" aria-current="page">{{language[current][0]}}</li>
             </ol>
           </nav>
         </div>
         <div class="container">
-          <h4 class="fw-bold mb-3 pb-1">Мои отзывы</h4>
+          <h4 class="fw-bold mb-3 pb-1">{{language[current][0]}}</h4>
           <div v-if="items.length" class="reviews-items">
               <WidgetReviewWithBanner v-for="item in items" :item="item" :key="'rw'+item.id"/>
           </div>
           <div v-else class="empty-reviews">
             <div><img src="/box.png" height="120" width="170" alt=""></div>
-            <div class="fw-bold">Пока здесь нет отзывов</div>
-            <div class="text-gray-600">Здесь будут появляться ваши отзывы</div>
+            <div class="fw-bold">{{language[current][2]}}</div>
+            <div class="text-gray-600">{{language[current][3]}}</div>
           </div>
         </div>
       </section>
@@ -60,6 +60,24 @@
     export default {
       name: "promotions",
       components: {WidgetReviewWithBanner, UserBannerSection, Icon, TheHeader, TheFooter},
+      data(){
+        return {
+          language: [
+            [
+              'Мои отзывы',
+              'Главная',
+              'Пока здесь нет отзывов',
+              'Здесь будут появляться ваши отзывы'
+            ],
+            [
+              'Менің пікірлерім',
+              'Басты',
+              'Әзірге пікірлер жоқ',
+              'Сіздің пікірлеріңіз осы жерде пайда болады'
+            ],
+          ]
+        }
+      },
       head:{
         title: 'Мои отзывы'
       },
@@ -72,6 +90,11 @@
         }
         const items = await store.dispatch('localStorage/getUserReviews', dataForRequest)
         return {items};
+      },
+      computed: {
+        current() {
+          return this.$store.state.localStorage.current;
+        },
       }
     }
 </script>

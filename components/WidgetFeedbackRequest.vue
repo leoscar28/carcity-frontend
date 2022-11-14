@@ -2,12 +2,12 @@
   <NuxtLink :to="`/profile/feedback/${item.id}`" class="widget-request-feedback">
     <div class="widget-request-feedback__header mb-3">
       <div class="widget-request-feedback__header__title">
-        Запрос №{{item.id}}
+        {{ language[current][0] }} №{{item.id}}
       </div>
     </div>
     <div class="widget-request-feedback__content row">
       <div class="col-md-3 mb-md-3 mb-1">
-        <div class="text-gray-600">Дата создания</div>
+        <div class="text-gray-600">{{ language[current][1] }} </div>
       </div>
       <div class="col-md-9 mb-md-3 mb-2">
         {{makeDate(item.created_at)}}
@@ -15,7 +15,7 @@
     </div>
     <div class="widget-request-feedback__content row">
       <div class="col-md-3 mb-md-3 mb-1">
-        <div class="text-gray-600">Тема</div>
+        <div class="text-gray-600">{{ language[current][2] }} </div>
       </div>
       <div class="col-md-9 mb-md-3 mb-2">
         {{item.title}}
@@ -23,7 +23,7 @@
     </div>
     <div class="widget-request-feedback__content row">
       <div class="col-md-3 mb-md-3 mb-1">
-        <div class="text-gray-600">Статус</div>
+        <div class="text-gray-600">{{ language[current][3] }} </div>
       </div>
       <div class="col-md-9 mb-md-3 mb-2">
         <WidgetFeedbackRequestStatus :status="item.status"/>
@@ -31,7 +31,7 @@
     </div>
     <div class="widget-request-feedback__content row">
       <div class="col-md-3 mb-md-3 mb-1">
-        <div class="text-gray-600">Описание</div>
+        <div class="text-gray-600">{{ language[current][4] }} </div>
       </div>
       <div class="col-md-9">
         {{item.first_message.description}}
@@ -55,10 +55,33 @@
           },
           index: Number
       },
+      data(){
+        return {
+          language: [
+            [
+              'Запрос',
+              'Дата создания',
+              'Тема',
+              'Статус',
+              'Описание'
+            ],
+            [
+              'Сұраныс',
+              'Құрылған күні',
+              'Тақырып',
+              'Мәртебесі',
+              'Сипаттама',
+            ],
+          ]
+        }
+      },
       computed:{
         user(){
           return this.$store.state.localStorage.user;
-        }
+        },
+        current() {
+          return this.$store.state.localStorage.current;
+        },
       },
       methods:{
         makeDate(date){

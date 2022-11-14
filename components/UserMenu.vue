@@ -8,14 +8,14 @@
     <div class="user-menu__dropdown">
       <div class="user-menu__dropdown__main">
         <template v-if="isSimplyUser">
-          <NuxtLink to="/profile/requests" class="user-menu__dropdown__main__item"><Icon name="keys"/> Мои заявки</NuxtLink>
-          <NuxtLink to="/profile/favorites" class="user-menu__dropdown__main__item"><Icon name="star"/> Избранное</NuxtLink>
-          <NuxtLink to="/profile/reviews" class="user-menu__dropdown__main__item"><Icon name="chat"/> Мои отзывы</NuxtLink>
+          <NuxtLink to="/profile/requests" class="user-menu__dropdown__main__item"><Icon name="keys"/>{{ language[current][0] }}</NuxtLink>
+          <NuxtLink to="/profile/favorites" class="user-menu__dropdown__main__item"><Icon name="star"/> {{ language[current][1] }}</NuxtLink>
+          <NuxtLink to="/profile/reviews" class="user-menu__dropdown__main__item"><Icon name="chat"/> {{ language[current][2] }}</NuxtLink>
         </template>
-        <NuxtLink v-else to="/invoice" class="user-menu__dropdown__main__item"><Icon name="keys"/> Личный кабинет</NuxtLink>
-        <NuxtLink to="/profile" class="user-menu__dropdown__main__item"><Icon name="gear"/> Настройки</NuxtLink>
-        <NuxtLink v-if="isSimplyUser" to="/profile/feedback" class="user-menu__dropdown__main__item"><Icon name="question"/> Служба поддержки</NuxtLink>
-        <div @click="logout" class="user-menu__dropdown__main__item"><Icon name="login"/> Выход</div>
+        <NuxtLink v-else to="/invoice" class="user-menu__dropdown__main__item"><Icon name="keys"/> {{ language[current][3] }} </NuxtLink>
+        <NuxtLink to="/profile" class="user-menu__dropdown__main__item"><Icon name="gear"/> {{ language[current][4] }}</NuxtLink>
+        <NuxtLink v-if="isSimplyUser" to="/profile/feedback" class="user-menu__dropdown__main__item"><Icon name="question"/> {{ language[current][5] }}</NuxtLink>
+        <div @click="logout" class="user-menu__dropdown__main__item"><Icon name="login"/>  {{ language[current][6] }}</div>
       </div>
     </div>
   </div>
@@ -26,6 +26,30 @@
   export default {
     name: "UserMenu",
     components: {Icon},
+    data() {
+      return {
+        language: [
+          [
+            'Мои заявки',
+            'Избранное',
+            'Мои отзывы',
+            'Личный кабинет',
+            'Настройки',
+            'Служба поддержки',
+            'Выход'
+          ],
+          [
+            'Менің өтініштерім',
+            'Таңдаулылар',
+            'Менің пікірлерім',
+            'Жеке кабинет',
+            'Баптаулар',
+            'Қолдау қызметі',
+            'Шығу'
+          ]
+        ]
+      }
+    },
     computed:{
       user(){
         return this.$store.state.localStorage.user;
@@ -35,7 +59,10 @@
       },
       isCustomer(){
         return this.user.role_id === 1;
-      }
+      },
+      current() {
+        return this.$store.state.localStorage.current;
+      },
     },
     methods:{
       logout() {

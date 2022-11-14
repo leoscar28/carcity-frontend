@@ -24,20 +24,20 @@
         <div class="container">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><NuxtLink to="/" class="text-gray-600 text-decoration-none">Главная</NuxtLink></li>
-              <li class="breadcrumb-item active" aria-current="page">Мои заявки</li>
+              <li class="breadcrumb-item"><NuxtLink to="/" class="text-gray-600 text-decoration-none">{{language[current][1]}}</NuxtLink></li>
+              <li class="breadcrumb-item active" aria-current="page">{{language[current][0]}}</li>
             </ol>
           </nav>
         </div>
         <div class="container">
-          <h4 class="fw-bold mb-3 pb-1">Мои заявки</h4>
+          <h4 class="fw-bold mb-3 pb-1">{{language[current][0]}}</h4>
           <div v-if="items.length" class="request-items">
             <WidgetUserRequest v-for="(item, key) in items" :item="item" :index="items.length - key" :key="'ur'+key"/>
           </div>
           <div v-else class="empty-requests">
             <div><img src="/spring.png" height="120" width="120" alt=""></div>
-            <div class="fw-bold">Пока здесь нет ваших заявок</div>
-            <div class="text-gray-600">Здесь будут появляться ваши новые заявки</div>
+            <div class="fw-bold">{{language[current][2]}}</div>
+            <div class="text-gray-600">{{language[current][3]}}</div>
           </div>
         </div>
       </section>
@@ -60,6 +60,24 @@
     export default {
       name: "requests",
       components: {WidgetUserRequest, UserBannerSection, Icon, TheHeader, TheFooter},
+      data(){
+        return {
+          language: [
+            [
+              'Мои заявки',
+              'Главная',
+              'Пока здесь нет ваших заявок',
+              'Здесь будут появляться ваши новые заявки'
+            ],
+            [
+              'Менің өтініштерім',
+              'Басты',
+              'Әзірге сіздің өтініштеріңіз жоқ',
+              'Жаңа қолданбалар осы жерде пайда болады'
+            ],
+          ]
+        }
+      },
       head:{
         title: 'Мои заявки'
       },
@@ -73,6 +91,11 @@
         const items = await store.dispatch('localStorage/getUserRequests', dataForRequest);
 
         return {items}
+      },
+      computed: {
+        current() {
+          return this.$store.state.localStorage.current;
+        },
       }
     }
 </script>

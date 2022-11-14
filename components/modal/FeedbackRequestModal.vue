@@ -2,18 +2,18 @@
   <div v-if="show" :key="'frm'+show" class="modal-global fr-modal">
     <div class="modal-content-global">
       <div class="modal-content-header-close" @click="onCancel"></div>
-      <div class="modal-content-header">Служба поддержки</div>
+      <div class="modal-content-header">{{ language[current][0] }}</div>
       <template v-if="user">
         <template v-if="send">
           <div class="modal-body">
             <div class="text-center">
               <img src="/papertray.png" width="170" height="170" alt=""/>
-              <p class="fw-bold">Спасибо за Ваше обращение!</p>
-              <p>Мы ответим Вам в скором времени.</p>
+              <p class="fw-bold">{{ language[current][1] }}</p>
+              <p>{{ language[current][2] }}</p>
             </div>
             <div class="modal-footer justify-content-center">
-              <button @click="toMain" class="fr-modal__button fr-modal__button__back">На главную</button>
-              <button @click="toFeedback" class="fr-modal__button" >К списку запросов</button>
+              <button @click="toMain" class="fr-modal__button fr-modal__button__back">{{ language[current][3] }}</button>
+              <button @click="toFeedback" class="fr-modal__button" >{{ language[current][4] }}</button>
             </div>
           </div>
         </template>
@@ -21,23 +21,27 @@
           <div class="modal-body">
             <div class="text-center">
               <img src="/chat.png" width="140" height="100" alt=""/>
-              <p class="fw-bold">Вас приветствует команда CarCity.kz.</p>
-              <p>Чтобы помочь Вам максимально оперативно, нам важны все детали.<br>Опишите подробно суть запроса и прикрепите файл. Будем благодарны за предложения по улучшению функционала нашего сайта.</p>          </div>
-            <div class="mb-3">
-              <label for="fr-title"  class="form-label mb-1"><span class="text-danger">*</span> Тема</label>
-              <input id="fr-title" class="form-control" v-model="form.title" placeholder="Напишите тему"/>
+              <p class="fw-bold">{{ language[current][5] }}</p>
+              <p>{{ language[current][6] }}</p>
             </div>
             <div class="mb-3">
-              <label for="fr-description" class="form-label mb-1"><span class="text-danger">*</span> Описание</label>
-              <textarea id="fr-description" rows="4" class="form-control" v-model="form.description" placeholder="Опишите проблему"></textarea>
+              <label for="fr-title"  class="form-label mb-1"><span class="text-danger">*</span> {{ language[current][7] }}</label>
+              <input id="fr-title" class="form-control" v-model="form.title" :placeholder="language[current][8]"/>
             </div>
             <div class="mb-3">
-              <input ref="file" v-on:change="handleFileUpload"  type="file" accept=".jpg,.jpeg,.png,.bmp,.pdf,.txt,.xls,.xlsx,.doc,.docx">
+              <label for="fr-description" class="form-label mb-1"><span class="text-danger">*</span> {{ language[current][9] }}</label>
+              <textarea id="fr-description" rows="4" class="form-control" v-model="form.description" :placeholder="language[current][10]"></textarea>
+            </div>
+            <div class="mb-3">
+              <input ref="file" v-on:change="handleFileUpload" type="file" accept=".jpg,.jpeg,.png,.bmp,.pdf,.txt,.xls,.xlsx,.doc,.docx" id="feedbackInput" style="display: none;">
+              <label class="fr-modal__button" for="feedbackInput">{{language[current][11]}}</label>
+              <span v-if="this.form.file" style="font-size: 12px;">{{this.form.file.name}}</span>
+              <span v-else style="font-size: 12px;">{{language[current][12]}}</span>
             </div>
           </div>
           <div class="modal-footer">
-            <button @click="onCancel" class="fr-modal__button fr-modal__button__back">Отмена</button>
-            <button @click="onSuccess" :disabled="isNotValid"  class="fr-modal__button" >Отправить</button>
+            <button @click="onCancel" class="fr-modal__button fr-modal__button__back">{{language[current][13]}}</button>
+            <button @click="onSuccess" :disabled="isNotValid"  class="fr-modal__button" >{{language[current][14]}}</button>
           </div>
         </template>
       </template>
@@ -45,7 +49,7 @@
         <div @click="onCancel" class="fr-modal__user text-center">
           <div><img src="/cone.png" width="130" height="130" alt=""/></div>
           <div class="">
-            Чтобы отправить запрос<br class="d-lg-block d-none"/> <NuxtLink to="/login">войдите в систему</NuxtLink><br class="d-lg-block d-none"/> или <NuxtLink to="/registration">зарегистрируйтесь</NuxtLink>
+            {{language[current][15]}}<br class="d-lg-block d-none"/> <NuxtLink to="/login">{{language[current][16]}}</NuxtLink><br class="d-lg-block d-none"/> {{language[current][17]}} <NuxtLink to="/registration">{{language[current][18]}}</NuxtLink>
           </div>
         </div>
       </template>
@@ -70,7 +74,51 @@
           description: null,
           feedback_request_theme_id: null,
           file: null
-        }
+        },
+        language: [
+          [
+            'Служба поддержки',
+            'Спасибо за Ваше обращение!',
+            'Мы ответим Вам в скором времени.',
+            'На главную',
+            'К списку запросов',
+            'Вас приветствует команда CarCity.kz.',
+            'Чтобы помочь Вам максимально оперативно, нам важны все детали.\n Опишите подробно суть запроса и прикрепите файл. Будем благодарны за предложения по улучшению функционала нашего сайта.',
+            'Тема',
+            'Напишите тему',
+            'Описание',
+            'Опишите проблему',
+            'Выберите файл',
+            'Файл не выбран',
+            'Отмена',
+            'Отправить',
+            'Чтобы отправить запрос',
+            'войдите в систему',
+            'или',
+            'зарегистрируйтесь'
+          ],
+          [
+            'Қолдау қызметі',
+            'Xабарласқаныңызға  рахмет!',
+            'Біз сізге жақын арада жауап береміз',
+            'Басты бетке',
+            'Сұраныстар тізіміне' ,
+            'Сізді  carcity.kz командасы қарсы алады.',
+            'Сізге мүмкіндігінше тезірек көмектесу үшін, біз үшін әрбір мәліметтер маңызды.\n Сұраныстың мәнін егжей-тегжейлі сипаттаңыз және файлды тіркеңіз. Сайтымыздың функционалдық жұмысын жақсарту бойынша ұсыныстарыңызға алғыс білдіреміз.',
+            'Тақырып',
+            'Тақырып жазыңыз',
+            'Сипаттама',
+            'Мәселені сипаттаңыз',
+            'Файлды таңдаңыз',
+            'Файл таңдалмаған',
+            'Бас тарту',
+            'Жіберу',
+            'Өтінім беру үшін',
+            'Жүйеге кіріңіз',
+            'немесе',
+            'тіркеліңіз'
+          ]
+        ]
       }
     },
     computed:{
@@ -82,7 +130,10 @@
       },
       isNotValid(){
         return !this.form.description ||!this.form.title || this.sending;
-      }
+      },
+      current() {
+        return this.$store.state.localStorage.current;
+      },
     },
     emits:['success', 'cancel'],
     methods:{
