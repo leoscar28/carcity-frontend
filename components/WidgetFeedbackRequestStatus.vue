@@ -13,9 +13,15 @@ export default {
       return this.$store.state.localStorage.user;
     },
     text(){
-      let userStatuses = {10: 'Запрос обрабатывается', 20: 'На ваш запрос ответили', 30: 'Запрос обрабатывается', 40: 'Закрыт'};
-      let adminStatuses = {10: 'Новый', 20: 'Отвечен', 30: 'Ожидает ответа', 40: 'Закрыт'};
-      return this.user.role_id === 5 ? userStatuses[this.status] : adminStatuses[this.status]
+      if(this.$store.state.localStorage.current === 0){
+        let userStatuses = {10: 'Запрос обрабатывается', 20: 'На ваш запрос ответили', 30: 'Запрос обрабатывается', 40: 'Закрыт'};
+        let adminStatuses = {10: 'Новый', 20: 'Отвечен', 30: 'Ожидает ответа', 40: 'Закрыт'};
+        return this.user.role_id === 5 ? userStatuses[this.status] : adminStatuses[this.status]
+      }else{
+        let userStatuses = {10: 'Сұраныс өңделуде', 20: 'Сұранысыңызға жауап берілді', 30: 'Сұраныс өңделуде', 40: 'Жабық'};
+        let adminStatuses = {10: 'Жаңа', 20: 'Жауап қайтарылды', 30: 'Жауап күтілуде', 40: 'Жабық'};
+        return this.user.role_id === 5 ? userStatuses[this.status] : adminStatuses[this.status]
+      }
     },
     colorClass(){
       switch (this.status) {
@@ -28,7 +34,7 @@ export default {
         case 40:
           return 'widget-feedback-status--green';
       }
-    }
+    },
   },
 }
 </script>

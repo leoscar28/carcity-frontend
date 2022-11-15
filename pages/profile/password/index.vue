@@ -25,13 +25,13 @@
           <div class="container">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><NuxtLink to="/" class="text-gray-600 text-decoration-none">Главная</NuxtLink></li>
-                <li class="breadcrumb-item active" aria-current="page">Настройки</li>
+                <li class="breadcrumb-item"><NuxtLink to="/" class="text-gray-600 text-decoration-none">{{language[current][1]}}</NuxtLink></li>
+                <li class="breadcrumb-item active" aria-current="page">{{language[current][0]}}</li>
               </ol>
             </nav>
           </div>
           <div class="container pb-lg-5">
-            <h4 class="fw-bold mb-3 pb-1">Настройки</h4>
+            <h4 class="fw-bold mb-3 pb-1">{{language[current][0]}}</h4>
             <Password class="m-0 mb-lg-5 pb-lg-5 mb-3"/>
           </div>
         </section>
@@ -80,12 +80,29 @@
     },
     name: "index",
     components: {TheFooter, TheHeader, Password, SidebarSection, HeaderSection, vueCustomScrollbar},
+    data(){
+      return {
+        language: [
+          [
+            'Настройки',
+            'Главная'
+          ],
+          [
+            'Баптау',
+            'Басты',
+          ],
+        ]
+      }
+    },
     computed:{
       user(){
         return this.$store.state.localStorage.user;
       },
       isSimplyUser(){
         return this.user.role_id === 5;
+      },
+      current() {
+        return this.$store.state.localStorage.current;
       },
     }
   }

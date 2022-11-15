@@ -2,11 +2,11 @@
   <div class="body-section-content" v-cloak>
     <div class="feedback-section" :class="{'feedback-section--is-front':isFront}">
       <div class="feedback-section-header">
-        <div class="feedback-section-title"><NuxtLink :to="backUrl" class="feedback-section-title-link"><IconArrow rotate /></NuxtLink> Просмотр запроса №{{feedbackRequest.id}}</div>
+        <div class="feedback-section-title"><NuxtLink :to="backUrl" class="feedback-section-title-link"><IconArrow rotate /></NuxtLink> {{language[current][0]}} №{{feedbackRequest.id}}</div>
         <div class="feedback-section-block">
         <div class="feedback-section-header__content row">
           <div class="col-md-3 mb-md-3 mb-1">
-            <div class="text-gray-600">Дата создания</div>
+            <div class="text-gray-600">{{language[current][1]}} </div>
           </div>
           <div class="col-md-9 mb-md-3 mb-2">
             {{makeDate(feedbackRequest.created_at)}}
@@ -14,7 +14,7 @@
         </div>
         <div class="feedback-section-header__content row">
           <div class="col-md-3 mb-md-3 mb-1">
-            <div class="text-gray-600">Тема</div>
+            <div class="text-gray-600">{{language[current][2]}} </div>
           </div>
           <div class="col-md-9 mb-md-3 mb-2">
             {{feedbackRequest.title}}
@@ -22,7 +22,7 @@
         </div>
         <div class="feedback-section-header__content row">
           <div class="col-md-3 mb-md-0 mb-1">
-            <div class="text-gray-600">Статус</div>
+            <div class="text-gray-600">{{language[current][3]}} </div>
           </div>
           <div class="col-md-9">
             <WidgetFeedbackRequestStatus :status="feedbackRequest.status"/>
@@ -51,12 +51,12 @@
 
         <div v-if="user.role_id === 5 && feedbackRequest.status !== 40" class="feedback-section-block">
           <div class="feedback-section-block-data-content">
-            <div class="feedback-section-block-data-content-header">Завершить запрос?</div>
+            <div class="feedback-section-block-data-content-header">{{ language[current][4] }}</div>
             <div class="feedback-section-block-data-content-description">
               <p>
-                Если данный ответ Вас устроил, вы можете завершить запрос
+                {{ language[current][5] }}
                 <br>
-                Если Вы не завершите или не ответите на запрос, то он будет закрыт автоматически через 24 часа
+                {{ language[current][6] }}
               </p>
             </div>
             <button @click="close" class="btn btn-outline-primary">Завершить</button>
@@ -65,12 +65,15 @@
 
         <div v-if="feedbackRequest.status !== 40" class="feedback-section-block">
           <div class="feedback-section-block-data-content">
-            <div class="feedback-section-block-data-content-header">Ответить</div>
+            <div class="feedback-section-block-data-content-header">{{ language[current][7] }}</div>
             <div class="feedback-section-block-data-content-description">
-              <textarea v-model="form.description"  rows="5" class="form-control form-control-sm mb-3" placeholder="Напишите ваш ответ"></textarea>
-              <input ref="file" v-on:change="handleFileUpload"  type="file" accept=".jpg,.jpeg,.png,.bmp,.pdf,.txt,.xls,.xlsx,.doc,.docx">
+              <textarea v-model="form.description"  rows="5" class="form-control form-control-sm mb-3" :placeholder="language[current][8]"></textarea>
+              <input ref="file" v-on:change="handleFileUpload" id="feedbackInput"  type="file" accept=".jpg,.jpeg,.png,.bmp,.pdf,.txt,.xls,.xlsx,.doc,.docx" style="display: none;">
+              <label class="fr-modal__button" for="feedbackInput">{{language[current][10]}}</label>
+              <span v-if="this.form.file" style="font-size: 12px;">{{this.form.file.name}}</span>
+              <span v-else style="font-size: 12px;">{{language[current][11]}}</span>
             </div>
-            <button @click="addMessage" :disabled="!form.description.length" class="btn btn-primary">Отправить</button>
+            <button @click="addMessage" :disabled="!form.description.length" class="btn btn-primary">{{ language[current][9] }}</button>
           </div>
         </div>
       </div>
@@ -95,7 +98,37 @@ import IconArrow from "@/components/icons/IconArrow";
           type: 'request',
           description: '',
           file: null
-        }
+        },
+        'language': [
+          [
+            'Просмотр запроса',
+            'Дата создания',
+            'Тема',
+            'Статус',
+            'Завершить запрос?',
+            'Если данный ответ Вас устроил, вы можете завершить запрос.',
+            'Если Вы не завершите или не ответите на запрос, то он будет закрыт автоматически через 24 часа.',
+            'Ответить',
+            'Напишите ваш ответ',
+            'Отправить',
+            'Выберите файл',
+            'Файл не выбран',
+          ],
+          [
+            'Сұранысты көру',
+            'Құрылған күні',
+            'Тақырып',
+            'Мәртебесі',
+            'Сұрауды аяқталсын ба?',
+            'Бұл жауап сізге сәйкес келсе, сұрауды толтыра аласыз.',
+            'Егер сұранысты толтырмасаңыз немесе оған жауап бермесеңіз, ол 24 сағаттан кейін автоматты түрде жабылады.',
+            'Жауап беру',
+            'Жауабыңызды жазыңыз',
+            'Жіберу',
+            'Файлды таңдаңыз',
+            'Файл таңдалмаған',
+          ],
+        ]
       }
     },
     fetchOnServer: true,
@@ -115,6 +148,9 @@ import IconArrow from "@/components/icons/IconArrow";
       },
       isUser() {
         return this.user.role_id === 5;
+      },
+      current() {
+        return this.$store.state.localStorage.current;
       },
     },
     methods:{

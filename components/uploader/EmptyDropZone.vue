@@ -1,14 +1,33 @@
 <template>
     <div class="empty-drop-zone">
       <img src="/icon_image.svg">
-      <span class="empty-drop-zone__text">Перетащите сюда фотографии или выберите на компьютере</span>
-      <span class="empty-drop-zone__text--default">Объявления с фотографиями получает в 5 раз больше откликов</span>
+      <span class="empty-drop-zone__text">{{ language[current][0] }}</span>
+      <span class="empty-drop-zone__text--default">{{ language[current][1] }}</span>
     </div>
 </template>
 
 <script>
     export default {
-        name: "EmptyDropZone"
+        name: "EmptyDropZone",
+        data(){
+          return {
+            language: [
+              [
+                'Перетащите сюда фотографии или выберите на компьютере',
+                'Объявления с фотографиями получает в 5 раз больше откликов'
+              ],
+              [
+                'Фотосуреттерді, файлдарды осы жерге сүйреңіз немесе компьютерден таңдаңыз',
+                'Фотосуреттері бар жарнамалар 5 есе көбірек қызығушылық тудырады',
+              ],
+            ]
+          }
+        },
+        computed:{
+          current() {
+            return this.$store.state.localStorage.current;
+          },
+        },
     }
 </script>
 

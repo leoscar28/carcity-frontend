@@ -24,9 +24,9 @@
         <div class="container">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><NuxtLink to="/" class="text-gray-600 text-decoration-none">Главная</NuxtLink></li>
-              <li class="breadcrumb-item"><NuxtLink to="/profile/feedback" class="text-gray-600 text-decoration-none">Служба поддержки</NuxtLink></li>
-              <li class="breadcrumb-item active" aria-current="page">Запрос №{{id}}</li>
+              <li class="breadcrumb-item"><NuxtLink to="/" class="text-gray-600 text-decoration-none">{{language[current][1]}}</NuxtLink></li>
+              <li class="breadcrumb-item"><NuxtLink to="/profile/feedback" class="text-gray-600 text-decoration-none">{{language[current][0]}}</NuxtLink></li>
+              <li class="breadcrumb-item active" aria-current="page">{{language[current][2]}} №{{id}}</li>
             </ol>
           </nav>
         </div>
@@ -51,6 +51,22 @@
     export default {
       name: "_id",
       components: {TheHeader, TheFooter, FeedbackRequest},
+      data(){
+        return {
+          language: [
+            [
+              'Служба поддержки',
+              'Главная',
+              'Запрос',
+            ],
+            [
+              'Қолдау қызметі',
+              'Басты',
+              'Сұраныс'
+            ],
+          ]
+        }
+      },
       asyncData({ params, redirect }) {
           return {id: params.id, title: ''}
         },
@@ -63,8 +79,12 @@
         return {
           title: this.title,
         }
+      },
+      computed: {
+        current() {
+          return this.$store.state.localStorage.current;
+        },
       }
-
     }
 </script>
 
