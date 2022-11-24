@@ -4,32 +4,32 @@
       <div class="login-logo">
         <NuxtLink to="/"><img src="/logo.svg" width="100%" alt="logo"></NuxtLink>
       </div>
-      <div class="login-title">Войдите в систему</div>
+      <div class="login-title">{{ language[current][0] }}</div>
       <div class="login-input">
-        <input type="text" placeholder="Введите логин" v-model="login" ref="login" maxlength="50" @keyup.enter="auth" autocomplete="off">
+        <input type="text" :placeholder="language[current][1]" v-model="login" ref="login" maxlength="50" @keyup.enter="auth" autocomplete="off">
       </div>
       <div class="login-input-password">
-        <input :type="show ? 'text' : 'password'" placeholder="Введите пароль" v-model="password" ref="password" maxlength="50" @keyup.enter="auth" autocomplete="off">
+        <input :type="show ? 'text' : 'password'" :placeholder="language[current][2]" v-model="password" ref="password" maxlength="50" @keyup.enter="auth" autocomplete="off">
         <div class="login-input-password-option" :class="{'login-input-password-hide':!show}" @click="show = !show"></div>
       </div>
       <NuxtLink to="/reset">
-        <div class="login-forgot">Не помню пароль</div>
+        <div class="login-forgot">{{ language[current][3] }}</div>
       </NuxtLink>
       <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleTerms')" onselectstart="return false;">
         <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':terms}"></div>
-        <div class="login-input-checkbox-title">Я принимаю условия <NuxtLink :to="{ name: 'terms-of-use' }" style="display: contents; font-weight: bold;" @click.stop target="_blank">пользовательского соглашения</NuxtLink> и даю согласие на обработку моих персональных данных</div>
+        <div class="login-input-checkbox-title">{{ language[current][4] }} <NuxtLink :to="{ name: 'terms-of-use' }" style="display: contents; font-weight: bold;" @click.stop target="_blank">{{ language[current][7] }}</NuxtLink> {{ language[current][12] }} {{ language[current][8] }}</div>
       </div>
       <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleRules')" onselectstart="return false;">
         <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':rules}"></div>
-        <div class="login-input-checkbox-title">Я ознакомлен с общими <NuxtLink :to="{ name: 'rules' }" style="display: contents; font-weight: bold;" @click.stop target="_blank">правилами торгового центра</NuxtLink></div>
+        <div class="login-input-checkbox-title">{{ language[current][5] }} <NuxtLink :to="{ name: 'rules' }" style="display: contents; font-weight: bold;" @click.stop target="_blank">{{ language[current][9] }} </NuxtLink>{{ language[current][13] }}</div>
       </div>
       <div class="login-input-checkbox" @click="$store.commit('localStorage/toggleRulesAd')" onselectstart="return false;">
         <div class="login-input-checkbox-icon" :class="{'login-input-checkbox-icon-checked':rulesAd}"></div>
-        <div class="login-input-checkbox-title">Я ознакомлен с <NuxtLink :to="{ name: 'rules-ad' }" style="display: contents; font-weight: bold;" @click.stop target="_blank">правилами размещения объявлений</NuxtLink></div>
+        <div class="login-input-checkbox-title">{{ language[current][6] }} <NuxtLink :to="{ name: 'rules-ad' }" style="display: contents; font-weight: bold;" @click.stop target="_blank">{{ language[current][10] }} </NuxtLink>{{ language[current][13] }}</div>
       </div>
       <div class="login-btn">
-        <button @click="auth" v-if="terms && rules">Войти</button>
-        <button v-else style="opacity: .2">Войти</button>
+        <button @click="auth" v-if="terms && rules">{{ language[current][11] }}</button>
+        <button v-else style="opacity: .2">{{ language[current][11] }}</button>
       </div>
     </div>
   </div>
@@ -43,6 +43,40 @@ export default {
       login: '',
       password: '',
       show: false,
+      language: [
+        [
+          'Войдите в систему',
+          'Введите логин',
+          'Введите пароль',
+          'Не помню пароль',
+          'Я принимаю условия',
+          'Я ознакомлен с общими',
+          'Я ознакомлен с',
+          'пользовательского соглашения',
+          'и даю согласие на обработку моих персональных данных',
+          'правилами торгового центра',
+          'правилами размещения объявлений',
+          'Войти',
+          '',
+          ''
+        ],
+        [
+          'Жүйеге кіріңіз',
+          'Логин енгізіңіз',
+          'Құпиясөз енгізіңіз',
+          'Құпиясөз есімде жоқ',
+          'Мен',
+          'Мен',
+          'Мен',
+          'пайдаланушы келісімі',
+          'және мен жеке деректерімді өңдеуге келісім беремін',
+          'сауда орталығының ережелерімен',
+          'хабарландыруларды орналастыру ережелерімен',
+          'Кіру',
+          'шарттарын қабылдаймын',
+          'таныспын',
+        ],
+      ]
     }
   },
   computed: {
@@ -57,7 +91,10 @@ export default {
     },
     user() {
       return this.$store.state.localStorage.user
-    }
+    },
+    current() {
+      return this.$store.state.localStorage.current;
+    },
   },
   methods: {
     validate: function() {

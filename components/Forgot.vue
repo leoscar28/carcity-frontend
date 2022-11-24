@@ -5,25 +5,25 @@
         <img src="/logo.svg" width="100%" alt="logo">
       </div>
       <template v-if="$route.query.type && $route.query.type === 'email'">
-        <div class="login-title">Введите e-mail который был привязан к аккаунту</div>
+        <div class="login-title">{{ language[current][0] }}</div>
         <div class="login-input">
           <input type="text" placeholder="E-mail">
         </div>
         <div class="login-btn">
-          <button>Отправить запрос</button>
+          <button>{{ language[current][1] }}</button>
         </div>
       </template>
       <template v-else>
-        <div class="login-title">Введите номер телефона который был привязан к аккаунту</div>
+        <div class="login-title">{{ language[current][2] }}</div>
         <div class="login-input">
           <input type="tel" v-mask="'###-###-##-##'" placeholder="___-___-__-__" ref="phone" v-model="phone" :readonly="!status">
         </div>
         <div class="login-btn">
-          <button @click="restore">Отправить запрос</button>
+          <button @click="restore">{{ language[current][1] }}</button>
         </div>
       </template>
       <NuxtLink to="/login">
-        <div class="login-remembered">Я вспомнил пароль</div>
+        <div class="login-remembered">{{ language[current][3] }}</div>
       </NuxtLink>
     </div>
   </div>
@@ -38,6 +38,26 @@ export default {
     return {
       phone: '',
       status: true,
+      language: [
+        [
+          'Введите e-mail который был привязан к аккаунту',
+          'Отправить запрос',
+          'Введите номер телефона который был привязан к аккаунту',
+          'Я вспомнил пароль'
+
+        ],
+        [
+          'Тіркелгімен байланыстырылған электрондық поштаны енгізіңіз',
+          'Сұраныс жіберу',
+          'Тіркелгіге байланысты телефон нөмірін енгізіңіз',
+          'Мен құпия сөзді есіме түсірдім'
+        ],
+      ]
+    }
+  },
+  computed: {
+    current() {
+      return this.$store.state.localStorage.current;
     }
   },
   methods: {
