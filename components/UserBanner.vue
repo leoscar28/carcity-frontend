@@ -29,7 +29,7 @@
             <div v-if="bannerItem.room" class="banner-section-block-title text-gray-900">{{ current === 1 ? bannerItem.room['room_type'].title_kz : bannerItem.room['room_type'].title }} {{ bannerItem.room.title }}, {{ current === 1 ? bannerItem.room['tier'].title_kz : bannerItem.room['tier'].title }}</div>
             <hr/>
             <template v-if="isFront && !phoneVisible">
-              <button @click="showPhone" class="btn btn-outline-primary w-100">{{ language[current][0] }}</button>
+              <button @click="showPhone" id="showNumberButton" class="btn btn-outline-primary w-100">{{ language[current][0] }}</button>
             </template>
             <template v-if="!isFront || phoneVisible">
               <WidgetBannerSectionWithIcon icon="phone_blue" :title="bannerItem.employee_name" :subtitle="bannerItem.employee_phone" />

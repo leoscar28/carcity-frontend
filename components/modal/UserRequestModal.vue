@@ -4,6 +4,7 @@
       <div class="modal-content-header-close" @click="onCancel"></div>
       <div class="modal-content-header">{{language[current][0]}}</div>
       <template v-if="user">
+        <template v-if="!formSent">
         <div class="modal-body">
           <div class="mb-3">
             <label class="form-label mb-1"><span class="text-danger">*</span> {{language[current][1]}}</label>
@@ -34,6 +35,16 @@
           <button @click="onCancel" class="ur-modal__button ur-modal__button__back">{{language[current][11]}}</button>
           <button @click="onSuccess" :disabled="isNotValid"  class="ur-modal__button" >{{language[current][12]}}</button>
         </div>
+        </template>
+        <template v-else>
+          <div class="modal-body text-center">
+            <b>{{language[current][18]}}</b><br>
+            {{language[current][17]}}
+          </div>
+          <div class="modal-footer text-end">
+            <button @click="onCancel" class="ur-modal__button">ОК</button>
+          </div>
+        </template>
       </template>
       <template v-else>
         <div @click="onCancel" class="ur-modal__user text-center">
@@ -66,6 +77,7 @@
           category_id: '',
           brand_id: ''
         },
+        formSent: false,
         language: [
           [
             'Заявка на запчасть',
@@ -84,7 +96,9 @@
             'Чтобы разместить заявку',
             'войдите в систему',
             'или',
-            'зарегистрируйтесь'
+            'зарегистрируйтесь',
+            'Ваша заявка размещена',
+            'Спасибо!'
           ],
           [
             'Қосалқы бөлшекке өтінім',
@@ -104,6 +118,8 @@
             'Жүйеге кіріңіз ',
             'немесе',
             'тіркеліңіз',
+            'Сіздің өтінішіңіз орналастырылды',
+            'Рахмет!'
           ],
         ]
       }
@@ -137,7 +153,7 @@
           category_id: '',
           brand_id: ''
         };
-        this.$store.commit('localStorage/setUserRequestModal',false);
+        this.formSent = false;
       },
       async onSuccess(){
         this.form.user_id = this.user.id;
@@ -145,13 +161,14 @@
         const res = await this.$store.dispatch('localStorage/createUserRequest', this.form);
 
         if (res.id) {
-          this.clearForm();
+          this.formSent = true;
         }
 
         auth.goAway(0);
       },
       onCancel(){
         this.clearForm();
+        this.$store.commit('localStorage/setUserRequestModal',false);
       }
     }
   }

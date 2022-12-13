@@ -5,8 +5,8 @@
         <NuxtLink to="/"><img src="/logo.svg" width="100%" alt="logo"></NuxtLink>
       </div>
       <template v-if="!password">
-        <div class="login-title" v-if="type === 1">На ваш телефон номер был отправлен смс код для подтверждения регистрации</div>
-        <div class="login-title" v-else>На вашу эл.почту был отправлен код для подтверждения регистрации</div>
+        <div class="login-title" v-if="type === 1">На ваш телефон номер (<b>{{registerUser.phone}}</b>) был отправлен смс код для подтверждения регистрации</div>
+        <div class="login-title" v-else>На вашу эл.почту (<b>{{registerUser.email}}</b>) был отправлен код для подтверждения регистрации</div>
         <div class="login-input-cells">
           <div class="login-input-cell" ref="code_1">
             <masked-input v-model="code[0]" mask="1"/>
