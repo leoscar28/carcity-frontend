@@ -20,6 +20,12 @@
       </template>
     </TheHeader>
     <main>
+      <template>
+        <let-it-snow
+          v-bind="snowConf"
+          :show="show"
+        ></let-it-snow>
+      </template>
       <section class="py-4">
         <div class="container">
           <nav aria-label="breadcrumb">
@@ -56,6 +62,19 @@
       },
       data(){
         return {
+          snowConf: {
+            windPower : 1,
+            speed : 2,
+            count : 15,
+            size : 8,
+            opacity : 1,
+            images: [
+              '/snow/snow1.png',
+              '/snow/snow2.png',
+              '/snow/snow3.png'
+            ]
+          },
+          show: false,
           language:[
             [
               'Главная', 'Поиск услуг и запчастей'
@@ -65,6 +84,9 @@
             ]
           ]
         }
+      },
+      mounted() {
+        this.show = true;
       },
       computed:{
         current() {
