@@ -129,7 +129,9 @@ export default {
       },
       { property: 'og:title', content: 'Аренда помещений под продажу автозапчастей и аксессуаров от 3 кв. м.' },
       { property: 'og:description', content: 'Арендуйте бутик или витрину в крупнейшем торговом центре автозапчастей Car City. Огромный трафик покупателей, паркинг и богатая инфраструктура' },
-      { property: 'og:locale', content: 'ru_RU' }
+      { property: 'og:locale', content: 'ru_RU' },
+      { name: 'yandex-verification', content: '374e8ea4b23100e6' },
+      { name: 'google-site-verification', content: 'uQkO_Vx3W9DhoBuJkz1iI5a0cB6BV914qW4VS4VyPLY' }
     ]
   },
 }

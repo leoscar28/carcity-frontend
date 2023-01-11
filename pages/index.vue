@@ -306,7 +306,9 @@ export default {
       },
       { property: 'og:title', content: 'Огромный выбор автозапчастей по доступным ценам на любые марки машин' },
       { property: 'og:description', content: 'Низкие цены. Гарантия качества. Отличный сервис.  Более 50 миллионов позиций - запчасти, масла, автохимия, электроника, аксессуары' },
-      { property: 'og:locale', content: 'ru_RU' }
+      { property: 'og:locale', content: 'ru_RU' },
+      { name: 'yandex-verification', content: '374e8ea4b23100e6' },
+      { name: 'google-site-verification', content: 'uQkO_Vx3W9DhoBuJkz1iI5a0cB6BV914qW4VS4VyPLY' }
     ]
   },
   mounted() {

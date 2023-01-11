@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+Host: https://carcity.kz
+Sitemap: https://admin.car-city.kz/sitemap.xml
