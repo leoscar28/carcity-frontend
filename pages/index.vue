@@ -31,12 +31,12 @@
       </template>
     </TheHeader>
     <main>
-      <template>
+<!--      <template>
         <let-it-snow
           v-bind="snowConf"
           :show="show"
         ></let-it-snow>
-        </template>
+        </template>-->
 
         <section class="hero">
         <div class="container">

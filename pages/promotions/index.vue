@@ -20,12 +20,12 @@
       </template>
     </TheHeader>
     <main>
-      <template>
+<!--      <template>
         <let-it-snow
           v-bind="snowConf"
           :show="show"
         ></let-it-snow>
-      </template>
+      </template>-->
       <section class="py-4">
         <div class="container">
           <nav aria-label="breadcrumb">
