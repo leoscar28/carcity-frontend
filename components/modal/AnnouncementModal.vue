@@ -6,9 +6,7 @@
             <div class="text-center">
               <h4 class="fw-bold">{{announcementRecipient.announcement.title}}</h4>
             </div>
-            <div class="mb-3">
-              {{announcementRecipient.announcement.description}}
-            </div>
+            <div class="mb-3" v-html="announcementRecipient.announcement.description"></div>
             <div v-if="announcementRecipient.file" class="mb-3">
               <a :href="announcementRecipient.file.path" download @click="clicked = true" target="_blank"><img src="/attachment.png" /> {{announcementRecipient.file.title}}</a>
             </div>

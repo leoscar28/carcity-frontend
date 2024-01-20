@@ -9,7 +9,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label"><span class="text-danger">*</span> Описание</label>
-          <textarea v-model="form.description"  rows="10" class="form-control form-control-sm" placeholder="Введите текст уведомления"></textarea>
+          <ckeditor :editor="editor" :config="editorConfig" v-model="form.description" ></ckeditor>
         </div>
         <div class="mb-3">
           <input ref="file" v-on:change="handleFileUpload"  type="file" accept=".jpg,.jpeg,.png,.bmp,.pdf,.txt,.xls,.xlsx,.doc,.docx">
@@ -39,12 +39,23 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import CKEditor from '@ckeditor/ckeditor5-vue2';
+
+Vue.use( CKEditor );
+
 import Select2 from 'v-select2-component';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 export default {
   name: "AnnouncementForm",
   components: {Select2},
   data(){
     return {
+      editor: ClassicEditor,
+      editorConfig: {
+        placeholder: 'Введите текст уведомления'
+      },
       customers:[],
       sending: false,
       form: {
@@ -96,6 +107,9 @@ export default {
 </script>
 
 <style lang="scss">
+.ck-editor__editable_inline {
+  min-height: 150px;
+}
 
 .announcement-link {
   color: #274985;
