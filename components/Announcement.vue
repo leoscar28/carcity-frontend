@@ -35,9 +35,7 @@
             <div class="col-md-3 mb-md-3 mb-1">
               <div class="text-gray-600">Описание</div>
             </div>
-            <div class="col-md-9 mb-md-3 mb-2">
-              {{announcementRecipient.announcement.description}}
-            </div>
+            <div class="col-md-9 mb-md-3 mb-2" v-html="announcementRecipient.announcement.description"></div>
           </div>
         </div>
       </div>
