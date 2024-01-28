@@ -10,7 +10,10 @@
             <div v-if="announcementRecipient.file" class="mb-3">
               <a :href="announcementRecipient.file.path" download @click="clicked = true" target="_blank"><img src="/attachment.png" /> {{announcementRecipient.file.title}}</a>
             </div>
-            <label><input type="checkbox" v-model="form.confirm" :disabled="announcementRecipient.file && !clicked"/> Ознакомлен</label>
+            <div v-if="announcementRecipient.announcement.link" class="mb-3">
+              Ссылка для ознакомления:  <a :href="announcementRecipient.announcement.link" @click="clicked = true" target="_blank">{{announcementRecipient.announcement.link}}</a>
+            </div>
+            <label><input type="checkbox" v-model="form.confirm" :disabled="announcementRecipient.file && !clicked ||announcementRecipient.announcement.link && !clicked "/> Ознакомлен</label>
           </div>
           <div class="modal-footer">
             <button @click="onSuccess" :disabled="!form.confirm"  class="fr-modal__button" >Закрыть</button>

@@ -12,6 +12,10 @@
           <ckeditor :editor="editor" :config="editorConfig" v-model="form.description" ></ckeditor>
         </div>
         <div class="mb-3">
+          <label class="form-label">Ссылка для ознокомления</label>
+          <input v-model="form.link" class="form-control form-control-sm" placeholder="Введите адрес ссылки если нужна"/>
+        </div>
+        <div class="mb-3">
           <input ref="file" v-on:change="handleFileUpload"  type="file" accept=".jpg,.jpeg,.png,.bmp,.pdf,.txt,.xls,.xlsx,.doc,.docx">
         </div>
         <div class="mb-3">
@@ -61,6 +65,7 @@ export default {
       form: {
         title: '',
         description: '',
+        link: '',
         ids:[],
         file: null
       }
